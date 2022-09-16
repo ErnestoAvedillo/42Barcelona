@@ -6,20 +6,14 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:08:55 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 20:01:36 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:58:40 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_isalnum(char *str)
+int	ft_isalnum(int c)
 {
-	while (*str != '\0')
-	{
-		if (!((*str >= 'A' && *str <= 'Z') \
-			|| (*str >= 'a' && *str <= 'z') \
-			|| (*str >= '0' && *str <= '9')))
-		{
-			return (0);
-		}
-		str++;
-	}
+	if (!((c >= 'A' && c <= 'Z') \
+		|| (c >= 'a' && c <= 'z') \
+		|| (c >= '0' && c <= '9')))
+		return (0);
 	return (1);
 }

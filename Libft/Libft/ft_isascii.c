@@ -6,15 +6,12 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:09:31 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:48:46 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:03:40 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_isascii(char *str)
+int	ft_isascii(int c)
 {
-	int	count;
-
-	while (str[count] != '/0')
-		if (str[count] < 0 || str[count] > 127)
-			return (0);
+	if (c < 0 || c > 127)
+		return (0);
 	return (1);
 }

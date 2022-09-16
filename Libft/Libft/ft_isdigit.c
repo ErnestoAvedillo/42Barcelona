@@ -6,19 +6,13 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:10:18 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 19:58:22 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:01:39 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigitm(char *str)
+int	ft_isdigitm(int c)
 {
-	while (*str != '\0')
-	{
-		if (!(*str >= '0' && *str <= '9'))
-		{
-			return (0);
-		}
-		str++;
-	}
+	if (!(c >= '0' && c <= '9'))
+		return (0);
 	return (1);
 }

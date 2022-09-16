@@ -6,16 +6,12 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:10:27 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 20:00:01 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:13:00 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_str_is_alpha(char *str)
+int	ft_isprint(int c)
 {	
-	while (*str != '\0')
-	{
-		if (!(*str >= 40 && *str <= 96))
-			return (0);
-		str++;
-	}
+	if (!(c >= 32 && c <= 126))
+		return (0);
 	return (1);
 }

@@ -6,11 +6,11 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:14:20 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:34:58 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:15:52 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	cont;
 

@@ -1,34 +1,38 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Makefile                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 18:05:43 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:18:08 by eavedill         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-SRC			=		ft_isalpha 
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/16 18:19:18 by eavedill          #+#    #+#              #
+#    Updated: 2022/09/16 18:48:57 by eavedill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+SRC = ft_isalpha 
 
-SRCS		=	$(addsuffix, .c , $(SRC))
+SRCS = $(addsuffix .c , $(SRC))
 
-HEAAD		= ./includes/
+HEAD = ./
 
-OBJS		= ${SRCS: .c = .o}
+OBJS = $(addsuffix .o , $(SRC))
 
-CC			= gcc
+CC = gcc
 
-RM			= rm -f
+RM = rm -f
 
-CFLAGS		= -Wall -Wextra -Werror -I
+CFLAGS = -Wall -Wextra -Werror -I
 
-NAME		= Libft.a
-
-all:		$(NAME)
+NAME = Libft.a
 
 $(NAME):	$(OBJS)
-				ar rcs $(NAME) $(OBJS)
+	echo "listado de app " $(NAME)
+	echo "listado de obcts " $(OBJS)
+	echo "listado de src " $(SRC)
+	echo "listado de srcs " $(SRCS)
+	ar rcs $(NAME) $(OBJS)
+
+all:		$(NAME)
 
 clean:		$(RM) $(OBJS)
 

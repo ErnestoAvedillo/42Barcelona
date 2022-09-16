@@ -6,8 +6,20 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:08:08 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:08:26 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:38:51 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+void	bzero(void *s, size_t n)
+{
+	unsigned char	*ptr;
 
-
+	if (!s)
+		return ;
+	ptr = s;
+	while (n--)
+	{
+		*ptr = 0;
+		ptr++;
+	}
+	return ;
+}
