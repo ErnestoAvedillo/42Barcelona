@@ -1,39 +1,50 @@
-NAME = test
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/16 18:19:18 by eavedill   
+#    Updated: 2022/09/18 19:18:20 by eavedill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint ft_strlen ft_memset ft_strlcpy ft_bzero ft_memmove ft_memcpy
 
-SRC = ft_isalpha
+FOLDER = ./Libft/
 
-HEAD = libft
+SRCS = $(addprefix $(FOLDER), $(addsuffix .c , $(SRC))) $(NAME:.a=.c)
 
-CFLAGS = -Wall -Werror -Wextra
-
-FOLDER = Libft
-
-TARGET_OBJ = ./$(addsuffix .o, $(NAME))
-TARGET_SRC = ./$(addsuffix .c, $(NAME))
-
-OBJS = $(addprefix ./$(FOLDER)/,$(addsuffix .o, $(SRC)))
-
-SRCS = $(addprefix ./$(FOLDER)/,$(addsuffix .c, $(SRC)))
-
-HEADS = $(addprefix ./$(FOLDER)/,$(addsuffix .h, $(HEAD)))
+OBJS = $(addprefix $(FOLDER), $(addsuffix .o , $(SRC))) $(NAME:.a=.o)
 
 CC = gcc
 
-print:
-	@echo $(OBJS) $(TARGET_OBJ)
-	@echo $(SRCS) $(TARGET_SRC)
-	@echo $(HEADS)
-	@ls ./$(FOLDER)/
-	@cat $(OBJS)
+RM = rm -f
 
+CFLAGS = -Wall -Wextra -Werror 
+
+NAME = test.a
+
+print:
+	@echo "listado de app " $(NAME)
+	@echo "listado de obcts " $(OBJS)
+	@echo "listado de src " $(SRC)
+	@echo "listado de srcs " $(SRCS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS)  $(OBJS)  -o $(NAME)
 
 all: $(NAME)
 
-%.o: %.c
-	$(CC) $(FLAGS) -c ./$< -o ./$@
+clean:		
+	$(RM) $(OBJS)
 
-$(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS)
+fclean:		clean
+	$(RM) $(NAME)
 
+re:			fclean $(NAME)
 
-.PHONY:		all print 
+.PHONY:		all clean fclean re 

@@ -6,10 +6,12 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:08:08 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/16 19:38:51 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:18:16 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-void	bzero(void *s, size_t n)
+#include<stddef.h>
+
+void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
 

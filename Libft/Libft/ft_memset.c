@@ -6,15 +6,17 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:11:43 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/16 19:31:33 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:16:08 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-void	*memset(void *b, int c, size_t len)
+#include <stddef.h>
+
+void	*ft_memset(void *b, int c, size_t len)
 {
 	unsigned char	*ptr;
 
 	if (!b)
-		return (null);
+		return (NULL);
 	ptr = b;
 	while (len--)
 	{

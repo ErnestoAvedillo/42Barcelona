@@ -6,11 +6,11 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:10:18 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/16 19:01:39 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigitm(int c)
+int	ft_isdigit(int c)
 {
 	if (!(c >= '0' && c <= '9'))
 		return (0);
