@@ -9,7 +9,7 @@
 #    Updated: 2022/09/16 18:48:57 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-SRC = ft_isalpha 
+SRC = ft_isalpha ft_isalnum
 
 SRCS = $(addsuffix .c , $(SRC))
 
@@ -25,11 +25,14 @@ CFLAGS = -Wall -Wextra -Werror -I
 
 NAME = Libft.a
 
+print:
+	ls
+	@echo "listado de app " $(NAME)
+	@echo "listado de obcts " $(OBJS)
+	@echo "listado de src " $(SRC)
+	@echo "listado de srcs " $(SRCS)
+
 $(NAME):	$(OBJS)
-	echo "listado de app " $(NAME)
-	echo "listado de obcts " $(OBJS)
-	echo "listado de src " $(SRC)
-	echo "listado de srcs " $(SRCS)
 	ar rcs $(NAME) $(OBJS)
 
 all:		$(NAME)
@@ -41,4 +44,4 @@ fclean:		clean
 
 re:			fclean $(NAME)
 
-.PHONY:		all clean fclean re 
+.PHONY:		all print clean fclean re 

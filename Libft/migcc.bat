@@ -1,0 +1,1 @@
+gcc -Wall -Wextra -Werror test.c ./Libft/ft_isalpha.c 
