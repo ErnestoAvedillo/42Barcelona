@@ -9,7 +9,9 @@
 #    Updated: 2022/09/18 19:18:20 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint ft_strlen ft_memset ft_strlcpy ft_bzero ft_memmove ft_memcpy
+SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint \
+	 ft_strlen ft_memset ft_strlcpy ft_strlcat ft_bzero ft_memmove ft_memcpy \
+	 ft_toupper ft_tolower ft_strchr
 
 FOLDER = ./Libft/
 

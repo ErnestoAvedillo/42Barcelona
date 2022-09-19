@@ -9,5 +9,13 @@
 /*   Updated: 2022/09/15 18:16:31 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
+int		ft_toupper(int c)
+{
+	if (ft_isalpha(c) ==2)
+		return (c - 32);
+	else 
+		return (c);
+}
 
