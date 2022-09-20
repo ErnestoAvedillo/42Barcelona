@@ -9,5 +9,20 @@
 /*   Updated: 2022/09/15 18:13:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include<stddef.h>
+#include"libft.h"
 
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	len1;
+	size_t	len2;
+	char	*ptr;
+
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	ptr = ft_calloc(len1 + len2 + 1, sizeof(char));
+	ft_strlcpy (ptr, s1, len1);
+	ft_strlcat(ptr, s2, len2);
+	return (ptr); 
+}
 

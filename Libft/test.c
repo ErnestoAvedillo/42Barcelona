@@ -210,4 +210,125 @@ int main ()
 	printf("strchr en -%s- al buscar -%c- retorna %p\n", str, var3, strchr(str, var3));
 	printf("\n");
 
+	/*ft_strncmp
+	 */
+	var1 = 'r';
+	var2 = 'R';
+	var3 = '2';
+	ft_strlcpy(str, "test esto@thyuun atraco",22);
+	ft_strlcpy(str2, "test esto es un atrco",22);
+	printf("test ft_strncmp\n");
+	printf("ft_strncmp compara -%s- con -%s- retorna %d\n", str, str2, ft_strncmp(str, str2, 20));
+	printf("   strncmp compara -%s- con -%s- retorna %d\n", str, str2, strncmp(str, str2, 20));
+	printf("ft_strncmp compara -%s- con -%s- retorna %d\n", str, str2, ft_strncmp(str, str2, 9));
+	printf("   strncmp compara -%s- con -%s- retorna %d\n", str, str2, strncmp(str, str2, 9));
+	ft_strlcpy(str2, "test estothyuun atraco",22);
+	ft_strlcpy(str, "test esto es un atraco",22);
+	printf("ft_strncmp compara -%s- con -%s- retorna %d\n", str, str2, ft_strncmp(str, str2, 20));
+	printf("   strncmp compara -%s- con -%s- retorna %d\n", str, str2, strncmp(str, str2, 20));
+	ft_strlcpy(str2, "test esto ES n atraco",22);
+	ft_strlcpy(str, "test esto es un atraco",22);
+	printf("ft_strncmp compara -%s- con -%s- retorna %d\n", str, str2, ft_strncmp(str, str2, 20));
+	printf("   strncmp compara -%s- con -%s- retorna %d\n", str, str2, strncmp(str, str2, 20));
+	ft_strlcpy(str2, "test esto ES n atraco",22);
+	ft_strlcpy(str, "test esto",22);
+	printf("ft_strncmp compara -%s- con -%s- retorna %d\n", str, str2, ft_strncmp(str, str2, 20));
+	printf("   strncmp compara -%s- con -%s- retorna %d\n", str, str2, strncmp(str, str2, 20));
+	ft_strlcpy(str, "test esto ES n atraco",22);
+	ft_strlcpy(str2, "test esto",22);
+	printf("ft_strncmp compara -%s- con -%s- retorna %d\n", str, str2, ft_strncmp(str, str2, 20));
+	printf("   strncmp compara -%s- con -%s- retorna %d\n", str, str2, strncmp(str, str2, 20));
+	printf("\n");
+
+	/*ft_memchr
+	 */
+	var1 = 'r';
+	ft_strlcpy(str, "test esto@thyuun atraco",22);
+	ft_strlcpy(str2, "test esto es un atrco",22);
+
+	printf("test ft_memchr\n");
+	printf("ft_memchr busca el caracter -%c- en -%s- retorna %p\n", var1, str2, ft_memchr(str2, var1, 20));
+	printf("   memchr busca el caracter -%c- en -%s- retorna %p\n", var1, str2,  memchr(str2, var1, 20));
+	var1 = 'w';
+	printf("ft_memchr busca el caracter -%c- en -%s- retorna %p\n", var1, str2, ft_memchr(str2, var1, 20));
+	printf("   memchr busca el caracter -%c- en -%s- retorna %p\n", var1, str2,  memchr(str2, var1, 20));
+	var1 = 'w';
+	printf("ft_memchr busca el caracter -%c- en -%s- retorna %p\n", var1, str2, ft_memchr(str2, var1, 50));
+	printf("   memchr busca el caracter -%c- en -%s- retorna %p\n", var1, str2,  memchr(str2, var1, 50));
+
+	/*ft_memcmp
+	 */
+	ft_strlcpy(str, "test esto @thyuun atraco",20);
+	ft_strlcpy(str2, "test esto es un atrco",20);
+
+	printf("test ft_memcmp\n");
+	printf("ft_memcmp compara el str -%s- con -%s- retorna %d\n", str, str2, ft_memcmp(str, str2, 20));
+	printf("   memcmp compara el str -%s- con -%s- retorna %d\n", str, str2, memcmp(str, str2, 20));
+	printf("ft_memcmp compara el str -%s- con -%s- retorna %d\n", str2, str, ft_memcmp(str2, str, 20));
+	printf("   memcmp compara el str -%s- con -%s- retorna %d\n", str2, str, memcmp(str2, str, 20));
+	ft_strlcpy(str, "test esto@thyuun atraco",22);
+	ft_strlcpy(str2, "test esto es un atrco",22);
+
+	printf("test ft_memcmp\n");
+	printf("ft_memcmp compara el str -%s- con -%s- retorna %d\n", str, str2, ft_memcmp(str, str2, 20));
+	printf("   memcmp compara el str -%s- con -%s- retorna %d\n", str, str2, memcmp(str, str2, 20));
+	printf("ft_memcmp compara el str -%s- con -%s- retorna %d\n", str2, str, ft_memcmp(str2, str, 20));
+	printf("   memcmp compara el str -%s- con -%s- retorna %d\n", str2, str, memcmp(str2, str, 20));
+
+	/*ft_strnstr
+	 */
+	ft_strlcpy(str, "es un",20);
+	ft_strlcpy(str2, "test esto es un atrco",20);
+
+	printf("test ft_strnstr\n");
+	printf("ft_strnstr busca el str -%s- dentro de -%s- retorna %p\n", str, str2, ft_strnstr(str2, str, 20));
+//	printf("   strnstr busca el str -%s- dentro de -%s- retorna %p\n", str, str2, strnstr(str2, str, 20));
+
+	/*ft_atoi
+	 */
+	printf("test ft_atoi\n");
+	ft_strlcpy(str, "fdr1234666",20);
+	ft_strlcpy(str2, "jju-434555",20);
+	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", str, ft_atoi(str));
+	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", str2, ft_atoi(str2));
+	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", str, atoi(str));
+	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", str2, atoi(str2));
+	ft_strlcpy(str, "  1234666",20);
+	ft_strlcpy(str2, "  - -434555",20);
+	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", str, ft_atoi(str));
+	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", str2, ft_atoi(str2));
+	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", str, atoi(str));
+	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", str2, atoi(str2));
+	printf("\n");
+
+	/*ft_strdup
+	 */
+	char *ptr;
+	char *ptr1;
+	printf("test ft_strdup\n");
+	ft_strlcpy(str, "fulanito de tal cual",20);
+	ptr = ft_strdup(str);
+	ptr1 = strdup(str);
+	printf("ft_strdup diplica el str -%s- en la direccion -%p- y vemos en ella %s \n", str, ptr, ptr);
+	printf("   strdup diplica el str -%s- en la direccion -%p- y vemos en ella %s \n", str, ptr1, ptr1);
+	free(ptr);
+	free(ptr1);
+
+	/*ft_substr
+	*/
+	printf("test ft_substr\n");
+	ft_strlcpy(str, "fulanitodetalcualsea",20);
+	ptr = ft_substr(str, 4, 8);
+	printf("ft_substr extrae del str -%s- en la direccion -%p- y vemos en ella %s \n", str, ptr, ptr);
+	free(ptr);
+
+	/*ft_strjoin
+	*/
+
+	printf("test ft_substr\n");
+	ft_strlcpy(str, "fulanitodetalcualsea",20);
+	ft_strlcpy(str2, "comoseasecanso",20);
+	ptr = ft_strjoin(str, str2);
+	printf("ft_strjoin une dos str -%s-%s- en la direccion -%p- y vemos en ella %s \n", str, str2, ptr, ptr);
+	free(ptr);
 }

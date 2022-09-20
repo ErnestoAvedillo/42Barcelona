@@ -9,5 +9,28 @@
 /*   Updated: 2022/09/15 18:15:57 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include<stddef.h>
+#include"libft.h"
+#include<stdio.h>
 
+char	*ft_substr(char const *s, unsigned int start,size_t len)
+{
+	char	*ptr;
+	size_t	i;
+	printf("hoa hola\n");
+	i = ft_strlen(s);
+	if (start > i)
+		return (0);
+	ptr = (char*)ft_calloc (sizeof(char), len + 1);
+	i = 0;
+	if (!ptr)
+		return (0);
+	while (s[start + i] && i < len)
+	{
+		ptr[i] = s[start + i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
 

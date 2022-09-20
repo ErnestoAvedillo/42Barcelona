@@ -9,26 +9,29 @@
 /*   Updated: 2022/09/15 18:18:08 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include<stdio.h>
 
-int	get_first_nbr (char *str)
+static int	get_first_nbr (char *str)
 {
 	int	count;
 	int	sign;
 
 	sign = 1;
 	count = 0;
-	while (str[count] != '\0')
+	while (str[count] != '\0' && (str[count] = ' ' || str[count] == '-'))
 	{
-		if (str[count] >= 48 && str[count] <= 57)
-			return (count * sign);
-		if (str[count] == '-')
+		if (str[count] == '-' && sign == -1)
+			return (0);
+		else 
 			sign *= -1;
 		count++;
 	}
+	if (str[count] >= 48 && str[count] <= 57)
+		return (0);
 	return (count * sign);
 
 }
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	count;
 	int first_nbr;
@@ -37,7 +40,12 @@ int	ft_atoi(char *str)
 	int sign;
 
 	result = 0;
-	first_nbr = get_first_nbr(str);
+	first_nbr = get_first_nbr((char*)(str));
+	if (first_nbr == 0)
+	{
+		printf("2 %c\n", str[0]);
+		return (0);
+	}
 	sign = 1;
 	if (first_nbr < 0)
 		sign = -1;
