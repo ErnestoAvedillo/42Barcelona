@@ -11,8 +11,10 @@
 # **************************************************************************** #
 SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint \
 	 ft_strlen ft_memset ft_strlcpy ft_strlcat ft_bzero ft_memmove ft_memcpy \
-	 ft_toupper ft_tolower ft_strchr ft_strncmp ft_memchr ft_memcmp ft_strnstr ft_atoi \
-	 ft_calloc ft_strdup ft_substr ft_strjoin
+	 ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp ft_memchr ft_memcmp \
+	 ft_strnstr ft_atoi ft_calloc ft_strdup ft_substr ft_strjoin ft_strtrim ft_split \
+	 ft_itoa
+
 
 FOLDER = ./Libft/
 
@@ -28,11 +30,6 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = test.a
 
-print:
-	@echo "listado de app " $(NAME)
-	@echo "listado de obcts " $(OBJS)
-	@echo "listado de src " $(SRC)
-	@echo "listado de srcs " $(SRCS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -49,5 +46,11 @@ fclean:		clean
 	$(RM) $(NAME)
 
 re:			fclean $(NAME)
+	
+print:
+	@echo "listado de app " $(NAME)
+	@echo "listado de obcts " $(OBJS)
+	@echo "listado de src " $(SRC)
+	@echo "listado de srcs " $(SRCS)
 
 .PHONY:		all clean fclean re 

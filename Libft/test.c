@@ -210,6 +210,21 @@ int main ()
 	printf("strchr en -%s- al buscar -%c- retorna %p\n", str, var3, strchr(str, var3));
 	printf("\n");
 
+	/*ft_strrchr
+	 */
+	var1 = 'a';
+	var2 = 'R';
+	var3 = '2';
+	printf("test ft_strchr\n");
+	ft_strlcpy(str, "esto es un atraco",17);
+	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var1, ft_strrchr(str, var1));
+	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var1, strrchr(str, var1));
+	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var2, ft_strrchr(str, var2));
+	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var2, strrchr(str, var2));
+	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, ft_strrchr(str, var3));
+	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, strrchr(str, var3));
+	printf("\n");
+
 	/*ft_strncmp
 	 */
 	var1 = 'r';
@@ -311,6 +326,7 @@ int main ()
 	ptr1 = strdup(str);
 	printf("ft_strdup diplica el str -%s- en la direccion -%p- y vemos en ella %s \n", str, ptr, ptr);
 	printf("   strdup diplica el str -%s- en la direccion -%p- y vemos en ella %s \n", str, ptr1, ptr1);
+	printf("\n");
 	free(ptr);
 	free(ptr1);
 
@@ -320,15 +336,56 @@ int main ()
 	ft_strlcpy(str, "fulanitodetalcualsea",20);
 	ptr = ft_substr(str, 4, 8);
 	printf("ft_substr extrae del str -%s- en la direccion -%p- y vemos en ella %s \n", str, ptr, ptr);
+	printf("\n");
 	free(ptr);
 
 	/*ft_strjoin
 	*/
 
-	printf("test ft_substr\n");
+	printf("test ft_strjoin\n");
 	ft_strlcpy(str, "fulanitodetalcualsea",20);
 	ft_strlcpy(str2, "comoseasecanso",20);
 	ptr = ft_strjoin(str, str2);
 	printf("ft_strjoin une dos str -%s-%s- en la direccion -%p- y vemos en ella %s \n", str, str2, ptr, ptr);
+	printf("\n");
 	free(ptr);
+
+	/*ft_strtrim
+	*/
+
+	printf("test ft_strtrim\n");
+	ft_strlcpy(str, "fulanitodetalcualsea",20);
+	ft_strlcpy(str2, "as",20);
+	ptr = ft_strtrim(str, str2);
+	printf("ft_strtrim recorta el str -%s- entre los 2 primeros carac. en -%s- y queda: -%s- en el puntero %p\n", str, str2, ptr, ptr);
+	printf("\n");
+	free(ptr);
+
+	/*ft_split
+	*/
+	int	i = 0;
+	char **str3;
+	char div = 'c';
+	printf("test ft_split\n");
+	ft_strlcpy(str, "wwwcrrrctttyycoooppy",20);
+
+	str3 = ft_split(str, 'c');
+	while(str3[i])
+	{
+		printf("ft_split divide el str -%s- entre todos los caracteres -%c- y queda: -%s- en el puntero %p nr %d\n", str, div, str3[i], str3[i], i);
+		i++;
+	}
+	printf("\n");
+	free(str3);
+
+
+	/*ft_itoa
+	*/
+/*
+	printf("test ft_itoa\n");
+	var1 = 14567;
+	ptr = ft_itoa(var1);
+	printf("ft_itoa convierte el entero %d en el str -%s- en el puntero %p\n", var1, ptr, ptr);
+	free(ptr);
+*/
 }

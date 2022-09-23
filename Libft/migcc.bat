@@ -13,6 +13,7 @@ gcc -Wall -Wextra -Werror test.c ./Libft/ft_isalpha.c^
  ./Libft/ft_toupper.c^
  ./Libft/ft_tolower.c^
  ./Libft/ft_strchr.c^
+ ./Libft/ft_strrchr.c^
  ./Libft/ft_strncmp.c^
  ./Libft/ft_memchr.c^
  ./Libft/ft_memcmp.c^
@@ -22,5 +23,8 @@ gcc -Wall -Wextra -Werror test.c ./Libft/ft_isalpha.c^
  ./Libft/ft_strdup.c^
  ./Libft/ft_substr.c^
  ./Libft/ft_strjoin.c^
+ ./Libft/ft_strtrim.c^
+ ./Libft/ft_split.c^
+ ./Libft/ft_itoa.c^
   -o test.exe
 

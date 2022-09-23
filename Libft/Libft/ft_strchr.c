@@ -22,6 +22,4 @@ char	*ft_strchr(const char *s, int c)
 		return(NULL);
 	else
 		return((char*)(s + i));
-
 }
-
