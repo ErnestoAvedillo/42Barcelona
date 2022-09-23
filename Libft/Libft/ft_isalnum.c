@@ -6,16 +6,16 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:08:55 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/16 18:58:40 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:37:10 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 int	ft_isalnum(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return(1);
-	else if(c >= 'a' && c <= 'z')
-		return(2);
-	else if(c >= '0' && c <= '9')
-		return (4);
+		return (1);
+	else if (c >= 'a' && c <= 'z')
+		return (1);
+	else if (c >= '0' && c <= '9')
+		return (1);
 	return (0);
 }

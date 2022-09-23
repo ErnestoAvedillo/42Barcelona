@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:09:07 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 20:02:19 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:26:39 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 int	ft_isalpha(int c)
@@ -14,7 +14,7 @@ int	ft_isalpha(int c)
 	if (c >= 65 && c <= 90)
 		return (1);
 	else if (c >= 97 && c <= 122)
-		return (2);
+		return (1);
 	else
 		return (0);
 }

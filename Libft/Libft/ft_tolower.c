@@ -6,14 +6,14 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:16:28 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:16:31 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:10:24 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 int		ft_tolower(int c)
 {
-	if (ft_isalpha(c) ==1)
+	if (c >= 'A' && c <= 'Z')
 		return (c + 32);
 	else 
 		return (c);

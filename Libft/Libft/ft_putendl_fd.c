@@ -6,11 +6,11 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:12:12 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:12:16 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:47:26 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-void ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
-	ft_putstr_fd(s, fd);
+	ft_putstr_fd (s, fd);
 	write(fd, '\n', 1);
 }

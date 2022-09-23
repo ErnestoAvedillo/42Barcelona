@@ -6,11 +6,9 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:12:26 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:12:29 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:49:37 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 void	ft_putmaxchar(int fd)
 {	
 	char	*maxchar;
@@ -19,7 +17,7 @@ void	ft_putmaxchar(int fd)
 	write(fd, &maxchar, 11);
 }
 
-void ft_putnbr_fd(int nb, int fd);
+void	ft_putnbr_fd(int nb, int fd)
 {
 	int		i;
 	char	out_char;

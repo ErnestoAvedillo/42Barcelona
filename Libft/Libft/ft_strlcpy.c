@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:14:09 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/18 18:23:19 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 18:33:38 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stddef.h>
@@ -18,7 +18,7 @@ size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 	i = 0;
 	if (dstsize)
 	{
-		while (src[i] && i <= dstsize -1)
+		while (src[i] && i <= dstsize - 2)
 		{
 			dst[i] = src[i];
 			i++;

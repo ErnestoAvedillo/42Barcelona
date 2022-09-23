@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:11:26 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/18 19:17:50 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:45:14 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stddef.h>
@@ -14,7 +14,7 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int			i;
+	int	i;
 
 	i = len - 1;
 	if (!dst || !src)
@@ -26,7 +26,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		i = len - 1;
 		while (i >= 0)
 		{
-			*(char*) (dst+i) = *(char*)(src+i);
+			*(char *)(dst + i) = *(char *)(src + i);
 			i--;
 		}
 	}

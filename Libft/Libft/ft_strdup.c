@@ -6,19 +6,19 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:13:24 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:13:29 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:56:05 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include"libft.h"
 
-char *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	char	*ptr;
 	int		i;
 
-	ptr = (char*)ft_calloc(ft_strlen(s), sizeof(char));
-	if(!ptr)
-		return(NULL);
+	ptr = (char *)ft_calloc (ft_strlen(s), sizeof (char));
+	if (!ptr)
+		return (NULL);
 	i = 0;
 	while (s[i])
 	{

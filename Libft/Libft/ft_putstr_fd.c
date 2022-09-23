@@ -6,12 +6,12 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:12:55 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:12:58 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:50:35 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-void ft_putstr_fd(char *s, int fd);
+void	ft_putstr_fd(char *s, int fd)
 {
-	int i;
+	int	i;
 
 	while (s[i])
 	{

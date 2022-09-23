@@ -73,16 +73,16 @@ int main ()
 	 */
 	char str[50] = "qwerty";
 	printf("test ft_strlen\n");
-	printf("La longitud de la cadena deberia ser %d y me sale %d\n\n", strlen(str), ft_strlen(str));
+	printf("La longitud de la cadena deberia ser %lu y me sale %zu\n\n", strlen(str), ft_strlen(str));
 
 
 	/*ft_strlcpy
 	 */
 	printf("test ft_strlcpy\n");
 	printf("La cadena era %s\n",str);
-/*	strlcpy (str, "pepito grillo", 10);	
-	printf("La cadena con strlcpy es %s\n",str);*/
-	ft_strlcpy(str, "pepitogrillo", 10);
+	strlcpy (str, "pepito grillo", 10);	
+	printf("La cadena con strlcpy es %s\n",str);
+	ft_strlcpy(str, "pepito grillo", 10);
 	printf("La cadena con mi ft_strlcpy es %s\n\n",str);
 
 	/*ft_memset
@@ -99,7 +99,7 @@ int main ()
 	ft_strlcpy(str, "esto es un atraco",17);
 	printf("test ft_bzero\n");
 	printf ("Antes de bzero el texto es: %s.\n " , str);
-//	bzero(str, 9);
+	bzero(str, 9);
 	printf ("Despues de bzero el texto es %s.\n " , str);
 	ft_strlcpy(str, "esto es un atraco",17);
 	printf("Antes de ft_bzero el texto es: %s.\n", str);
@@ -147,24 +147,40 @@ int main ()
 
 	/*ft_strlcat
 	 */
+	size_t retval;
 	printf("test ft_strlcat\n");
 	ft_strlcpy(str2, "La prueba de ft_strlcat",25);
-	ft_strlcpy(str, "esto es un atraco",17);
+	ft_strlcpy(str, "esto es un atraco",18);
 	printf("antes de strlcat dst vale : %s\n", str);
 	printf("antes de strlcat src vale : %s\n", str2);
-//	strlcat(str,str2,20);
-	printf("despues de strlcat dst vale : %s\n", str);
+	retval = strlcat(str,str2,16);
+	printf("despues de strlcat dst  vale: %s -- return value %lu\n", str, retval);
 	printf("despues de strlcat src vale : %s\n", str2);
 
 	ft_strlcpy(str2, "La prueba de ft_strlcat",25);
-	ft_strlcpy(str, "esto es un atraco",17);
-	
+	ft_strlcpy(str, "esto es un atraco",18);
 	printf("antes de ft_strlcat dst  vale: %s\n", str);
 	printf("antes de ft_strlcat src  vale: %s\n", str2);
-	ft_strlcat(str,str2,20);
-	printf("despues de ft_strlcat dst  vale: %s\n", str);
+	retval = ft_strlcat(str,str2,16);
+	printf("despues de ft_strlcat dst  vale: %s -- return value %lu\n", str, retval);
 	printf("despues de ft_strlcat src  vale: %s\n\n", str2);
 	
+	ft_strlcpy(str2, "La prueba de ft_strlcat",25);
+	ft_strlcpy(str, "esto es un atraco",18);
+	printf("antes de strlcat dst vale : %s\n", str);
+	printf("antes de strlcat src vale : %s\n", str2);
+	retval = strlcat(str,str2,35);
+	printf("despues de strlcat dst  vale: %s -- return value %lu\n", str, retval);
+	printf("despues de strlcat src vale : %s\n", str2);
+
+	ft_strlcpy(str2, "La prueba de ft_strlcat",25);
+	ft_strlcpy(str, "esto es un atraco",18);
+	printf("antes de ft_strlcat dst  vale: %s\n", str);
+	printf("antes de ft_strlcat src  vale: %s\n", str2);
+	retval = ft_strlcat(str,str2,35);
+	printf("despues de ft_strlcat dst  vale: %s -- return value %lu\n", str, retval);
+	printf("despues de ft_strlcat src  vale: %s\n\n", str2);
+
 	/*ft_toupper
 	 */
 	var1 = 'r';
@@ -215,7 +231,7 @@ int main ()
 	var1 = 'a';
 	var2 = 'R';
 	var3 = '2';
-	printf("test ft_strchr\n");
+	printf("test ft_strrchr\n");
 	ft_strlcpy(str, "esto es un atraco",17);
 	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var1, ft_strrchr(str, var1));
 	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var1, strrchr(str, var1));
@@ -283,8 +299,6 @@ int main ()
 	printf("   memcmp compara el str -%s- con -%s- retorna %d\n", str2, str, memcmp(str2, str, 20));
 	ft_strlcpy(str, "test esto@thyuun atraco",22);
 	ft_strlcpy(str2, "test esto es un atrco",22);
-
-	printf("test ft_memcmp\n");
 	printf("ft_memcmp compara el str -%s- con -%s- retorna %d\n", str, str2, ft_memcmp(str, str2, 20));
 	printf("   memcmp compara el str -%s- con -%s- retorna %d\n", str, str2, memcmp(str, str2, 20));
 	printf("ft_memcmp compara el str -%s- con -%s- retorna %d\n", str2, str, ft_memcmp(str2, str, 20));
@@ -295,25 +309,31 @@ int main ()
 	ft_strlcpy(str, "es un",20);
 	ft_strlcpy(str2, "test esto es un atrco",20);
 
-	printf("test ft_strnstr\n");
+	printf("test ft_strstr\n");
 	printf("ft_strnstr busca el str -%s- dentro de -%s- retorna %p\n", str, str2, ft_strnstr(str2, str, 20));
-//	printf("   strnstr busca el str -%s- dentro de -%s- retorna %p\n", str, str2, strnstr(str2, str, 20));
+	printf("   strnstr busca el str -%s- dentro de -%s- retorna %p\n", str, str2, strnstr(str2, str, 20));
 
 	/*ft_atoi
 	 */
+ 
+	char	valor1[10];
+	char	valor2[10];
+	char	valor3[10];
+	char	valor4[10];
 	printf("test ft_atoi\n");
-	ft_strlcpy(str, "fdr1234666",20);
-	ft_strlcpy(str2, "jju-434555",20);
-	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", str, ft_atoi(str));
-	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", str2, ft_atoi(str2));
-	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", str, atoi(str));
-	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", str2, atoi(str2));
-	ft_strlcpy(str, "  1234666",20);
-	ft_strlcpy(str2, "  - -434555",20);
-	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", str, ft_atoi(str));
-	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", str2, ft_atoi(str2));
-	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", str, atoi(str));
-	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", str2, atoi(str2));
+	ft_strlcpy(valor1, "fdr1234666",10);
+	ft_strlcpy(valor2, "-4345A55",10);
+//	printf("ft_atoi convierte el str -%s- en un entero y retorna \n", valor1 );
+	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", valor1, ft_atoi(valor1));
+	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", valor1, atoi(valor1));
+	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", valor2, ft_atoi(valor2));
+	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", valor2, atoi(valor2));
+	ft_strlcpy(valor3, " 1234 666",10);
+	ft_strlcpy(valor4, "- -4333555",10);
+	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", valor3, ft_atoi(valor3));
+	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", valor3, atoi(valor3));
+	printf("ft_atoi convierte el str -%s- en un entero y retorna -%d- \n", valor4, ft_atoi(valor4));
+	printf("   atoi convierte el str -%s- en un entero y retorna -%d- \n", valor4, atoi(valor4));
 	printf("\n");
 
 	/*ft_strdup
@@ -381,11 +401,11 @@ int main ()
 
 	/*ft_itoa
 	*/
-/*
+
 	printf("test ft_itoa\n");
 	var1 = 14567;
 	ptr = ft_itoa(var1);
 	printf("ft_itoa convierte el entero %d en el str -%s- en el puntero %p\n", var1, ptr, ptr);
 	free(ptr);
-*/
+
 }

@@ -6,21 +6,19 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:08:44 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:08:49 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:35:47 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stddef.h>
 #include"libft.h"
 
-void *ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 
-	ptr = (void*)malloc(size * nmemb);
+	ptr = (void *)malloc (size * nmemb);
 	if (!ptr)
-		return(NULL);
-	ft_bzero(ptr, nmemb);
+		return (NULL);
+	ft_bzero (ptr, nmemb);
 	return (ptr);
 }
-
-
