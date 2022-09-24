@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:15:03 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:15:07 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/24 10:07:43 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stddef.h>
@@ -20,15 +20,14 @@ char	*ft_strnstr(const char	*big, const char *little, size_t len)
 
 	i = 0;
 	if (!little)
-		return ((char*)(big));
-
+		return ((char *)(big));
 	i = 0;
-	while(i < len)
+	while (i < len)
 	{
 		j = 0;
 		if (big[i] == little[j])
 		{
-			first_char = (char*)(big + i);
+			first_char = (char *)(big + i);
 			while (big[i] == little[j] && big[i] && little[j])
 			{
 				i++;
@@ -39,5 +38,5 @@ char	*ft_strnstr(const char	*big, const char *little, size_t len)
 		}
 		i++;
 	}
-	return(NULL);
+	return (NULL);
 }

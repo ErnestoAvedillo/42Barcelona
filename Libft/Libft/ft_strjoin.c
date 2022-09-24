@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:13:41 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/15 18:13:46 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/24 09:59:59 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stddef.h>
@@ -23,6 +23,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr = ft_calloc(len1 + len2 + 1, sizeof(char));
 	ft_strlcpy (ptr, s1, len1);
 	ft_strlcat(ptr, s2, len2);
-	return (ptr); 
+	return (ptr);
 }
-

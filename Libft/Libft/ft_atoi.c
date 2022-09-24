@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:05:43 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/23 21:21:34 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/24 12:01:16 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stdio.h>
@@ -36,6 +36,15 @@ static int	get_first_nbr(char *str)
 	return (start * sign);
 }
 
+int	get_last_nbr(const char *s, int i)
+{
+	while (s[i + 1] >= 48 && \
+			s[i + 1] <= 57 && \
+			s[i + 1] != '\0')
+		i++;
+	return (i);
+}
+
 int	ft_atoi(const char *str)
 {
 	int	count;
@@ -52,11 +61,7 @@ int	ft_atoi(const char *str)
 	if (first_nbr < 0)
 		sign = -1;
 	first_nbr = first_nbr * sign;
-	count = first_nbr;
-	while (str[count + 1] >= 48 && \
-			str[count + 1] <= 57 && \
-			str[count + 1] != '\0')
-		count++;
+	count = get_last_nbr(str, first_nbr);
 	pot = 1;
 	while (count >= first_nbr)
 	{

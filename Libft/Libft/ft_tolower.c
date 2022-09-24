@@ -6,16 +6,15 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:16:28 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/23 19:10:24 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/24 10:18:49 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int		ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c + 32);
-	else 
+	else
 		return (c);
 }
-

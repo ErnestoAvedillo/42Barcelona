@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:10:40 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/23 21:32:26 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/24 11:20:17 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include"libft.h"
@@ -37,22 +37,19 @@ static int	getchrnr(int val)
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		isneg;
 	int		lenstr;
 	int		i;
 
-	isneg = 0;
-	if (n < 0)
-		isneg = 1;
-	lenstr = getchrnr(n);
-	str = (char *)calloc (lenstr + isneg + 1, sizeof (char));
-	if (isneg)
-	{
-		i = 1;
-		str[0] = '-';
-	}
-	else
 	i = 0;
+	if (n < 0)
+		i = 1;
+	lenstr = getchrnr(n);
+	str = (char *)calloc (lenstr + i + 1, sizeof (char));
+	if (i)
+	{
+		str[0] = '-';
+		n *= -1;
+	}
 	while (lenstr)
 	{
 		str[i] = n / pot(10, lenstr - 1) + 48;
