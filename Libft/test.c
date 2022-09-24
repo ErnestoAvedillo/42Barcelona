@@ -4,6 +4,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <stddef.h>
 #include <string.h>
 #include "./Libft/libft.h"
 
@@ -43,6 +44,8 @@ int main ()
 	printf("isdigit para %c retorna %d\n", var1, isdigit(var1));
 	printf("ft_isdigit para %c retorna %d\n", var2, ft_isdigit(var2));
 	printf("isdigit para %c retorna %d\n", var2, isdigit(var2));
+	printf("ft_isdigit para %c retorna %d\n", var3, ft_isdigit(var3));
+	printf("isdigit para %c retorna %d\n", var3, isdigit(var3));
 	printf("\n");
 
 	/* ft_isalnum
