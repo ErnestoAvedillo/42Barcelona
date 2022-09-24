@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:14:38 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/24 10:04:46 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:15:28 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stddef.h>
@@ -14,11 +14,11 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		i;
+	size_t	i;
 	char	*str;
 	size_t	lenstr;
 
-	lenstr = ft_lenste (s);
+	lenstr = ft_strlen (s);
 	str = (char *)calloc (lenstr + 1, sizeof (char));
 	if (!str)
 		return (NULL);

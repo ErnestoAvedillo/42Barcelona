@@ -7,6 +7,19 @@
 #include <string.h>
 #include "./Libft/libft.h"
 
+char	ft_test_mapi(unsigned int i, char c)
+{
+	i = 0;
+	return (c - 32);
+}
+
+void	ft_test_iteri(unsigned int i, char *c)
+{
+	i = 0;
+	*c += 32;
+	return;
+}
+
 //int main (int av, char **ac)
 int main ()
 {
@@ -75,16 +88,6 @@ int main ()
 	printf("test ft_strlen\n");
 	printf("La longitud de la cadena deberia ser %lu y me sale %zu\n\n", strlen(str), ft_strlen(str));
 
-
-	/*ft_strlcpy
-	 */
-	printf("test ft_strlcpy\n");
-	printf("La cadena era %s\n",str);
-	strlcpy (str, "pepito grillo", 10);	
-	printf("La cadena con strlcpy es %s\n",str);
-	ft_strlcpy(str, "pepito grillo", 10);
-	printf("La cadena con mi ft_strlcpy es %s\n\n",str);
-
 	/*ft_memset
 	 */
 	printf("test ft_memset\n");
@@ -144,6 +147,15 @@ int main ()
 	ft_memmove(str,str2,20);
 	printf("despues de ft_memmove dst  vale: %s\n", str);
 	printf("despues de ft_memmove src  vale: %s\n\n", str2);
+
+	/*ft_strlcpy
+	 */
+	printf("test ft_strlcpy\n");
+	printf("La cadena era %s\n",str);
+	strlcpy (str, "pepito grillo", 10);	
+	printf("La cadena con strlcpy es %s\n",str);
+	ft_strlcpy(str, "pepito grillo", 10);
+	printf("La cadena con mi ft_strlcpy es %s\n\n",str);
 
 	/*ft_strlcat
 	 */
@@ -404,18 +416,53 @@ int main ()
 
 	printf("test ft_itoa\n");
 	var1 = 14567;
-	ptr = itoa(var1);
-	printf("   itoa convierte el entero %d en el str -%s- en el puntero %p\n", var1, ptr, ptr);
-	free(ptr);
 	ptr = ft_itoa(var1);
 	printf("ft_itoa convierte el entero %d en el str -%s- en el puntero %p\n", var1, ptr, ptr);
 	free(ptr);
 	var1 = -4567;
-	ptr = itoa(var1);
-	printf("   itoa convierte el entero %d en el str -%s- en el puntero %p\n", var1, ptr, ptr);
-	free(ptr);
 	ptr = ft_itoa(var1);
 	printf("ft_itoa convierte el entero %d en el str -%s- en el puntero %p\n", var1, ptr, ptr);
+	printf("\n");
 	free(ptr);
 
+	/*ft_strmapi
+	 */
+	printf("Test de ft_strmapi :\n");
+	printf("ABC : %s\n", ft_strmapi("abc", ft_test_mapi));
+	printf("ABC : %s\n", ft_strmapi("idf", ft_test_mapi));
+	printf("\n");
+
+
+	/*ft_striteri
+	 */
+	printf("Test de ft_strmapi :\n");
+	ft_strlcpy(str, "ABC",4);
+	printf("La funcion ft_striteri modifica cada caracter del str: %s \n",str );
+	ft_striteri(str,ft_test_iteri);
+	printf("quedando: %s \n",str );
+	printf("\n");
+
+	/*ft_putchar_fd
+	*/
+	printf("Test de ft_putchar_fd :\n");
+	ft_putchar_fd(var1,1);
+	printf("\n");
+
+	/*ft_putstr_fd
+	 */
+	printf("Test de ft_putstr_fd :\n");
+	ft_putstr_fd(str,1);
+	printf("\n");
+
+	/*ft_putendl_fd
+	 */
+	printf("Test de ft_putendl_fd :\n");
+	ft_putendl_fd(str,1);
+	printf("\n");
+
+	/*ft_putnbr_fd
+	 */
+	printf("Test de ft_putnbr_fd :\n");
+	ft_putnbr_fd(34,1);
+	printf("\n");
 }

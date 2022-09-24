@@ -6,9 +6,11 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:12:26 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/23 21:49:37 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:12:31 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
+
 void	ft_putmaxchar(int fd)
 {	
 	char	*maxchar;
@@ -35,7 +37,7 @@ void	ft_putnbr_fd(int nb, int fd)
 	}
 	i = nb / 10;
 	if (i > 10)
-		ft_putnbr_fd(i);
+		ft_putnbr_fd(i, fd);
 	else
 	{
 		out_char = i + '0';

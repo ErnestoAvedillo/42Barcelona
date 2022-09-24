@@ -6,12 +6,12 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:12:00 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/23 21:46:55 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:03:59 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<unistd.h>
 
-void	ft_putchar_fd(char c, int fd);
+void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }

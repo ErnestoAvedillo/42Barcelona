@@ -6,13 +6,16 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:12:55 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/23 21:50:35 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:06:22 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include<unistd.h>
+
 void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
+	i = 0;
 	while (s[i])
 	{
 		write(fd, &s[i], 1);

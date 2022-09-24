@@ -6,14 +6,14 @@
 #    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/16 18:19:18 by eavedill   
-#    Updated: 2022/09/18 19:18:20 by eavedill         ###   ########.fr        #
+#    Updated: 2022/09/24 16:03:08 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint \
 	 ft_strlen ft_memset ft_strlcpy ft_strlcat ft_bzero ft_memmove ft_memcpy \
 	 ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp ft_memchr ft_memcmp \
 	 ft_strnstr ft_atoi ft_calloc ft_strdup ft_substr ft_strjoin ft_strtrim ft_split \
-	 ft_itoa
+	 ft_itoa ft_strmapi ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
 
 
 FOLDER = ./Libft/
