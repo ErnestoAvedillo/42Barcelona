@@ -9,19 +9,21 @@
 /*   Updated: 2022/09/24 10:02:08 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stddef.h>
 #include"libft.h"
 
-size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
+	size_t	res;	
 	size_t	lendst;
 	size_t	lensrc;
 
 	lendst = ft_strlen (dst);
 	lensrc = ft_strlen (src);
-	if (!src || !size || size < lendst)
-		return (lendst + lensrc - 1);
+	if (size < lendst)
+		return (lensrc + size);
+	else
+		res = lendst + lensrc;
 	i = 0;
 	while (i < size - 1 - lendst && src[i])
 	{
@@ -29,5 +31,5 @@ size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t size)
 		i++;
 	}
 	*(char *)(dst + lendst + i) = '\0';
-	return (lendst + lensrc);
+	return (res);
 }

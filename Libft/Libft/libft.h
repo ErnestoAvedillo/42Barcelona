@@ -13,16 +13,13 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
-
+# include <stddef.h>
+# include <stdio.h>
 typedef struct s_list
-{
+{	
 	void			*content;
 	struct s_list	*next;
 }			t_list;
-
-typedef struct s_split_next
-{
-}			t_split_next;
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
