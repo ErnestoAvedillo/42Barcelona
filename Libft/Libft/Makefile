@@ -22,25 +22,29 @@ HEAD = ./
 
 OBJS = $(addsuffix .o , $(SRC))
 
+DEPEN = $(addsuffix .d , $(SRC))
+
 CC = gcc
 
 RM = rm -f
 
 CFLAGS = -Wall -Wextra -Werror 
 
-NAME = Libft.a
+NAME = libft.a
 
+-include $(addsuffix .d , $(SRC))
 
 $(NAME):	$(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c $*.c -o $*.o
+	$(CC) -MM $(CFLAGS)  $*.c > $*.d
 
 all: $(NAME)
 
 clean:		
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPEN) 
 
 fclean:		clean
 	$(RM) $(NAME)
