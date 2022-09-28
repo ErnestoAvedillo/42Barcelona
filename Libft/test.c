@@ -10,13 +10,13 @@
 
 char	ft_test_mapi(unsigned int i, char c)
 {
-	i = 0;
+	i += 1;
 	return (c - 32);
 }
 
 void	ft_test_iteri(unsigned int i, char *c)
 {
-	i = 0;
+	i += 1;
 	*c += 32;
 	return;
 }
@@ -89,7 +89,7 @@ int main ()
 	 */
 	char str[50] = "qwerty";
 	printf("test ft_strlen\n");
-	printf("La longitud de la cadena deberia ser %lu y me sale %zu\n\n", strlen(str), ft_strlen(str));
+	printf("La longitud de la cadena deberia ser %u y me sale %u\n\n", strlen(str), ft_strlen(str));
 
 	/*ft_memset
 	 */
@@ -105,7 +105,7 @@ int main ()
 	ft_strlcpy(str, "esto es un atraco",17);
 	printf("test ft_bzero\n");
 	printf ("Antes de bzero el texto es: %s.\n " , str);
-	bzero(str, 9);
+//	bzero(str, 9);
 	printf ("Despues de bzero el texto es %s.\n " , str);
 	ft_strlcpy(str, "esto es un atraco",17);
 	printf("Antes de ft_bzero el texto es: %s.\n", str);
@@ -155,7 +155,7 @@ int main ()
 	 */
 	printf("test ft_strlcpy\n");
 	printf("La cadena era %s\n",str);
-	strlcpy (str, "pepito grillo", 10);	
+//	strlcpy (str, "pepito grillo", 10);	
 	printf("La cadena con strlcpy es %s\n",str);
 	ft_strlcpy(str, "pepito grillo", 10);
 	printf("La cadena con mi ft_strlcpy es %s\n\n",str);
@@ -168,32 +168,32 @@ int main ()
 	ft_strlcpy(str, "esto es un atraco",18);
 	printf("antes de strlcat dst vale : %s\n", str);
 	printf("antes de strlcat src vale : %s\n", str2);
-	retval = strlcat(str,str2,16);
-	printf("despues de strlcat dst  vale: %s -- return value %lu\n", str, retval);
-	printf("despues de strlcat src vale : %s\n", str2);
+//	retval = strlcat(str,str2,16);
+//	printf("despues de strlcat dst  vale: %s -- return value %u\n", str, retval);
+//	printf("despues de strlcat src vale : %s\n", str2);
 
 	ft_strlcpy(str2, "La prueba de ft_strlcat",25);
 	ft_strlcpy(str, "esto es un atraco",18);
 	printf("antes de ft_strlcat dst  vale: %s\n", str);
 	printf("antes de ft_strlcat src  vale: %s\n", str2);
 	retval = ft_strlcat(str,str2,16);
-	printf("despues de ft_strlcat dst  vale: %s -- return value %lu\n", str, retval);
+	printf("despues de ft_strlcat dst  vale: %s -- return value %u\n", str, retval);
 	printf("despues de ft_strlcat src  vale: %s\n\n", str2);
 	
 	ft_strlcpy(str2, "La prueba de ft_strlcat",25);
 	ft_strlcpy(str, "esto es un atraco",18);
 	printf("antes de strlcat dst vale : %s\n", str);
 	printf("antes de strlcat src vale : %s\n", str2);
-	retval = strlcat(str,str2,35);
-	printf("despues de strlcat dst  vale: %s -- return value %lu\n", str, retval);
-	printf("despues de strlcat src vale : %s\n", str2);
+//	retval = strlcat(str,str2,35);
+//	printf("despues de strlcat dst  vale: %s -- return value %u\n", str, retval);
+//	printf("despues de strlcat src vale : %s\n", str2);
 
 	ft_strlcpy(str2, "La prueba de ft_strlcat",25);
 	ft_strlcpy(str, "esto es un atraco",18);
 	printf("antes de ft_strlcat dst  vale: %s\n", str);
 	printf("antes de ft_strlcat src  vale: %s\n", str2);
 	retval = ft_strlcat(str,str2,35);
-	printf("despues de ft_strlcat dst  vale: %s -- return value %lu\n", str, retval);
+	printf("despues de ft_strlcat dst  vale: %s -- return value %u\n", str, retval);
 	printf("despues de ft_strlcat src  vale: %s\n\n", str2);
 
 	/*ft_toupper
@@ -230,7 +230,7 @@ int main ()
 	 */
 	var1 = 'r';
 	var2 = 'R';
-	var3 = '2';
+	var3 = '\0';
 	printf("test ft_strchr\n");
 	ft_strlcpy(str, "esto es un atraco",17);
 	printf("ft_strchr en -%s- al buscar -%c- retorna %p\n", str, var1, ft_strchr(str, var1));
@@ -239,23 +239,24 @@ int main ()
 	printf("strchr en -%s- al buscar -%c- retorna %p\n", str, var2, strchr(str, var2));
 	printf("ft_strchr en -%s- al buscar -%c- retorna %p\n", str, var3, ft_strchr(str, var3));
 	printf("strchr en -%s- al buscar -%c- retorna %p\n", str, var3, strchr(str, var3));
+	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, strrchr(str, var3));
 	printf("\n");
 
 	/*ft_strrchr
 	 */
-	var1 = 'a';
+/*	var1 = 'a';
 	var2 = 'R';
 	var3 = '2';
 	printf("test ft_strrchr\n");
-	ft_strlcpy(str, "esto es un atraco",17);
+	ft_strlcpy(str, "esto es un atraco", 17);
 	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var1, ft_strrchr(str, var1));
 	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var1, strrchr(str, var1));
 	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var2, ft_strrchr(str, var2));
 	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var2, strrchr(str, var2));
 	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, ft_strrchr(str, var3));
-	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, strrchr(str, var3));
+//	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, strrchr(str, var3));
 	printf("\n");
-
+*/
 	/*ft_strncmp
 	 */
 	var1 = 'r';
@@ -280,10 +281,10 @@ int main ()
 	ft_strlcpy(str, "test esto",22);
 	printf("ft_strncmp compara -%s- con -%s- retorna %d\n", str, str2, ft_strncmp(str, str2, 20));
 	printf("   strncmp compara -%s- con -%s- retorna %d\n", str, str2, strncmp(str, str2, 20));
-	ft_strlcpy(str, "test esto ES n atraco",22);
-	ft_strlcpy(str2, "test esto",22);
-	printf("ft_strncmp compara -%s- con -%s- retorna %d\n", str, str2, ft_strncmp(str, str2, 20));
-	printf("   strncmp compara -%s- con -%s- retorna %d\n", str, str2, strncmp(str, str2, 20));
+	ft_strlcpy(str, "test\200",8);
+	ft_strlcpy(str2, "test\0",6);
+	printf("ft_strncmp compara -%s- con -%s- retorna %d\n", str, str2, ft_strncmp(str, str2, 6));
+	printf("   strncmp compara -%s- con -%s- retorna %d\n", str, str2, strncmp(str, str2, 6));
 	printf("\n");
 
 	/*ft_memchr
@@ -326,7 +327,7 @@ int main ()
 
 	printf("test ft_strstr\n");
 	printf("ft_strnstr busca el str -%s- dentro de -%s- retorna %p\n", str, str2, ft_strnstr(str2, str, 20));
-	printf("   strnstr busca el str -%s- dentro de -%s- retorna %p\n", str, str2, strnstr(str2, str, 20));
+//	printf("   strnstr busca el str -%s- dentro de -%s- retorna %p\n", str, str2, strnstr(str2, str, 20));
 
 	/*ft_atoi
 	 */
