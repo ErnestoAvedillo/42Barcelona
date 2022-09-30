@@ -17,6 +17,7 @@ SRC = test_ft_isalpha test_ft_isalnum test_ft_isdigit test_ft_isascii test_ft_is
 	 test_ft_strmapi test_ft_striteri test_ft_putchar_fd test_ft_putstr_fd test_ft_putendl_fd \
 	 test_ft_putnbr_fd 
 
+LIB_FILES = ../Libft/libft.a
 
 SRCS = $(addsuffix .c , $(SRC))
 
@@ -39,7 +40,7 @@ NAME = test_libft.a
 -include $(addsuffix .d , $(SRC))
 
 $(NAME):	$(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+	ar -rcs $(NAME) $(OBJS) $(LIB_FILES) 
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $*.c -o $*.o $(LIBS)
