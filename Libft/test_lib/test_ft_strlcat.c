@@ -1,4 +1,4 @@
-#include "../Libft/libft.h"
+#include "../entrega/libft.h"
 #include "test_lib.h"
 
 void test_ft_strlcat()
@@ -23,7 +23,7 @@ void test_ft_strlcat()
 	printf("antes de ft_strlcat dst  vale: %s\n", str);
 	printf("antes de ft_strlcat src  vale: %s\n", str2);
 	retval = ft_strlcat(str,str2,16);
-	printf("despues de ft_strlcat dst  vale: %s -- return value %u\n", str, retval);
+	printf("despues de ft_strlcat dst  vale: %s -- return value %lu\n", str, retval);
 	printf("despues de ft_strlcat src  vale: %s\n\n", str2);
 	
 	ft_strlcpy(str2, "La prueba de ft_strlcat",25);
@@ -39,7 +39,7 @@ void test_ft_strlcat()
 	printf("antes de ft_strlcat dst  vale: %s\n", str);
 	printf("antes de ft_strlcat src  vale: %s\n", str2);
 	retval = ft_strlcat(str,str2,35);
-	printf("despues de ft_strlcat dst  vale: %s -- return value %u\n", str, retval);
+	printf("despues de ft_strlcat dst  vale: %s -- return value %lu\n", str, retval);
 	printf("despues de ft_strlcat src  vale: %s\n\n", str2);
 
 }

@@ -17,17 +17,19 @@ SRC = test_ft_isalpha test_ft_isalnum test_ft_isdigit test_ft_isascii test_ft_is
 	 test_ft_strmapi test_ft_striteri test_ft_putchar_fd test_ft_putstr_fd test_ft_putendl_fd \
 	 test_ft_putnbr_fd 
 
-LIB_FILES = ../Libft/libft.a
+LIB_FILES = ../entrega/libft.a
 
 SRCS = $(addsuffix .c , $(SRC))
 
-HEAD = ./
+HEAD_OBJS = ../obj/
 
-OBJS = $(addsuffix .o , $(SRC))
+HEAD_DEPEN = ../dep/
 
-DEPEN = $(addsuffix .d , $(SRC))
+OBJS = $(addprefix $(HEAD_OBJS), $(addsuffix .o , $(SRC)))
 
-LIBS = -I. -I../Libft
+DEPEN = $(addprefix $(HEAD_DEPEN), $(addsuffix .d , $(SRC)))
+
+LIBS = -I. -I../entrega
 
 CC = gcc
 
@@ -35,18 +37,18 @@ RM = rm -f
 
 CFLAGS = -Wall -Wextra -Werror 
 
-NAME = test_libft.a
+NAME = test_lib.a
 
 -include $(addsuffix .d , $(SRC))
 
-$(NAME):	$(OBJS)
-	ar -rcs $(NAME) $(OBJS) $(LIB_FILES) 
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $*.c -o $*.o $(LIBS)
-	$(CC) -MM $(CFLAGS)  $*.c > $*.d $(LIBS)
-
 all: $(NAME)
+
+$(NAME):	$(OBJS)
+	ar -rcs $(NAME) $(OBJS) 
+
+$(HEAD_OBJS)%.o: %.c
+	$(CC) $(CFLAGS) $(LIBS) -c $*.c -o $(HEAD_OBJS)$*.o 
+	$(CC) -MM $(CFLAGS) $(LIBS) $*.c > $(HEAD_DEPEN)$*.d 
 
 clean:		
 	$(RM) $(OBJS) $(DEPEN) 

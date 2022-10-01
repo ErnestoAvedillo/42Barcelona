@@ -1,4 +1,4 @@
-#include "./Libft/libft.h"
+#include "./entrega/libft.h"
 #include "./test_lib/test_lib.h"
 
 
@@ -24,7 +24,7 @@ int main ()
 	test_ft_strrchr();
 	test_ft_strncmp();
 	test_ft_memchr();
-	test_ft_memcmP();
+	test_ft_memcmp();
 	test_ft_strnstr();
 	test_ft_atoi();
 	test_ft_calloc();

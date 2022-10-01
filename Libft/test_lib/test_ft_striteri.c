@@ -1,4 +1,4 @@
-#include "../Libft/libft.h"
+#include "../entrega/libft.h"
 #include "test_lib.h"
 
 void	ft_test_iteri(unsigned int i, char *c)

@@ -1,6 +1,4 @@
-cd Libft
-make all
-cd ../test_lib
-make all
-cd ..
-gcc -Wall -Wextra -Werror  -ILibft/ -Itest_lib/   -o test.a test.c Libft/Libft.a test_lib/test_libft.a -LLibft/ -Ltest_lib/
+make -C./entrega/ all
+make -C./test_lib/ all
+echo compilo
+gcc -Wall -Wextra -Werror -o test.a test.c ./test_lib/test_lib.a ./entrega/libft.a

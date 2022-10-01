@@ -1,4 +1,4 @@
-#include "../Libft/libft.h"
+#include "../entrega/libft.h"
 #include "test_lib.h"
 
 char	ft_test_mapi(unsigned int i, char c)

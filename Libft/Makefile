@@ -9,48 +9,33 @@
 #    Updated: 2022/09/24 16:03:08 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint \
-	 ft_strlen ft_memset ft_strlcpy ft_strlcat ft_bzero ft_memmove ft_memcpy \
-	 ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp ft_memchr ft_memcmp \
-	 ft_strnstr ft_atoi ft_calloc ft_strdup ft_substr ft_strjoin ft_strtrim ft_split \
-	 ft_itoa ft_strmapi ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
-
-
-FOLDER = ./Libft/
-
-SRCS = $(addprefix $(FOLDER), $(addsuffix .c , $(SRC))) $(NAME:.a=.c)
-
-OBJS = $(addprefix $(FOLDER), $(addsuffix .o , $(SRC))) $(NAME:.a=.o)
-
-CC = gcc
-
-RM = rm -f
-
-CFLAGS = -Wall -Wextra -Werror 
 
 NAME = test.a
 
+SRC = $(NAME:.a=.c)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+NAME_LIBFT = ./entrega/libft.a
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS)  $(OBJS)  -o $(NAME)
+NAME_LIB_TESTS = ./test_lib/test_lib.a
+
+LIBS = -I./test_lib -I./entrega
 
 all: $(NAME)
 
-clean:		
-	$(RM) $(OBJS)
+comp_lib:$(NAME_LIBFT)
 
-fclean:		clean
-	$(RM) $(NAME)
+comp_test:$(NAME_LIB_TESTS)
 
-re:			fclean $(NAME)
-	
-print:
-	@echo "listado de app " $(NAME)
-	@echo "listado de obcts " $(OBJS)
-	@echo "listado de src " $(SRC)
-	@echo "listado de srcs " $(SRCS)
+$(NAME):test.c $(NAME_LIBFT) $(NAME_LIB_TESTS)
+	gcc -Wall -Werror -Wextra $(LIBS) -o $(NAME) $(SRC) $(NAME_LIB_TESTS) $(NAME_LIB_TESTS:.a=.h) $(NAME_LIBFT) $(NAME_LIBFT:.a=.h)
 
-.PHONY:		all clean fclean re 
+$(NAME_LIBFT):
+	make -Centrega all
+
+$(NAME_LIB_TESTS):
+	make -Ctest_lib all
+
+fclean:
+	make -Centrega fclean
+	make -Ctest_lib fclean
+	rm $(NAME)

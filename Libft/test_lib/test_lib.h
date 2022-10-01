@@ -24,7 +24,7 @@ void test_ft_tolower();
 void test_ft_strchr();
 void test_ft_strrchr();
 void test_ft_memchr();
-void test_ft_memcmP();
+void test_ft_memcmp();
 void test_ft_strnstr();
 void test_ft_atoi();
 void test_ft_calloc();

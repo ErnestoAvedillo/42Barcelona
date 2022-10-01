@@ -1,4 +1,4 @@
-#include "../Libft/libft.h"
+#include "../entrega/libft.h"
 #include "test_lib.h"
 
 	/* ft_isalnum
