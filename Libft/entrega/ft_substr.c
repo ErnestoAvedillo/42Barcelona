@@ -21,11 +21,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ptr = (char *)ft_calloc (sizeof(char), len + 1);
 	if (!ptr)
 		return (0);
-/*	if (start > i)
+	if (start > i)
 	{
 		ptr[0] = '\0';
 		return (ptr);
-	}*/
+	}
 	i = 0;
 	while (s[start + i] && i < len)
 	{

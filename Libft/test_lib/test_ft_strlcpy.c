@@ -5,7 +5,7 @@ void test_ft_strlcpy()
 {
 	/*ft_strlcpy
 	 */
-	char str[50] ="esto es un atraco";
+	char str[50] ="esto es un atraco asqueroso";
 	printf("test ft_strlcpy\n");
 	printf("La cadena era %s\n",str);
 //	strlcpy (str, "pepito grillo", 10);	

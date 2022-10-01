@@ -16,6 +16,11 @@ void test_ft_strrchr()
 	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var2, ft_strrchr(str, var2));
 	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var2, strrchr(str, var2));
 	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, ft_strrchr(str, var3));
-//	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, strrchr(str, var3));
+	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, strrchr(str, var3));
+	var3 = ' ';
+	ft_strlcpy(str, "lorem \n ipsum \t dolor \n sit \t amet",40);
+	printf("ft_strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, ft_strrchr(str, var3));
+	printf("strrchr en -%s- al buscar -%c- retorna %p\n", str, var3, strrchr(str, var3));
+
 	printf("\n");
 }

@@ -22,6 +22,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	len2 = ft_strlen(s2);
 	ptr = ft_calloc(len1 + len2 + 1, sizeof(char));
 	ft_strlcpy (ptr, s1, len1);
-	ft_strlcat(ptr, s2, len2);
+	ft_strlcat(ptr, s2, len1 + len2);
 	return (ptr);
 }
