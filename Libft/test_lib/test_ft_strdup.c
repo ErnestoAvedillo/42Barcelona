@@ -8,7 +8,8 @@ void test_ft_strdup ()
 	char *ptr1;
 	/*ft_strdup
 	 */
-	printf("test ft_strdup\n");
+	printf("%sTest de ft_strdup%s\n",KGRN, KNRM);
+	printf("%sTest1%s\n",KYEL, KNRM);
 	ft_strlcpy(str, "fulanito de tal cual",20);
 	ptr = ft_strdup(str);
 	ptr1 = strdup(str);

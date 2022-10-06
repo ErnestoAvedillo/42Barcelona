@@ -9,8 +9,7 @@
 /*   Updated: 2022/09/24 10:07:43 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stddef.h>
-#include<stdio.h>
+#include"libft.h"
 
 char	*ft_strnstr(const char	*big, const char *little, size_t len)
 {
@@ -18,8 +17,7 @@ char	*ft_strnstr(const char	*big, const char *little, size_t len)
 	size_t	j;
 	char	*first_char;
 
-	i = 0;
-	if (!little)
+	if (ft_strncmp((char *)little, "", 1) == 0)
 		return ((char *)(big));
 	i = 0;
 	while (i < len)
@@ -28,12 +26,12 @@ char	*ft_strnstr(const char	*big, const char *little, size_t len)
 		if (big[i] == little[j])
 		{
 			first_char = (char *)(big + i);
-			while (big[i] == little[j] && big[i] && little[j])
+			while (big[i] == little[j] && big[i] && little[j] && i < len)
 			{
 				i++;
 				j++;
 			}
-			if (!little[j])
+			if (!little[j] && i < len)
 				return (first_char);
 		}
 		i++;

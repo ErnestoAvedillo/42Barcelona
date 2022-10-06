@@ -9,18 +9,23 @@
 /*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
+
 int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int		i;
+	t_list	*ptr;
 
+	if (!lst)
+		return (0);
+	ptr = lst;
 	i = 0;
-	if (lst)
-		{
-			ptr = lst;
-			while (ptr++ != NULL)
-			{
-				i++;
-			}
-		}
+	while (ptr->next != NULL)
+	{
+		i++;
+		ptr = ptr->next;
+	}
+	if (ptr->next == NULL)
+		i++;
 	return (i);
 }

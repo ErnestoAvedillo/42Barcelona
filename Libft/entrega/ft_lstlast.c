@@ -9,15 +9,16 @@
 /*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	void	*ptr;
+	t_list	*ptr;
 
-	if (lst)
-		{
-			ptr = lst;
-			while (ptr++ != NULL);
-		}
+	if (!lst)
+		return (NULL);
+	ptr = lst;
+	while (ptr->next != NULL)
+		ptr = ptr->next;
 	return (ptr);
 }

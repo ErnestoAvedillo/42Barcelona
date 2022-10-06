@@ -24,12 +24,12 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		return (lensrc + size);
 	else
 		res = lendst + lensrc;
-	i = 0;
-	while (i < size - 1 - lendst && src[i])
+	i = lendst;
+	while (i < size - 1 && src[i - lendst])
 	{
-		*(char *)(dst + lendst + i) = *(char *)(src + i);
+		*(char *)(dst + i) = *(char *)(src + i - lendst);
 		i++;
 	}
-	*(char *)(dst + lendst + i) = '\0';
+	*(char *)(dst + i) = '\0';
 	return (res);
 }

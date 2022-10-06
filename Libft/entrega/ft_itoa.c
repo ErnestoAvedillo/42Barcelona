@@ -29,9 +29,23 @@ static int	getchrnr(int val)
 	int	i;
 
 	i = 1;
-	while (val / pot (10, i) != 0)
+	if (val < 0)
+		val *= -1;
+	if (val < 10)
+		return (1);
+	while (val / pot (10, i) > 10)
 		i++;
-	return (i);
+	return (i + 1);
+}
+
+static char	*get_max_neg(int n)
+{
+	char	*str;
+
+	n -= 0;
+	str = (char *)calloc (12, sizeof (char));
+	ft_strlcpy (str, "-2147483648", 12);
+	return (str);
 }
 
 char	*ft_itoa(int n)
@@ -40,23 +54,23 @@ char	*ft_itoa(int n)
 	int		lenstr;
 	int		i;
 
+	if (n == -2147483648)
+		return (get_max_neg (n));
+	lenstr = getchrnr(n);
+	str = (char *)calloc (lenstr + 2, sizeof (char));
 	i = 0;
 	if (n < 0)
-		i = 1;
-	lenstr = getchrnr(n);
-	str = (char *)calloc (lenstr + i + 1, sizeof (char));
-	if (i)
 	{
-		str[0] = '-';
+		i = 1;
 		n *= -1;
+		str[0] = '-';
 	}
 	while (lenstr)
-	{
-		str[i] = n / pot(10, lenstr - 1) + 48;
+	{	
+		str[i++] = n / pot(10, lenstr - 1) + 48;
 		n = n % pot(10, lenstr - 1);
 		lenstr--;
-		i++;
 	}
-	str[i] = 0;
+	str[i] = '\0';
 	return (str);
 }

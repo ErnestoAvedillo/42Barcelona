@@ -1,6 +1,6 @@
 #include "./entrega/libft.h"
 #include "./test_lib/test_lib.h"
-
+#include "test.h"
 
 int is_func(char **ac, char *str)
 {
@@ -85,6 +85,7 @@ int main (int av, char **ac)
 		test_ft_putendl_fd();
 	if (av == 1 || is_func(ac,"ft_putnbr_fd"))
 		test_ft_putnbr_fd();
-	
-
+	if (av == 1 || is_func(ac,"ft_bonus"))
+		test_ft_bonus();
+	printf("Goodby\n");
 }

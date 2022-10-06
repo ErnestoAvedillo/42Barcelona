@@ -15,6 +15,11 @@ SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint \
 	 ft_strnstr ft_atoi ft_calloc ft_strdup ft_substr ft_strjoin ft_strtrim ft_split \
 	 ft_itoa ft_strmapi ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd 
 
+SRC_BONUS = ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone ft_lstiter \
+	 ft_lstlast ft_lstmap ft_lstnew ft_lstsize
+
+INCLUDE = libft.h
+
 HEAD_OBJS = ../obj/
 
 HEAD_DEPS = ../dep/
@@ -25,6 +30,12 @@ OBJS = $(addprefix $(HEAD_OBJS), $(addsuffix .o , $(SRC)))
 
 DEPEN = $(addprefix $(HEAD_DEPS), $(addsuffix .d , $(SRC)))
 
+SRCS_BONUS = $(addsuffix .c , $(SRC_BONUS))
+
+OBJS_BONUS = $(addprefix $(HEAD_OBJS), $(addsuffix .o , $(SRC_BONUS)))
+
+DEPEN_BONUS = $(addprefix $(HEAD_DEPS), $(addsuffix .d , $(SRC_BONUS)))
+
 CC = gcc
 
 RM = rm -f
@@ -33,19 +44,22 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
 
+all: $(NAME)
+
 -include $(addsuffix .d , $(SRC))
 
 $(NAME):	$(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+	ar -rcs $(NAME) $(OBJS) $(INCLUDE)
 
 $(HEAD_OBJS)%.o: %.c
-	$(CC) $(CFLAGS) -c $*.c -o $(HEAD_OBJS)$*.o
-	$(CC) -MM $(CFLAGS)  $*.c > $(HEAD_DEPS)$*.d
+	$(CC) $(CFLAGS) -c $*.c -o $(HEAD_OBJS)$*.o 
+	$(CC) -MM $(CFLAGS)  $*.c > $(HEAD_DEPS)$*.d 
 
-all: $(NAME)
+bonus: $(OBJS) $(OBJS_BONUS)
+	ar -rcs $(NAME) $(OBJS_BONUS) $(DEPEN_BONUS) $(OBJS) $(DEPEN) $(INCLUDE)
 
 clean:		
-	$(RM) $(OBJS) $(DEPEN) 
+	$(RM) $(OBJS) $(DEPEN) $(DEPEN_BONUS) $(OBJS_BONUS)
 
 fclean:		clean
 	$(RM) $(NAME)

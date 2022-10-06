@@ -9,17 +9,17 @@
 /*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-void ft_lstiter(t_list *lst, void (*f)(void *));
-{
-	void *ptr;
+#include"libft.h"
 
-	if (lst && f && *lst)
+void	ft_lstiter(t_list *lst, void ( *f)(void *))
+{
+	if (!f)
+		return ;
+	while (lst->next != NULL)
 	{
-		while (ptr)
-		{	
-			(f)(ptr));
-			ptr = *lst -> next
-		}
+		f(lst->content);
+		lst = lst->next;
 	}
-	return;
+	f(lst->content);
+	return ;
 }

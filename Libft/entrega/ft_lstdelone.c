@@ -9,14 +9,13 @@
 /*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
+#include"libft.h"
+
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (!del)
-		return;
-	if (lst)
-	{
-		(del) (lst->content);
-		free(lst)
-	}
-	return
+	if (!del || !lst)
+		return ;
+	(del)(lst->content);
+	free(lst);
+	return ;
 }

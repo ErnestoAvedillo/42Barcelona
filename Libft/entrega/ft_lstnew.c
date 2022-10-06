@@ -9,14 +9,16 @@
 /*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-t_list	*ft_lstnew(void *content);
+#include"libft.h"
+
+t_list	*ft_lstnew(void *content)
 {
 	t_list	*ptr;
 
-	ptr = (t_list *)malloc (sozeof (elt));
-	if (ptr = NULL)
+	ptr = (t_list *)malloc (sizeof (t_list));
+	if (ptr == NULL)
 		return (NULL);
 	ptr->content = content;
 	ptr->next = NULL;
-	retun (ptr);
+	return (ptr);
 }

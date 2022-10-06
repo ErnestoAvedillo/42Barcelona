@@ -19,7 +19,7 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	while (s1[counter] != '\0' && s2[counter] != '\0' && counter < n)
 	{
 		if ((unsigned char)s1[counter] != (unsigned char)s2[counter])
-			return (s1[counter] - s2[counter]);
+			return ((unsigned char)s1[counter] - (unsigned char)s2[counter]);
 		counter++;
 	}
 	if ((s1[counter] != s2[counter]) && counter < n)

@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <stddef.h>
 #include <string.h>
+#include"../test.h"
 void test_ft_isalpha();
 void test_ft_strncmp();
 void test_ft_isalnum();
@@ -40,4 +41,5 @@ void test_ft_putchar_fd();
 void test_ft_putstr_fd();
 void test_ft_putendl_fd();
 void test_ft_putnbr_fd();
+void test_ft_bonus ();
 

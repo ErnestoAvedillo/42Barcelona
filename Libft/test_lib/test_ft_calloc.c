@@ -3,5 +3,7 @@
 
 void test_ft_calloc ()
 {
-
+	printf("%stest ft_calloc%s\n",KGRN, KNRM);
+	printf("Todavia no hago nada \n");
+	printf("\n");
 }

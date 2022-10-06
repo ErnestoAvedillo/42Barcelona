@@ -16,7 +16,7 @@ char	*ft_strdup(const char *s)
 	char	*ptr;
 	int		i;
 
-	ptr = (char *)ft_calloc (ft_strlen(s), sizeof (char));
+	ptr = (char *)ft_calloc (ft_strlen(s), sizeof (char) + 1);
 	if (!ptr)
 		return (NULL);
 	i = 0;
@@ -25,6 +25,6 @@ char	*ft_strdup(const char *s)
 		ptr[i] = s[i];
 		i++;
 	}
-	ptr[i] = s[i];
+	ptr[i] = '\0';
 	return (ptr);
 }

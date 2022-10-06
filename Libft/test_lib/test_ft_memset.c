@@ -6,7 +6,8 @@ void test_ft_memset()
 	/*ft_memset
 	 */
 	char str[50] = "qwerty";
-	printf("test ft_memset\n");
+	printf("%stest de ft_memset%s\n",KGRN, KNRM);
+	printf("%sTest1%s\n",KYEL, KNRM);
 	printf("Antes de memset es : %s\n", str);
 	memset(str, '*', 8 * sizeof(char));
 	printf("despues de memset es : %s\n", str);

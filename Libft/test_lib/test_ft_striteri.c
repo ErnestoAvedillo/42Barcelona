@@ -14,7 +14,8 @@ void test_ft_striteri ()
 	/*ft_striteri
 	 */
 
-	printf("Test de ft_strmapi :\n");
+	printf("%sTest de ft_strmapi%s\n",KGRN, KNRM);
+	printf("%sTest1%s\n",KYEL, KNRM);
 	ft_strlcpy(str, "ABC",4);
 	printf("La funcion ft_striteri modifica cada caracter del str: %s \n",str );
 	ft_striteri(str,ft_test_iteri);

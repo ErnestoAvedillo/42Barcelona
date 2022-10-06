@@ -16,7 +16,7 @@ void	ft_putmaxchar(int fd)
 	char	*maxchar;
 
 	maxchar = "-2147483648";
-	write(fd, maxchar, 11);
+	ft_putstr_fd(maxchar, fd);
 }
 
 void	ft_putnbr_fd(int nb, int fd)
@@ -32,17 +32,17 @@ void	ft_putnbr_fd(int nb, int fd)
 	if (nb < 0)
 	{
 		out_char = '-';
-		write(1, &out_char, 1);
+		ft_putchar_fd(out_char, fd);
 		nb = -nb;
 	}
 	i = nb / 10;
 	if (i > 10)
 		ft_putnbr_fd(i, fd);
-	else
+	else if (i > 0)
 	{
 		out_char = i + '0';
-		write(fd, &out_char, 1);
+		ft_putchar_fd(out_char, fd);
 	}
 	out_char = nb % 10 + '0';
-	write(fd, &out_char, 1);
+	ft_putchar_fd(out_char, fd);
 }

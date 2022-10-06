@@ -6,7 +6,8 @@ void test_ft_putstr_fd ()
 	char str[50] = "Tengo un paquete para ti";
 	/*ft_putstr_fd
 	 */
-	printf("Test de ft_putstr_fd :\n");
+	printf("%stest de ft_putstr_fd%s\n",KGRN, KNRM);
+	printf("%sTest1%s\n",KYEL, KNRM);
 	ft_putstr_fd(str,1);
 	printf("\n");
 }

@@ -9,14 +9,20 @@
 /*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"../Libft/libft.h"
+#include"libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	void	*ptr;
-	if (lst && *lst)
+	t_list	*ptr;
+
+	if (!*lst)
 	{
-		ptr = ft_lst_last (lst);
+		*lst = new;
+		return ;
+	}
+	if (lst && new)
+	{
+		ptr = ft_lstlast (*lst);
 		ptr->next = new;
 	}
 }

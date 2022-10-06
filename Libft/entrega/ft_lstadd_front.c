@@ -9,11 +9,14 @@
 /*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-void	ft_lstadd_front(t_list **lst, t_list *new);
+#include"libft.h"
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (lst && *lst)
-		{
-			new->next = lst[0]
-			lst[0]->next = new
-		}
+	if (lst && new)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
+	return ;
 }
