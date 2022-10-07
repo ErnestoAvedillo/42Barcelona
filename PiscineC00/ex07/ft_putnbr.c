@@ -45,7 +45,7 @@ void	ft_putnbr(int nb)
 	i = nb / 10;
 	if (i > 10)
 		ft_putnbr(i);
-	else
+	else if (i > 0)
 	{
 		out_char = i + '0';
 		write(1, &out_char, 1);

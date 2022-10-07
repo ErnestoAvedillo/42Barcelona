@@ -9,7 +9,6 @@
 /*   Updated: 2022/09/24 12:01:16 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdio.h>
 #include"libft.h"
 
 static int	get_first_nbr(char *str)

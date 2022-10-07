@@ -9,7 +9,6 @@
 /*   Updated: 2022/09/23 21:53:28 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stddef.h>
 #include"libft.h"
 
 static size_t	ft_nextstartpos(char const *s, size_t ini, char c)
@@ -74,7 +73,6 @@ char	**ft_split(char const *s, char c)
 		return ((char **)calloc (1, sizeof (size_t)));
 	else
 		rep = ft_nr_of_str (s, c);
-	printf("devuelvo %d\n", rep);
 	ptr = (char **)calloc (rep, sizeof (size_t));
 	i = 0;
 	j = 0;

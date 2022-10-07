@@ -9,7 +9,6 @@
 /*   Updated: 2022/09/24 16:13:37 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<unistd.h>
 #include"libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
