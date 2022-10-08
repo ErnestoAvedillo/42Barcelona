@@ -27,7 +27,17 @@ void test_ft_strchr()
 	printf("%sTest5%s\n",KYEL, KNRM);
 	printf("ft_strchr en cadenas con cero %p \n", d2);
 	printf("   strchr en cadenas con cero %p \n", d1);
-
+	printf("%sTest6%s\n",KYEL, KNRM);
+	char *src1 = "tonto";
+	int i = 0;
+	while (i <= 512)
+	{
+	 	char *d3 = strchr(src1, i);
+ 		char *d4 = ft_strchr(src1, i);
+		printf("ft_strchr en cadenas con %d --> %p \n",i , d4);
+		printf("   strchr en cadenas con %d --> %p \n",i , d3);
+		i++;
+	}
 	printf("\n");
 
 }

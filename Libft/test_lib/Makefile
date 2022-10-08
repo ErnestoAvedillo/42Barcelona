@@ -21,9 +21,9 @@ LIB_FILES = ../entrega/libft.a
 
 SRCS = $(addsuffix .c , $(SRC))
 
-HEAD_OBJS = ../obj/
+HEAD_OBJS = ./
 
-HEAD_DEPEN = ../dep/
+HEAD_DEPEN = ./
 
 OBJS = $(addprefix $(HEAD_OBJS), $(addsuffix .o , $(SRC)))
 

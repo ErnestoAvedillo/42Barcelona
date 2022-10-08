@@ -38,7 +38,7 @@ void borra_content(void *s)
 	char *ptr;
 
 	ptr = s;
-	ptr = '\0';
+	ptr = NULL;
 	ptr++;
 	return ;
 }

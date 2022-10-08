@@ -9,6 +9,8 @@
 #    Updated: 2022/09/24 16:03:27 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+NAME = libft.a
+
 SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint \
 	 ft_strlen ft_memset ft_strlcpy ft_strlcat ft_bzero ft_memmove ft_memcpy \
 	 ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp ft_memchr ft_memcmp \
@@ -20,9 +22,8 @@ SRC_BONUS = ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone ft_lstiter \
 
 INCLUDE = libft.h
 
-HEAD_OBJS = ../obj/
-
-HEAD_DEPS = ../dep/
+HEAD_OBJS =
+HEAD_DEPS =
 
 SRCS = $(addsuffix .c , $(SRC))
 
@@ -40,23 +41,19 @@ CC = gcc
 
 RM = rm -f
 
-CFLAGS = -Wall -Wextra -Werror 
-
-NAME = libft.a
+CFLAGS = -Wall -Wextra -Werror -I.
 
 all: $(NAME)
 
--include $(addsuffix .d , $(SRC))
+$(NAME):	$(OBJS) $(INCLUDE)
+	ar -rcs $(NAME) $(OBJS) 
 
-$(NAME):	$(OBJS)
-	ar -rcs $(NAME) $(OBJS) $(INCLUDE)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $*.c -o $*.o 
 
-$(HEAD_OBJS)%.o: %.c
-	$(CC) $(CFLAGS) -c $*.c -o $(HEAD_OBJS)$*.o 
-	$(CC) -MM $(CFLAGS)  $*.c > $(HEAD_DEPS)$*.d 
 
-bonus: $(OBJS) $(OBJS_BONUS)
-	ar -rcs $(NAME) $(OBJS_BONUS) $(DEPEN_BONUS) $(OBJS) $(DEPEN) $(INCLUDE)
+bonus: $(OBJS) $(OBJS_BONUS) $(INCLUDE)
+	ar -rcs $(NAME) $(OBJS_BONUS) $(OBJS)
 
 clean:		
 	$(RM) $(OBJS) $(DEPEN) $(DEPEN_BONUS) $(OBJS_BONUS)

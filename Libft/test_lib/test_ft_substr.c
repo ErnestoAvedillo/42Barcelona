@@ -15,7 +15,7 @@ void test_ft_substr ()
 	printf("\n");
 	free(ptr);
 	printf("%sTest2%s\n",KYEL, KNRM);
-	ptr = ft_substr(str, 400, 20);
+	ptr = ft_substr(str, 0, -1);
 	printf("ft_substr extrae del str -%s- en la direccion -%p- y vemos en ella %s \n", str, ptr, ptr);
 	printf("\n");
 	free(ptr);

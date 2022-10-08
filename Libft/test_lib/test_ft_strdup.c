@@ -18,4 +18,13 @@ void test_ft_strdup ()
 	printf("\n");
 	free(ptr);
 	free(ptr1);
+	printf("%sTest2%s\n",KYEL, KNRM);
+	ft_strlcpy(str, "fulanito de tal cual",20);
+	ptr = ft_strdup(str);
+	ptr1 = strdup(str);
+	printf("ft_strdup diplica el str -%s- en la direccion -%p- y vemos en ella %s \n", str, ptr, ptr);
+	printf("   strdup diplica el str -%s- en la direccion -%p- y vemos en ella %s \n", str, ptr1, ptr1);
+	printf("\n");
+	free(ptr);
+	free(ptr1);
 }

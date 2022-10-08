@@ -6,7 +6,7 @@
 void test_ft_isascii()
 {
 	char var3 = 'r';
-	char var4 = 178;
+	char var4 = '\t';
 	printf("%stest ft_isacii%s\n",KGRN, KNRM);
 	printf("%sTest1%s\n",KYEL, KNRM);
 	printf("ft_isacii para %c retorna %d\n", var3, ft_isascii(var3));

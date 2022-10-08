@@ -70,20 +70,20 @@ char	**ft_split(char const *s, char c)
 	size_t	k;
 
 	if (ft_strlen(s) == 0)
-		return ((char **)calloc (1, sizeof (size_t)));
+		return ((char **)calloc (1, sizeof (char *)));
 	else
 		rep = ft_nr_of_str (s, c);
-	ptr = (char **)calloc (rep, sizeof (size_t));
+	ptr = (char **)calloc (rep + 1, sizeof (char *));
 	i = 0;
 	j = 0;
 	k = 0;
-	while (i <= rep && rep)
+	while (i < rep && rep)
 	{
 		j = ft_nextstartpos(s, k, c);
 		k = ft_nextendpos (s, j, c);
 		ptr[i] = ft_substr (s, j, k - j);
 		i++;
 	}
-	ptr[i] = 0;
+	ptr[i] = NULL;
 	return (ptr);
 }
