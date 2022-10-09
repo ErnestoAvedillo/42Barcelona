@@ -11,14 +11,6 @@
 /* ************************************************************************** */
 #include"libft.h"
 
-void	ft_putmaxchar(int fd)
-{	
-	char	*maxchar;
-
-	maxchar = "-2147483648";
-	ft_putstr_fd(maxchar, fd);
-}
-
 void	ft_putnbr_fd(int nb, int fd)
 {
 	int		i;
@@ -26,7 +18,7 @@ void	ft_putnbr_fd(int nb, int fd)
 
 	if (nb == -2147483648)
 	{
-		ft_putmaxchar(fd);
+		ft_putstr_fd("-2147483648", fd);
 		return ;
 	}
 	if (nb < 0)
@@ -36,7 +28,7 @@ void	ft_putnbr_fd(int nb, int fd)
 		nb = -nb;
 	}
 	i = nb / 10;
-	if (i > 10)
+	if (i >= 10)
 		ft_putnbr_fd(i, fd);
 	else if (i > 0)
 	{

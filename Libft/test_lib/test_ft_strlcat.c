@@ -50,4 +50,11 @@ void test_ft_strlcat()
 	printf("despues de ft_strlcat con valor %d  dst  vale: %s -- return value %lu\n", val, str, retval);
 	printf("despues de ft_strlcat con valor %d  src  vale: %s\n\n",val ,str2);
 
+	char dest1[30]; memset(dest1, 0, 30);
+	char dest2[30]; memset(dest2, 0, 30);
+	size_t val1 = ft_strlcat(dest1, "123", 0);
+	size_t val2 = strlcat(dest2, "123", 0);
+	printf("despues de ft_strlcat con valor %d  src  vale: %s -- retorna %zu \n",0 ,dest1, val1);
+	printf("despues de    strlcat con valor %d  src  vale: %s -- retorna %zu \n",0 ,dest2, val2);
+
 }

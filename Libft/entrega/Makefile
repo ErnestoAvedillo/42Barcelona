@@ -9,8 +9,6 @@
 #    Updated: 2022/09/24 16:03:27 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME = libft.a
-
 SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint \
 	 ft_strlen ft_memset ft_strlcpy ft_strlcat ft_bzero ft_memmove ft_memcpy \
 	 ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp ft_memchr ft_memcmp \
@@ -43,13 +41,16 @@ RM = rm -f
 
 CFLAGS = -Wall -Wextra -Werror -I.
 
+NAME = libft.a
+
 all: $(NAME)
 
-$(NAME):	$(OBJS) $(INCLUDE)
+$(NAME):	$(OBJS) 
 	ar -rcs $(NAME) $(OBJS) 
 
-%.o: %.c
+%.o %.d: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $*.c -o $*.o 
+	$(CC) -MM $(CFLAGS) -c $*.c -o $*.d 
 
 
 bonus: $(OBJS) $(OBJS_BONUS) $(INCLUDE)

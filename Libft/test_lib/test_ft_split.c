@@ -7,6 +7,7 @@ void test_ft_split ()
 	*/
 	char str[50];
 	int	i = 0;
+	int	j = 0;
 	char **str3;
 	char **str4;
 	char div = 'c';
@@ -70,5 +71,61 @@ void test_ft_split ()
 	}
 	printf("\n");
 	free(str4);
+
+	printf("%sTest6%s\n",KYEL, KNRM);
+	ft_strlcpy(str, "      split       this for   me  !",35);
+	div = ' ';
+	str4 = ft_split(str, div);
+	i = 0;		
+	while(str4[i]!= NULL)
+	{
+		printf("ft_split divide el str -%s- entre todos los caracteres -%c- y queda: -%s- en el puntero %p nr %d\n", str, div, str4[i], str4[i], i);
+		i++;
+	}
+	printf("\n");
+	free(str4);
+
+	printf("%sTest6%s\n",KYEL, KNRM);
+	ft_strlcpy(str, "xxxxxxxxhello!",15);
+	div = 'x';
+	str4 = ft_split(str, div);
+	i = 0;		
+	while(str4[i]!= NULL)
+	{
+		printf("ft_split divide el str -%s- entre todos los caracteres -%c- y queda: -%s- en el puntero %p nr %d\n", str, div, str4[i], str4[i], i);
+		j = 0;
+		while (str4[i][j] != '\0')
+			write(1,&str4[i][j++],1);
+		i++;
+	}
+	printf("\n");
+	free(str4);
+
+	printf("%sTest7%s\n",KYEL, KNRM);
+	ft_strlcpy(str, "      split       this for   me  !       ",42);
+	div = ' ';
+	str4 = ft_split(str, div);
+	i = 0;		
+	while(str4[i]!= NULL)
+	{
+		printf("ft_split divide el str -%s- entre todos los caracteres -%c- y queda: -%s- en el puntero %p nr %d\n", str, div, str4[i], str4[i], i);
+		i++;
+	}
+	printf("\n");
+	free(str4);
+
+	printf("%sTest8%s\n",KYEL, KNRM);
+	ft_strlcpy(str, "",1);
+	div = 'z';
+	str4 = ft_split(str, div);
+	i = 0;		
+	while(str4[i]!= NULL)
+	{
+		printf("ft_split divide el str -%s- entre todos los caracteres -%c- y queda: -%s- en el puntero %p nr %d\n", str, div, str4[i], str4[i], i);
+		i++;
+	}
+	printf("\n");
+	free(str4);
+
 
 }

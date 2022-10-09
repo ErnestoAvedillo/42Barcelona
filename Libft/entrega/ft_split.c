@@ -45,18 +45,10 @@ static int	ft_nr_of_str(char const *s, char c)
 	while (s[i])
 	{
 		if (s[i] != c && i == 0)
-		{
 			rep++;
-			i = ft_nextendpos (s, i, c);
-		}
-		else if (s[i] == c)
-		{
-			if (i > 0)
-				rep++;
-			i = ft_nextstartpos(s, i, c);
-		}
-		else
-			i++;
+		else if (s[i - 1] == c && s[i] != c && i > 0)
+			rep++;
+		i++;
 	}
 	return (rep);
 }
@@ -69,11 +61,13 @@ char	**ft_split(char const *s, char c)
 	size_t	j;
 	size_t	k;
 
+	rep = ft_nr_of_str (s, c);
 	if (ft_strlen(s) == 0)
-		return ((char **)calloc (1, sizeof (char *)));
+		ptr = (char **)malloc (1 * sizeof (char *));
 	else
-		rep = ft_nr_of_str (s, c);
-	ptr = (char **)calloc (rep + 1, sizeof (char *));
+		ptr = (char **)malloc ((rep + 1) * sizeof (char *));
+	if (!ptr)
+		return (NULL);
 	i = 0;
 	j = 0;
 	k = 0;

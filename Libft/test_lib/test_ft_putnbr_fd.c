@@ -27,6 +27,12 @@ void test_ft_putnbr_fd ()
 	printf("%sTest7%s\n",KYEL, KNRM);
 	ft_putnbr_fd(-2147483648LL,1);
 	ft_putchar_fd('\n',1);
+	printf("%sTest8%s\n",KYEL, KNRM);
+	ft_putnbr_fd(10000043,1);
+	ft_putchar_fd('\n',1);
+	printf("%sTest9%s\n",KYEL, KNRM);
+	ft_putnbr_fd(-10000043,1);
+	ft_putchar_fd('\n',1);
 
 	printf("\n");
 }
