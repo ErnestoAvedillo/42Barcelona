@@ -3,8 +3,8 @@
 
 void	ft_test_iteri(unsigned int i, char *c)
 {
-	i += 1;
-	*c += 32;
+	i = 32;
+	*c += i;
 	return;
 }
 

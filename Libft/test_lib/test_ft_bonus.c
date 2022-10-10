@@ -127,5 +127,10 @@ void test_ft_bonus()
  	ft_lstiter(ptr1, ft_modify_list_with_d);
 	printf("%scomprobación %s\n",KBLU, KNRM);
  	print_all(inicio);
+
+	printf("%sTest8 test soares ltclear %s\n",KYEL, KNRM);
+	ft_lstclear(NULL, free);
+
+
  	return ;
 }

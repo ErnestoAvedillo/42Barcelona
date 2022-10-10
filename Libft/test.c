@@ -87,5 +87,5 @@ int main (int av, char **ac)
 		test_ft_putnbr_fd();
 	if (av == 1 || is_func(ac,"bonus"))
 		test_ft_bonus();
-	printf("Goodby\n");
+	printf("Goodbye\n");
 }

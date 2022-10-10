@@ -50,4 +50,11 @@ void test_ft_substr ()
 	printf("\n");
 	free(ptr);
 
+	printf("%sTest7 = fsoares strict%s\n",KYEL, KNRM);
+	ft_strlcpy(str, "hola",5);
+	ptr = ft_substr(str, 2, 1);
+	printf("ft_substr extrae del str -%s- en la direccion -%p- debe salir >< y vemos en ella %s \n", str, ptr, ptr);
+	printf("\n");
+	free(ptr);
+
 }

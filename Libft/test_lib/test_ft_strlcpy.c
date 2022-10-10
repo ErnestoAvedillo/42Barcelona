@@ -21,8 +21,8 @@ void test_ft_strlcpy()
 	char dest2[10]; 
 	memset(dest2, 'A', 10);
 	ft_strlcpy(dest1, str, 1);
-	   strlcpy(dest2, str, 1);
+//	   strlcpy(dest2, str, 1);
 	printf("La cadena con mi ft_strlcpy copio %d caracteres de >%s< y resulta >%s<\n",1, str , dest1 );
-	printf("La cadena con mi    strlcpy copio %d caracteres de >%s< y resulta >%s<\n",1, str , dest2 );
+//	printf("La cadena con mi    strlcpy copio %d caracteres de >%s< y resulta >%s<\n",1, str , dest2 );
 
 }

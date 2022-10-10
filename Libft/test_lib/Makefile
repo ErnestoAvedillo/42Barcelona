@@ -21,9 +21,9 @@ LIB_FILES = ../entrega/libft.a
 
 SRCS = $(addsuffix .c , $(SRC))
 
-HEAD_OBJS = ./
+HEAD_OBJS = 
 
-HEAD_DEPEN = ./
+HEAD_DEPEN = 
 
 OBJS = $(addprefix $(HEAD_OBJS), $(addsuffix .o , $(SRC)))
 
@@ -39,16 +39,14 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = test_lib.a
 
--include $(addsuffix .d , $(SRC))
-
 all: $(NAME)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(LIB_FILES)
 	ar -rcs $(NAME) $(OBJS) $(LIB_FILES)
 
 $(HEAD_OBJS)%.o: %.c
-	$(CC) $(CFLAGS) $(LIBS) -c $*.c -o $(HEAD_OBJS)$*.o 
-	$(CC) -MM $(CFLAGS) $(LIBS) $*.c > $(HEAD_DEPEN)$*.d 
+	$(CC) $(CFLAGS) $(LIBS) -c $*.c -o $*.o 
+	$(CC) -MM $(CFLAGS) $(LIBS) $*.c > $*.d 
 
 clean:		
 	$(RM) $(OBJS) $(DEPEN) 

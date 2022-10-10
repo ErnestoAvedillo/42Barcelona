@@ -53,6 +53,15 @@ static int	ft_nr_of_str(char const *s, char c)
 	return (rep);
 }
 
+char	**free_split(char **ptr, int i)
+{
+	i = 0;
+	while (ptr[i])
+		free(ptr[i++]);
+	free(ptr);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**ptr;
@@ -62,10 +71,7 @@ char	**ft_split(char const *s, char c)
 	size_t	k;
 
 	rep = ft_nr_of_str (s, c);
-	if (ft_strlen(s) == 0)
-		ptr = (char **)malloc (1 * sizeof (char *));
-	else
-		ptr = (char **)malloc ((rep + 1) * sizeof (char *));
+	ptr = (char **)malloc ((rep + 1) * sizeof (char *));
 	if (!ptr)
 		return (NULL);
 	i = 0;
@@ -76,6 +82,8 @@ char	**ft_split(char const *s, char c)
 		j = ft_nextstartpos(s, k, c);
 		k = ft_nextendpos (s, j, c);
 		ptr[i] = ft_substr (s, j, k - j);
+		if (!ptr[i])
+			return (free_split (ptr, i));
 		i++;
 	}
 	ptr[i] = NULL;
