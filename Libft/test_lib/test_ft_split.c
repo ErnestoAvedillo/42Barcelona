@@ -127,5 +127,32 @@ void test_ft_split ()
 	printf("\n");
 	free(str4);
 
+	printf("%sTest9%s\n",KYEL, KNRM);
+	ft_strlcpy(str, "xxxxxxxxhello!",15);
+	div = 'x';
+	str4 = ft_split(str, div);
+	i = 0;		
+	while(str4[i]!= NULL)
+	{
+		printf("ft_split divide el str -%s- entre todos los caracteres -%c- y queda: -%s- en el puntero %p nr %d\n", str, div, str4[i], str4[i], i);
+		i++;
+	}
+	printf("\n");
+	free(str4);
+
+	printf("%sTest10%s\n",KYEL, KNRM);
+	ft_strlcpy(str, "hello!",7);
+	div = ' ';
+	str4 = ft_split(str, div);
+	i = 0;		
+	while(str4[i]!= NULL)
+	{
+		printf("ft_split divide el str -%s- entre todos los caracteres -%c- y queda: -%s- en el puntero %p nr %d\n", str, div, str4[i], str4[i], i);
+		i++;
+	}
+	printf("\n");
+	free(str4);
+
+
 
 }
