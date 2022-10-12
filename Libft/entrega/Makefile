@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 12:41:57 by eavedill          #+#    #+#              #
-#    Updated: 2022/10/12 17:51:08 by eavedill         ###   ########.fr        #
+#    Updated: 2022/10/12 17:56:04 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
@@ -68,7 +68,7 @@ clean:
 	$(RM) $(OBJS) $(DEPS) $(OBJS_BONUS) $(DEPS_BONUS) $(HEAD_DEPS) $(HEAD_OBJS)
 
 fclean:     clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS)
 
 re:         fclean $(NAME)
 
