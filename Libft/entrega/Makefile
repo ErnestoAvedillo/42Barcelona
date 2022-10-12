@@ -6,10 +6,12 @@
 #    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 12:41:57 by eavedill          #+#    #+#              #
-#    Updated: 2022/10/12 12:51:09 by eavedill         ###   ########.fr        #
+#    Updated: 2022/10/12 17:51:08 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
+
+BONUS = .bonus
 
 SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint \
 	  ft_strlen ft_memset ft_strlcpy ft_strlcat ft_bzero ft_memmove ft_memcpy \
@@ -48,7 +50,7 @@ $(NAME): $(OBJS)
 
 -include: (DEPS_BONUS)
 
-$(HEAD_OBJS)%.o $(HEAD_DEPS)%.d : %.c
+$(HEAD_OBJS)%.o $(HEAD_DEPS)%.d : %.c $(INCLUDE)
 	mkdir -p  $(HEAD_OBJS)
 	mkdir -p  $(HEAD_DEPS)
 	$(CC) $(CFLAGS) -c $*.c -o $(HEAD_OBJS)$*.o
@@ -56,8 +58,11 @@ $(HEAD_OBJS)%.o $(HEAD_DEPS)%.d : %.c
 
 all:$(NAME)
 
-bonus: $(OBJS) $(OBJS_BONUS) $(INCLUDE)
+bonus: $(BONUS)
+
+$(BONUS): $(OBJS) $(OBJS_BONUS) $(INCLUDE)
 	ar -rcs $(NAME) $(OBJS_BONUS) $(OBJS)
+	touch $@
 
 clean:
 	$(RM) $(OBJS) $(DEPS) $(OBJS_BONUS) $(DEPS_BONUS) $(HEAD_DEPS) $(HEAD_OBJS)
