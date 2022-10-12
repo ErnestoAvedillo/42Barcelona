@@ -44,10 +44,16 @@ static int	ft_nr_of_str(char const *s, char c)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] != c && i == 0)
-			rep++;
-		else if (s[i - 1] == c && s[i] != c && i > 0)
-			rep++;
+		if (i == 0)
+		{
+			if (s[i] != c)
+				rep++;
+		}
+		else
+		{
+			if (s[i - 1] == c && s[i] != c)
+				rep++;
+		}
 		i++;
 	}
 	return (rep);
