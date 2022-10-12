@@ -10,16 +10,40 @@ void	ft_modify_list_with_d(void *elem)
 	content = (char *)elem;
 	while (content[len])
 	{
-		content[len++] = 'd';
+		printf("entro el f iter content %p--%s-- len %d\n", content, content, len);
+		printf("entro el f iter content %p--%c-- len %d\n", &content[len], content[len], len);
+		content[len] = 100;
+		printf("entro el f iter content %p--%s-- len %d\n", content, content, len);
+		len++;
 	}
 
 }
 
+void	*ft_modify_list_with_a(void *elem)
+{
+	int		len;
+	char	*content;
+
+	len = 0;
+	content = (char *)elem;
+	while (content[len])
+	{
+		printf("entro f map content %p--%s-- len %d\n", content, content, len++);
+		content[len++] = 'a';
+	}
+	return (content);
+}
+
+void free_str(void *str)
+{
+	free(str);
+}
 
 void	print_current (t_list *ptr)
 {
-	printf("La estructura tiene el contenido > %s < en el puntero %p .\n", (char *)ptr->content, ptr);
-	printf("Esta estructura está linkada al puntero de la siguiente que es el %p\n", ptr->next );
+	printf("puntero %p -->Contenido > %s < puntero %p -- \
+		puntero Next %p.\n",ptr, (char *)ptr->content, \
+		(char *)ptr->content, ptr->next);
 	return ;
 }
 
@@ -113,6 +137,7 @@ void test_ft_bonus()
 	printf("%scomprobación %s\n",KBLU, KNRM);
  	printf("inicio queda asi %p\n", inicio );
  	milong = ft_lstsize(inicio);
+
 	printf("%sTest8 test lstiter%s\n",KYEL, KNRM);
  	inicio = NULL;
  	ptr1 = ft_lstnew("Esto");
@@ -123,14 +148,17 @@ void test_ft_bonus()
  	ft_lstadd_front(&inicio,ptr3);
  	ft_lstadd_front(&inicio,ptr2);
  	ft_lstadd_front(&inicio,ptr1);
+ 	printf("Comprobacion de contenido de la lista\n");
  	print_all(inicio);
- 	ft_lstiter(ptr1, ft_modify_list_with_d);
-	printf("%scomprobación %s\n",KBLU, KNRM);
+ 	ft_lstiter(inicio, ft_modify_list_with_d);
+	printf("%scomprobación del ejerccicio de iter.%s\n",KBLU, KNRM);
  	print_all(inicio);
-
-	printf("%sTest8 test soares ltclear %s\n",KYEL, KNRM);
-	ft_lstclear(NULL, free);
-
+	t_list *copia;
+	copia = ft_lstmap(inicio, ft_modify_list_with_a, free_str);
+ 	printf("Comprobacion de contenido de la copia\n");
+ 	print_all(copia);
+	ft_lstclear(&inicio, free_str);
+	ft_lstclear(&copia, free_str);
 
  	return ;
 }
