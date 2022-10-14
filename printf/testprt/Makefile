@@ -10,48 +10,62 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf.a
+NAME =  test_lib.a
 
-all= $(NAME)
+SRC = standardprt
 
-SRC = ft_printf
+DIROBJ = ./obj/
 
-OBJS = $(addsuffix .o,$(SRC))
-
-DEPS = $(addsuffix .d,$(SRC))
-
-SRCS = $(addsuffix .c,$(SRC))
+DIRDEP = ./dep/
 
 
-INCLUDE = $(addsuffix .h,$(SRC))
+NAMLIB = $(NAME)
 
-FLAGS = -Wall -Werror -Wextra
+SRCS = $(addprefix $(DIRSRC),$(addsuffix .c,$(SRC)))
+
+OBJS = $(addprefix $(DIROBJ),$(addsuffix .o,$(SRC)))
+
+DEPS = $(addprefix $(DIRDEP),$(addsuffix .p,$(SRC)))
+
+INCLUDE= $(NAME:.a=.h)
+
+FLAGINC = -I.
 
 CC = gcc
 
-$(NAME): $(OBJS) $(DEPS)
-	ar -rcs $(NAME) $(OBJS) $(DEPS)
+FLAGS = -Wall -Wextra -Werror
 
-%.o : %.c $(INCLUDE)
-	$(CC) $(FLAGS) -c $*.c -o $*.o
-
-%.d : %.c $(INCLUDE)
-	$(CC) $(FLAGS) -c $*.c > $*.d
+RM = rm -rfd
 
 all: $(NAME)
 
-print:
-	echo $(INCLUDE)
-	echo $(SRCS)
-	echo $(OBJS)
-	echo $(NAME)
+-include $(DEPS)
 
-clean:
-	$(RM) $(OBJS) $(DEPS) $(OBJS_BONUS) $(DEPS_BONUS) $(HEAD_DEPS) $(HEAD_OBJS)
+$(NAME): $(OBJS) 
+	ar -rcs $(NAME) $(OBJS)
 
-fclean:     clean
-	$(RM) $(NAME) $(BONUS)
+$(DIROBJ)%.o $(DIRDEP)%.d : %.c
+	mkdir -p $(DIRDEP)
+	mkdir -p $(DIROBJ)
+	$(CC) $(FLAGS) $(FLAGINC) -c $*.c -o $(DIROBJ)$*.o
+	$(CC) $(FLAGS) $(FLAGINC) -MM -c $*.c > $(DIRDEP)$*.d
 
-re:         fclean $(NAME)
+clean: 
+	$(RM) $(OBJS) $(DEPS) $(DIROBJ) $(DIRDEP)
 
-.PHONY: all re clean fclean re
+fclean: clean
+	$(RM) $(NAME)
+
+re:	fclean $(NAME)
+
+print: 
+	@echo $(OBJS)
+	@echo $(DIROBJ)
+	@echo $(DEPS)
+	@echo $(DIRDEP)
+	@echo $(SRCS)
+	@echo $(NAME)
+	@echo $(INCLUDE)
+
+
+.PHONY: all re clean fclean re print

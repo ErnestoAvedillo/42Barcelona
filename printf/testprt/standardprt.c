@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   standardprt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 09:53:52 by eavedill          #+#    #+#             */
-/*   Updated: 2022/10/07 09:55:38 by eavedill         ###   ########.fr       */
+/*   Created: 2022/10/12 19:32:24 by eavedill          #+#    #+#             */
+/*   Updated: 2022/10/12 19:32:31 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"test.h"
+#include"../entrega/ft_printf.h"
+#include"test_lib.h"
 
-//int main (int av, char **ac)
-int main (void)
+void stdtest(void)
 {
-	stdtest();
-	return (0);
+	char	str[] = "Esto es una %d prueba %d de %d porcentaje%";
+	int		var1;
+	int		var2;
+	int		var3;
+
+	var1 = 25;
+	var2 = 2;
+	var3 = 66;
+
+	ft_printf(str,var1,var2,var3);
+	return;
 }

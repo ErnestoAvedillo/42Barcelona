@@ -19,14 +19,14 @@ DIRLIBS = ../Libft/entrega/
 LIBS = $(addprefix $(DIRLIBS), $(LIB))
 
 #Datos de la libreria 2 (en mi caso los tests.
-LIB_PRT = printf.a
+LIB_PRT = ft_printf.a
 DIRLIB_PRT = ./entrega/
-LIBS_PRT = $(addprefix $(DIRLIB_TEST), $(LIB_TEST))
+LIBS_PRT = $(addprefix $(DIRLIB_PRT),$(LIB_PRT))
 
 #Datos de la libreria 2 (en mi caso los tests.
-LIB_TEST = test.a
-DIRLIB_TEST = ./test/
-LIBS_TEST = $(addprefix $(DIRLIB_TEST), $(LIB_TEST))
+LIB_TEST = test_lib.a
+DIRLIB_TEST = ./testprt/
+LIBS_TEST = $(addprefix $(DIRLIB_TEST),$(LIB_TEST))
 
 
 SRCS = $(addsuffix .c, $(SRC))
@@ -44,21 +44,25 @@ NAME = $(addsuffix .a, $(SRC))
 # la segunda llama a la primera , la tercera a la segunda y así sucesivamente
 all: $(LIBS) $(LIBS_TEST) $(NAME)
 
-$(NAME): $(OBJS) $(INCLUDE) $(LIBS) $(LIBS_TEST)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS_TEST) $(LIBS)
+$(NAME): $(OBJS) $(INCLUDE) $(LIBS) $(LIBS_TEST) $(LIBS_PRT) 
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS) $(LIBS_TEST) $(LIBS_PRT) 
 
 %.o: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $*.c -o $*.o
 
 #To generate the  libft.a
 $(LIBS):
-	$(MAKE) -C$(DIRLIBS) bonus
+	$(MAKE) -C$(DIRLIBS) all
+
+#To generate the libft_tesst.a (in my case for the test library)
+$(LIBS_PRT):
+	$(MAKE) -C$(DIRLIB_PRT) all
 
 #To generate the libft_tesst.a (in my case for the test library)
 $(LIBS_TEST):
 	$(MAKE) -C$(DIRLIB_TEST) all
 
-subdirs: $(DIRLIBS) $(DIRLIB_TEST)
+subdirs: $(DIRLIBS) $(DIRLIB_TEST) $(DIRLIB_PRT)
 
 clean:		
 	$(RM) $(OBJS) 
@@ -74,4 +78,12 @@ fclean:		clean
 
 re:			fclean $(NAME)
 
-.PHONY:		all clean fclean re $(LIBS) $(LIBS_TEST)
+print:
+	@echo $(NAME)
+	@echo $(OBJS)
+	@echo $(INCLUDE)
+	@echo $(LIBS)
+	@echo $(LIBS_TEST)
+	@echo $(DIRLIB_PRT)
+
+.PHONY:		all clean fclean re $(LIBS) $(LIBS_TEST) $(LIBS_PRT)
