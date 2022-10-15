@@ -28,12 +28,16 @@ static int ft_print_int (int val)
 	return (lng);
 }
 
-int ft_print_uint (unsigned int val)
+int ft_print_uint (unsigned int val, char formato)
 {
 	char *str;
 	int lng;
 
-	str = ft_utoa (val);
+	if (formato == 'u')
+		str = ft_utoa (val);
+	else
+		str = ft_addrtoa ((size_t)val, 0);
+
 	lng = ft_printf(str);
 	free (str);
 	return (lng);
@@ -43,7 +47,7 @@ int ft_print_addr (size_t val)
 	char *str;
 	int lng;
 
-	str = ft_addrtoa (val);
+	str = ft_addrtoa (val, 1);
 	lng = ft_printf(str);
 	free (str);
 	return (lng);
@@ -64,9 +68,11 @@ static int print_var (char formato, va_list args )
 	else if (formato == 'd' || formato == 'i')
 		longitud = ft_print_int(va_arg(args, int));
 	else if (formato == 'u')
-		longitud = ft_print_uint(va_arg(args, unsigned int));
+		longitud = ft_print_uint(va_arg(args, unsigned int), formato);
 	else if (formato == 'p')
 		longitud = ft_print_addr(va_arg(args, size_t));
+	else if (formato == 'x' || formato == 'X')
+		longitud = ft_print_uint(va_arg(args, size_t), formato);
 	return (longitud);
 }
 

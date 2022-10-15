@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa.c                                          :+:      :+:    :+:   */
+/*   ft_addrtoa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,8 +15,6 @@ static int	getchrnr(size_t val)
 {
 	int	i;
 	size_t	aux;
-	
-	printf("entro2\n");
 
 	aux = val;
 	i = 0;
@@ -30,31 +28,31 @@ static int	getchrnr(size_t val)
 	return (i);
 }
 
-char	*ft_addrtoa(size_t n)
+char	*ft_addrtoa(size_t n, int format)
 {
 	char	*str;
 	int		lenstr;
-	char	*vect_val;
+	char	vect_val[17];
 
-	vect_val = NULL;
 	ft_strlcpy(vect_val,"0123456789abcdef",17);
 	lenstr = getchrnr (n);
-	str = (char *)malloc ((lenstr + 3) * sizeof (char));
+	if (format)
+		lenstr += 3;
+	else
+		lenstr += 1;
+	str = (char *)malloc ((lenstr) * sizeof (char));
 	if (!str)
 		return (NULL);
-	str[lenstr] = '\0';
-	if (n == 0)
-		str[0] = '0';
-	else
+	str[lenstr--] = '\0';
+	if (format)
 	{
 		str[0] = '0';
 		str[1] = 'x';
-		while (n > 0)
-		{	
-			str[--lenstr] = vect_val[n % 16];
-			printf("%c\n",vect_val[n%16] );
-			n = n / 16;
-		}
+	}
+	while (n > 0)
+	{	
+		str[--lenstr] = vect_val[n % 16];
+		n = n / 16;
 	}
 	return (str);
 }

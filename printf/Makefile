@@ -44,8 +44,8 @@ NAME = $(addsuffix .a, $(SRC))
 # la segunda llama a la primera , la tercera a la segunda y así sucesivamente
 all: $(LIBS) $(LIBS_TEST) $(NAME)
 
-$(NAME): $(OBJS) $(INCLUDE) $(LIBS) $(LIBS_TEST) $(LIBS_PRT) 
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS) $(LIBS_TEST) $(LIBS_PRT) 
+$(NAME): $(OBJS) $(INCLUDE) $(LIBS) $(LIBS_PRT) $(LIBS_TEST)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS_TEST) $(LIBS_PRT) $(LIBS) 
 
 %.o: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $*.c -o $*.o

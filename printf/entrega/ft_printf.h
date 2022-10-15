@@ -8,5 +8,5 @@
 
 int		ft_printf (char const *str, ...);
 char	*ft_utoa(unsigned int n);
-char	*ft_addrtoa(size_t n);
+char	*ft_addrtoa(size_t n, int format);
 #endif

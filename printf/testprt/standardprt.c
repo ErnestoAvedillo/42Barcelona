@@ -46,7 +46,13 @@ void stdtest(void)
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("ft_printf con p %p\n", &uval);
 	printf ("respuesta ft_printf %d\n", cont);
-	
+
+	printf("%s Test 4 impresion con argumento hexadecimal %s\n",KGRN, KNRM );
+	uval = 4294967295;
+	cont = printf ("   printf con x %x\n", uval);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("ft_printf con x %x\n", uval);
+	printf ("respuesta ft_printf %d\n", cont);
 
 	return;
 }
