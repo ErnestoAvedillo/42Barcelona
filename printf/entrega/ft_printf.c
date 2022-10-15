@@ -9,63 +9,97 @@
 /*   Updated: 2022/10/07 09:58:25 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"ft_printf.h"
-/*
-static int count_args (char const *str)
-{
-	int i;
-	int ret;
+#include "ft_printf.h"
 
-	i = 0;
-	ret = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-			ret++;
-	}
-	return (ret);
-}*/
-void ft_printf (char const *str, ...)
+static int ft_print_char (char c)
+{
+	return(write(1, &c, 1));
+
+}
+
+static int ft_print_int (int val)
+{
+	char *str;
+	int lng;
+
+	str = ft_itoa(val);
+	lng = ft_printf(str);
+	free(str);
+	return (lng);
+}
+
+int ft_print_uint (unsigned int val)
+{
+	char *str;
+	int lng;
+
+	str = ft_utoa (val);
+	lng = ft_printf(str);
+	free (str);
+	return (lng);
+}
+int ft_print_addr (size_t val)
+{
+	char *str;
+	int lng;
+
+	str = ft_addrtoa (val);
+	lng = ft_printf(str);
+	free (str);
+	return (lng);
+}
+
+
+static int print_var (char formato, va_list args )
+{
+	int longitud;
+
+	longitud = 0;
+	if (formato == '%')
+		longitud = ft_print_char(write (1,&formato,1));
+	else if (formato == 'c')
+		longitud = ft_print_char(va_arg(args, int));
+	else if (formato == 's')
+		longitud = ft_printf(va_arg(args, char *));
+	else if (formato == 'd' || formato == 'i')
+		longitud = ft_print_int(va_arg(args, int));
+	else if (formato == 'u')
+		longitud = ft_print_uint(va_arg(args, unsigned int));
+	else if (formato == 'p')
+		longitud = ft_print_addr(va_arg(args, size_t));
+	return (longitud);
+}
+
+int	ft_printf (char const *str, ...)
 {
 	va_list	args;
-	int		d;
-//	char	c;
-//	char	*s;
-	char 	*aux;
+	int 	i;
+	int		val_ret;
 
-	//nargs_str = count_args(str);
-	printf("Hola?\n");
-	aux = (char *) str;
 	va_start(args,str);
-		printf("La fase es)>%s< en el puntero >%p<\n",aux, aux );
-//		while (	args)
-//		{
-			d = va_arg(args, int);
-			printf("int %d puntero %p -- %s\n", d, &d, str);
-			d = va_arg(args, int);
-			printf("int %d puntero %p -- %s\n", d, &d, str);
-			d = va_arg(args, int);
-			printf("int %d puntero %p -- %s\n", d, &d, str);
-			d = va_arg(args, int);
-			printf("int %d puntero %p -- %s\n", d, &d, str);
+	i = 0;
+	val_ret = 0;
+	while (str[i])
+	{
+		if(str[i] == '%')
+			val_ret += print_var(str[++i], args);
+		else
+			val_ret += write(1,&str[i],1);
+		i++;
 
-/*			printf("entro en wh %p \n", str);
-			if (*str == 's')
-			{
-				s = va_arg(args, char *);
-				printf("entro en str %s puntero %p\n", s, str);
-			}
-			else if (*str == 'c')
-			{
-				printf("char %c puntero %p\n", c, str);
-				c = (char)va_arg(args, int);
-			}
-			else if (*str == 'd')
-			{
-				d = va_arg(args, int);
-				printf("int %d puntero %p\n", d, str);
-			}
-			*str++;
-*///		}
+	}
+/*			d = va_arg(args, int);
+			printf("int %d puntero %p -- %s\n", d, &d, str);
+			d = va_arg(args, int);
+			printf("int %d puntero %p -- %s\n", d, &d, str);
+			d = va_arg(args, int);
+			printf("int %d puntero %p -- %s\n", d, &d, str);
+			d = va_arg(args, int);
+			printf("int %d puntero %p -- %s\n", d, &d, str);
+*/
+
+//			*str++;
+//		}
 	va_end (args);
+	return(val_ret);
 }

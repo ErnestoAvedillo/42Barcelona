@@ -2,5 +2,11 @@
 # define FT_PRINTF_H
 #include <stdarg.h>
 #include <stdio.h>
-void ft_printf (char const *str, ...);
+#include <stddef.h>
+#include <stdlib.h>
+#include "../../Libft/entrega/libft.h"
+
+int		ft_printf (char const *str, ...);
+char	*ft_utoa(unsigned int n);
+char	*ft_addrtoa(size_t n);
 #endif

@@ -14,15 +14,39 @@
 
 void stdtest(void)
 {
-	char	str[] = "Esto es una %d prueba %d de %d porcentaje%";
-	int		var1;
-	int		var2;
-	int		var3;
+	int cont;
+	unsigned int uval;
 
-	var1 = 25;
-	var2 = 2;
-	var3 = 66;
+	printf("%s Test 0 impresion basica %s\n",KGRN, KNRM );
+	printf ("Esto es una prueba de impresion BASICA\n");
+	ft_printf("Esto es una prueba de impresion BASICA\n");
 
-	ft_printf(str,var1,var2,var3);
+	printf("%s Test 1 impresion con argumento char %s\n",KGRN, KNRM );
+	cont = printf ("Esto es una prueba de impresion ???printf %s", "mi prueba\n");
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("Esto es una prueba de impresion ft_printf %s", "mi prueba\n");
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 2 impresion con argumento int %s\n",KGRN, KNRM );
+	cont = printf ("???printf con d %d\n", 125);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	cont = ft_printf ("ft_printf con i %i\n", 125);
+	ft_printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 3 impresion con argumento unsigned int %s\n",KGRN, KNRM );
+	uval = 4294967295;
+	cont = printf ("   printf con u %u\n", uval);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("ft_printf con u %u\n", uval);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 3 impresion con argumento address %s\n",KGRN, KNRM );
+	cont = printf ("   printf con p %p\n", &uval);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("ft_printf con p %p\n", &uval);
+	printf ("respuesta ft_printf %d\n", cont);
+	
+
 	return;
 }

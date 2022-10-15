@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_lib.h                                         :+:      :+:    :+:   */
+/*   ft_print_addr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:54:29 by eavedill          #+#    #+#             */
-/*   Updated: 2022/10/13 19:55:36 by eavedill         ###   ########.fr       */
+/*   Created: 2022/10/15 12:27:40 by eavedill          #+#    #+#             */
+/*   Updated: 2022/10/15 12:27:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdio.h>
+#include "../../Libft/entrega/libft.h"
+#include "ft_printf.h"
 
-void strtest(void);
-
-#define KNRM  "\x1B[0m"
-#define KRED  "\x1B[31m"
-#define KGRN  "\x1B[32m"
-#define KYEL  "\x1B[33m"
-#define KBLU  "\x1B[34m"
-#define KMAG  "\x1B[35m"
-#define KCYN  "\x1B[36m"
-#define KWHT  "\x1B[37m"
+int ft_print_addr (size_t addr)
+{	
+	
+	if (addr)
+		return (1);
+	else
+		return(0);
+}

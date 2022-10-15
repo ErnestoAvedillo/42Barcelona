@@ -14,7 +14,7 @@ NAME = ft_printf.a
 
 all= $(NAME)
 
-SRC = ft_printf
+SRC = ft_printf ft_utoa ft_addrtoa
 
 OBJS = $(addsuffix .o,$(SRC))
 
@@ -23,7 +23,7 @@ DEPS = $(addsuffix .d,$(SRC))
 SRCS = $(addsuffix .c,$(SRC))
 
 
-INCLUDE = $(addsuffix .h,$(SRC))
+INCLUDE = $(NAME:.a=.h)
 
 FLAGS = -Wall -Werror -Wextra
 
