@@ -69,7 +69,7 @@ $(LIBS_TEST):
 #	$(MAKE) -C$(DIRLIB_PRT) clean
 
 fclean:		clean
-	$(RM) $(NAME) 
+	$(RM) $(NAME) $(OBJS)
 	$(MAKE) -C$(DIRLIB_TEST) fclean 
 #	$(MAKE) -C$(DIRLIBS) fclean
 	$(MAKE) -C$(DIRLIB_PRT) fclean

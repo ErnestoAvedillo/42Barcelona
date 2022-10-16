@@ -48,13 +48,11 @@ char	*ft_addrtoa(size_t n, int formato)
 	get_format (vect_val, formato);
 	lenstr = getchrnr (n);
 	if (formato == 'p')
-		lenstr += 3;
-	else
-		lenstr += 1;
-	str = (char *)malloc ((lenstr) * sizeof (char));
+		lenstr += 2;
+	str = (char *)malloc ((lenstr + 1) * sizeof (char));
 	if (!str)
 		return (NULL);
-	str[lenstr--] = '\0';
+	str[lenstr] = '\0';
 	if (formato == 'p')
 	{
 		str[0] = '0';
