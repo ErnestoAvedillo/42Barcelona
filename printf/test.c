@@ -11,9 +11,25 @@
 /* ************************************************************************** */
 #include"test.h"
 
-//int main (int av, char **ac)
-int main (void)
+int is_func(char **ac, char *str)
 {
-	stdtest();
+	int i = 0;
+
+	while (ac[i])
+	{
+		if (ft_strncmp(ac[i], str, ft_strlen(str)) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+
+int main (int av, char **ac)
+{
+	if (av == 1 || is_func(ac,"standard")) 
+		stdtest();
+	if (av == 1 || is_func(ac,"special")) 
+		spectest();
 	return (0);
 }

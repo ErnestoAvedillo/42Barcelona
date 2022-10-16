@@ -6,15 +6,15 @@
 #    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 16:29:34 by eavedill          #+#    #+#              #
-#    Updated: 2022/10/07 16:29:41 by eavedill         ###   ########.fr        #
+#    Updated: 2022/10/16 11:21:10 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 all= $(NAME)
 
-SRC = ft_printf ft_utoa ft_addrtoa
+SRC =  ft_printf ft_utoa ft_addrtoa ft_printf_args
 
 OBJS = $(addsuffix .o,$(SRC))
 
@@ -22,36 +22,48 @@ DEPS = $(addsuffix .d,$(SRC))
 
 SRCS = $(addsuffix .c,$(SRC))
 
+DIRLIBFT = ./libft/
+LIBNAME = libft.a
+LIBFT= $(addprefix $(DIRLIBFT),$(LIBNAME))
 
-INCLUDE = $(NAME:.a=.h)
+INCLUDE = ft_printf.h
 
 FLAGS = -Wall -Werror -Wextra
 
 CC = gcc
 
-$(NAME): $(OBJS) $(DEPS)
-	ar -rcs $(NAME) $(OBJS) $(DEPS)
+-include $(INCLUDE))
+
+$(NAME): $(OBJS) $(DEPS) $(LIBFT)
+	ar -rcs $(NAME) $(OBJS)
 
 %.o : %.c $(INCLUDE)
 	$(CC) $(FLAGS) -c $*.c -o $*.o
 
 %.d : %.c $(INCLUDE)
-	$(CC) $(FLAGS) -c $*.c > $*.d
+	$(CC) -MM $(FLAGS) -c $*.c > $*.d
 
 all: $(NAME)
 
+$(LIBFT): 
+	make -C$(DIRLIBFT) bonus
+	cp $(LIBFT) $(NAME)
+
 print:
-	echo $(INCLUDE)
-	echo $(SRCS)
-	echo $(OBJS)
-	echo $(NAME)
+	@echo $(INCLUDE)
+	@echo $(SRCS)
+	@echo $(OBJS)
+	@echo $(DEPS)
+	@echo $(NAME)
+	@echo $(LIBFT)
 
 clean:
-	$(RM) $(OBJS) $(DEPS) $(OBJS_BONUS) $(DEPS_BONUS) $(HEAD_DEPS) $(HEAD_OBJS)
+	$(RM) $(OBJS) $(DEPS) $(OBJS_BONUS) $(DEPS_BONUS) $(HEAD_DEPS) $(HEAD_OBJS) $(TARGETLIB)
+	make -C$(DIRLIBFT) fclean
 
 fclean:     clean
 	$(RM) $(NAME) $(BONUS)
 
 re:         fclean $(NAME)
 
-.PHONY: all re clean fclean re
+.PHONY: all re clean fclean re $(TARGETLIB)

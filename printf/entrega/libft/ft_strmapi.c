@@ -1,52 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 18:10:40 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/24 11:20:17 by eavedill         ###   ########.fr       */
+/*   Created: 2022/09/15 18:14:38 by eavedill          #+#    #+#             */
+/*   Updated: 2022/09/24 16:15:28 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"ft_printf.h"
+#include"libft.h"
 
-static int	getchrnr(unsigned int val)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int				i;
-	unsigned int	aux;
-
-	aux = val;
-	i = 0;
-	if (val == 0)
-		return (1);
-	while (aux > 0)
-	{
-		aux = aux / 10;
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_utoa(unsigned int n)
-{
+	size_t	i;
 	char	*str;
-	int		lenstr;
+	size_t	lenstr;
 
-	lenstr = getchrnr (n);
+	lenstr = ft_strlen (s);
 	str = (char *)malloc ((lenstr + 1) * sizeof (char));
 	if (!str)
 		return (NULL);
-	str[lenstr] = '\0';
-	if (n == 0)
-		str[0] = '0';
-	else
+	i = 0;
+	while (i < lenstr)
 	{
-		while (n > 0)
-		{	
-			str[--lenstr] = n % 10 + 48;
-			n = n / 10;
-		}
+		str[i] = f (i, s[i]);
+		i++;
 	}
+	str[i] = 0;
 	return (str);
 }

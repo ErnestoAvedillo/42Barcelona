@@ -12,6 +12,7 @@
 #include<stdio.h>
 
 void strtest(void);
+void spectest(void);
 
 #define KNRM  "\x1B[0m"
 #define KRED  "\x1B[31m"

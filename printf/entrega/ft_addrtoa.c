@@ -13,7 +13,7 @@
 
 static int	getchrnr(size_t val)
 {
-	int	i;
+	int		i;
 	size_t	aux;
 
 	aux = val;
@@ -28,15 +28,26 @@ static int	getchrnr(size_t val)
 	return (i);
 }
 
-char	*ft_addrtoa(size_t n, int format)
+static void	get_format(char *str, char formato)
+{
+	if (formato == 'x')
+		ft_strlcpy (str, "0123456789abcdef", 17);
+	else if (formato == 'X')
+		ft_strlcpy (str, "0123456789ABCDEF", 17);
+	else if (formato == 'p')
+		ft_strlcpy (str, "0123456789abcdef", 17);
+	return ;
+}
+
+char	*ft_addrtoa(size_t n, int formato)
 {
 	char	*str;
 	int		lenstr;
 	char	vect_val[17];
 
-	ft_strlcpy(vect_val,"0123456789abcdef",17);
+	get_format (vect_val, formato);
 	lenstr = getchrnr (n);
-	if (format)
+	if (formato == 'p')
 		lenstr += 3;
 	else
 		lenstr += 1;
@@ -44,7 +55,7 @@ char	*ft_addrtoa(size_t n, int format)
 	if (!str)
 		return (NULL);
 	str[lenstr--] = '\0';
-	if (format)
+	if (formato == 'p')
 	{
 		str[0] = '0';
 		str[1] = 'x';

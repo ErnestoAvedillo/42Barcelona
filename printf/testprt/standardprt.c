@@ -41,17 +41,38 @@ void stdtest(void)
 	cont = ft_printf("ft_printf con u %u\n", uval);
 	printf ("respuesta ft_printf %d\n", cont);
 
-	printf("%s Test 3 impresion con argumento address %s\n",KGRN, KNRM );
+	printf("%s Test 4 impresion con argumento address %s\n",KGRN, KNRM );
 	cont = printf ("   printf con p %p\n", &uval);
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("ft_printf con p %p\n", &uval);
 	printf ("respuesta ft_printf %d\n", cont);
 
-	printf("%s Test 4 impresion con argumento hexadecimal %s\n",KGRN, KNRM );
+	printf("%s Test 5 impresion con argumento hexadecimal %s\n",KGRN, KNRM );
 	uval = 4294967295;
 	cont = printf ("   printf con x %x\n", uval);
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("ft_printf con x %x\n", uval);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 6 impresion con argumento hexadecimal %s\n",KGRN, KNRM );
+	uval = 4294967295;
+	cont = printf ("   printf con X %X\n", uval);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("ft_printf con X %X\n", uval);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 impresion con varios argumentos %s\n",KGRN, KNRM );
+	uval = 4294967295;
+	cont = printf ("   printf con varios argumentos %d -- %p\n", uval, &cont);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("ft_printf con varios argumentos %d -- %p\n", uval, &cont);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 8 impresion con no printable %s\n",KGRN, KNRM );
+	uval = 4294967295;
+	cont = printf ("%s???printf con no printable%s \n",KGRN, KNRM);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("%sft_printf con no printable%s \n",KGRN, KNRM);
 	printf ("respuesta ft_printf %d\n", cont);
 
 	return;
