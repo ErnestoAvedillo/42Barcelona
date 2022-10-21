@@ -21,6 +21,12 @@ OBJS = $(addprefix $(OBJDST),$(addsuffix .o,$(SRC)))
 
 DSTS = $(addprefix $(OBJDST),$(addsuffix .d,$(SRC)))
 
+#dato sobre la libreria
+NAMELIB = get_next_line
+DIRLIB = ./entrega/
+NAMELIBS = $(addprefix $(DIRLIB),$(addsuffix .a,$(NAMELIB)))
+
+
 FLAGS = -Wall -Werror -Wextra -I.
 BUFFERFLAG = -D BUFFER_SIZE = 42
 
@@ -28,8 +34,8 @@ CC = gcc
 
 RM = rm -rfd
 
-$(NAME):  $(OBJS) 
-	$(CC) $(FLAGS) -o $(NAME) $(OBJS) 
+$(NAME):  $(OBJS) $(NAMELIBS)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(NAMELIBS)
 
 $(OBJDST)%.o: $(SRCS) $(DSTS)
 	mkdir -p $(OBJDST)
@@ -41,19 +47,23 @@ $(OBJDST)%.d: $(SRCS) $(INCLUDE)
 
 all: $(NAME)
 
+$(NAMELIBS):
+	make -C$(DIRLIB) all
+
 print:
 	@echo $(OBJDST)
 	@echo $(SRCS)
 	@echo $(OBJS)
 	@echo $(DSTS)
 	@echo $(NAME)
+	@echo $(NAMELIBS)
 
 clean:
-	$(RM) $(SRCS) $(DSTS) $(OBJSDSTS)
+	$(RM) $(OBJS) $(DSTS) $(OBJDST) 
 
-fclan:
-	clean $(NAME)
+fclean:	clean 
+	$(RM) $(NAME)
 
 re:	fclean $(NAME)
 
-.PHONY: all re fclean clean 
+.PHONY: all re fclean clean $(NAMELIBS)

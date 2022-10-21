@@ -14,6 +14,10 @@
 # define TEST_H
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include"./entrega/get_next_line.h"
+
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE = 1000
 #endif

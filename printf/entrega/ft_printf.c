@@ -13,10 +13,16 @@
 
 static int	printstr(char *str)
 {
+	int	len;
+
 	if (str == NULL)
 		return (ft_printf("(null)"));
 	else
-		return (ft_printf(str));
+	{
+		len = ft_strlen(str);
+		write(1, str, len);
+		return (len);
+	}
 }
 
 static int	print_var(char formato, va_list args )

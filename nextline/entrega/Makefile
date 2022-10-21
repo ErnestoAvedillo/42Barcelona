@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/19 06:42:01 by eavedill          #+#    #+#              #
-#    Updated: 2022/10/19 06:55:22 by eavedill         ###   ########.fr        #
+#    Updated: 2022/10/21 17:24:32 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,15 @@ SRC= get_next_line get_next_line_utils
 
 OBJDTS = ./objdts/
 
-SCRS =  $(addsuffix .c,(SRC))
+SCRS =  $(addsuffix .c,$(SRC))
 
-OBJS =  $(addprefix, $(OBJDTS),$(addsuffix .o,(SRC)))
+OBJS =  $(addprefix $(OBJDTS),$(addsuffix .o,$(SRC)))
 
-DSTS =  $(addprefix, $(OBJDTS),$(addsuffix .d,(SRC)))
+DSTS =  $(addprefix $(OBJDTS),$(addsuffix .d,$(SRC)))
 
 INCLUDE = $(NAME:.a=.h)
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -D BUFFER_SIZE=1000
 
 CC = gcc
 
@@ -35,10 +35,12 @@ AR = ar -rcs
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS) 
 
-$(OBJDST)%.o: %.c
-	$(CC) $(FLAGS) -o $(BOJDTS)$*.c -c $*.C
+$(OBJDTS)%.o: %.c
+	mkdir -p $(OBJDTS)
+	$(CC) $(FLAGS) -o $(OBJDTS)$*.o -c $*.c
 
 $(OBJDTS)%.d:%.c $(NCLUDE)
+	mkdir -p $(OBJDTS)
 	$(CC) -MM $(FLAGS) $*.c > $(OBJDTS)$*.d
 
 all: $(NAME)

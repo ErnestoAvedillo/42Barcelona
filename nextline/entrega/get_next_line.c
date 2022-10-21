@@ -9,9 +9,9 @@
 /*   Updated: 2022/10/17 06:18:27 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include"get_next_line.h"
-int strlen(char *str)
+
+int my_strlen(char *str)
 {
 	int	i;
 
@@ -20,56 +20,56 @@ int strlen(char *str)
 	return (i);
 }
 
-size_t	strchr(char *str)
+size_t	my_strchr(char *str,char c)
 {
 	size_t	i;
 
 	i = 0;
 	while(i < BUFFER_SIZE)
 	{
-		if (str[i] == '\n')
-		{
+		if (str[i] == c)
 			return (i);
-			i++;
-		}
+		i++;
 	}
 	return (0);
 }
 
-char	*substr(char *str, int start, int len)
+char	*my_substr(char *str, int start, int len)
 {
 	char	*out;
 	int		i;
 
-	if (start > strlen(str))
+	if (start > my_strlen(str))
 		return (NULL);
-	*
 	i = start;
-	while (str[i] && i < len + start)
+	out = (char *)malloc((len + 1) * sizeof(char));
+	while (str[i] && (i < len + start) && (str[i] != -1))
 	{
-
+		out[i - start] = str[i];
+		i++;
 	}
+	out[i] = str[i];
+	return (out);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*firstchar;
 	char		*out;
-	char		buff_str[BUFFER_SIZE];
-	size_t			i;
+	char		*buff_str;
+	static char	*first_pos;
+	int			i;
 
 	i = 0;
-	while (i++ < 100)
+	buff_str = (char *)malloc (BUFFER_SIZE * sizeof(char));
+	i = read(fd, first_pos, BUFFER_SIZE);
+	i = my_strchr(buff_str,'\n');
+	if (i)
 	{
-		buff_str = read(firstchar,BUFFER_SIZE, fd);
-		printf("%s\n",buff_str;
-		i = strchr(*firstchar,'\n');
-		if (i)
-		{
-			out = substr(str,0,(int)i)
-			
-		}
-
+		out = my_substr(buff_str,0,(int)i);
 	}
-
+	else
+		return (NULL);
+	first_pos = first_pos + i;
+	free (buff_str);
+	return (out);
 }

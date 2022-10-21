@@ -62,7 +62,7 @@ clean:
 	make -C$(DIRLIBFT) fclean
 
 fclean:     clean
-	$(RM) $(NAME) $(BONUS)
+	$(RM) $(NAME) $(BONUS) $(LIBNAME)
 
 re:         fclean $(NAME)
 

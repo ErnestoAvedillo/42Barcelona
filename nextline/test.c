@@ -14,17 +14,16 @@
 //int main(int av, char **ac)
 int main()
 {
-	FILE	*fd1;
-	char leter;
+	int		fd1;
+	char	*leter;
 
-	fd1 = fopen("./textfiles/Dr Moreau.txt", "r");
-	while (1)
-	{
-		leter = fgetc(fd1);
-		if (feof(fd1))
-			break;
-		printf("%c",leter );
-	}	
-	fclose(fd1);
+	fd1 = open("./textfiles/Dr Moreau.txt", O_RDONLY);
+	leter = get_next_line(fd1);
+	free (leter);
+	printf("%s",leter );
+	leter = get_next_line(fd1);
+	free (leter);
+	printf("%s",leter );
+	close(fd1);
 	return(0);
 }
