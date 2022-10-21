@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_lib.h                                         :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:54:29 by eavedill          #+#    #+#             */
-/*   Updated: 2022/10/13 19:55:36 by eavedill         ###   ########.fr       */
+/*   Created: 2022/10/17 06:13:05 by eavedill          #+#    #+#             */
+/*   Updated: 2022/10/17 06:14:22 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdio.h>
-#include"../entrega/ft_printf.h"
+#include"test.h"
 
-void strtest(void);
-void spectest(void);
-void bonustest(void);
+//int main(int av, char **ac)
+int main()
+{
+	FILE	*fd1;
+	char leter;
 
-#define KNRM  "\x1B[0m"
-#define KRED  "\x1B[31m"
-#define KGRN  "\x1B[32m"
-#define KYEL  "\x1B[33m"
-#define KBLU  "\x1B[34m"
-#define KMAG  "\x1B[35m"
-#define KCYN  "\x1B[36m"
-#define KWHT  "\x1B[37m"
+	fd1 = fopen("./textfiles/Dr Moreau.txt", "r");
+	while (1)
+	{
+		leter = fgetc(fd1);
+		if (feof(fd1))
+			break;
+		printf("%c",leter );
+	}	
+	fclose(fd1);
+	return(0);
+}

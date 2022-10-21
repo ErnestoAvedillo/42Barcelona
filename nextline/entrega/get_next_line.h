@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_lib.h                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:54:29 by eavedill          #+#    #+#             */
-/*   Updated: 2022/10/13 19:55:36 by eavedill         ###   ########.fr       */
+/*   Created: 2022/10/17 06:20:05 by eavedill          #+#    #+#             */
+/*   Updated: 2022/10/17 06:23:42 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdio.h>
-#include"../entrega/ft_printf.h"
 
-void strtest(void);
-void spectest(void);
-void bonustest(void);
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include<sys/types.h>
+# include<unistd.h>
+# include<stddef.h>
+# include<stdio.h>
+# include<stdlib.h>
 
-#define KNRM  "\x1B[0m"
-#define KRED  "\x1B[31m"
-#define KGRN  "\x1B[32m"
-#define KYEL  "\x1B[33m"
-#define KBLU  "\x1B[34m"
-#define KMAG  "\x1B[35m"
-#define KCYN  "\x1B[36m"
-#define KWHT  "\x1B[37m"
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE = 1000
+#endif
+
+#endif
