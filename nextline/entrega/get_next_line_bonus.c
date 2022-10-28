@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -31,9 +31,6 @@ char	*getcur_str(char *str, int fd)
 		if (readret < 0)
 			return (NULL);
 		aux = my_joinstr (str, buff_str);
-		printf("control str <%s>\n",str );
-		printf("control buff_str <%s>\n",buff_str );
-		printf("control aux <%s>\n",aux );
 		free(str);
 		str = aux;
 	}
@@ -41,25 +38,24 @@ char	*getcur_str(char *str, int fd)
 	return (str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line_bonus(int fd)
 {
-	static char	*current_str;
+	static char	*current_str[1024];
 	char		*out;
 	int			i;
 	char		*aux;
 
-	current_str = getcur_str(current_str, fd);
-	//printf("control current_str <%s>\n", current_str );
-	if (!current_str)
-	{
-		free(current_str);
+	current_str[fd] = getcur_str(current_str[fd], fd);
+	if (!current_str[fd])
+	{	
+		free(current_str[fd]);
 		return (NULL);
 	}
-	i = my_strchr (current_str, '\n');
-	out = my_substr (current_str, 0, i + 1);
-	aux = my_substr (current_str, i + 1, my_strlen(current_str) - i - 1);
-	//printf("control aux <%s>\n",aux );
-	free(current_str);
-	current_str = aux;
+	i = my_strchr (current_str[fd], '\n');
+	out = my_substr (current_str[fd], 0, i + 1);
+	aux = my_substr (current_str[fd], i + 1, \
+						my_strlen(current_str[fd]) - i - 1);
+	free(current_str[fd]);
+	current_str[fd] = aux;
 	return (out);
 }

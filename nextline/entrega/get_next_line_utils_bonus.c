@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -46,17 +46,14 @@ char	*my_joinstr(char *dst, char *src)
 	char	*out;
 
 	longdst = my_strlen(dst);
-	out = (char *) malloc ((longdst + BUFFER_SIZE + 1) * sizeof(char));
+	out = (char *) malloc ((longdst + my_strlen (src) + 1) * sizeof(char));
 	i = 0;
-	printf("DST <%s>\n",dst );
-	out[longdst + BUFFER_SIZE] = '\0';
-	while (i <= longdst)
+	while (dst[i])
 	{
-		printf("OUT <%s>\n",out);
 		out[i] = dst[i];
 		i++;
 	}
-	while (i <= longdst + BUFFER_SIZE)
+	while (src[i - longdst])
 	{
 		out[i] = src[i - longdst];
 		i++;

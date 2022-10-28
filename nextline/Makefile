@@ -21,6 +21,8 @@ OBJS = $(addprefix $(OBJDST),$(addsuffix .o,$(SRC)))
 
 DSTS = $(addprefix $(OBJDST),$(addsuffix .d,$(SRC)))
 
+INCLUDE = $(NAME:.a=.h)
+
 #dato sobre la libreria
 NAMELIB = get_next_line
 DIRLIB = ./entrega/
@@ -28,7 +30,7 @@ NAMELIBS = $(addprefix $(DIRLIB),$(addsuffix .a,$(NAMELIB)))
 
 
 FLAGS = -Wall -Werror -Wextra -I.
-BUFFERFLAG = -D BUFFER_SIZE = 42
+BUFFERFLAG = -D BUFFER_SIZE = 1
 
 CC = gcc
 
@@ -37,7 +39,7 @@ RM = rm -rfd
 $(NAME):  $(OBJS) $(NAMELIBS)
 	$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(NAMELIBS)
 
-$(OBJDST)%.o: $(SRCS) $(DSTS)
+$(OBJDST)%.o: $(SRCS) $(DSTS) $(INCLUDE)
 	mkdir -p $(OBJDST)
 	$(CC) $(FLAGS) -c $*.c -o $(OBJDST)$*.o
 
@@ -48,7 +50,7 @@ $(OBJDST)%.d: $(SRCS) $(INCLUDE)
 all: $(NAME)
 
 $(NAMELIBS):
-	make -C$(DIRLIB) all
+	make -C$(DIRLIB)
 
 print:
 	@echo $(OBJDST)
@@ -57,12 +59,17 @@ print:
 	@echo $(DSTS)
 	@echo $(NAME)
 	@echo $(NAMELIBS)
+	@echo $(INCLUDE)
+
 
 clean:
 	$(RM) $(OBJS) $(DSTS) $(OBJDST) 
+	make -C$(DIRLIB) clean
 
 fclean:	clean 
 	$(RM) $(NAME)
+	make -C$(DIRLIB) fclean
+
 
 re:	fclean $(NAME)
 

@@ -11,20 +11,26 @@
 # **************************************************************************** #
 
 NAME= get_next_line.a
+NAME_BONUS= get_next_line.a
 
 SRC= get_next_line get_next_line_utils
+SRC_BONUS= get_next_line_bonus get_next_line_utils_bonus
 
 OBJDTS = ./objdts/
 
 SCRS =  $(addsuffix .c,$(SRC))
+SCRS_BONUS =  $(addsuffix .c,$(SRC_BONUS))
 
 OBJS =  $(addprefix $(OBJDTS),$(addsuffix .o,$(SRC)))
+OBJS_BONUS =  $(addprefix $(OBJDTS),$(addsuffix .o,$(SRC_BONUS)))
 
 DSTS =  $(addprefix $(OBJDTS),$(addsuffix .d,$(SRC)))
+DSTS_BONUS =  $(addprefix $(OBJDTS),$(addsuffix .d,$(SRC_BONUS)))
 
 INCLUDE = $(NAME:.a=.h)
+INCLUDE_BONUS = $(NAME_BONUS:.a=.h)
 
-FLAGS = -Wall -Werror -Wextra -D BUFFER_SIZE=1000
+FLAGS = -Wall -Werror -Wextra
 
 CC = gcc
 
@@ -35,15 +41,20 @@ AR = ar -rcs
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS) 
 
-$(OBJDTS)%.o: %.c
+$(OBJDTS)%.o: %.c $(INCLUDE)
 	mkdir -p $(OBJDTS)
-	$(CC) $(FLAGS) -o $(OBJDTS)$*.o -c $*.c
+	$(CC) $(FLAGS) -I.$(INCLUDE) -o $(OBJDTS)$*.o -c $*.c
 
-$(OBJDTS)%.d:%.c $(NCLUDE)
+$(OBJDTS)%.d:%.c $(INCLUDE) $(INCLUDE_BONUS)
 	mkdir -p $(OBJDTS)
 	$(CC) -MM $(FLAGS) $*.c > $(OBJDTS)$*.d
 
+#$(NAME_BONUS): $(OBJS_BONUS)
+#	$(AR) $(NAME_BONUS) $(OBJS_BONUS) 
+
 all: $(NAME)
+
+bonus: $(NAME_BONUS)
 
 print:
 	@echo $(NAME)
@@ -55,8 +66,8 @@ print:
 clean:
 	$(RM) $(OBJDTS)
 
-fclean:
-	clean $(NAME)
+fclean:	clean 
+	$(RM) $(NAME) $(NAME_BONUS)
 
 re:	fclean $(NAME)
 

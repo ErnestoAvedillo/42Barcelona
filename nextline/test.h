@@ -18,7 +18,17 @@
 # include <fcntl.h>
 # include"./entrega/get_next_line.h"
 
+#define KNRM  "\x1B[0m"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
+
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE = 1000
+# define BUFFER_SIZE = 10
 #endif
+
 #endif
