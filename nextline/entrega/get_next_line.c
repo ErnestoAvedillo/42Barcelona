@@ -24,16 +24,18 @@ char	*getcur_str(char *str, int fd)
 	{
 		if (!buff_str)
 		{
+			//printf("fallo de memoria\n");
 			free(buff_str);
 			return (NULL);
 		}
 		readret = read(fd, buff_str, BUFFER_SIZE);
+		//printf("readret <%d>\n",readret );
 		if (readret < 0)
 			return (NULL);
-		aux = my_joinstr (str, buff_str);
-		printf("control str <%s>\n",str );
-		printf("control buff_str <%s>\n",buff_str );
-		printf("control aux <%s>\n",aux );
+		aux = my_joinstr (str, buff_str,readret);
+		//printf("control str <%s>\n",str );
+		//printf("control buff_str <%s>\n",buff_str );
+		//printf("control aux <%s>\n",aux );
 		free(str);
 		str = aux;
 	}
@@ -52,6 +54,7 @@ char	*get_next_line(int fd)
 	//printf("control current_str <%s>\n", current_str );
 	if (!current_str)
 	{
+		//printf("fallo de memoria\n");
 		free(current_str);
 		return (NULL);
 	}

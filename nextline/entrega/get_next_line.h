@@ -25,6 +25,6 @@
 char	*get_next_line(int fd);
 int		my_strlen(char *str);
 int		my_strchr(char *str, char c);
-char	*my_joinstr(char *dst, char *src);
+char	*my_joinstr(char *dst, char *src, int lensrc);
 char	*my_substr(char *str, int start, int len);
 #endif

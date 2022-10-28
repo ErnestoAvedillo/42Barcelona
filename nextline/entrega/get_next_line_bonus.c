@@ -30,7 +30,7 @@ char	*getcur_str(char *str, int fd)
 		readret = read(fd, buff_str, BUFFER_SIZE);
 		if (readret < 0)
 			return (NULL);
-		aux = my_joinstr (str, buff_str);
+		aux = my_joinstr (str, buff_str, readret);
 		free(str);
 		str = aux;
 	}
@@ -38,7 +38,7 @@ char	*getcur_str(char *str, int fd)
 	return (str);
 }
 
-char	*get_next_line_bonus(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*current_str[1024];
 	char		*out;

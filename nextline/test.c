@@ -20,11 +20,12 @@ int main()
 
 	fd1 = open("./textfiles/Invisible Man, The.txt", O_RDONLY);
 	i = 0;
-	while (i < 10)
+	while (i < 20)
 	{
 		leter = get_next_line(fd1);
 		if (leter == NULL)
 		{
+			printf("Leter es null\n");
 			free(leter);
 			break;		
 		}

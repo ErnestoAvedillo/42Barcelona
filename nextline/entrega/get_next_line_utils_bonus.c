@@ -39,23 +39,29 @@ int	my_strchr(char *str, char c)
 	return (0);
 }
 
-char	*my_joinstr(char *dst, char *src)
+char	*my_joinstr(char *dst, char *src, int lensrc)
 {
 	int		i;
 	int		longdst;
 	char	*out;
 
 	longdst = my_strlen(dst);
-	out = (char *) malloc ((longdst + my_strlen (src) + 1) * sizeof(char));
+	out = (char *) malloc ((longdst + lensrc + 1) * sizeof(char));
 	i = 0;
-	while (dst[i])
+	//printf("DST <%s>\n",dst );
+	//printf("longdst <%d> lensrc <%d>\n",longdst, lensrc );
+	out[longdst + lensrc] = '\0';
+	while (i < longdst && longdst)
 	{
 		out[i] = dst[i];
+		//printf("out[%d] = <%d>  dst[%d] = <%d> \n",i,out[i], i , dst[i]);
 		i++;
 	}
-	while (src[i - longdst])
+	while (i <= longdst + lensrc - 1)
 	{
 		out[i] = src[i - longdst];
+		//printf("out[%d] = <%d>  src[%d] = <%d> \n",i,out[i], i-longdst , src[i-longdst]);
+
 		i++;
 	}
 	out[i] = '\0';
