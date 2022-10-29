@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   testlib.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 07:29:52 by eavedill          #+#    #+#             */
-/*   Updated: 2022/10/18 07:31:59 by eavedill         ###   ########.fr       */
+/*   Created: 2022/10/29 11:16:38 by eavedill          #+#    #+#             */
+/*   Updated: 2022/10/29 11:21:06 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef TEST_H
-# define TEST_H
-# include"./tests/testlib.h"
-# include "../Libft/entrega/libft.h"
+#ifndef TESTLIB_HEAD
+# define TESTLIB_HEAD
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "../entrega/get_next_line.h"
 
 #define KNRM  "\x1B[0m"
 #define KRED  "\x1B[31m"
@@ -24,8 +26,8 @@
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE = 1
-#endif
+
+int standardread(char *filename, int nrlines);
 
 #endif
+

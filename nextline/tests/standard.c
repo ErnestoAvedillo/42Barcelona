@@ -9,43 +9,38 @@
 /*   Updated: 2022/10/17 06:14:22 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<test.h>
+#include"testlib.h"
 
-int is_func(char **ac, char *str)
+//int main(int av, char **ac)
+int standardread(char *filename, int nrlines)
 {
-	int i = 0;
+	int		i;
+	int		fd1;
+	char	*leter;
 
-	while (ac[i])
+	fd1 = open(filename, O_RDONLY);
+	if (fd1 == -1)
 	{
-		if (ft_strncmp(ac[i], str, ft_strlen(str)) == 0)
-			return (1);
+		printf("Error en la apertura del fichero <%s>\n", filename);
+		return(0);
+	}
+	else
+		printf("Fichero abierto con fd = %d\n", fd1);
+	i = 0;
+	while (i < nrlines)
+	{
+		leter = get_next_line(fd1);
+		if (leter == NULL)
+		{
+			printf("Leter es null\n");
+			free(leter);
+			break;		
+		}
+		printf("%slinea nº %d %s ",KGRN ,i+1, KNRM );
+		printf("%s",leter );
+		free (leter);
 		i++;
 	}
-	return (0);
-}
-
-int main(int av, char **ac)
-{
-	if (av == 1 || is_func(ac, "standard"))
-	{
-		printf("%sTest standard%s\n",KCYN,KNRM );
-		standardread("./textfiles/Time Machine, The.txt", 20);
-	}
-	if (av == 1 || is_func(ac, "empty"))
-	{
-		printf("%sTest empty%s\n",KCYN,KNRM );
-		standardread("./textfiles/empty.txt", 20);
-	}
-	if (av == 1 || is_func(ac, "nl"))
-	{
-		printf("%sTest new line%s\n",KCYN,KNRM );
-		standardread("./textfiles/newline.txt", 20);
-	}
-	if (av == 1 || is_func(ac, "short"))
-	{
-		printf("%sTest short file%s\n",KCYN,KNRM );
-		standardread("./textfiles/Short file.txt", 20);
-	}
-
+	close(fd1);
 	return(0);
 }

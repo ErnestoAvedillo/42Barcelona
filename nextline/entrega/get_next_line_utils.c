@@ -47,6 +47,11 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 
 	longdst = my_strlen(dst);
 	out = (char *) malloc ((longdst + lensrc + 1) * sizeof(char));
+	if (!out)
+	{
+		free(out);
+		return (NULL);
+	}
 	i = 0;
 	//printf("DST <%s>\n",dst );
 	//printf("longdst <%d> lensrc <%d>\n",longdst, lensrc );

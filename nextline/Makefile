@@ -28,6 +28,16 @@ NAMELIB = get_next_line
 DIRLIB = ./entrega/
 NAMELIBS = $(addprefix $(DIRLIB),$(addsuffix .a,$(NAMELIB)))
 
+#dato sobre la libreria
+TESTSLIB = testlib
+DIRTESTSLIB = ./tests/
+NAMETESTSLIBS = $(addprefix $(DIRTESTSLIB),$(addsuffix .a,$(TESTSLIB)))
+
+#dato sobre la libreria
+LIBFT = libft
+DIRLIBFT = ../Libft/entrega/
+NAMELIBFTS = $(addprefix $(DIRLIBFT),$(addsuffix .a,$(LIBFT)))
+
 
 FLAGS = -Wall -Werror -Wextra -I.
 BUFFERFLAG = -D BUFFER_SIZE = 1
@@ -36,8 +46,8 @@ CC = gcc
 
 RM = rm -rfd
 
-$(NAME):  $(OBJS) $(NAMELIBS)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(NAMELIBS)
+$(NAME):  $(OBJS) $(NAMELIBS) $(NAMETESTSLIBS) $(NAMELIBFTS)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(NAMELIBS) $(NAMETESTSLIBS) $(NAMELIBFTS)
 
 $(OBJDST)%.o: $(SRCS) $(DSTS) $(INCLUDE)
 	mkdir -p $(OBJDST)
@@ -52,6 +62,12 @@ all: $(NAME)
 $(NAMELIBS):
 	make -C$(DIRLIB)
 
+$(NAMETESTSLIBS):
+	make -C$(DIRTESTSLIB)
+
+$(NAMELIBFTS):
+	make -C$(DIRLIBFT)
+
 print:
 	@echo $(OBJDST)
 	@echo $(SRCS)
@@ -65,12 +81,16 @@ print:
 clean:
 	$(RM) $(OBJS) $(DSTS) $(OBJDST) 
 	make -C$(DIRLIB) clean
+	make -C$(DIRTESTSLIB) clean
+	make -C$(DIRLIBFT) clean
 
 fclean:	clean 
 	$(RM) $(NAME)
 	make -C$(DIRLIB) fclean
+	make -C$(DIRTESTSLIB) fclean
+	make -C$(DIRLIBFT) fclean
 
 
 re:	fclean $(NAME)
 
-.PHONY: all re fclean clean $(NAMELIBS)
+.PHONY: all re fclean clean $(NAMELIBS) $(NAMETESTSLIBS) $(NAMELIBFTS)
