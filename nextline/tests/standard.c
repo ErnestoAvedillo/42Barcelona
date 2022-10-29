@@ -19,26 +19,26 @@ int standardread(char *filename, int nrlines)
 	char	*leter;
 
 	fd1 = open(filename, O_RDONLY);
-	if (fd1 == -1)
+/*	if (fd1 == -1)
 	{
 		printf("Error en la apertura del fichero <%s>\n", filename);
 		return(0);
 	}
 	else
 		printf("Fichero abierto con fd = %d\n", fd1);
-	i = 0;
+*/	i = 0;
 	while (i < nrlines)
 	{
 		leter = get_next_line(fd1);
 		if (leter == NULL)
 		{
 			printf("Leter es null\n");
-			free(leter);
+			//free(leter);
 			break;		
 		}
 		printf("%slinea nº %d %s ",KGRN ,i+1, KNRM );
-		printf("%s",leter );
-		free (leter);
+		printf("<%s> %p\n",leter, leter );
+		//free (leter);
 		i++;
 	}
 	close(fd1);

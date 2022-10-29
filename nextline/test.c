@@ -46,6 +46,16 @@ int main(int av, char **ac)
 		printf("%sTest short file%s\n",KCYN,KNRM );
 		standardread("./textfiles/Short file.txt", 20);
 	}
+	if (av == 1 || is_func(ac, "special"))
+	{
+		printf("%sTest short file%s\n",KCYN,KNRM );
+		standardread("./textfiles/41_no_nl", 20);
+	}
+	if (av == 1 || is_func(ac, "fc-error"))
+	{
+		printf("%sTest wrong file%s\n",KCYN,KNRM );
+		standardread("./textfiles/ss", 20);
+	}
 
 	return(0);
 }

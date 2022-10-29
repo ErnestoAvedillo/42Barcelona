@@ -53,19 +53,15 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 		return (NULL);
 	}
 	i = 0;
-	//printf("DST <%s>\n",dst );
-	//printf("longdst <%d> lensrc <%d>\n",longdst, lensrc );
 	out[longdst + lensrc] = '\0';
 	while (i < longdst && longdst)
 	{
 		out[i] = dst[i];
-		//printf("out[%d] = <%d>  dst[%d] = <%d> \n",i,out[i], i , dst[i]);
 		i++;
 	}
 	while (i <= longdst + lensrc - 1)
 	{
 		out[i] = src[i - longdst];
-		//printf("out[%d] = <%d>  src[%d] = <%d> \n",i,out[i], i-longdst , src[i-longdst]);
 
 		i++;
 	}
