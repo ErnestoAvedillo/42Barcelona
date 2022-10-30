@@ -56,18 +56,13 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 	out = (char *) malloc ((longdst + lensrc + 1) * sizeof(char));
 	if (!out)
 		return (NULL);
-	i = 0;
+	i = -1;
 	out[longdst + lensrc] = '\0';
-	while (i < longdst && longdst)
-	{
+	while (++i < longdst && longdst)
 		out[i] = dst[i];
-		i++;
-	}
-	while (i <= longdst + lensrc - 1)
-	{
+	i--;
+	while (++i <= longdst + lensrc - 1)
 		out[i] = src[i - longdst];
-		i++;
-	}
 	out[i] = '\0';
 	free(dst);
 	return (out);
