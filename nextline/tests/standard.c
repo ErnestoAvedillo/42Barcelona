@@ -37,7 +37,8 @@ int standardread(char *filename, int nrlines)
 			break;		
 		}
 		printf("%slinea nº %d %s ",KGRN ,i+1, KNRM );
-		printf("<%s> %p\n",leter, leter );
+		//printf("<%s> %p\n",leter, leter );
+		printf("%s",leter);
 		//free (leter);
 		i++;
 	}

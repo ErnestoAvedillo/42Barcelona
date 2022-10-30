@@ -48,8 +48,8 @@ int main(int av, char **ac)
 	}
 	if (av == 1 || is_func(ac, "special"))
 	{
-		printf("%sTest short file%s\n",KCYN,KNRM );
-		standardread("./textfiles/41_no_nl", 20);
+		printf("%sTest special file%s\n",KCYN,KNRM );
+		standardread("./textfiles/multiple_nlx5", 20);
 	}
 	if (av == 1 || is_func(ac, "fc-error"))
 	{

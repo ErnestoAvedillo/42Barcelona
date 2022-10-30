@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -45,26 +45,31 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 	int		longdst;
 	char	*out;
 
+	if (!dst)
+	{
+		dst = (char *) malloc (1 * sizeof (char));
+		if (!dst)
+			return (NULL);
+		dst[0] = '\0';
+	}
 	longdst = my_strlen(dst);
 	out = (char *) malloc ((longdst + lensrc + 1) * sizeof(char));
+	if (!out)
+		return (NULL);
 	i = 0;
-	//printf("DST <%s>\n",dst );
-	//printf("longdst <%d> lensrc <%d>\n",longdst, lensrc );
 	out[longdst + lensrc] = '\0';
 	while (i < longdst && longdst)
 	{
 		out[i] = dst[i];
-		//printf("out[%d] = <%d>  dst[%d] = <%d> \n",i,out[i], i , dst[i]);
 		i++;
 	}
 	while (i <= longdst + lensrc - 1)
 	{
 		out[i] = src[i - longdst];
-		//printf("out[%d] = <%d>  src[%d] = <%d> \n",i,out[i], i-longdst , src[i-longdst]);
-
 		i++;
 	}
 	out[i] = '\0';
+	free(dst);
 	return (out);
 }
 
@@ -73,10 +78,15 @@ char	*my_substr(char *str, int start, int len)
 	char	*out;
 	int		i;
 
-	if (start > my_strlen(str))
+	if (start > my_strlen(str) || len < 0)
 		return (NULL);
 	i = start;
 	out = (char *)malloc((len + 1) * sizeof(char));
+	if (!out)
+	{
+		free (out);
+		return (NULL);
+	}
 	while (str[i] && (i < len + start) && (str[i] != -1))
 	{
 		out[i - start] = str[i];
