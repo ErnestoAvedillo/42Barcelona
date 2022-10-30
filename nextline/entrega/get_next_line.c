@@ -11,15 +11,15 @@
 /* ************************************************************************** */
 #include"get_next_line.h"
 
-char	*get_new_current_str (char *current_str, int start)
+char	*get_new_current_str(char *current_str, int start)
 {
 	char	*out;
 	int		longstr;
 
 	longstr = my_strlen(current_str);
-	out = my_substr(current_str, start, longstr - start - 1);
+	out = my_substr(current_str, start, longstr - start);
 	free (current_str);
-	return(out);
+	return (out);
 }
 
 char	*getcur_str(char *current_str, int fd)
@@ -29,18 +29,16 @@ char	*getcur_str(char *current_str, int fd)
 
 	buff_str = (char *) malloc ((BUFFER_SIZE + 1) * sizeof (char));
 	if (!buff_str)
-	{
 		return (NULL);
-	}
-	while (!my_strchr(current_str, '\n'))
+	while (my_strchr(current_str, '\n') < 0)
 	{
 		readret = read(fd, buff_str, BUFFER_SIZE);
-		current_str = my_joinstr (current_str, buff_str,readret);
-		if (readret == 0 || !current_str)
-			break;
+		current_str = my_joinstr (current_str, buff_str, readret);
+		if (readret <= 0 || !current_str)
+			break ;
 	}
 	free (buff_str);
-	if (readret < 0 || (readret == 0 && my_strlen(current_str) == 0 ))
+	if (readret < 0 || (readret == 0 && my_strlen (current_str) == 0))
 	{
 		free(current_str);
 		return (NULL);
@@ -54,15 +52,17 @@ char	*get_next_line(int fd)
 	char		*out;
 	int			i;
 
-	if(fd < 0 || BUFFER_SIZE <= 0 || read(fd,0,0) < 0)
-		return (NULL);
-	current_str = getcur_str(current_str, fd);
-	if (!current_str)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read (fd, 0, 0) < 0)
 	{
+		if (current_str)
+			current_str[0] = 0;
 		return (NULL);
 	}
+	current_str = getcur_str(current_str, fd);
+	if (!current_str)
+		return (NULL);
 	i = my_strchr (current_str, '\n');
-	if (i == 0)
+	if (i < 0)
 		i = my_strlen(current_str);
 	out = my_substr (current_str, 0, i + 1);
 	current_str = get_new_current_str (current_str, i + 1);

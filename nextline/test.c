@@ -26,6 +26,7 @@ int is_func(char **ac, char *str)
 
 int main(int av, char **ac)
 {
+	printf("BUFFER SIZE = %d\n",BUFFER_SIZE );
 	if (av == 1 || is_func(ac, "standard"))
 	{
 		printf("%sTest standard%s\n",KCYN,KNRM );
@@ -49,7 +50,7 @@ int main(int av, char **ac)
 	if (av == 1 || is_func(ac, "special"))
 	{
 		printf("%sTest special file%s\n",KCYN,KNRM );
-		standardread("./textfiles/multiple_nlx5", 20);
+		standardread("./textfiles/open_close_open.txt", 20);
 	}
 	if (av == 1 || is_func(ac, "fc-error"))
 	{

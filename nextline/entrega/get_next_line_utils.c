@@ -36,7 +36,7 @@ int	my_strchr(char *str, char c)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 char	*my_joinstr(char *dst, char *src, int lensrc)
@@ -66,7 +66,6 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 	while (i <= longdst + lensrc - 1)
 	{
 		out[i] = src[i - longdst];
-
 		i++;
 	}
 	out[i] = '\0';
@@ -84,10 +83,7 @@ char	*my_substr(char *str, int start, int len)
 	i = start;
 	out = (char *)malloc((len + 1) * sizeof(char));
 	if (!out)
-	{
-		free (out);
 		return (NULL);
-	}
 	while (str[i] && (i < len + start) && (str[i] != -1))
 	{
 		out[i - start] = str[i];

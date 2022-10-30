@@ -40,7 +40,7 @@ NAMELIBFTS = $(addprefix $(DIRLIBFT),$(addsuffix .a,$(LIBFT)))
 
 
 FLAGS = -Wall -Werror -Wextra -I.
-BUFFERFLAG = -D BUFFER_SIZE = 1
+BUFFERFLAG = -D BUFFER_SIZE = 42
 
 CC = gcc
 

@@ -36,7 +36,7 @@ int	my_strchr(char *str, char c)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 char	*my_joinstr(char *dst, char *src, int lensrc)

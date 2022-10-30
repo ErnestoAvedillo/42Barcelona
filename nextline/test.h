@@ -25,7 +25,7 @@
 #define KWHT  "\x1B[37m"
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE = 1
+# define BUFFER_SIZE = 42
 #endif
 
 #endif

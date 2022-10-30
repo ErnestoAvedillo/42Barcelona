@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "../entrega/get_next_line.h"
+# include "../../Libft/entrega/libft.h"
+
 
 #define KNRM  "\x1B[0m"
 #define KRED  "\x1B[31m"

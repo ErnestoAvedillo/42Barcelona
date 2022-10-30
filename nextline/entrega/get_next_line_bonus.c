@@ -17,7 +17,7 @@ char	*get_new_current_str(char *current_str, int start)
 	int		longstr;
 
 	longstr = my_strlen(current_str);
-	out = my_substr(current_str, start, longstr - start - 1);
+	out = my_substr(current_str, start, longstr - start);
 	free (current_str);
 	return (out);
 }
@@ -32,7 +32,7 @@ char	*getcur_str(char *current_str, int fd)
 	{
 		return (NULL);
 	}
-	while (!my_strchr(current_str, '\n'))
+	while (my_strchr(current_str, '\n') < 0)
 	{
 		readret = read(fd, buff_str, BUFFER_SIZE);
 		current_str = my_joinstr (current_str, buff_str, readret);
@@ -54,15 +54,19 @@ char	*get_next_line(int fd)
 	char		*out;
 	int			i;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read (fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	{
+		if (current_str[fd])
+			current_str[fd][0] = 0;
 		return (NULL);
+	}
 	current_str[fd] = getcur_str(current_str[fd], fd);
 	if (!current_str[fd])
 	{
 		return (NULL);
 	}
 	i = my_strchr (current_str[fd], '\n');
-	if (i == 0)
+	if (i < 0)
 		i = my_strlen(current_str[fd]);
 	out = my_substr (current_str[fd], 0, i + 1);
 	current_str[fd] = get_new_current_str (current_str[fd], i + 1);
