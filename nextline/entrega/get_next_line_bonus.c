@@ -29,14 +29,13 @@ char	*getcur_str(char *current_str, int fd)
 
 	buff_str = (char *) malloc ((BUFFER_SIZE + 1) * sizeof (char));
 	if (!buff_str)
-	{
 		return (NULL);
-	}
 	while (my_strchr(current_str, '\n') < 0)
 	{
 		readret = read(fd, buff_str, BUFFER_SIZE);
-		current_str = my_joinstr (current_str, buff_str, readret);
-		if (readret == 0 || !current_str)
+		if (readret > 0)
+			current_str = my_joinstr (current_str, buff_str, readret);
+		if (readret < BUFFER_SIZE || !current_str)
 			break ;
 	}
 	free (buff_str);
@@ -62,12 +61,10 @@ char	*get_next_line(int fd)
 	}
 	current_str[fd] = getcur_str(current_str[fd], fd);
 	if (!current_str[fd])
-	{
 		return (NULL);
-	}
 	i = my_strchr (current_str[fd], '\n');
 	if (i < 0)
-		i = my_strlen(current_str[fd]);
+		i = my_strlen(current_str[fd]) - 1;
 	out = my_substr (current_str[fd], 0, i + 1);
 	current_str[fd] = get_new_current_str (current_str[fd], i + 1);
 	return (out);

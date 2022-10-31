@@ -52,10 +52,25 @@ int main(int av, char **ac)
 		printf("%sTest special file%s\n",KCYN,KNRM );
 		standardread("./textfiles/open_close_open.txt", 20);
 	}
-	if (av == 1 || is_func(ac, "fc-error"))
+	if (av == 1 || is_func(ac, "1char"))
 	{
-		printf("%sTest wrong file%s\n",KCYN,KNRM );
-		standardread("./textfiles/ss", 20);
+		printf("%sTest only 1char file%s\n",KCYN,KNRM );
+		standardread("./textfiles/1char.txt", 20);
+	}
+	if (av == 1 || is_func(ac, "only_nl"))
+	{
+		printf("%sTest only_nl file%s\n",KCYN,KNRM );
+		standardread("./textfiles/only_nl.txt", 20);
+	}
+	if (av == 1 || is_func(ac, "giant_nl"))
+	{
+		printf("%sTest only_nl file%s\n",KCYN,KNRM );
+		standardread("./textfiles/giant_line.txt", 20);
+	}
+	if (av == 1 || is_func(ac, "giant"))
+	{
+		printf("%sTest only_nl file%s\n",KCYN,KNRM );
+		standardread("./textfiles/giant_line_nl.txt", 20);
 	}
 
 	return(0);

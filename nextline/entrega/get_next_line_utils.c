@@ -57,7 +57,6 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 	if (!out)
 		return (NULL);
 	i = -1;
-	out[longdst + lensrc] = '\0';
 	while (++i < longdst && longdst)
 		out[i] = dst[i];
 	i--;
@@ -78,7 +77,10 @@ char	*my_substr(char *str, int start, int len)
 	i = start;
 	out = (char *)malloc((len + 1) * sizeof(char));
 	if (!out)
+	{
+		free (out);
 		return (NULL);
+	}
 	while (str[i] && (i < len + start) && (str[i] != -1))
 	{
 		out[i - start] = str[i];
