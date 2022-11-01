@@ -12,9 +12,10 @@
 #include<stdio.h>
 #include"../entrega/ft_printf.h"
 
-void strtest(void);
+void stdtest(void);
 void spectest(void);
 void bonustest(void);
+void stricttest(void);
 
 #define KNRM  "\x1B[0m"
 #define KRED  "\x1B[31m"

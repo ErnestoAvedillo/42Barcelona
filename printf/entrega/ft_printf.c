@@ -25,25 +25,25 @@ static int	printstr(char *str)
 	}
 }
 
-static int	print_var(char formato, va_list args )
+static int	print_var(char *str, va_list args, int pos )
 {
 	int	longitud;
 
 	longitud = 0;
-	if (formato == '%')
-		longitud = ft_print_char (formato);
-	else if (formato == 'c')
+	if (str[pos] == '%')
+		longitud = ft_print_char (str[pos]);
+	else if (str[pos] == 'c')
 		longitud = ft_print_char (va_arg(args, int));
-	else if (formato == 's')
+	else if (str[pos] == 's')
 		longitud = printstr (va_arg(args, char *));
-	else if (formato == 'd' || formato == 'i')
+	else if (str[pos] == 'd' || str[pos] == 'i')
 		longitud = ft_print_int (va_arg(args, int));
-	else if (formato == 'u')
-		longitud = ft_print_uint (va_arg(args, unsigned int), formato);
-	else if (formato == 'p')
-		longitud = ft_print_addr (va_arg(args, size_t), formato);
-	else if (formato == 'x' || formato == 'X')
-		longitud = ft_print_uint (va_arg(args, size_t), formato);
+	else if (str[pos] == 'u')
+		longitud = ft_print_uint (va_arg(args, unsigned int), str[pos]);
+	else if (str[pos] == 'p')
+		longitud = ft_print_addr (va_arg(args, size_t), str[pos]);
+	else if (str[pos] == 'x' || str[pos] == 'X')
+		longitud = ft_print_uint (va_arg(args, size_t), str[pos]);
 	return (longitud);
 }
 
@@ -59,7 +59,7 @@ int	ft_printf(char const *str, ...)
 	while (str[i])
 	{
 		if (str[i] == '%')
-			val_ret += print_var (str[++i], args);
+			val_ret += print_var ((char *)str, args, ++i);
 		else
 			val_ret += write (1, &str[i], 1);
 		i++;

@@ -30,6 +30,7 @@ void printhelp (void)
 	printf("-h: for this help\n");
 	printf("standard: for the standard tests\n");
 	printf("special: for the special tests\n");
+	printf("strict: for the strict tests\n");
 	printf("bonus: for the bonus tests\n");
 }
 
@@ -39,6 +40,8 @@ int main (int av, char **ac)
 		stdtest();
 	if (av == 1 || is_func(ac,"special")) 
 		spectest();
+	if (av == 1 || is_func(ac,"strict")) 
+		stricttest();
 	if (av == 1 || is_func(ac,"bonus")) 
 		bonustest();
 	if (is_func(ac,"-h")) 
