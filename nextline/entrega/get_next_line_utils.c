@@ -47,13 +47,13 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 
 	if (!dst)
 	{
-		dst = (char *) malloc (1 * sizeof (char));
+		dst = (char *)malloc (1 * sizeof (char));
 		if (!dst)
 			return (NULL);
 		dst[0] = '\0';
 	}
 	longdst = my_strlen(dst);
-	out = (char *) malloc ((longdst + lensrc + 1) * sizeof(char));
+	out = (char *)malloc ((longdst + lensrc + 1) * sizeof (char));
 	if (!out)
 		return (NULL);
 	i = -1;
@@ -75,7 +75,7 @@ char	*my_substr(char *str, int start, int len)
 	if (start > my_strlen(str) || len < 0)
 		return (NULL);
 	i = start;
-	out = (char *)malloc((len + 1) * sizeof(char));
+	out = (char *)malloc ((len + 1) * sizeof (char));
 	if (!out)
 	{
 		free (out);
