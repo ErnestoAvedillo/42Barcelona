@@ -48,6 +48,8 @@ int main (int av, char **ac)
 		bonustest1();
 	if (av == 1 || is_func(ac,"bonus3")) 
 		bonustest2();
+	if (av == 1 || is_func(ac,"bonus4")) 
+		bonustest3();
 	if (is_func(ac,"-h")) 
 		printhelp();
 

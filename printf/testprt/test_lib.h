@@ -17,6 +17,7 @@ void spectest(void);
 void bonustest(void);
 void bonustest1(void);
 void bonustest2(void);
+void bonustest3(void);
 void stricttest(void);
 
 #define KNRM  "\x1B[0m"

@@ -12,7 +12,7 @@
 
 NAME =  test_lib.a
 
-SRC = standardprt specialtest testbonus testbonus1 testbonus2 stricttest
+SRC = standardprt specialtest testbonus testbonus1 testbonus2 testbonus3 stricttest
 
 DIROBJ = ./obj/
 

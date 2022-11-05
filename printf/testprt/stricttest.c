@@ -89,7 +89,7 @@ void stricttest(void)
 	ft_printf("%d\n",cont );
 	printf("%stest 9 %s\n",KBLU, KNRM );
 	printf("%simpresion con printf%s\n",KGRN, KNRM );
-	cont =  printf("%s", (char *)NULL);
+//	cont =  printf("%s", (char *)NULL);
 	printf("%d\n",cont );
 	printf("%simpresion con ft_printf%s\n",KGRN, KNRM );
 	cont =  ft_printf("%s", (char *)NULL);

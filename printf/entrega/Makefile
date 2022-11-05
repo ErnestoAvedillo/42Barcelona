@@ -46,9 +46,9 @@ $(NAME): $(OBJS) $(DEPS) $(LIBFT)
 all: $(NAME)
 
 bonus: .bonus
-	touch .bonus
 
 .bonus : $(NAME)
+	@touch .bonus
 
 $(LIBFT): 
 	make -C$(DIRLIBFT) bonus
@@ -71,4 +71,4 @@ fclean:     clean
 
 re:         fclean $(NAME)
 
-.PHONY: all re clean fclean re $(TARGETLIB) bonus
+.PHONY: all re clean fclean re $(TARGETLIB) .bonus
