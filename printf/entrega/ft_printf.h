@@ -25,4 +25,5 @@ int		ft_print_char(char c);
 int		ft_print_int(int val);
 int		ft_print_uint(unsigned int val, char formato);
 int		ft_print_addr(size_t val, char formato);
+int		ft_print_extended (char *str, va_list args, int pos);
 #endif

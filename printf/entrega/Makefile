@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 all= $(NAME)
 
-SRC =  ft_printf ft_utoa ft_addrtoa ft_printf_args
+SRC =  ft_printf ft_utoa ft_addrtoa ft_printf_args bonus
 
 OBJS = $(addsuffix .o,$(SRC))
 
@@ -45,6 +45,11 @@ $(NAME): $(OBJS) $(DEPS) $(LIBFT)
 
 all: $(NAME)
 
+bonus: .bonus
+	touch .bonus
+
+.bonus : $(NAME)
+
 $(LIBFT): 
 	make -C$(DIRLIBFT) bonus
 	cp $(LIBFT) $(NAME)
@@ -66,4 +71,4 @@ fclean:     clean
 
 re:         fclean $(NAME)
 
-.PHONY: all re clean fclean re $(TARGETLIB)
+.PHONY: all re clean fclean re $(TARGETLIB) bonus
