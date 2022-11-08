@@ -47,9 +47,9 @@ void bonustest3(void)
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 4 bonus %s\n",KGRN, KNRM );
-	cont = printf(" %-1s %-2s ", "", "-");
+	cont = printf(" %-1s $ %-2s ", "", "-");
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-1s %-2s ", "", "-");
+	cont = ft_printf(" %-1s $ %-2s ", "", "-");
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 5 bonus %s\n",KGRN, KNRM );

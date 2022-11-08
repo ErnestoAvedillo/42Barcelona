@@ -54,7 +54,7 @@ int	pos_increase(char *str, int pos)
 	int	out;
 
 	out = 1;
-	while(str[pos] != '%' && str[pos] != 'c' && \
+	while (str[pos] != '%' && str[pos] != 'c' && \
 		str[pos] != 's' && str[pos] != 'd' && \
 		str[pos] != 'i' && str[pos] != 'u' && \
 		str[pos] != 'p' && str[pos] != 'x' && \
@@ -88,49 +88,3 @@ int	ft_printf(char const *str, ...)
 	va_end (args);
 	return (val_ret);
 }
-
-//	int		aux;
-
-/*		else if (str[i] == 92)
-		{
-			aux = specials ((char *)str, ++i);
-			val_ret += aux;
-			//i += aux - 2;
-			i += pos_increase ((char *)str, i);
-		}
-*/
-
-/*
-
-int specials (char *str, int pos)
-{
-	char	*aux;
-	int		out;
-
-	out = 0;
-	if (ft_isdigit (str[pos + 1]))
-	{
-		aux = ft_substr (str, pos, 3);
-		if (!aux)
-			return (-1);
-		out += write (1, &out, 4);
-		free (aux);
-	}
-	else if (str[pos + 1] == 'b' || str[pos + 1] == 't' \
-		 || str[pos + 1] == 'n' || str[pos + 1] == 'f' \
-		 || str[pos + 1] == 'r')
-	{
-		aux = ft_substr (str, pos, 2);
-		if (!aux)
-			return (-1);
-		out += write (1, &aux, 2);
-		free (aux);
-	}
-	else if (str[pos + 1] == 92)
-		out += write (1, &str[pos + 1], 1);
-	else
-		return (-1);
-	return (out);
-}
-
-*/

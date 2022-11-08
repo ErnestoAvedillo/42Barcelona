@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include<stdio.h>
+#include<limits.h>
 #include"../entrega/ft_printf.h"
 
 void stdtest(void);
@@ -18,6 +19,11 @@ void bonustest(void);
 void bonustest1(void);
 void bonustest2(void);
 void bonustest3(void);
+void bonustest4(void);
+void bonustest5(void);
+void bonustest6(void);
+void bonustest7(void);
+void bonustest8(void);
 void stricttest(void);
 
 #define KNRM  "\x1B[0m"

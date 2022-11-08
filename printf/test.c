@@ -42,14 +42,24 @@ int main (int av, char **ac)
 		spectest();
 	if (av == 1 || is_func(ac,"strict")) 
 		stricttest();
-	if (av == 1 || is_func(ac,"bonus1")) 
+	if (av == 1 || is_func(ac,"bonus0")) 
 		bonustest();
-	if (av == 1 || is_func(ac,"bonus2")) 
+	if (av == 1 || is_func(ac,"bonus1")) 
 		bonustest1();
-	if (av == 1 || is_func(ac,"bonus3")) 
+	if (av == 1 || is_func(ac,"bonus2")) 
 		bonustest2();
-	if (av == 1 || is_func(ac,"bonus4")) 
+	if (av == 1 || is_func(ac,"bonus3")) 
 		bonustest3();
+	if (av == 1 || is_func(ac,"bonus4")) 
+		bonustest4();
+	if (av == 1 || is_func(ac,"bonus5")) 
+		bonustest5();
+	if (av == 1 || is_func(ac,"bonus6")) 
+		bonustest6();
+	if (av == 1 || is_func(ac,"bonus7")) 
+		bonustest7();
+	if (av == 1 || is_func(ac,"bonus8")) 
+		bonustest8();
 	if (is_func(ac,"-h")) 
 		printhelp();
 

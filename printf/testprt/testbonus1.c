@@ -29,34 +29,71 @@ void bonustest1(void)
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 2 bonus %s\n",KGRN, KNRM );
-	cont = printf("> %02d < \n", 9 );
+	cont = printf("> %03d < \n", 9 );
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf("> %02d < \n", 9 );
-	printf ("respuesta ft_printf %d\n", cont);
-
-	printf("%s Test 3 bonus %s\n",KGRN, KNRM );
-	cont = printf("> %02d < \n", -15 );
-	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf("> %02d < \n", -15 );
+	cont = ft_printf("> %03d < \n", 9 );
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 4 bonus %s\n",KGRN, KNRM );
-	cont = printf("> %03d < \n", 95 );
+	cont = printf("> %+04d < \n", -15 );
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf("> %03d < \n", 95 );
+	cont = ft_printf("> %+04d < \n", -15 );
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 5 bonus %s\n",KGRN, KNRM );
+	cont = printf("> %+04d < \n", 15 );
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("> %+04d < \n", 15 );
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 8 bonus %s\n",KGRN, KNRM );
+	cont = printf("> %04d < \n", 15 );
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("> %04d < \n", 15 );
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 9 bonus %s\n",KGRN, KNRM );
+	cont = printf("> %04d < \n", -15 );
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("> %04d < \n", -15 );
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 10 bonus %s\n",KGRN, KNRM );
 	cont = printf("> %04d < \n", -125 );
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("> %04d < \n", -125 );
 	printf ("respuesta ft_printf %d\n", cont);
 
-	printf("%s Test 6 bonus %s\n",KGRN, KNRM );
+	printf("%s Test 11 bonus %s\n",KGRN, KNRM );
 	cont = printf("> %+d < \n", 960 );
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("> %+d < \n", 960 );
 	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 12 bonus %s\n",KGRN, KNRM );
+	cont = printf("< %-2d >", 0 );
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("< %-2d >", 0 );
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 13 bonus %s\n",KGRN, KNRM );
+	cont = printf("< %-4d >", 16 );
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("< %-4d >", 16 );
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 14 bonus %s\n",KGRN, KNRM );
+	cont = printf("< %-5d >", -15 );
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("< %-5d >", -15 );
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 15 bonus %s\n",KGRN, KNRM );
+	cont = printf("< %-9d >", INT_MAX );
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("< %-9d >", INT_MAX );
+	printf ("respuesta ft_printf %d\n", cont);
+
 
 
 

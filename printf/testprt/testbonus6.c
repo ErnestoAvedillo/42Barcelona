@@ -11,72 +11,75 @@
 /* ************************************************************************** */
 #include "test_lib.h"
 
-void bonustest2(void)
+void bonustest6(void)
 {
 	int cont;
 
 	cont =  0;
 	printf("%s Test 0 bonus %s\n",KGRN, KNRM );
-	cont = printf("%-1c", '0');
+	cont = printf(" %-1x ", 0);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf("%-1c", '0');
+	cont = ft_printf(" %-1x ", 0);
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 0 bis bonus %s\n",KGRN, KNRM );
-	cont = printf("%1c", '0');
+	cont = printf(" %-2x ",   -1);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf("%1c", '0');
+	cont = ft_printf(" %-2x ",  -1);
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 1 bonus %s\n",KGRN, KNRM );
-	cont = printf(" %-2c ", '0');
+	cont = printf(" %-4x ", 19);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-2c ", '0');
+	cont = ft_printf(" %-4x ", 19);
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 2 bonus %s\n",KGRN, KNRM );
-	cont = printf(" %-3c", '0' - 256);
+	cont = printf(" %-3x ", 103);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-3c", '0' - 256);
+	cont = ft_printf(" %-3x ", 103);
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 3 bonus %s\n",KGRN, KNRM );
-	cont = printf("%-4c ", '0' + 256);
+	cont = printf(" %-6x ", -16);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf("%-4c ", '0' + 256);
+	cont = ft_printf(" %-6x ", -16);
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 4 bonus %s\n",KGRN, KNRM );
-	cont = printf(" %-1c $%-2c$ %-3c ", '0', 0, '1');
+	cont = printf(" %-9x ", -101);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-1c $%-2c$ %-3c ", '0', 0, '1');
+	cont = ft_printf(" %-9x ", -101);
 	printf ("respuesta ft_printf %d\n", cont);
 
-	printf("%s Test 5 bonus %s\n",KGRN, KNRM );
-	cont = printf(" %-1c %-2c %-3c ", ' ', ' ', ' ');
+/*	printf("%s Test 5 bonus %s\n",KGRN, KNRM );
+	cont = printf(" %-11u %-12u ", LONG_MAX, LONG_MIN);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-1c %-2c %-3c ", ' ', ' ', ' ');
+	cont = ft_printf(" %-11u %-12u ", LONG_MAX, LONG_MIN);
 	printf ("respuesta ft_printf %d\n", cont);
-
+*/
 	printf("%s Test 6 bonus %s\n",KGRN, KNRM );
-	cont = printf(" %-1c %-2c %-3c ", '1', '2', '3');
+	cont = printf(" %-9x %-10x ", INT_MAX, INT_MIN);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-1c %-2c %-3c ", '1', '2', '3');
+	cont = ft_printf(" %-9x %-10x ", INT_MAX, INT_MIN);
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 7 bonus %s\n",KGRN, KNRM );
-	cont = printf(" %-1c %-2c %-3c ", '2', '1', 0);
+	cont = printf(" %-13x %-14x ", UINT_MAX, 0);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-1c %-2c %-3c ", '2', '1', 0);
+	cont = ft_printf(" %-13x %-14x ", UINT_MAX, 0);
 	printf ("respuesta ft_printf %d\n", cont);
-
 
 	printf("%s Test 8 bonus %s\n",KGRN, KNRM );
-	cont = printf(" %-1c %-2c %-3c ", 0, '1', '2');
+	cont = printf(" %-1x %-2x ",  0, 0);
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-1c %-2c %-3c ", 0, '1', '2');
+	cont = ft_printf(" %-1x %-2x ", 0, 0);
 	printf ("respuesta ft_printf %d\n", cont);
 
-
+	printf("%s Test 9 bonus %s\n",KGRN, KNRM );
+	cont = printf(" %-4x $ %4x ",  0, 0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf(" %-4x $ %4x ", 0, 0);
+	printf ("respuesta ft_printf %d\n", cont);
 
 }
