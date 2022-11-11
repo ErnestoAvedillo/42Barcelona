@@ -13,7 +13,8 @@
 NAME =  test_lib.a
 
 SRC = standardprt specialtest testbonus testbonus1 testbonus2 testbonus3 \
-	testbonus4 testbonus5 testbonus6 testbonus7 testbonus8 stricttest
+	testbonus4 testbonus5 testbonus6 testbonus7 testbonus8 stricttest \
+	testanalisys
 
 DIROBJ = ./obj/
 

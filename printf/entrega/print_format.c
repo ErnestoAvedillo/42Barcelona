@@ -11,13 +11,6 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int define_pos (char flag)
-{
-	if (flag == '+' || flag == '.')
-		return (0);
-	return (1);
-}
-
 int print_symbol (char flag, int val)
 {
 	int out = 0;
@@ -29,27 +22,12 @@ int print_symbol (char flag, int val)
 	return (out);
 }
 
-int inc_pos (char * str, int pos)
-{
-	if (str[pos] == '+' || str[pos] == '-' \
-		|| str[pos] == '.' || str[pos] == ' ' || str[pos] == '#')
-		return (1);
-	return (0);
-}
-
-int	print_int_frm(char *str, int val, int pos, char formato)
+int	print_int_frm(int val, t_form_data *formato)
 {
 	int		lng;
 	char	*strval;
-	int		lenfield;
-	int		addsign;
-	int		post;
 
-	post = define_pos (str[pos]);
-	lng = print_symbol (str[pos], val);
-	addsign = lng;
-	pos += inc_pos (str, pos);
-	lenfield = 0;
+	lng = print_symbol (formato->flag, val);
 	if (val == -2147483648)
 		strval = ft_strdup("2147483648");
 	else if (val < 0)
@@ -59,97 +37,66 @@ int	print_int_frm(char *str, int val, int pos, char formato)
 	}
 	else 
 		strval = ft_itoa (val);
-	if (ft_isdigit (str[pos]))
-		lenfield = get_len_field (str, pos) - addsign;
-	lng += write_extended(strval, post, lenfield, formato);
+	lng = write_extended(strval, formato);
 	free(strval);
 	return (lng);
 }
 
-int	print_char_frm(char *str, int val, int pos, char formato)
+int	print_char_frm(int val, t_form_data *formato)
 {
 	int		lng;
-	int		lenfield;
-	int		post;
+
 	char	*strval;
 
 	lng = 0;
-	post = define_pos (str[pos]);
-	pos = inc_pos (str, pos);
-	lenfield = 0;
-	if (ft_isdigit (str[pos]))
-		lenfield = get_len_field (str, pos);
 	strval = (char *) malloc (2 * sizeof(char));
 	strval[0] = val;
 	strval[1] = '\0';
 	if (val == 0)
 	{
-		lenfield--;
+		formato->longfield--;
 		lng++;
 	}
-	lng += write_extended(strval, post, lenfield, formato);
+	lng += write_extended(strval, formato);
 	free(strval);
 	return (lng);
 }
 
-int	print_str_frm(char *str, char *prtstr, int pos, char formato)
+int	print_str_frm(char *prtstr, t_form_data *formato)
 {
 	int		lng;
-	int		cur_pos;
-	int		lenfield;
-	int		post;
 
-	lng = 0;
-	post = define_pos (str[pos]);
-	pos = inc_pos (str, pos);
-	cur_pos = pos;
-	lenfield = 0;
-	if (ft_isdigit (str[cur_pos]))
-		lenfield = get_len_field (str, cur_pos);
-	lng += write_extended(prtstr, post, lenfield, formato);
+	lng = write_extended(prtstr, formato);
 	return (lng);
 }
 
-int	print_addr_frm(char *str, size_t ptr, int pos, char formato)
+int	print_addr_frm( size_t ptr, t_form_data *formato)
 {
 	int		lng;
 	char	*strval;
-	int		lenfield;
-	int		post;
 
 	lng = 0;
-	post = define_pos (str[pos]);
-	pos = inc_pos (str, pos);
 	if (ptr == 0)
 		strval = ft_strdup("0x0");
 	else
 		strval = ft_addrtoa (ptr, 'p');
-	if (ft_isdigit (str[pos]))
-		lenfield = get_len_field (str, pos);
-	lng += write_extended (strval, post, lenfield, formato);
+	lng = write_extended (strval, formato);
 	free (strval);
 	return (lng);
 }
 
-int	print_uint_frm(char *str, unsigned int val, int pos, char formato)
+int	print_uint_frm( unsigned int val, t_form_data *formato)
 {
 	int		lng;
 	char	*strval;
-	int		lenfield;
-	int		post;
 
-	lng = 0;
-	post = define_pos (str[pos]);
-	pos = inc_pos (str, pos);
 	if (val == 0)
 		strval = ft_strdup("0");
-	else if (formato == 'u')
+	else if (formato->format == 'u')
 		strval = ft_utoa (val);
-	else if (formato == 'x' || formato == 'X')
-		strval = ft_addrtoa (val, formato);
-	if (ft_isdigit (str[pos]))
-		lenfield = get_len_field (str, pos);
-	lng += write_extended(strval, post, lenfield, formato);
+	else if (formato->format == 'x' || formato->format == 'X')
+		strval = ft_addrtoa (val, formato->format);
+	lng = write_extended(strval, formato);
 	free (strval);
 	return (lng);
 }

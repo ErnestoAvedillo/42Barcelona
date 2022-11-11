@@ -25,6 +25,7 @@ void bonustest6(void);
 void bonustest7(void);
 void bonustest8(void);
 void stricttest(void);
+void testanalisys(void);
 
 #define KNRM  "\x1B[0m"
 #define KRED  "\x1B[31m"

@@ -17,15 +17,15 @@ void bonustest8(void)
 
 	cont =  0;
 	printf("%s Test 0 bonus %s\n",KGRN, KNRM );
-	cont = printf("<%.2s><%.1s>", "", "-");
+	cont = printf("<%.4s><%.1s>", "", "-");
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf("<%.2s><%.1s>", "", "-");
+	cont = ft_printf("<%.4s><%.1s>", "", "-");
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 0 bis bonus %s\n",KGRN, KNRM );
-	cont = printf("<%.3s><%.2s>", " - ", "");
+	cont = printf("<%.2s><%.2s>", " - ", "");
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf("<%.3s><%.2s>", " - ", "");
+	cont = ft_printf("<%.2s><%.2s>", " - ", "");
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 1 bonus %s\n",KGRN, KNRM );

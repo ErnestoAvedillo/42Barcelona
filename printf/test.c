@@ -36,6 +36,8 @@ void printhelp (void)
 
 int main (int av, char **ac)
 {
+	if (av == 1 || is_func(ac,"analysis")) 
+		testanalisys();
 	if (av == 1 || is_func(ac,"standard")) 
 		stdtest();
 	if (av == 1 || is_func(ac,"special")) 

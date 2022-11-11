@@ -11,6 +11,22 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+t_form_data *newdata ()
+{
+	t_form_data *ptr;
+
+	ptr = (t_form_data *) malloc(sizeof(t_form_data));
+	if (!ptr) 
+		return (NULL);
+	ptr->flag = NONE_FLAG;
+	ptr->iszero = 0;
+	ptr->longfield  = 0;
+	ptr->format = NONE_FORMAT;
+	ptr->cur_str_pos = 0;
+	ptr->print_len = 0;
+	return (ptr);
+}
+
 int	get_len_field(char *str, int first_pos)
 {
 	int		lenfield;
@@ -47,7 +63,7 @@ int	min(int v1, int v2)
 	return (v1);
 }
 
-int	write_extended(char *str, int post, int lenfield, char formato)
+int	write_extended(char *str, t_form_data *formato)
 {
 	int	lenstr;
 	int	out;
@@ -55,23 +71,35 @@ int	write_extended(char *str, int post, int lenfield, char formato)
 
 	out = 0;
 	lenstr = (int) ft_strlen(str);
-	if (formato == '.')
+	if (formato->flag == '+' || formato->flag == '.')
 	{
-		printf("entro\n");
-		substr = ft_substr(str,0, min (lenfield, lenstr));
+		if (formato->format == 'd' || formato->format == 'i')
+		{
+			out += print_extra_char (formato->longfield, lenstr,'0');
+			printf("impresos %d caracteres 1\n",out );
+		}
+		else if (formato->flag == '+')
+		{
+			out += print_extra_char (formato->longfield, lenstr,' ');
+			printf("impresos %d caracteres \n",out );
+		}
+	}
+	if (formato->flag == '.' && lenstr > formato->longfield)
+	{
+		substr = ft_substr(str,0, formato->longfield);
 		out += ft_printf (substr);
+		printf("impresos %d caracteres 2\n",out );
 		free (substr);
-		return (out);
 	}
-	if (!post)
+	else
 	{
-		if (formato == 'd' || formato == 'i')
-			print_extra_char (lenfield, lenstr,'0');
-		else
-			print_extra_char (lenfield, lenstr,'@');
+		out += ft_printf (str);
+		printf("impresos %d caracteres 3\n",out );
 	}
-	out += ft_printf (str);
-	if (post)
-			print_extra_char (lenfield, lenstr,'#');
+	if (formato->flag == '-')
+	{
+			out += print_extra_char (formato->longfield, lenstr,' ');
+			printf("impresos %d caracteres 4\n",out );
+	}
 	return (out);
 }
