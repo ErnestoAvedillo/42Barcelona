@@ -1,3 +1,7 @@
 #ignora todos los dicheros llamados.DS_Store 
 .DS_Store
 .mylibft
+.vscode
+*.a
+*o
+*.d
