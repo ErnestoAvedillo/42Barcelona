@@ -59,33 +59,33 @@ void bonustest(void)
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 8 bonus %s %s\n",KGRN,"> %-1d <", KNRM );
-	cont = printf(" %-1d ", 0 );
+	cont = printf("> %-1d <", 0 );
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-1d ", 0 );
+	cont = ft_printf("> %-1d <", 0 );
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 9 bonus %s %s\n",KGRN,"> %-4d <", KNRM );
-	cont = printf(" %-4d ", 16 );
+	cont = printf("> %-4d <", 16 );
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-4d ", 16 );
+	cont = ft_printf("> %-4d <", 16 );
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 10 bonus %s %s\n",KGRN,"> %-5d <", KNRM );
-	cont = printf(" %-5d ", -15 );
+	cont = printf("< %-5d <", -15 );
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-5d ", -15 );
+	cont = ft_printf("< %-5d <", -15 );
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 11 bonus %s %s\n",KGRN,"> %-9d <", KNRM );
-	cont = printf(" %-9d ", INT_MAX );
+	cont = printf("< %-9d >", INT_MAX );
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-9d ", INT_MAX );
+	cont = ft_printf("< %-9d >", INT_MAX );
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 12 bonus %s %s\n",KGRN,"> %-12d <", KNRM );
-	cont = printf(" %-12d ", INT_MIN );
+	cont = printf("< %-12d >", INT_MIN );
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf(" %-12d ", INT_MIN );
+	cont = ft_printf("< %-12d >", INT_MIN );
 	printf ("respuesta ft_printf %d\n", cont);
 
 /*	printf("%s Test 13 bonus %s %s\n",KGRN, KNRM );

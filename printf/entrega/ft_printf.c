@@ -11,20 +11,6 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	printstr(char *str)
-{
-	int	len;
-
-	if (str == NULL)
-		return (ft_printf("(null)"));
-	else
-	{
-		len = ft_strlen(str);
-		write(1, str, len);
-		return (len);
-	}
-}
-
 static int	print_var(char *str, va_list args, int pos )
 {
 	int	longitud;
@@ -35,7 +21,7 @@ static int	print_var(char *str, va_list args, int pos )
 	else if (str[pos] == 'c')
 		longitud = ft_print_char (va_arg(args, int));
 	else if (str[pos] == 's')
-		longitud = printstr (va_arg(args, char *));
+		longitud = ft_print_str (va_arg(args, char *));
 	else if (str[pos] == 'd' || str[pos] == 'i')
 		longitud = ft_print_int (va_arg (args, int));
 	else if (str[pos] == 'u')
@@ -49,7 +35,7 @@ static int	print_var(char *str, va_list args, int pos )
 	return (longitud);
 }
 
-int	pos_increase(char *str, int pos)
+static int	pos_increase(char *str, int pos)
 {
 	int	out;
 
@@ -71,6 +57,7 @@ int	ft_printf(char const *str, ...)
 	va_list	args;
 	int		i;
 	int		val_ret;
+	int		aux;
 
 	va_start(args, str);
 	i = 0;
@@ -79,11 +66,15 @@ int	ft_printf(char const *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			val_ret += print_var ((char *)str, args, ++i);
+			aux = print_var ((char *)str, args, ++i);
 			i += pos_increase ((char *)str, i);
 		}
 		else
-			val_ret += write (1, &str[i++], 1);
+			aux = ft_print_char (str[i++]);
+		if (aux == -1)
+			return (aux);
+		else
+			val_ret += aux;
 	}
 	va_end (args);
 	return (val_ret);

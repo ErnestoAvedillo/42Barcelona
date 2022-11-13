@@ -11,39 +11,47 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-t_form_data *fill_list (char *str, int pos)
+int	is_format_char(char c)
 {
-	t_form_data *format_def;
-	int cur_pos;
+	if (c != CHAR_FORMAT_C && c != STR_FORMAT_S && \
+		c != INT_FORMAT_D && c != INT_FORMAT_I && \
+		c != LONG_FORMAT_U && c != ADDR_FORMAT_P && \
+		c != HEX_FORMAT_X && c != HEX_FORMAT_X_CAP && c != PERC_FORMAT)
+		return (0);
+	return (1);
+}
+
+int	is_flag_char(char c)
+{
+	if (c == PLUS_FLAG || c == MINUS_FLAG \
+		|| c == POINT_FLAG || c == SPACE_FLAG \
+		|| c == POUND_FLAG || c == ZERO_FLAG)
+		return (1);
+	return (0);
+}
+
+t_form_data	*fill_list(char *str, int pos)
+{
+	t_form_data	*format_def;
+	int			cur_pos;
 
 	format_def = newdata();
 	if (!format_def)
 		return (NULL);
 	cur_pos = pos;
-	//printf("paso %c  pos %d\n", str[pos], pos );
-	if (str[pos] == PLUS_FLAG || str[pos] == MINUS_FLAG \
-		|| str[pos] == POINT_FLAG || str[pos] == SPACE_FLAG \
-		|| str[pos] == POUND_FLAG)
+	if (is_flag_char (str[pos]))
 	{
-		//printf("paso %c  pos %d\n", str[pos], pos );
-		format_def->flag = str[pos++];
+		if (str[pos] != ZERO_FLAG)
+			format_def->flag = str[pos++];
 		cur_pos = pos;
-		if 	(format_def->flag == PLUS_FLAG && str[pos] == '0')
+		if (str[pos] == ZERO_FLAG)
 		{
 				format_def->iszero = 1;
 				cur_pos = ++pos;
 		}
 	}
-	//printf("paso %c  pos %d\n", str[pos], pos );
-	while (str[pos] != '%' && str[pos] != CHAR_FORMAT_C && \
-	str[pos] != STR_FORMAT_S && str[pos] != INT_FORMAT_D && \
-	str[pos] != INT_FORMAT_I && str[pos] != LONG_FORMAT_U && \
-	str[pos] != ADDR_FORMAT_P && str[pos] != HEX_FORMAT_x && \
-	str[pos] != HEX_FORMAT_X)
-	{
+	while (!is_format_char (str[pos]))
 		pos++;
-	}
-
 	format_def->longfield = get_len_field(str, cur_pos);
 	format_def->format = str[pos];
 	format_def->cur_str_pos = pos;
@@ -52,17 +60,13 @@ t_form_data *fill_list (char *str, int pos)
 
 int	ft_print_extended(char *str, va_list args, int pos)
 {
-	int	lng;
+	int			lng;
 	t_form_data	*format_def;
 
-	format_def = fill_list(str,pos);
-	if(!format_def)
+	format_def = fill_list (str, pos);
+	if (!format_def)
 		return (-1);
-/*	printf("flag %c iszero %d longfield %d format %c cur_pos %d\n",\
-			format_def->flag, format_def->iszero, format_def->longfield, \
-			format_def->format, format_def->cur_str_pos);
-	return (10);
-*/	lng = 0;
+	lng = 0;
 	if (format_def->format == 'd' || format_def->format == 'i')
 		lng = print_int_frm (va_arg (args, int), format_def);
 	if (format_def->format == 'c')
@@ -71,7 +75,8 @@ int	ft_print_extended(char *str, va_list args, int pos)
 		lng = print_str_frm (va_arg (args, char *), format_def);
 	if (format_def->format == 'p')
 		lng = print_addr_frm (va_arg (args, size_t), format_def);
-	if (format_def->format == 'u' || format_def->format == 'x' || format_def->format == 'X')
+	if (format_def->format == 'u' || format_def->format == 'x' || \
+		format_def->format == 'X')
 		lng = print_uint_frm (va_arg (args, size_t), format_def);
 	free(format_def);
 	return (lng);
