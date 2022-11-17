@@ -18,7 +18,7 @@ char	*get_new_current_str(char *current_str, int start)
 
 	longstr = my_strlen(current_str);
 	out = my_substr(current_str, start, longstr - start);
-	free (current_str);
+	free_null (&current_str);
 	return (out);
 }
 
@@ -27,6 +27,7 @@ char	*getcur_str(char *current_str, int fd)
 	char	*buff_str;
 	int		readret;
 
+	readret = 0;
 	buff_str = (char *) malloc ((BUFFER_SIZE + 1) * sizeof (char));
 	if (!buff_str)
 		return (NULL);
@@ -38,10 +39,10 @@ char	*getcur_str(char *current_str, int fd)
 		if (readret < BUFFER_SIZE || !current_str)
 			break ;
 	}
-	free (buff_str);
-	if (readret < 0 || (readret == 0 && my_strlen (current_str) == 0))
+	free_null (&buff_str);
+	if (readret < 0 || (readret == 0 && my_strlen (current_str) == 0)|| !current_str)
 	{
-		free (current_str);
+		free_null (&current_str);
 		return (NULL);
 	}
 	return (current_str);
@@ -66,6 +67,14 @@ char	*get_next_line(int fd)
 	if (i < 0)
 		i = my_strlen(current_str) - 1;
 	out = my_substr (current_str, 0, i + 1);
+	if (!out)
+	{
+		free_null(&current_str);
+		free_null(&out);
+		return (NULL);
+	}
 	current_str = get_new_current_str (current_str, i + 1);
+	if (my_strchr(out,'\n') < 0 || !current_str)
+		free_null(&current_str);
 	return (out);
 }
