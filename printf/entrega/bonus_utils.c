@@ -11,95 +11,75 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-t_form_data *newdata ()
+t_form_data	*newdata(void)
 {
-	t_form_data *ptr;
+	t_form_data	*ptr;
 
 	ptr = (t_form_data *) malloc(sizeof(t_form_data));
-	if (!ptr) 
+	if (!ptr)
 		return (NULL);
 	ptr->flag = NONE_FLAG;
 	ptr->iszero = 0;
-	ptr->longfield  = 0;
+	ptr->longfield = 0;
 	ptr->format = NONE_FORMAT;
 	ptr->cur_str_pos = 0;
 	ptr->print_len = 0;
 	return (ptr);
 }
 
-int	get_len_field(char *str, int first_pos)
+int	print_symbol(char flag, int val)
+{
+	int	out;
+
+	out = 0;
+	if (flag == '+' && val >= 0)
+		out = ft_print_char (flag);
+	if (val < 0)
+		out = ft_print_char ('-');
+	return (out);
+}
+
+int	get_len_field(char *str)
 {
 	int		lenfield;
 	char	*strlen;
 	int		end_pos;
 
 	lenfield = 0;
-	end_pos = first_pos;
+	end_pos = 0;
 	while (ft_isdigit (str[end_pos]))
 		end_pos++;
-	strlen = ft_substr (str, first_pos, end_pos - first_pos);
+	strlen = ft_substr (str, 0, end_pos);
 	if (!strlen)
 		return (-1);
 	lenfield = ft_atoi (strlen);
 	free (strlen);
 	return (lenfield);
 }
+int	get_len_zeros(char *str)
+{
+	int		lenfield;
+	char	*zeroslen;
+	int		start_pos;
 
-int	print_extra_char(int lenfield,int lenstr,char c)
+	lenfield = 0;
+	start_pos = (int)(str - ft_strchr(str, POINT_FLAG));
+	zeroslen = ft_substr (str, start_pos + 1, ft_strlen(str));
+	if (!zeroslen)
+		return (-1);
+	lenfield = ft_atoi (zeroslen);
+	free (zeroslen);
+	return (lenfield);
+}
+
+int	print_extra_char(int lenfield, int lenzeros, int lenstr, char c)
 {
 	int	i;
 	int	out;
 
 	i = 0;
-	while (lenfield >= lenstr + i++)
-		out += write (1, &c, 1);
-	return (out);
-}
-
-int	min(int v1, int v2)
-{
-	if (v1 > v2)
-		return (v2);
-	return (v1);
-}
-
-int	write_extended(char *str, t_form_data *formato)
-{
-	int	lenstr;
-	int	out;
-	char *substr;
-
 	out = 0;
-	lenstr = (int) ft_strlen(str);
-	if (formato->flag == '+' || formato->flag == '.')
-	{
-		if (formato->format == 'd' || formato->format == 'i')
-		{
-			out += print_extra_char (formato->longfield, lenstr,'0');
-			printf("impresos %d caracteres 1\n",out );
-		}
-		else if (formato->flag == '+')
-		{
-			out += print_extra_char (formato->longfield, lenstr,' ');
-			printf("impresos %d caracteres \n",out );
-		}
-	}
-	if (formato->flag == '.' && lenstr > formato->longfield)
-	{
-		substr = ft_substr(str,0, formato->longfield);
-		out += ft_printf (substr);
-		printf("impresos %d caracteres 2\n",out );
-		free (substr);
-	}
-	else
-	{
-		out += ft_printf (str);
-		printf("impresos %d caracteres 3\n",out );
-	}
-	if (formato->flag == '-')
-	{
-			out += print_extra_char (formato->longfield, lenstr,' ');
-			printf("impresos %d caracteres 4\n",out );
-	}
+	while (lenfield - lenzeros > lenstr + i++)
+		out += write (1, &c, 1);
 	return (out);
 }

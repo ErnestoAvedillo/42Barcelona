@@ -19,9 +19,9 @@ void spectest(void)
 
 	cont  = 0;
 	printf("%s Test 0 str NULL %s\n",KGRN, KNRM );
-//	cont = printf(" NULL %s NULL \n",NULL );
+	//cont = printf(" NULL %s NULL \n",(char *)NULL );
 	printf ("respuesta ???printf %d\n", cont);
-	cont = ft_printf (" NULL %s NULL \n",NULL );
+	cont = ft_printf (" NULL %s NULL \n",(char *)NULL );
 	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 1 imprime 0 en formato %%p %s\n",KGRN, KNRM );
