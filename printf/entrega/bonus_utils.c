@@ -19,11 +19,12 @@ t_form_data	*newdata(void)
 	if (!ptr)
 		return (NULL);
 	ptr->flag = NONE_FLAG;
-	ptr->iszero = 0;
+	ptr->iszero = -1;
 	ptr->longfield = 0;
 	ptr->format = NONE_FORMAT;
 	ptr->cur_str_pos = 0;
 	ptr->print_len = 0;
+	ptr->ispoint = 0;
 	return (ptr);
 }
 
@@ -39,17 +40,22 @@ int	print_symbol(char flag, int val)
 	return (out);
 }
 
-int	get_len_field(char *str, int first_pos)
+int	get_len_field(char *str)
 {
 	int		lenfield;
 	char	*strlen;
 	int		end_pos;
+	int		start_pos;
 
 	lenfield = 0;
-	end_pos = first_pos;
-	while (ft_isdigit (str[end_pos]))
-		end_pos++;
-	strlen = ft_substr (str, first_pos, end_pos - first_pos);
+	end_pos = 0;
+	start_pos = -1;
+	if (str[0] == POINT_FLAG)
+		return (-1);
+	if (!ft_isdigit(str[start_pos]))
+		while (!ft_isdigit(str[++start_pos]));
+	while (ft_isdigit (str[end_pos++]));
+	strlen = ft_substr (str, start_pos, end_pos);
 	if (!strlen)
 		return (-1);
 	lenfield = ft_atoi (strlen);
@@ -57,15 +63,36 @@ int	get_len_field(char *str, int first_pos)
 	return (lenfield);
 }
 
-int	print_extra_char(int lenfield, int lenstr, char c)
+int	get_len_zeros(char *str, t_form_data formato)
+{
+	int		lenfield;
+	char	*zeroslen;
+	int		start_pos;
+
+	lenfield = 0;
+	printf("%s\n",ft_strchr(str, POINT_FLAG) );
+	if(ft_strchr(str, POINT_FLAG))
+		start_pos = (int)(str - ft_strchr(str, POINT_FLAG));
+	else if formato->flag == find_flag(formato->flag);
+		start_pos = (int)(str - ft_strchr(str, formato->flag));
+	zeroslen = ft_substr (str, start_pos + 1, ft_strlen(str));
+	if (!zeroslen)
+		return (-1);
+	lenfield = ft_atoi (zeroslen);
+	free (zeroslen);
+	return (lenfield);
+}
+
+int	print_extra_char(int lenfield, int lenzeros, int lenstr, char c)
 {
 	int	i;
 	int	out;
 
 	i = 0;
 	out = 0;
-	while (lenfield > lenstr + i++)
+	if (lenzeros < 0)
+		lenzeros = 0;
+	while (lenfield - lenzeros > lenstr + i++)
 		out += write (1, &c, 1);
 	return (out);
 }
-

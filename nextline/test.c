@@ -9,7 +9,7 @@
 /*   Updated: 2022/10/17 06:14:22 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<test.h>
+#include"test.h"
 
 int is_func(char **ac, char *str)
 {

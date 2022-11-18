@@ -21,6 +21,7 @@
 typedef struct l_form_data
 {
 	char	flag;
+	int		ispoint;
 	int		iszero;
 	int		longfield;
 	char	format;
@@ -33,6 +34,14 @@ typedef struct l_print_data
 	int	lng;
 	int	cur_str_pos;
 }		t_print_data;
+
+typedef struct true_table_spaces
+{
+	char	formato;
+	char	flag;
+	int		iszero;
+	int		ispoint;
+}		t_true_table_spcs;
 
 # define PLUS_FLAG '+'
 # define MINUS_FLAG '-'
@@ -67,11 +76,14 @@ char		*ft_utoa(unsigned int n);
 char		*ft_addrtoa(size_t n, int formato, int flag);
 //bonus
 int			ft_print_extended(char *str, va_list args, int pos);
+int			is_format_char(char c);
+int 		find_flag (char c);
 //bonus_utils
 int			print_symbol(char flag, int val);
 t_form_data	*newdata(void);
-int			get_len_field(char *str, int first_pos);
-int			print_extra_char(int lenfield, int lenstr, char c);
+int			get_len_field(char *str);
+int			get_len_zeros(char *str, t_form_data formato);
+int			print_extra_char(int lenfield, int lenzeros, int lenstr, char c);
 //print_format
 int			print_int_frm(int val, t_form_data *formato);
 int			print_char_frm(int val, t_form_data *formato);

@@ -18,40 +18,54 @@ static int	print_zeros(char *str, t_form_data *formato)
 
 	lenstr = (int) ft_strlen(str);
 	out = 0;
-	if (formato->format == 'd' || formato->format == 'i' || formato->format == 'x')
+	if (formato->format == 'd' || formato->format == 'i' || \
+		formato->format == 'x')
 	{
-		if (formato->flag == PLUS_FLAG || formato->flag == POINT_FLAG || \
-			formato->iszero)
-			out = print_extra_char (formato->longfield, lenstr, '0');
+		if (formato->flag == PLUS_FLAG || formato->ispoint || \
+			formato->iszero >= 0)
+			out = print_extra_char (formato->iszero, 0, lenstr, '0');
 	}
 	return (out);
 }
+/*
+static t_true_table_spcs crea_true_t_spaces (void)
+{
+	t_true_table_spcs tablaverdad[10];
 
-static int print_suf_blanc (char *str, t_form_data *formato)
+	tablaverdad[1]={{STR_FRMAT_S;PLUS_FLAG;-1;-2}};
+}*/
+static int	print_suf_blanc(char *str, t_form_data *formato)
 {
 	int	out;
 	int	lenstr;
 
 	lenstr = (int) ft_strlen(str);
 	out = 0;
-	if (formato->flag == PLUS_FLAG && !formato->iszero)
-			out += print_extra_char (formato->longfield, lenstr, ' ');
-//	if (formato->format != INT_FORMAT_D && formato->flag == POINT_FLAG)
-//			out += print_extra_char (formato->longfield, lenstr, ' ');
-	if (formato->format == LONG_FORMAT_U && (formato->flag != MINUS_FLAG || formato->flag == POINT_FLAG))
-			out += print_extra_char (formato->longfield, lenstr, ' ');
-	if (formato->format == HEX_FORMAT_X && (formato->flag != MINUS_FLAG || formato->flag == POINT_FLAG))
-			out += print_extra_char (formato->longfield, lenstr, ' ');
-	if (formato->format == HEX_FORMAT_X_CAP && (formato->flag != MINUS_FLAG || formato->flag == POINT_FLAG))
-			out += print_extra_char (formato->longfield, lenstr, ' ');
-	if (formato->format == STR_FORMAT_S && (formato->flag != MINUS_FLAG && formato->flag != POINT_FLAG ))
-			out += print_extra_char (formato->longfield, lenstr, ' ');
-	if (formato->format == ADDR_FORMAT_P && (formato->flag != MINUS_FLAG || formato->flag == POINT_FLAG))
-			out += print_extra_char (formato->longfield, lenstr, ' ');
-	if (formato->format == PERC_FORMAT && (formato->flag != MINUS_FLAG))
-			out += print_extra_char (formato->longfield, lenstr, ' ');
+
+	/*printf("flag %c zero %d longfield %d format %c cur_str_pos %d printlen %d \n",\
+	formato->flag, formato->iszero,formato->longfield,formato->format,formato->cur_str_pos,
+	formato->print_len   );*/
+
+	if ((formato->flag == PLUS_FLAG && formato->iszero < 0) || \
+		((formato->format == INT_FORMAT_D || \
+			formato->format == INT_FORMAT_I) && \
+		((formato->flag == NONE_FLAG || formato->flag == SPACE_FLAG) && \
+		formato->iszero < 0)) || \
+		(formato->format == LONG_FORMAT_U && (formato->flag != MINUS_FLAG || \
+		formato->ispoint)) || \
+		((formato->format == HEX_FORMAT_X || \
+		formato->format == HEX_FORMAT_X_CAP) && \
+		(formato->flag == NONE_FLAG || formato->flag == POUND_FLAG) && \
+		formato->iszero < 0) || \
+		((formato->format == STR_FORMAT_S || formato->format == CHAR_FORMAT_C) \
+		&& (formato->flag != MINUS_FLAG)) || \
+		(formato->format == ADDR_FORMAT_P && (formato->flag != MINUS_FLAG || \
+		formato->ispoint)) || \
+		(formato->format == PERC_FORMAT && formato->flag != MINUS_FLAG))
+		out += print_extra_char (formato->longfield, formato->iszero, lenstr, ' ');
 	return (out);
 }
+
 int	write_extended(char *str, t_form_data *formato)
 {
 	int		lenstr;
@@ -60,11 +74,9 @@ int	write_extended(char *str, t_form_data *formato)
 
 	out = 0;
 	lenstr = (int) ft_strlen(str);
-	out += print_zeros(str, formato);
 	out += print_suf_blanc (str, formato);
-
-	//printf("paso %c %d %d <%s>\n",formato->flag, formato->longfield , lenstr, str );
-	if (formato->flag == '.' && lenstr > formato->longfield)
+	out += print_zeros(str, formato);
+	if (formato->ispoint && lenstr > formato->longfield)
 	{
 		substr = ft_substr(str, 0, formato->longfield);
 		out += ft_print_str (substr);
@@ -73,6 +85,6 @@ int	write_extended(char *str, t_form_data *formato)
 	else
 		out += ft_print_str (str);
 	if (formato->flag == '-')
-		out += print_extra_char (formato->longfield, lenstr, ' ');
+		out += print_extra_char (formato->longfield, 0, lenstr, ' ');
 	return (out);
 }

@@ -19,7 +19,7 @@ void spectest(void)
 
 	cont  = 0;
 	printf("%s Test 0 str NULL %s\n",KGRN, KNRM );
-	cont = printf(" NULL %s NULL \n",(char *)NULL );
+	//cont = printf(" NULL %s NULL \n",(char *)NULL );
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf (" NULL %s NULL \n",(char *)NULL );
 	printf ("respuesta ft_printf %d\n", cont);
@@ -80,4 +80,5 @@ void spectest(void)
 	cont = ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%"\
 		, 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
 	printf ("respuesta ft_printf %d\n", cont);
+
 }

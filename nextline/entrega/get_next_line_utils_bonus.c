@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 #include"get_next_line.h"
 
-void	free_zero(char **ptr)
+void	free_null(char **prt)
 {
-	free(*ptr);
-	*ptr = NULL;
+	free(*prt);
+	*prt = NULL;
 	return ;
 }
 
@@ -71,7 +71,7 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 	while (++i <= longdst + lensrc - 1)
 		out[i] = src[i - longdst];
 	out[i] = '\0';
-	free_zero(&dst);
+	free_null(&dst);
 	return (out);
 }
 
@@ -85,10 +85,7 @@ char	*my_substr(char *str, int start, int len)
 	i = start;
 	out = (char *)malloc((len + 1) * sizeof(char));
 	if (!out)
-	{
-		free_zero (&out);
 		return (NULL);
-	}
 	while (str[i] && (i < len + start) && (str[i] != -1))
 	{
 		out[i - start] = str[i];

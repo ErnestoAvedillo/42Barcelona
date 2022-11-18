@@ -17,8 +17,9 @@ int	print_int_frm(int val, t_form_data *formato)
 	char	*strval;
 
 	lng = print_symbol (formato->flag, val);
-//	if ((val < 0 || formato->flag == PLUS_FLAG) && formato->longfield > 0)
-//			formato->longfield--;
+	if ((val < 0 || formato->flag == PLUS_FLAG) && \
+		formato->longfield > 0 && formato->flag != POINT_FLAG)
+		formato->longfield--;
 	if (val == -2147483648)
 		strval = ft_strdup("2147483648");
 	else if (val < 0)
@@ -28,6 +29,12 @@ int	print_int_frm(int val, t_form_data *formato)
 	}
 	else
 		strval = ft_itoa (val);
+	if (formato->flag == SPACE_FLAG && \
+		formato->longfield < (int) ft_strlen(strval))
+		formato->longfield = (int) ft_strlen(strval) + 1;
+	if (formato->flag == POINT_FLAG && \
+		formato->longfield < (int) ft_strlen(strval))
+		formato->longfield = (int) ft_strlen(strval);
 	lng += write_extended(strval, formato);
 	free(strval);
 	return (lng);
@@ -87,6 +94,9 @@ int	print_uint_frm( unsigned int val, t_form_data *formato)
 		strval = ft_utoa (val);
 	else if (formato->format == 'x' || formato->format == 'X')
 		strval = ft_addrtoa (val, formato->format, formato->flag);
+	if (formato->flag == POINT_FLAG && \
+		formato->longfield < (int) ft_strlen(strval))
+		formato->longfield = (int) ft_strlen(strval);
 	lng = write_extended(strval, formato);
 	free (strval);
 	return (lng);

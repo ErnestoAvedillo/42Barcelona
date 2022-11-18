@@ -39,6 +39,15 @@ static void	get_format(char *str, char formato)
 	return ;
 }
 
+static int	is_conf_ex(int formato, int flag)
+{
+	if (formato == ADDR_FORMAT_P || \
+		(formato == HEX_FORMAT_X && flag == POUND_FLAG) || \
+		(formato == HEX_FORMAT_X_CAP && flag == POUND_FLAG))
+		return (1);
+	return (0);
+}
+
 char	*ft_addrtoa(size_t n, int formato, int flag)
 {
 	char	*str;
@@ -47,15 +56,13 @@ char	*ft_addrtoa(size_t n, int formato, int flag)
 
 	get_format (vect_val, formato);
 	lenstr = getchrnr (n);
-	if (formato == ADDR_FORMAT_P || (formato == HEX_FORMAT_X && flag == POUND_FLAG) ||\
-		(formato == HEX_FORMAT_X_CAP && flag == POUND_FLAG) )
+	if (is_conf_ex (formato, flag))
 		lenstr += 2;
 	str = (char *)malloc ((lenstr + 1) * sizeof (char));
 	if (!str)
 		return (NULL);
 	str[lenstr] = '\0';
-	if (formato == ADDR_FORMAT_P || (formato == HEX_FORMAT_X && flag == POUND_FLAG) ||\
-		(formato == HEX_FORMAT_X_CAP && flag == POUND_FLAG) )
+	if (is_conf_ex (formato, flag))
 	{
 		str[0] = '0';
 		str[1] = 'x';
