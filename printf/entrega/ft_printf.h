@@ -26,7 +26,8 @@ typedef struct l_form_data
 	int		longfield;
 	char	format;
 	int		cur_str_pos;
-	int		print_len;
+	int		prtstrlen;
+	int		error;
 }		t_form_data;
 
 typedef struct l_print_data
@@ -81,8 +82,8 @@ int 		find_flag (char c);
 //bonus_utils
 int			print_symbol(char flag, int val);
 t_form_data	*newdata(void);
-int			get_len_field(char *str);
-int			get_len_zeros(char *str, t_form_data formato);
+t_form_data	*get_len_field(char *str, t_form_data *formato);
+t_form_data	*get_len_zeros(char *str, t_form_data *formato);
 int			print_extra_char(int lenfield, int lenzeros, int lenstr, char c);
 //print_format
 int			print_int_frm(int val, t_form_data *formato);
@@ -92,5 +93,7 @@ int			print_addr_frm(size_t ptr, t_form_data *formato);
 int			print_uint_frm(unsigned int val, t_form_data *formato);
 //write_extended
 int			write_extended(char *str, t_form_data *formato);
+//ft_print_suf
+int			ft_printf_suf_str(t_form_data *formato);
 
 #endif

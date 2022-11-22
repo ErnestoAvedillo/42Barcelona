@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:05:43 by eavedill          #+#    #+#             */
-/*   Updated: 2022/09/24 11:59:13 by eavedill         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:33:05 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -66,4 +66,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_max(int a, int b);
+int		ft_min(int a, int b);
 #endif

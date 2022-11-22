@@ -44,7 +44,10 @@ static int	print_suf_blanc(char *str, t_form_data *formato)
 
 	/*printf("flag %c zero %d longfield %d format %c cur_str_pos %d printlen %d \n",\
 	formato->flag, formato->iszero,formato->longfield,formato->format,formato->cur_str_pos,
-	formato->print_len   );*/
+	formato->prtstrlen   );*/
+
+	if (ft_printf_suf_str (formato))
+		out += print_extra_char (formato->longfield,0, ft_min(formato->prtstrlen, lenstr), ' ');
 
 	if ((formato->flag == PLUS_FLAG && formato->iszero < 0) || \
 		((formato->format == INT_FORMAT_D || \
@@ -57,8 +60,6 @@ static int	print_suf_blanc(char *str, t_form_data *formato)
 		formato->format == HEX_FORMAT_X_CAP) && \
 		(formato->flag == NONE_FLAG || formato->flag == POUND_FLAG) && \
 		formato->iszero < 0) || \
-		((formato->format == STR_FORMAT_S || formato->format == CHAR_FORMAT_C) \
-		&& (formato->flag != MINUS_FLAG)) || \
 		(formato->format == ADDR_FORMAT_P && (formato->flag != MINUS_FLAG || \
 		formato->ispoint)) || \
 		(formato->format == PERC_FORMAT && formato->flag != MINUS_FLAG))
@@ -76,9 +77,9 @@ int	write_extended(char *str, t_form_data *formato)
 	lenstr = (int) ft_strlen(str);
 	out += print_suf_blanc (str, formato);
 	out += print_zeros(str, formato);
-	if (formato->ispoint && lenstr > formato->longfield)
+	if (formato->ispoint && lenstr > formato->prtstrlen)
 	{
-		substr = ft_substr(str, 0, formato->longfield);
+		substr = ft_substr(str, 0, formato->prtstrlen);
 		out += ft_print_str (substr);
 		free (substr);
 	}

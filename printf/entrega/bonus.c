@@ -31,6 +31,7 @@ static int	is_flag_char(char c)
 	return (0);
 }
 */
+
 int find_flag (char c)
 {
 	if (c==PLUS_FLAG)
@@ -69,13 +70,13 @@ t_form_data	*fill_list(char *str, int pos)
 	}
 	else
 		format_def->longfield = -1;
-	format_def->longfield = get_len_field(straux);
-//	if (format_def->iszero >= 0 )
-		format_def->iszero = get_len_zeros(straux, format_def);
-//	else
-//		format_def->iszero = -1;
-	if (format_def->longfield < 0)
-		format_def->longfield = format_def->iszero;
+	if (format_def->format == STR_FORMAT_S)
+		format_def = get_len_field(straux, format_def);
+	else
+		format_def = get_len_zeros(straux, format_def);
+	format_def->error = 0;
+//	if (format_def->longfield < 0)
+//		format_def->longfield = format_def->iszero;
 	free (straux);
 	return (format_def);
 }

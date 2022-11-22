@@ -35,6 +35,12 @@ void testanalisys(void)
 	cont = ft_printf("<%.5s><%.1s>", "XXXX", "----");
 	printf ("respuesta ft_printf %d\n", cont);
 
+	printf("%s Test 1 bonus %s %s\n",KGRN, "<%5.s><%1.s>", KNRM );
+	cont = printf("<%5.s><%1.s>", "XXXX", "----");
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%5.s><%1.s>", "XXXX", "----");
+	printf ("respuesta ft_printf %d\n", cont);
+
 	printf("%s Test 1 bonus %s %s\n",KGRN, "<%5.5s><%1.1s>", KNRM );
 	cont = printf("<%5.5s><%1.1s>", "XXXX", "----");
 	printf ("respuesta ???printf %d\n", cont);
@@ -59,7 +65,13 @@ void testanalisys(void)
 	cont = ft_printf("<%50.5s><%10.1s>", "XXXX", "----");
 	printf ("respuesta ft_printf %d\n", cont);
 
-/*	printf("%s Test 1 bonus %s %s\n",KGRN, "<% 5s><% 1s>", KNRM );
+/*	printf("%s Test 1 bonus %s %s\n",KGRN, "<%*.*s><%*.*s>", KNRM );
+	cont = printf("<%*.*s><%*.*s>", "XXXX", "----");
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%*.*s><%*.*s>", "XXXX", "----");
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 1 bonus %s %s\n",KGRN, "<% 5s><% 1s>", KNRM );
 	cont = printf("<% s><% s>", "XXXX", "----");
 	printf ("respuesta ???printf %d\n", cont);
 
@@ -67,7 +79,7 @@ void testanalisys(void)
 	cont = printf("<%#5s><%#1s>", "XXXX", "----");
 	printf ("respuesta ???printf %d\n", cont);
 */
-/*	printf("%s Test con char %s %s\n",KBLU, "<%c>", KNRM );
+	printf("%s Test con char %s %s\n",KBLU, "<%c>", KNRM );
 	printf("%s Test 2 bonus %s %s\n",KGRN, "<%5c><%1c>", KNRM );
 	cont = printf("<%5c><%1c>", 'X', '-');
 	printf ("respuesta ???printf %d\n", cont);
@@ -209,7 +221,7 @@ void testanalisys(void)
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("<%5p><%1p>",(void *) 12,(void *) 43);
 	printf ("respuesta ft_printf %d\n", cont);
-*/
+
 /*	printf("%s Test 0 bonus %s %s\n",KGRN, "<%05p><%01p>", KNRM );
 	cont = printf("<%05p><%01p>",(void *) 12,(void *) 43);
 	printf ("respuesta ???printf %d\n", cont);

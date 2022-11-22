@@ -15,7 +15,7 @@ NAME = libftprintf.a
 all= $(NAME)
 
 SRC =  ft_printf ft_utoa ft_addrtoa ft_printf_args bonus bonus_utils print_format \
-		write_extended
+		write_extended ft_print_suf
 
 OBJS = $(addsuffix .o,$(SRC))
 
