@@ -40,27 +40,49 @@ int	print_symbol(char flag, int val)
 	return (out);
 }
 
-int conv_field_to_int (char *str,int start_pos)
+int getvalue_from_point(char *str,t_form_data *formato)
 {
 	int		out;
-	int		cur_pos;
+	int 	cur_pos;
 	char	*strlen;
 
-	cur_pos = start_pos;
-	while (ft_isdigit(str[start_pos++]));
-	strlen = ft_substr(str, cur_pos, start_pos);
+	cur_pos = formato->cur_str_pos;
+	while (ft_isdigit(str[formato->cur_str_pos++]));
+	strlen = ft_substr(str, cur_pos, formato->cur_str_pos);
 	if (!strlen)
-		return (-1);
+			{
+				formato->error = 1;
+				return (-1);
+			}
 	out = ft_atoi(strlen);
 	free (strlen);
 	return (out);
+}
+
+t_form_data *conv_field_to_int (char *str,t_form_data *formato)
+{
+	formato->ispoint = 1;
+	printf("flag %c --- %d\n",str[formato->cur_str_pos], formato->cur_str_pos );
+	if (str[formato->cur_str_pos] == POINT_FLAG)
+	{
+		formato->cur_str_pos += 1;
+		formato->prtstrlen = getvalue_from_point(str,formato);
+		printf("paso1\n");
+	}
+	else
+	{
+		formato->longfield = getvalue_from_point(str,formato);
+		formato->cur_str_pos += 1;
+		formato->prtstrlen =getvalue_from_point(str,formato);
+		printf("paso2\n");
+	}
+	return (formato);
 }
 
 t_form_data	*get_len_field(char *str, t_form_data *formato)
 {
 	char	*strlen;
 	int		start_pos;
-	int		cur_pos;
 
 	start_pos = 0;
 	formato->flag = find_flag (str[start_pos]);
@@ -68,42 +90,7 @@ t_form_data	*get_len_field(char *str, t_form_data *formato)
 		start_pos++;
 	if (ft_strchr(str, POINT_FLAG))
 	{
-		formato->ispoint = 1;
-		if (str[start_pos] == POINT_FLAG)
-		{
-/*			cur_pos = ++start_pos;
-			while (ft_isdigit(str[start_pos++])) ;
-			strlen = ft_substr(str, cur_pos, start_pos);
-			if (!strlen)
-			{
-				formato->error = 1;
-				return (formato);
-			}
-			formato->prtstrlen = ft_atoi(strlen);*/
-			formato->prtstrlen = conv_field_to_int(str,++start_pos);
-		}
-		else if (ft_isdigit(str[start_pos]))
-		{
-			cur_pos = start_pos;
-			while (ft_isdigit(str[start_pos++]))
-			strlen = ft_substr(str, cur_pos, start_pos);
-			if (!strlen)
-			{
-				formato->error = 1;
-				return (formato);
-			}
-			formato->longfield = ft_atoi(strlen);
-			cur_pos = start_pos;
-/*			while (ft_isdigit(str[start_pos++])) ;
-			strlen = ft_substr(str, cur_pos, start_pos);
-			if (!strlen)
-			{
-				formato->error = 1;
-				return (formato);
-			}
-			formato->prtstrlen = ft_atoi(strlen);*/
-			formato->prtstrlen = conv_field_to_int(str,start_pos);
-		}
+		formato = conv_field_to_int(str,formato);
 	}
 	else
 	{

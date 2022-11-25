@@ -46,7 +46,8 @@ t_form_data	*fill_list(char *str, int pos)
 	if (!format_def)
 		return (NULL);
 	cur_pos = pos;
-	while (!is_format_char (str[pos++]));
+	while (!is_format_char (str[pos]))
+		pos++;
 	format_def->format = str[pos];
 	format_def->cur_str_pos = pos;
 	format_def->flag = find_flag (str[cur_pos]);

@@ -71,6 +71,7 @@ int	write_extended(char *str, t_form_data *formato)
 	lenstr = (int) ft_strlen(str);
 	out += print_suf_blanc (str, formato);
 	out += print_zeros(str, formato);
+	printf("prtstrlen %d  longfield, %d zeros %d \n", formato->prtstrlen, formato->longfield, formato->iszero  );
 	if (formato->ispoint && lenstr > formato->prtstrlen)
 	{
 		substr = ft_substr(str, 0, formato->prtstrlen);
