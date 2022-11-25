@@ -21,28 +21,17 @@ int	is_format_char(char c)
 	return (1);
 }
 
-/*
-static int	is_flag_char(char c)
-{
-	if (c == PLUS_FLAG || c == MINUS_FLAG \
-		|| c == POINT_FLAG || c == SPACE_FLAG \
-		|| c == POUND_FLAG )
-		return (1);
-	return (0);
-}
-*/
-
 int find_flag (char c)
 {
-	if (c==PLUS_FLAG)
+	if (c == PLUS_FLAG)
 		return (PLUS_FLAG);
-	if (c==MINUS_FLAG)
+	if (c == MINUS_FLAG)
 		return (MINUS_FLAG);
-	if (c==SPACE_FLAG)
+	if (c == SPACE_FLAG)
 		return (SPACE_FLAG);
-	if (c==POUND_FLAG)
+	if (c == POUND_FLAG)
 		return (POUND_FLAG);
-	if (c==ZERO_FLAG)
+	if (c == ZERO_FLAG)
 		return (ZERO_FLAG);
 	return (NONE_FLAG);
 }
@@ -57,8 +46,7 @@ t_form_data	*fill_list(char *str, int pos)
 	if (!format_def)
 		return (NULL);
 	cur_pos = pos;
-	while (!is_format_char (str[pos]))
-		pos++;
+	while (!is_format_char (str[pos++]));
 	format_def->format = str[pos];
 	format_def->cur_str_pos = pos;
 	format_def->flag = find_flag (str[cur_pos]);
@@ -75,8 +63,6 @@ t_form_data	*fill_list(char *str, int pos)
 	else
 		format_def = get_len_zeros(straux, format_def);
 	format_def->error = 0;
-//	if (format_def->longfield < 0)
-//		format_def->longfield = format_def->iszero;
 	free (straux);
 	return (format_def);
 }

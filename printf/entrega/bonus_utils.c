@@ -40,6 +40,22 @@ int	print_symbol(char flag, int val)
 	return (out);
 }
 
+int conv_field_to_int (char *str,int start_pos)
+{
+	int		out;
+	int		cur_pos;
+	char	*strlen;
+
+	cur_pos = start_pos;
+	while (ft_isdigit(str[start_pos++]));
+	strlen = ft_substr(str, cur_pos, start_pos);
+	if (!strlen)
+		return (-1);
+	out = ft_atoi(strlen);
+	free (strlen);
+	return (out);
+}
+
 t_form_data	*get_len_field(char *str, t_form_data *formato)
 {
 	char	*strlen;
@@ -55,41 +71,38 @@ t_form_data	*get_len_field(char *str, t_form_data *formato)
 		formato->ispoint = 1;
 		if (str[start_pos] == POINT_FLAG)
 		{
-			cur_pos = ++start_pos;
-			while (ft_isdigit(str[start_pos++]))
+/*			cur_pos = ++start_pos;
+			while (ft_isdigit(str[start_pos++])) ;
 			strlen = ft_substr(str, cur_pos, start_pos);
 			if (!strlen)
 			{
 				formato->error = 1;
 				return (formato);
 			}
-			formato->prtstrlen = ft_atoi(strlen);
+			formato->prtstrlen = ft_atoi(strlen);*/
+			formato->prtstrlen = conv_field_to_int(str,++start_pos);
 		}
 		else if (ft_isdigit(str[start_pos]))
 		{
 			cur_pos = start_pos;
 			while (ft_isdigit(str[start_pos++]))
 			strlen = ft_substr(str, cur_pos, start_pos);
-			//printf("strlen %s\n",strlen );
 			if (!strlen)
 			{
 				formato->error = 1;
 				return (formato);
 			}
 			formato->longfield = ft_atoi(strlen);
-			//printf("valor longfield%d\n",formato->longfield );
 			cur_pos = start_pos;
-			while (ft_isdigit(str[start_pos++]));
-			//printf("cur_pos %d start_pos %d\n",cur_pos, start_pos );
+/*			while (ft_isdigit(str[start_pos++])) ;
 			strlen = ft_substr(str, cur_pos, start_pos);
-			//printf("strlen %s\n",strlen );
 			if (!strlen)
 			{
 				formato->error = 1;
 				return (formato);
 			}
-			formato->prtstrlen = ft_atoi(strlen);
-			//printf("valor prtstrlen%d\n",formato->prtstrlen );
+			formato->prtstrlen = ft_atoi(strlen);*/
+			formato->prtstrlen = conv_field_to_int(str,start_pos);
 		}
 	}
 	else
@@ -112,7 +125,7 @@ t_form_data	*get_len_zeros(char *str, t_form_data *formato)
 	char	*zeroslen;
 	int		start_pos;
 
-	if(ft_strchr(str, POINT_FLAG))
+	if (ft_strchr(str, POINT_FLAG))
 		start_pos = (int)(str - ft_strchr(str, POINT_FLAG));
 	else if (formato->flag == find_flag(formato->flag))
 		start_pos = (int)(str - ft_strchr(str, formato->flag));

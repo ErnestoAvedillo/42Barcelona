@@ -78,7 +78,7 @@ char		*ft_addrtoa(size_t n, int formato, int flag);
 //bonus
 int			ft_print_extended(char *str, va_list args, int pos);
 int			is_format_char(char c);
-int 		find_flag (char c);
+int			find_flag(char c);
 //bonus_utils
 int			print_symbol(char flag, int val);
 t_form_data	*newdata(void);

@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 16:29:34 by eavedill          #+#    #+#              #
-#    Updated: 2022/10/16 11:21:10 by eavedill         ###   ########.fr        #
+#    Updated: 2022/11/25 14:35:24 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ clean:
 	make -C$(DIRLIBFT) fclean
 
 fclean:     clean
-	$(RM) $(NAME) $(BONUS) $(LIBNAME)
+	$(RM) $(NAME) $(bonus) $(LIBNAME)
 
 re:         fclean $(NAME) .bonus
 

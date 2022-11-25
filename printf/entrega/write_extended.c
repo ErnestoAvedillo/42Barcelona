@@ -27,13 +27,7 @@ static int	print_zeros(char *str, t_form_data *formato)
 	}
 	return (out);
 }
-/*
-static t_true_table_spcs crea_true_t_spaces (void)
-{
-	t_true_table_spcs tablaverdad[10];
 
-	tablaverdad[1]={{STR_FRMAT_S;PLUS_FLAG;-1;-2}};
-}*/
 static int	print_suf_blanc(char *str, t_form_data *formato)
 {
 	int	out;

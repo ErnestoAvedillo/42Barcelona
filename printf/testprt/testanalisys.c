@@ -147,6 +147,12 @@ void testanalisys(void)
 	cont = ft_printf("<%50.5d><%10.1d>", 12, 42);
 	printf ("respuesta ft_printf %d\n", cont);
 
+	printf("%s Test 1 bonus %s %s\n",KGRN, "<%*.*d><%*.*d>", KNRM );
+	cont = printf("<%*.*d><%*.*d>", 2,50,5, 42,1,1);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%*.*d><%*.*d>", 12,50,5, 42,1,1);
+	printf ("respuesta ft_printf %d\n", cont);
+
 	printf("%s Test con int %s %s\n",KBLU, "<%i>", KNRM );
 	printf("%s Test 0 bonus %s %s\n",KGRN, "<%5i><%1i>", KNRM );
 	cont = printf("<%5i><%1i>", 12, 43);
