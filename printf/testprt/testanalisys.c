@@ -22,6 +22,13 @@ void testanalisys(void)
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("<%5s><%1s>", "XXXX", "----");
 	printf ("respuesta ft_printf %d\n", cont);
+	
+	printf("%s Test con str %s %s\n",KBLU, "<%s>", KNRM );
+	printf("%s Test 0 bonus %s %s\n",KGRN, "<%5s><%1s>", KNRM );
+	cont = printf("<%5s><%1s>", "XXXX", "----");
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%5s><%1s>", "XXXX", "----");
+	printf ("respuesta ft_printf %d\n", cont);
 
 	printf("%s Test 1 bonus %s %s\n",KGRN, "<%-5s><%-1s>", KNRM );
 	cont = printf("<%-5s><%-1s>", "XXXX", "----");

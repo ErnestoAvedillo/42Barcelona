@@ -49,7 +49,8 @@ t_form_data	*fill_list(char *str, int pos)
 	while (!is_format_char (str[pos]))
 		pos++;
 	format_def->format = str[pos];
-	format_def->cur_str_pos = pos;
+
+	format_def->cur_str_pos = cur_pos;
 	format_def->flag = find_flag (str[cur_pos]);
 	straux = ft_substr (str, cur_pos, pos - cur_pos);
 	if (straux)
@@ -74,6 +75,7 @@ int	ft_print_extended(char *str, va_list args, int pos)
 	t_form_data	*format_def;
 
 	format_def = fill_list (str, pos);
+	printf("posicion del cursor %d\n", format_def->cur_str_pos);
 	if (!format_def)
 		return (-1);
 	lng = 0;

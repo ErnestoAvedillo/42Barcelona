@@ -112,6 +112,7 @@ t_form_data	*get_len_zeros(char *str, t_form_data *formato)
 	char	*zeroslen;
 	int		start_pos;
 
+	start_pos = 0;
 	if (ft_strchr(str, POINT_FLAG))
 		start_pos = (int)(str - ft_strchr(str, POINT_FLAG));
 	else if (formato->flag == find_flag(formato->flag))
