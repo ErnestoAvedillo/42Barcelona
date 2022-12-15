@@ -12,9 +12,7 @@
 
 NAME = libftprintf.a
 
-all= $(NAME)
-
-SRC =  ft_printf ft_utoa ft_addrtoa ft_printf_args bonus bonus_utils print_format \
+SRC =  ft_printf ft_utoa ft_addrtoa ft_printf_args bonus fill_list bonus_utils print_format \
 		write_extended ft_print_suf
 
 OBJS = $(addsuffix .o,$(SRC))
@@ -33,9 +31,14 @@ FLAGS = -Wall -Werror -Wextra
 
 CC = gcc
 
+all: $(LIBNAME) $(NAME)
+
 -include $(INCLUDE))
 
-$(NAME): $(OBJS) $(DEPS) $(LIBFT)
+bonus: $(LIBNAME) $(NAME)
+
+$(NAME): $(OBJS) $(DEPS) $(LIBNAME)
+	cp -p $(LIBNAME) $(NAME)
 	ar -rcs $(NAME) $(OBJS)
 
 %.o : %.c $(INCLUDE)
@@ -44,18 +47,11 @@ $(NAME): $(OBJS) $(DEPS) $(LIBFT)
 %.d : %.c $(INCLUDE)
 	$(CC) -MM $(FLAGS) -c $*.c > $*.d
 
-all: $(NAME)
-
-bonus: .bonus
-	
-
-.bonus : $(NAME)
-	@touch .bonus
-	
+$(LIBNAME) : $(LIBFT)
+	@cp -p $(LIBFT) $(LIBNAME)
 
 $(LIBFT): 
 	make -C$(DIRLIBFT) bonus
-	cp $(LIBFT) $(NAME)
 
 print:
 	@echo $(INCLUDE)
@@ -67,11 +63,11 @@ print:
 
 clean:
 	$(RM) $(OBJS) $(DEPS) $(OBJS_BONUS) $(DEPS_BONUS) $(HEAD_DEPS) $(HEAD_OBJS) $(TARGETLIB)
-	make -C$(DIRLIBFT) fclean
+	make -C$(DIRLIBFT) clean
 
 fclean:     clean
-	$(RM) $(NAME) $(bonus) $(LIBNAME)
+	$(RM) $(NAME) $(LIBFT) $(LIBNAME)
 
-re:         fclean $(NAME) .bonus
+re:         fclean $(NAME) 
 
-.PHONY: all re clean fclean re $(TARGETLIB) .bonus
+.PHONY: all re clean fclean re $(LIBFT) bonus

@@ -16,10 +16,9 @@ int	print_int_frm(int val, t_form_data *formato)
 	int		lng;
 	char	*strval;
 
-	lng = print_symbol (formato->flag, val);
-	if ((val < 0 || formato->flag == PLUS_FLAG) && \
-		formato->longfield > 0 && formato->flag != POINT_FLAG)
-		formato->longfield--;
+	lng = print_symbol (formato, val);
+	if (val < 0 && formato->ispoint)
+		formato->prtstrlen += 1;
 	if (val == -2147483648)
 		strval = ft_strdup("2147483648");
 	else if (val < 0)
@@ -30,7 +29,7 @@ int	print_int_frm(int val, t_form_data *formato)
 	else
 		strval = ft_itoa (val);
 	if (formato->flag == SPACE_FLAG && \
-		formato->longfield < (int) ft_strlen(strval))
+		formato->longfield <= (int) ft_strlen(strval))
 		formato->longfield = (int) ft_strlen(strval) + 1;
 	if (formato->flag == POINT_FLAG && \
 		formato->longfield < (int) ft_strlen(strval))

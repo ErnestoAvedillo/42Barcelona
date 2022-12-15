@@ -19,123 +19,117 @@ t_form_data	*newdata(void)
 	if (!ptr)
 		return (NULL);
 	ptr->flag = NONE_FLAG;
+	ptr->isplus = -1;
 	ptr->iszero = -1;
-	ptr->longfield = 0;
+	ptr->longfield = -1;
+	ptr->prtstrlen = -1;
 	ptr->format = NONE_FORMAT;
 	ptr->cur_str_pos = 0;
-	ptr->prtstrlen = 0;
 	ptr->ispoint = 0;
 	return (ptr);
 }
 
-int	print_symbol(char flag, int val)
+int	print_symbol(t_form_data *formato, int val)
 {
 	int	out;
+	int	signprinted;
 
 	out = 0;
-	if (flag == '+' && val >= 0)
-		out = ft_print_char (flag);
+	signprinted = 0;
+	if (formato->flag == '+' && val >= 0)
+	{
+		out = ft_print_char (formato->flag);
+		signprinted = 1;
+	}
 	if (val < 0)
+	{
 		out = ft_print_char ('-');
+		signprinted = 1;
+	}
+	if (signprinted)
+	{
+		if (formato->longfield > formato->prtstrlen)
+			formato->longfield--;
+		else
+			formato->prtstrlen--;
+	}
 	return (out);
 }
 
-int getvalue_from_point(char *str,t_form_data *formato)
+int	getvalue_from_point(char *str, t_form_data *formato)
 {
 	int		out;
-	int 	cur_pos;
+	int		cur_pos;
 	char	*strlen;
 
 	cur_pos = formato->cur_str_pos;
-	while (ft_isdigit(str[formato->cur_str_pos++]));
+	while (ft_isdigit(str[formato->cur_str_pos]))
+		formato->cur_str_pos++;
 	strlen = ft_substr(str, cur_pos, formato->cur_str_pos);
 	if (!strlen)
-			{
-				formato->error = 1;
-				return (-1);
-			}
+	{
+		formato->error = 1;
+		return (-1);
+	}
 	out = ft_atoi(strlen);
 	free (strlen);
 	return (out);
 }
 
-t_form_data *conv_field_to_int (char *str,t_form_data *formato)
+t_form_data	*conv_field_to_int(char *str, t_form_data *formato)
 {
 	formato->ispoint = 1;
-	printf("flag %c --- %d\n",str[formato->cur_str_pos], formato->cur_str_pos );
 	if (str[formato->cur_str_pos] == POINT_FLAG)
 	{
 		formato->cur_str_pos += 1;
-		formato->prtstrlen = getvalue_from_point(str,formato);
-		printf("paso1\n");
+		formato->prtstrlen = getvalue_from_point(str, formato);
 	}
 	else
 	{
-		formato->longfield = getvalue_from_point(str,formato);
+		formato->longfield = getvalue_from_point(str, formato);
 		formato->cur_str_pos += 1;
-		formato->prtstrlen =getvalue_from_point(str,formato);
-		printf("paso2\n");
+		formato->prtstrlen = getvalue_from_point(str, formato);
 	}
 	return (formato);
 }
 
-t_form_data	*get_len_field(char *str, t_form_data *formato)
-{
-	char	*strlen;
-	int		start_pos;
-
-	start_pos = 0;
-	formato->flag = find_flag (str[start_pos]);
-	if (formato->flag != NONE_FLAG)
-		start_pos++;
-	if (ft_strchr(str, POINT_FLAG))
-	{
-		formato = conv_field_to_int(str,formato);
-	}
-	else
-	{
-		strlen = ft_substr(str, start_pos, ft_strlen(str));
-		if (!strlen)
-		{
-			formato->error = 1;
-			return (formato);
-		}
-		formato->longfield = ft_atoi(strlen);
-		formato->prtstrlen = formato->longfield;
-		free(strlen);
-	}
-	return (formato);
-}
-
-t_form_data	*get_len_zeros(char *str, t_form_data *formato)
-{
-	char	*zeroslen;
-	int		start_pos;
-
-	start_pos = 0;
-	if (ft_strchr(str, POINT_FLAG))
-		start_pos = (int)(str - ft_strchr(str, POINT_FLAG));
-	else if (formato->flag == find_flag(formato->flag))
-		start_pos = (int)(str - ft_strchr(str, formato->flag));
-	zeroslen = ft_substr (str, start_pos + 1, ft_strlen(str));
-	if (!zeroslen)
-		return (formato);
-	formato->longfield = ft_atoi (zeroslen);
-	free (zeroslen);
-	return (formato);
-}
-
-int	print_extra_char(int lenfield, int lenzeros, int lenstr, char c)
+int	print_extra_char(t_form_data *formato, int lenstr, char c)
 {
 	int	i;
 	int	out;
 
 	i = 0;
 	out = 0;
-	if (lenzeros < 0)
-		lenzeros = 0;
-	//printf("lenfield %d  lenzeros, %d lenstr %d \n", lenfield, lenzeros, lenstr );
-	while (lenfield - lenzeros > lenstr + i++)
-		out += write (1, &c, 1);
+	if (formato->prtstrlen >= 0)
+	{
+		if (formato->format == INT_FORMAT_I || formato->format == INT_FORMAT_D)
+			lenstr = ft_max(formato->prtstrlen, lenstr);
+		else
+			lenstr = ft_min(formato->prtstrlen, lenstr);
+	}
+	if (formato->longfield >= 0)
+		while (formato->longfield > lenstr + i++)
+			out += write (1, &c, 1);
 	return (out);
 }
+//printf("lenfield %d,  prtstrlen %d, lenstr %d \n", 
+//lenfield, lenzeros, lenstr );
+
+int	print_extra_zeros(t_form_data *formato, int lenstr)
+{
+	int	i;
+	int	val;
+	int	out;
+
+	i = 0;
+	out = 0;
+	if (formato->prtstrlen < 0)
+		return (0);
+	val = formato->prtstrlen - lenstr;
+	if (val > 0)
+		while (val > i++)
+			out += write (1, "0", 1);
+	return (out);
+}
+//printf("lenfield %d,  prtstrlen %d, lenstr %d \n",
+// lenfield, lenzeros, lenstr );

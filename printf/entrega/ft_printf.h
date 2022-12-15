@@ -21,12 +21,13 @@
 typedef struct l_form_data
 {
 	char	flag;
+	int		isplus;
 	int		ispoint;
 	int		iszero;
 	int		longfield;
+	int		prtstrlen;
 	char	format;
 	int		cur_str_pos;
-	int		prtstrlen;
 	int		error;
 }		t_form_data;
 
@@ -50,6 +51,7 @@ typedef struct true_table_spaces
 # define SPACE_FLAG ' '
 # define POUND_FLAG '#'
 # define ZERO_FLAG '0'
+# define ASTERISC_FLAG '*'
 # define NONE_FLAG '\0'
 
 # define PERC_FORMAT '%'
@@ -77,14 +79,11 @@ char		*ft_utoa(unsigned int n);
 char		*ft_addrtoa(size_t n, int formato, int flag);
 //bonus
 int			ft_print_extended(char *str, va_list args, int pos);
-int			is_format_char(char c);
-int			find_flag(char c);
 //bonus_utils
-int			print_symbol(char flag, int val);
+int			print_symbol(t_form_data *formato, int val);
 t_form_data	*newdata(void);
-t_form_data	*get_len_field(char *str, t_form_data *formato);
-t_form_data	*get_len_zeros(char *str, t_form_data *formato);
-int			print_extra_char(int lenfield, int lenzeros, int lenstr, char c);
+int			print_extra_char(t_form_data *formato, int lenstr, char c);
+int			print_extra_zeros(t_form_data *formato, int lenstr);
 //print_format
 int			print_int_frm(int val, t_form_data *formato);
 int			print_char_frm(int val, t_form_data *formato);
@@ -95,5 +94,14 @@ int			print_uint_frm(unsigned int val, t_form_data *formato);
 int			write_extended(char *str, t_form_data *formato);
 //ft_print_suf
 int			ft_printf_suf_str(t_form_data *formato);
-
+int			ft_printf_suf_int(t_form_data *formato);
+int			ft_printf_suf_lng(t_form_data *formato);
+int			ft_printf_suf_hex(t_form_data *formato);
+int			ft_printf_suf_addr(t_form_data *formato);
+//fill_list
+int			is_format_char(char c);
+int			find_flag(char c);
+void		get_len_field(char *str, t_form_data *formato, va_list args);
+void		get_len_zeros(char *str, t_form_data *formato, va_list args);
+t_form_data	*fill_list(char *str, int pos, va_list args);
 #endif
