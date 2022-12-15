@@ -81,4 +81,10 @@ void spectest(void)
 		, 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
 	printf ("respuesta ft_printf %d\n", cont);
 
+	printf("%s Test 7 formato c %s\n",KGRN, KNRM );
+	cont = printf(">%c %c %c< \n",'4', 4, '1' );
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf (">%c %c %c< \n",'4', 4, '1' );
+	printf ("respuesta ft_printf %d\n", cont);
+
 }
