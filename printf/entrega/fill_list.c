@@ -11,29 +11,6 @@
 /* ************************************************************************** */
 #include"ft_printf.h"
 
-int	is_format_char(char c)
-{
-	if (c != CHAR_FORMAT_C && c != STR_FORMAT_S && \
-		c != INT_FORMAT_D && c != INT_FORMAT_I && \
-		c != LONG_FORMAT_U && c != ADDR_FORMAT_P && \
-		c != HEX_FORMAT_X && c != HEX_FORMAT_X_CAP && c != PERC_FORMAT)
-		return (0);
-	return (1);
-}
-
-int	find_flag(char c)
-{
-	if (c == PLUS_FLAG)
-		return (PLUS_FLAG);
-	if (c == MINUS_FLAG)
-		return (MINUS_FLAG);
-	if (c == SPACE_FLAG)
-		return (SPACE_FLAG);
-	if (c == POUND_FLAG)
-		return (POUND_FLAG);
-	return (NONE_FLAG);
-}
-
 int	getvalue_from_field(char *str, int start_pos)
 {
 	int		out;
@@ -50,7 +27,6 @@ int	getvalue_from_field(char *str, int start_pos)
 	strlen = ft_substr(str, cur_pos, last_pos - cur_pos);
 	if (!strlen)
 		return (-1);
-
 	out = ft_atoi(strlen);
 	free (strlen);
 	return (out);
@@ -94,6 +70,20 @@ void	get_len_zeros(char *str, t_form_data *formato, va_list args)
 //printf("%s cur pos %d getzeros devuelve %d\n",
 //str, cur_pos, formato->prtstrlen );
 
+static void get_field_info(char *straux, t_form_data *format_def, va_list args)
+{
+	if (ft_strchr (straux, POINT_FLAG))
+	{
+		format_def->ispoint = 1;
+		format_def->iszero = 1;
+	}
+	get_len_field(straux, format_def, args);
+	if (format_def->iszero == 1)
+		get_len_zeros(straux, format_def, args);
+	else
+		format_def->error = 0;
+}
+
 t_form_data	*fill_list(char *str, int pos, va_list args)
 {
 	t_form_data	*format_def;
@@ -117,26 +107,17 @@ t_form_data	*fill_list(char *str, int pos, va_list args)
 	if (!straux)
 	{
 		format_def->error = -1;
-		return (NULL);		
+		return (NULL);
 	}
-	if (ft_strchr (straux, POINT_FLAG))
-	{
-		format_def->ispoint = 1;
-		format_def->iszero = 1;
-	}
-	else
-	{
-	}
-	get_len_field(straux, format_def, args);
-	if (format_def->iszero == 1)
-		get_len_zeros(straux, format_def, args);
-	else
-		format_def->error = 0;
+	get_field_info (straux, format_def, args);
 	free (straux);
 	return (format_def);
 }
-/*	printf("str %s substr %s flag %c point %d zero %d longfield %d printlen %d format %c cur_str_pos %d error %d\n",\
-	str, straux, format_def->flag, format_def->ispoint, format_def->iszero,format_def->longfield, \
-	format_def->prtstrlen, format_def->format,format_def->cur_str_pos, format_def->error );
+/*	printf("str %s substr %s flag %c point %d zero %d longfield %d \
+		printlen %d format %c cur_str_pos %d error %d\n",\
+		str, straux, format_def->flag, format_def->ispoint, \
+		format_def->iszero,format_def->longfield, \
+		format_def->prtstrlen, format_def->format,format_def->cur_str_pos, \
+		format_def->error );
 */
 //printf("str %s straux %s cur por %d pos %d\n",str, straux, cur_pos, pos );

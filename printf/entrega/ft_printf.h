@@ -80,10 +80,9 @@ char		*ft_addrtoa(size_t n, int formato, int flag);
 //bonus
 int			ft_print_extended(char *str, va_list args, int pos);
 //bonus_utils
-int			print_symbol(t_form_data *formato, int val);
 t_form_data	*newdata(void);
-int			print_extra_char(t_form_data *formato, int lenstr, char c);
-int			print_extra_zeros(t_form_data *formato, int lenstr);
+int			is_format_char(char c);
+int			find_flag(char c);
 //print_format
 int			print_int_frm(int val, t_form_data *formato);
 int			print_char_frm(int val, t_form_data *formato);
@@ -92,6 +91,10 @@ int			print_addr_frm(size_t ptr, t_form_data *formato);
 int			print_uint_frm(unsigned int val, t_form_data *formato);
 //write_extended
 int			write_extended(char *str, t_form_data *formato);
+//ft_print_chrs
+int			print_extra_char(t_form_data *formato, int lenstr, char c);
+int			print_extra_zeros(t_form_data *formato, int lenstr);
+int			print_symbol(t_form_data *formato, int val);
 //ft_print_suf
 int			ft_printf_suf_str(t_form_data *formato);
 int			ft_printf_suf_int(t_form_data *formato);
@@ -99,8 +102,6 @@ int			ft_printf_suf_lng(t_form_data *formato);
 int			ft_printf_suf_hex(t_form_data *formato);
 int			ft_printf_suf_addr(t_form_data *formato);
 //fill_list
-int			is_format_char(char c);
-int			find_flag(char c);
 void		get_len_field(char *str, t_form_data *formato, va_list args);
 void		get_len_zeros(char *str, t_form_data *formato, va_list args);
 t_form_data	*fill_list(char *str, int pos, va_list args);

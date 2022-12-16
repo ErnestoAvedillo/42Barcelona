@@ -34,19 +34,19 @@ static int	print_pre_blanc(char *str, t_form_data *formato)
 	int	lenstr;
 
 	lenstr = (int) ft_strlen(str);
-	out = 0;
+//	out = 0;
 	if (ft_printf_suf_str (formato))
-		out += print_extra_char (formato, lenstr, ' ');
+		out = print_extra_char (formato, lenstr, ' ');
 	if (ft_printf_suf_int (formato))
-		out += print_extra_char (formato, lenstr, ' ');
+		out = print_extra_char (formato, lenstr, ' ');
 	if (ft_printf_suf_lng (formato))
-		out += print_extra_char (formato, lenstr, ' ');
+		out = print_extra_char (formato, lenstr, ' ');
 	if (ft_printf_suf_hex (formato))
-		out += print_extra_char (formato, lenstr, ' ');
+		out = print_extra_char (formato, lenstr, ' ');
 	if (ft_printf_suf_addr (formato))
-		out += print_extra_char (formato, lenstr, ' ');
+		out = print_extra_char (formato, lenstr, ' ');
 	if (formato->format == PERC_FORMAT && formato->flag != MINUS_FLAG)
-		out += print_extra_char (formato, lenstr, ' ');
+		out = write(1,"%",1);
 	return (out);
 }
 

@@ -29,33 +29,6 @@ t_form_data	*newdata(void)
 	return (ptr);
 }
 
-int	print_symbol(t_form_data *formato, int val)
-{
-	int	out;
-	int	signprinted;
-
-	out = 0;
-	signprinted = 0;
-	if (formato->flag == '+' && val >= 0)
-	{
-		out = ft_print_char (formato->flag);
-		signprinted = 1;
-	}
-	if (val < 0)
-	{
-		out = ft_print_char ('-');
-		signprinted = 1;
-	}
-	if (signprinted)
-	{
-		if (formato->longfield > formato->prtstrlen)
-			formato->longfield--;
-		else
-			formato->prtstrlen--;
-	}
-	return (out);
-}
-
 int	getvalue_from_point(char *str, t_form_data *formato)
 {
 	int		out;
@@ -93,43 +66,25 @@ t_form_data	*conv_field_to_int(char *str, t_form_data *formato)
 	return (formato);
 }
 
-int	print_extra_char(t_form_data *formato, int lenstr, char c)
+int	is_format_char(char c)
 {
-	int	i;
-	int	out;
-
-	i = 0;
-	out = 0;
-	if (formato->prtstrlen >= 0)
-	{
-		if (formato->format == INT_FORMAT_I || formato->format == INT_FORMAT_D)
-			lenstr = ft_max(formato->prtstrlen, lenstr);
-		else
-			lenstr = ft_min(formato->prtstrlen, lenstr);
-	}
-	if (formato->longfield >= 0)
-		while (formato->longfield > lenstr + i++)
-			out += write (1, &c, 1);
-	return (out);
-}
-//printf("lenfield %d,  prtstrlen %d, lenstr %d \n", 
-//lenfield, lenzeros, lenstr );
-
-int	print_extra_zeros(t_form_data *formato, int lenstr)
-{
-	int	i;
-	int	val;
-	int	out;
-
-	i = 0;
-	out = 0;
-	if (formato->prtstrlen < 0)
+	if (c != CHAR_FORMAT_C && c != STR_FORMAT_S && \
+		c != INT_FORMAT_D && c != INT_FORMAT_I && \
+		c != LONG_FORMAT_U && c != ADDR_FORMAT_P && \
+		c != HEX_FORMAT_X && c != HEX_FORMAT_X_CAP && c != PERC_FORMAT)
 		return (0);
-	val = formato->prtstrlen - lenstr;
-	if (val > 0)
-		while (val > i++)
-			out += write (1, "0", 1);
-	return (out);
+	return (1);
 }
-//printf("lenfield %d,  prtstrlen %d, lenstr %d \n",
-// lenfield, lenzeros, lenstr );
+
+int	find_flag(char c)
+{
+	if (c == PLUS_FLAG)
+		return (PLUS_FLAG);
+	if (c == MINUS_FLAG)
+		return (MINUS_FLAG);
+	if (c == SPACE_FLAG)
+		return (SPACE_FLAG);
+	if (c == POUND_FLAG)
+		return (POUND_FLAG);
+	return (NONE_FLAG);
+}

@@ -61,8 +61,13 @@ int	print_char_frm(int val, t_form_data *formato)
 int	print_str_frm(char *prtstr, t_form_data *formato)
 {
 	int		lng;
-
-	lng = write_extended(prtstr, formato);
+	char	*str;
+	if (prtstr =NULL)
+		str = ft_strdup("(null)")
+	else
+		str = ft_strcpy(str, prtstr, ft_strlen(prtstr));
+	lng = write_extended(str, formato);
+	free (str);
 	return (lng);
 }
 
