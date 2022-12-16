@@ -88,6 +88,24 @@ void bonustest8(void)
 	cont = ft_printf("<%#4x><%#4x>", -14, 14);
 	printf ("respuesta ft_printf %d\n", cont);
 
+	printf("%s Test 7 bonus %s %s\n",KGRN,"<%#4X><%#4X>", KNRM );
+	cont = printf("<%#4X><%#4X>", -14, 14);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%#4X><%#4X>", -14, 14);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"<%#x><%#x>", KNRM );
+	cont = printf("<%#x><%#x>", -14, 14);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%#x><%#x>", -14, 14);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"<%#X><%#X>", KNRM );
+	cont = printf("<%#X><%#X>", -14, 14);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%#X><%#X>", -14, 14);
+	printf ("respuesta ft_printf %d\n", cont);
+
 	printf("%s Test 7 bonus %s %s\n",KGRN,"<%4x><%4x>", KNRM );
 	cont = printf("<%4x><%4x>", -14, 14);
 	printf ("respuesta ???printf %d\n", cont);

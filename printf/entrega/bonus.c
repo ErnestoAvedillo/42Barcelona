@@ -31,6 +31,8 @@ int	ft_print_extended(char *str, va_list args, int pos)
 	if (format_def->format == 'u' || format_def->format == 'x' || \
 		format_def->format == 'X')
 		lng = print_uint_frm (va_arg (args, size_t), format_def);
+	if (format_def->format == '%')
+		lng = print_str_frm ("%", format_def);
 	free(format_def);
 	return (lng);
 }

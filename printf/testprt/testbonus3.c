@@ -76,10 +76,22 @@ void bonustest3(void)
 	cont = ft_printf(">%5s<", "2 ");
 	printf ("respuesta ft_printf %d\n", cont);
 
-	printf("%s Test 8 bonus %s %s\n",KGRN, ">%-5s<", KNRM );
+	printf("%s Test 9 bonus %s %s\n",KGRN, ">%-5s<", KNRM );
 	cont = printf(">%-5s<", "2 ");
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf(">%-5s<", "2 ");
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 9 bonus %s %s\n",KGRN, ">%-5s<", KNRM );
+	cont = printf(">%-35s<", NULL);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf(">%-35s<", NULL);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 9 bonus %s %s\n",KGRN, ">%-5s<", KNRM );
+	cont = printf(">%35s<", NULL);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf(">%35s<", NULL);
 	printf ("respuesta ft_printf %d\n", cont);
 
 

@@ -25,10 +25,11 @@ int	ft_printf_suf_int(t_form_data *formato)
 {
 	if (formato->format == INT_FORMAT_D || formato->format == INT_FORMAT_I)
 	{
-		if (((formato->flag == NONE_FLAG || formato->flag == SPACE_FLAG) \
-			&& formato->iszero <= 0))
+		if (((formato->flag == NONE_FLAG || formato->flag == SPACE_FLAG \
+			|| formato->flag == PLUS_FLAG) && formato->iszero <= 0))
 			return (1);
-		if (formato->ispoint == 1 && (formato->longfield > formato->prtstrlen))
+		if (formato->ispoint == 1 && (formato->longfield > formato->prtstrlen) \
+			&& formato->flag != MINUS_FLAG)
 			return (1);
 	}
 	return (0);

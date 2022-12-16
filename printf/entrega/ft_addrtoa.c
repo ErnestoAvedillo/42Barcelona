@@ -66,6 +66,8 @@ char	*ft_addrtoa(size_t n, int formato, int flag)
 	{
 		str[0] = '0';
 		str[1] = 'x';
+		if (formato == HEX_FORMAT_X_CAP)
+			str[1] = 'X';
 	}
 	while (n > 0)
 	{	

@@ -18,9 +18,14 @@ int	print_extra_char(t_form_data *formato, int lenstr, char c)
 
 	i = 0;
 	out = 0;
+	if ((formato->flag == '+' && formato->signo >= 0) || formato->signo < 0)
+		if (formato->longfield > formato->prtstrlen)
+			formato->longfield--;
 	if (formato->prtstrlen >= 0)
 	{
-		if (formato->format == INT_FORMAT_I || formato->format == INT_FORMAT_D)
+		if (formato->format == INT_FORMAT_I || formato->format == INT_FORMAT_D || \
+			formato->format == LONG_FORMAT_U || formato->format == HEX_FORMAT_X_CAP || \
+			formato->format == HEX_FORMAT_X)
 			lenstr = ft_max(formato->prtstrlen, lenstr);
 		else
 			lenstr = ft_min(formato->prtstrlen, lenstr);
@@ -41,6 +46,11 @@ int	print_extra_zeros(t_form_data *formato, int lenstr)
 
 	i = 0;
 	out = 0;
+	if (formato->flag == ZERO_FLAG || formato->flag == PLUS_FLAG)
+		if (formato->longfield <= formato->prtstrlen)
+			formato->prtstrlen--;
+	if (formato->signo < 0 && !formato->ispoint)
+		formato->prtstrlen--;
 	if (formato->prtstrlen < 0)
 		return (0);
 	val = formato->prtstrlen - lenstr;
@@ -49,32 +59,17 @@ int	print_extra_zeros(t_form_data *formato, int lenstr)
 			out += write (1, "0", 1);
 	return (out);
 }
-//printf("lenfield %d,  prtstrlen %d, lenstr %d \n",
-// lenfield, lenzeros, lenstr );
+//	printf("longfield %d,  prtstrlen %d, signo %d \n", 
+//formato->longfield, formato->prtstrlen, formato->signo );
 
-int	print_symbol(t_form_data *formato, int val)
+int	print_symbol(t_form_data *formato)
 {
 	int	out;
-	int	signprinted;
 
 	out = 0;
-	signprinted = 0;
-	if (formato->flag == '+' && val >= 0)
-	{
-		out = ft_print_char (formato->flag);
-		signprinted = 1;
-	}
-	if (val < 0)
-	{
+	if (formato->flag == '+' && formato->signo >= 0)
+		out = ft_print_char ('+');
+	if (formato->signo < 0)
 		out = ft_print_char ('-');
-		signprinted = 1;
-	}
-	if (signprinted)
-	{
-		if (formato->longfield > formato->prtstrlen)
-			formato->longfield--;
-		else
-			formato->prtstrlen--;
-	}
 	return (out);
 }

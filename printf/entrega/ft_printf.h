@@ -28,6 +28,7 @@ typedef struct l_form_data
 	int		prtstrlen;
 	char	format;
 	int		cur_str_pos;
+	int		signo;
 	int		error;
 }		t_form_data;
 
@@ -94,7 +95,7 @@ int			write_extended(char *str, t_form_data *formato);
 //ft_print_chrs
 int			print_extra_char(t_form_data *formato, int lenstr, char c);
 int			print_extra_zeros(t_form_data *formato, int lenstr);
-int			print_symbol(t_form_data *formato, int val);
+int			print_symbol(t_form_data *formato);
 //ft_print_suf
 int			ft_printf_suf_str(t_form_data *formato);
 int			ft_printf_suf_int(t_form_data *formato);

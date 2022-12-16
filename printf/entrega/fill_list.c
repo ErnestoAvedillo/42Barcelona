@@ -70,7 +70,7 @@ void	get_len_zeros(char *str, t_form_data *formato, va_list args)
 //printf("%s cur pos %d getzeros devuelve %d\n",
 //str, cur_pos, formato->prtstrlen );
 
-static void get_field_info(char *straux, t_form_data *format_def, va_list args)
+static void	get_field_info(char *straux, t_form_data *format_def, va_list args)
 {
 	if (ft_strchr (straux, POINT_FLAG))
 	{
@@ -105,10 +105,7 @@ t_form_data	*fill_list(char *str, int pos, va_list args)
 		format_def->iszero = 1;
 	straux = ft_substr (str, cur_pos, pos - cur_pos);
 	if (!straux)
-	{
-		format_def->error = -1;
 		return (NULL);
-	}
 	get_field_info (straux, format_def, args);
 	free (straux);
 	return (format_def);

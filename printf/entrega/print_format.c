@@ -16,9 +16,8 @@ int	print_int_frm(int val, t_form_data *formato)
 	int		lng;
 	char	*strval;
 
-	lng = print_symbol (formato, val);
-	if (val < 0 && formato->ispoint)
-		formato->prtstrlen += 1;
+	if (val < 0)
+		formato->signo = -1;
 	if (val == -2147483648)
 		strval = ft_strdup("2147483648");
 	else if (val < 0)
@@ -26,6 +25,8 @@ int	print_int_frm(int val, t_form_data *formato)
 		val *= -1;
 		strval = ft_itoa (val);
 	}
+	else if (formato->ispoint && formato->prtstrlen == 0 && val == 0)
+		strval = ft_strdup("");
 	else
 		strval = ft_itoa (val);
 	if (formato->flag == SPACE_FLAG && \
@@ -34,7 +35,7 @@ int	print_int_frm(int val, t_form_data *formato)
 	if (formato->flag == POINT_FLAG && \
 		formato->longfield < (int) ft_strlen(strval))
 		formato->longfield = (int) ft_strlen(strval);
-	lng += write_extended(strval, formato);
+	lng = write_extended(strval, formato);
 	free(strval);
 	return (lng);
 }
@@ -61,13 +62,10 @@ int	print_char_frm(int val, t_form_data *formato)
 int	print_str_frm(char *prtstr, t_form_data *formato)
 {
 	int		lng;
-	char	*str;
-	if (prtstr =NULL)
-		str = ft_strdup("(null)")
-	else
-		str = ft_strcpy(str, prtstr, ft_strlen(prtstr));
-	lng = write_extended(str, formato);
-	free (str);
+
+	if (prtstr == NULL)
+		prtstr = ft_strdup("(null)");
+	lng = write_extended(prtstr, formato);
 	return (lng);
 }
 

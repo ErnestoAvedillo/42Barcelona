@@ -19,7 +19,8 @@ static int	print_zeros(char *str, t_form_data *formato)
 	lenstr = (int) ft_strlen(str);
 	out = 0;
 	if (formato->format == 'd' || formato->format == 'i' || \
-		formato->format == 'x')
+		formato->format == 'x' || formato->format == 'X' || \
+		formato->format == 'u')
 	{
 		if (formato->flag == PLUS_FLAG || formato->ispoint || \
 			formato->iszero >= 0)
@@ -34,7 +35,7 @@ static int	print_pre_blanc(char *str, t_form_data *formato)
 	int	lenstr;
 
 	lenstr = (int) ft_strlen(str);
-//	out = 0;
+	out = 0;
 	if (ft_printf_suf_str (formato))
 		out = print_extra_char (formato, lenstr, ' ');
 	if (ft_printf_suf_int (formato))
@@ -46,7 +47,7 @@ static int	print_pre_blanc(char *str, t_form_data *formato)
 	if (ft_printf_suf_addr (formato))
 		out = print_extra_char (formato, lenstr, ' ');
 	if (formato->format == PERC_FORMAT && formato->flag != MINUS_FLAG)
-		out = write(1,"%",1);
+		out = print_extra_char (formato, lenstr, ' ');
 	return (out);
 }
 
@@ -59,6 +60,7 @@ int	write_extended(char *str, t_form_data *formato)
 	out = 0;
 	lenstr = (int) ft_strlen(str);
 	out += print_pre_blanc (str, formato);
+	out += print_symbol (formato);
 	out += print_zeros(str, formato);
 	if (formato->ispoint && formato->prtstrlen >= 0 && \
 		lenstr > formato->prtstrlen && formato->format == STR_FORMAT_S)

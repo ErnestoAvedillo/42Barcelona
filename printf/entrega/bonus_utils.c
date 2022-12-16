@@ -26,6 +26,7 @@ t_form_data	*newdata(void)
 	ptr->format = NONE_FORMAT;
 	ptr->cur_str_pos = 0;
 	ptr->ispoint = 0;
+	ptr->signo = 0;
 	return (ptr);
 }
 
