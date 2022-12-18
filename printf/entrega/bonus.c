@@ -14,25 +14,28 @@
 int	ft_print_extended(char *str, va_list args, int pos)
 {
 	int			lng;
-	t_form_data	*format_def;
+	t_form_data	*frmt;
 
-	format_def = fill_list (str, pos, args);
-	if (!format_def)
+	frmt = fill_list (str, pos, args);
+	if (!frmt || frmt->error == 1)
+	{
+		if (frmt->error == 1)
+			free (frmt);
 		return (-1);
+	}
 	lng = 0;
-	if (format_def->format == 'd' || format_def->format == 'i')
-		lng = print_int_frm (va_arg (args, int), format_def);
-	if (format_def->format == 'c')
-		lng = print_char_frm (va_arg (args, int), format_def);
-	if (format_def->format == 's')
-		lng = print_str_frm (va_arg (args, char *), format_def);
-	if (format_def->format == 'p')
-		lng = print_addr_frm (va_arg (args, size_t), format_def);
-	if (format_def->format == 'u' || format_def->format == 'x' || \
-		format_def->format == 'X')
-		lng = print_uint_frm (va_arg (args, size_t), format_def);
-	if (format_def->format == '%')
-		lng = print_str_frm ("%", format_def);
-	free(format_def);
+	if (frmt->format == 'd' || frmt->format == 'i')
+		lng = print_int_frm (va_arg (args, int), frmt);
+	if (frmt->format == 'c')
+		lng = print_char_frm (va_arg (args, int), frmt);
+	if (frmt->format == 's')
+		lng = print_str_frm (va_arg (args, char *), frmt);
+	if (frmt->format == 'p')
+		lng = print_addr_frm (va_arg (args, size_t), frmt);
+	if (frmt->format == 'u' || frmt->format == 'x' || frmt->format == 'X')
+		lng = print_uint_frm (va_arg (args, size_t), frmt);
+	if (frmt->format == '%')
+		lng = print_str_frm ("%", frmt);
+	free(frmt);
 	return (lng);
 }

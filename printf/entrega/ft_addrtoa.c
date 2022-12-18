@@ -41,9 +41,9 @@ static void	get_format(char *str, char formato)
 
 static int	is_conf_ex(int formato, int flag)
 {
-	if (formato == ADDR_FORMAT_P || \
-		(formato == HEX_FORMAT_X && flag == POUND_FLAG) || \
-		(formato == HEX_FORMAT_X_CAP && flag == POUND_FLAG))
+	if (formato == ADDR_FRMT_P || \
+		(formato == HEX_FRMT_X && flag == POUND_FLAG) || \
+		(formato == HEX_FRMT_X_CAP && flag == POUND_FLAG))
 		return (1);
 	return (0);
 }
@@ -66,7 +66,7 @@ char	*ft_addrtoa(size_t n, int formato, int flag)
 	{
 		str[0] = '0';
 		str[1] = 'x';
-		if (formato == HEX_FORMAT_X_CAP)
+		if (formato == HEX_FRMT_X_CAP)
 			str[1] = 'X';
 	}
 	while (n > 0)

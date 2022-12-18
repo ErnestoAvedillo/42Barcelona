@@ -23,10 +23,11 @@ t_form_data	*newdata(void)
 	ptr->iszero = -1;
 	ptr->longfield = -1;
 	ptr->prtstrlen = -1;
-	ptr->format = NONE_FORMAT;
+	ptr->format = NONE_FRMT;
 	ptr->cur_str_pos = 0;
 	ptr->ispoint = 0;
 	ptr->signo = 0;
+	ptr->error = 0;
 	return (ptr);
 }
 
@@ -69,10 +70,10 @@ t_form_data	*conv_field_to_int(char *str, t_form_data *formato)
 
 int	is_format_char(char c)
 {
-	if (c != CHAR_FORMAT_C && c != STR_FORMAT_S && \
-		c != INT_FORMAT_D && c != INT_FORMAT_I && \
-		c != LONG_FORMAT_U && c != ADDR_FORMAT_P && \
-		c != HEX_FORMAT_X && c != HEX_FORMAT_X_CAP && c != PERC_FORMAT)
+	if (c != CHAR_FRMT_C && c != STR_FRMT_S && \
+		c != INT_FRMT_D && c != INT_FRMT_I && \
+		c != LONG_FRMT_U && c != ADDR_FRMT_P && \
+		c != HEX_FRMT_X && c != HEX_FRMT_X_CAP && c != PERC_FRMT)
 		return (0);
 	return (1);
 }

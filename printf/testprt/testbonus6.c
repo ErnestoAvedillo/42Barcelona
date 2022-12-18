@@ -82,4 +82,10 @@ void bonustest6(void)
 	cont = ft_printf(" %-4x $ %4x ", 0, 0);
 	printf ("respuesta ft_printf %d\n", cont);
 
+	printf("%s Test 10 bonus %s %s\n",KGRN," %-8.5x $ %8.5x ", KNRM );
+	cont = printf(" %-8.5x $ %8.5x ",  0, 0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf(" %-8.5x $ %8.5x ", 0, 0);
+	printf ("respuesta ft_printf %d\n", cont);
+
 }

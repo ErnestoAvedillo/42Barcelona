@@ -55,16 +55,16 @@ typedef struct true_table_spaces
 # define ASTERISC_FLAG '*'
 # define NONE_FLAG '\0'
 
-# define PERC_FORMAT '%'
-# define INT_FORMAT_I 'i'
-# define INT_FORMAT_D 'd'
-# define CHAR_FORMAT_C 'c'
-# define STR_FORMAT_S 's'
-# define ADDR_FORMAT_P 'p'
-# define LONG_FORMAT_U 'u'
-# define HEX_FORMAT_X 'x'
-# define HEX_FORMAT_X_CAP 'X'
-# define NONE_FORMAT '\0'
+# define PERC_FRMT '%'
+# define INT_FRMT_I 'i'
+# define INT_FRMT_D 'd'
+# define CHAR_FRMT_C 'c'
+# define STR_FRMT_S 's'
+# define ADDR_FRMT_P 'p'
+# define LONG_FRMT_U 'u'
+# define HEX_FRMT_X 'x'
+# define HEX_FRMT_X_CAP 'X'
+# define NONE_FRMT '\0'
 
 // ft printf
 int			ft_printf(char const *str, ...);

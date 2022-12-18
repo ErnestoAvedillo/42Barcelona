@@ -46,7 +46,7 @@ static int	print_pre_blanc(char *str, t_form_data *formato)
 		out = print_extra_char (formato, lenstr, ' ');
 	if (ft_printf_suf_addr (formato))
 		out = print_extra_char (formato, lenstr, ' ');
-	if (formato->format == PERC_FORMAT && formato->flag != MINUS_FLAG)
+	if (formato->format == PERC_FRMT && formato->flag != MINUS_FLAG)
 		out = print_extra_char (formato, lenstr, ' ');
 	return (out);
 }
@@ -63,7 +63,7 @@ int	write_extended(char *str, t_form_data *formato)
 	out += print_symbol (formato);
 	out += print_zeros(str, formato);
 	if (formato->ispoint && formato->prtstrlen >= 0 && \
-		lenstr > formato->prtstrlen && formato->format == STR_FORMAT_S)
+		lenstr > formato->prtstrlen && formato->format == STR_FRMT_S)
 	{
 		substr = ft_substr(str, 0, formato->prtstrlen);
 		out += ft_print_str (substr);

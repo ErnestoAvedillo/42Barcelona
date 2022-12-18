@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 12:41:57 by eavedill          #+#    #+#              #
-#    Updated: 2022/11/22 17:30:17 by eavedill         ###   ########.fr        #
+#    Updated: 2022/12/18 12:58:29 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libft.a
@@ -18,7 +18,7 @@ SRC = ft_isalpha ft_isalnum ft_isdigit ft_isascii ft_isprint \
 	  ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp ft_memchr ft_memcmp \
 	  ft_strnstr ft_atoi ft_calloc ft_strdup ft_substr ft_strjoin ft_strtrim ft_split \
 	  ft_itoa ft_strmapi ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd \
-	  ft_max ft_min
+	  ft_max ft_min ft_abs
 
 SRC_BONUS = ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone ft_lstiter \
 			ft_lstlast ft_lstmap ft_lstnew ft_lstsize

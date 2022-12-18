@@ -21,11 +21,13 @@ int	print_extra_char(t_form_data *formato, int lenstr, char c)
 	if ((formato->flag == '+' && formato->signo >= 0) || formato->signo < 0)
 		if (formato->longfield > formato->prtstrlen)
 			formato->longfield--;
+	if (formato->format == CHAR_FRMT_C && formato->ispoint)
+		formato->longfield--;
 	if (formato->prtstrlen >= 0)
 	{
-		if (formato->format == INT_FORMAT_I || formato->format == INT_FORMAT_D || \
-			formato->format == LONG_FORMAT_U || formato->format == HEX_FORMAT_X_CAP || \
-			formato->format == HEX_FORMAT_X)
+		if (formato->format == INT_FRMT_I || formato->format == INT_FRMT_D || \
+			formato->format == LONG_FRMT_U || formato->format == HEX_FRMT_X || \
+			formato->format == HEX_FRMT_X_CAP)
 			lenstr = ft_max(formato->prtstrlen, lenstr);
 		else
 			lenstr = ft_min(formato->prtstrlen, lenstr);

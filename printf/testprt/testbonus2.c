@@ -77,6 +77,53 @@ void bonustest2(void)
 	cont = ft_printf("< %-1c >< %-2c >< %-3c >", 0, '1', '2');
 	printf ("respuesta ft_printf %d\n", cont);
 
+	printf("%s Test 9 bonus %s %s\n",KGRN, "<%-5c%>", KNRM );
+	cont = printf("<%-5c>", '\0');
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%-5c>", '\0');
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 9 bonus %s %s\n",KGRN, "<%3c%>", KNRM );
+	cont = printf("{%3c}", 0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("{%3c}", 0);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 10 bonus %s %s\n",KGRN, "<%1.c>", KNRM );
+	cont = printf("{%1.c}", 'a');
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("{%1.c}", 'a');
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 10 bonus %s %s\n",KGRN, "<%5.c>", KNRM );
+	cont = printf("{%5.c}", 'a');
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("{%5.c}", 'a');
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 10 bonus %s %s\n",KGRN, "<%5c>", KNRM );
+	cont = printf("{%5c}", 'a');
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("{%5c}", 'a');
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 12 bonus %s %s\n",KGRN, "<%5c>", KNRM );
+	cont = printf("!%59c!", (char)0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("!%59c!", (char)0);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 12 bonus %s %s\n",KGRN, "<%5c>", KNRM );
+	cont = printf("<%1c, %1c, %1c>", '5', 'x', '\n');
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%1c, %1c, %1c>", '5', 'x', '\n');
+	
+	printf ("respuesta ft_printf %d\n", cont);
+	printf("%s Test 12 bonus %s %s\n",KGRN, "<%5c>", KNRM );
+	cont = printf("42%12c42", (char)0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("42%12c42", (char)0);
+	printf ("respuesta ft_printf %d\n", cont);
 
 
 }
