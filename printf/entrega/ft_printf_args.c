@@ -83,7 +83,7 @@ int	ft_print_addr(size_t val, char formato)
 		str = ft_strdup("0x0");
 	else
 	{
-		str = ft_addrtoa (val, formato, 0);
+		str = ft_addrtoa (val, formato, 1);
 	}
 	if (!str)
 		return (-1);

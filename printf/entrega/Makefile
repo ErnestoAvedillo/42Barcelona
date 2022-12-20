@@ -12,8 +12,8 @@
 
 NAME = libftprintf.a
 
-SRC =  ft_printf ft_utoa ft_addrtoa ft_printf_args bonus fill_list bonus_utils print_format \
-		write_extended ft_print_suf ft_print_chrs
+SRC =  ft_printf ft_utoa ft_addrtoa ft_printf_args bonus fill_list fill_list_utils \
+		bonus_utils print_format write_extended ft_print_suf ft_print_chrs check_utils
 
 OBJS = $(addsuffix .o,$(SRC))
 

@@ -24,17 +24,17 @@ int	ft_print_extended(char *str, va_list args, int pos)
 		return (-1);
 	}
 	lng = 0;
-	if (frmt->format == 'd' || frmt->format == 'i')
+	if (frmt->format == INT_FRMT_D || frmt->format == INT_FRMT_I)
 		lng = print_int_frm (va_arg (args, int), frmt);
-	if (frmt->format == 'c')
+	if (frmt->format == CHAR_FRMT_C)
 		lng = print_char_frm (va_arg (args, int), frmt);
-	if (frmt->format == 's')
+	if (frmt->format == STR_FRMT_S)
 		lng = print_str_frm (va_arg (args, char *), frmt);
-	if (frmt->format == 'p')
+	if (frmt->format == ADDR_FRMT_P)
 		lng = print_addr_frm (va_arg (args, size_t), frmt);
 	if (frmt->format == 'u' || frmt->format == 'x' || frmt->format == 'X')
 		lng = print_uint_frm (va_arg (args, size_t), frmt);
-	if (frmt->format == '%')
+	if (frmt->format == PERC_FRMT)
 		lng = print_str_frm ("%", frmt);
 	free(frmt);
 	return (lng);

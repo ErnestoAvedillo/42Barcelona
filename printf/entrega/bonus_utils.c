@@ -18,14 +18,18 @@ t_form_data	*newdata(void)
 	ptr = (t_form_data *) malloc(sizeof(t_form_data));
 	if (!ptr)
 		return (NULL);
-	ptr->flag = NONE_FLAG;
-	ptr->isplus = -1;
-	ptr->iszero = -1;
+	ptr->isplus = 0;
+	ptr->ispoint = 0;
+	ptr->iszero = 0;
+	ptr->isminus = 0;
+	ptr->isspace = 0;
+	ptr->ispound = 0;
+	ptr->isasterisc = 0;
+	ptr->isnone = 1;
 	ptr->longfield = -1;
 	ptr->prtstrlen = -1;
 	ptr->format = NONE_FRMT;
 	ptr->cur_str_pos = 0;
-	ptr->ispoint = 0;
 	ptr->signo = 0;
 	ptr->error = 0;
 	return (ptr);
@@ -66,27 +70,4 @@ t_form_data	*conv_field_to_int(char *str, t_form_data *formato)
 		formato->prtstrlen = getvalue_from_point(str, formato);
 	}
 	return (formato);
-}
-
-int	is_format_char(char c)
-{
-	if (c != CHAR_FRMT_C && c != STR_FRMT_S && \
-		c != INT_FRMT_D && c != INT_FRMT_I && \
-		c != LONG_FRMT_U && c != ADDR_FRMT_P && \
-		c != HEX_FRMT_X && c != HEX_FRMT_X_CAP && c != PERC_FRMT)
-		return (0);
-	return (1);
-}
-
-int	find_flag(char c)
-{
-	if (c == PLUS_FLAG)
-		return (PLUS_FLAG);
-	if (c == MINUS_FLAG)
-		return (MINUS_FLAG);
-	if (c == SPACE_FLAG)
-		return (SPACE_FLAG);
-	if (c == POUND_FLAG)
-		return (POUND_FLAG);
-	return (NONE_FLAG);
 }

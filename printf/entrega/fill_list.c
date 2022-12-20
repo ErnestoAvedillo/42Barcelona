@@ -37,6 +37,8 @@ int	getvalue_from_field(char *str, int start_pos)
 	free (strlen);
 	return (out);
 }
+//	printf("string recibida %s devuelve 
+// strlen %s cur_pos %d last_pos %d\n",str, strlen, cur_pos, last_pos );
 
 void	get_len_field(char *str, t_form_data *formato, va_list args)
 {
@@ -51,7 +53,7 @@ void	get_len_field(char *str, t_form_data *formato, va_list args)
 		formato->longfield = va_arg (args, int);
 	else
 	{
-		if (formato->flag == ZERO_FLAG && formato->ispoint == 0)
+		if (formato->iszero && !formato->ispoint)
 			return ;
 		val_length = getvalue_from_field (str, start_pos);
 		if (val_length == -1)
@@ -68,11 +70,17 @@ void	get_len_zeros(char *str, t_form_data *formato, va_list args)
 	int	cur_pos;
 	int	val_strlen;
 
-	cur_pos = -1;
+	cur_pos = 0;
 	val_strlen = 0;
-	while (str[cur_pos] != POINT_FLAG && formato->ispoint == 1)
+	if (formato->ispoint)
+	{
+		while (str[cur_pos] != POINT_FLAG)
+			cur_pos++;
 		cur_pos++;
-	cur_pos++;
+	}
+	else
+		while (!ft_isdigit(str[cur_pos]) && str[cur_pos] != 0)
+			cur_pos++;
 	if (str[cur_pos] == ASTERISC_FLAG)
 		formato->prtstrlen = va_arg (args, int);
 	else
@@ -87,54 +95,55 @@ void	get_len_zeros(char *str, t_form_data *formato, va_list args)
 }
 //printf("%s cur pos %d getzeros devuelve %d\n",
 //str, cur_pos, formato->prtstrlen );
-
-static void	get_field_info(char *straux, t_form_data *format_def, va_list args)
+/*
+static void	get_field_info(char *straux, t_form_data *frmt, va_list args)
 {
-	if (ft_strchr (straux, POINT_FLAG))
-	{
-		format_def->ispoint = 1;
-		format_def->iszero = 1;
-	}
-	get_len_field(straux, format_def, args);
-	if (format_def->iszero == 1)
-		get_len_zeros(straux, format_def, args);
+	get_len_field(straux, frmt, args);
+	if (frmt->iszero)
+		get_len_zeros(straux, frmt, args);
 }
-
+*/
 t_form_data	*fill_list(char *str, int pos, va_list args)
 {
-	t_form_data	*format_def;
+	t_form_data	*frmt;
 	int			cur_pos;
 	char		*straux;
 
-	format_def = newdata();
-	if (!format_def)
+	frmt = newdata();
+	if (!frmt)
 		return (NULL);
+	frmt->cur_str_pos = pos;
 	cur_pos = pos;
-	while (!is_format_char (str[pos]))
-		pos++;
-	format_def->format = str[pos];
-	format_def->cur_str_pos = cur_pos;
-	format_def->flag = find_flag (str[cur_pos]);
-	if (format_def->flag != NONE_FLAG)
-		cur_pos++;
+	pos = get_flags (str, pos, frmt);
+	frmt->format = str[pos];
 	if (str[cur_pos] == ZERO_FLAG)
-		format_def->iszero = 1;
+		frmt->iszero = 1;
+	while (!ft_isdigit(str[cur_pos]) && str[cur_pos] != '*'&& str[cur_pos] != '.')
+		cur_pos++;
+	if (str[cur_pos] == '0')
+		cur_pos++;
 	straux = ft_substr (str, cur_pos, pos - cur_pos);
 	if (!straux)
 	{
-		free(format_def);
+		free(frmt);
 		return (NULL);
 	}
-	get_field_info (straux, format_def, args);
+	get_len_field(straux, frmt, args);
+	if (frmt->ispoint || frmt->iszero)
+		get_len_zeros(straux, frmt, args);
+
+
 	free (straux);
-	return (format_def);
+	return (frmt);
 }
-/*	
-		printf("str %s substr %s flag %c point %d zero %d longfield %d \
-		printlen %d format %c cur_str_pos %d error %d\n",\
-		str, straux, format_def->flag, format_def->ispoint, \
-		format_def->iszero,format_def->longfield, \
-		format_def->prtstrlen, format_def->format,format_def->cur_str_pos, \
-		format_def->error );
+/*
+	printf("str %s substr %s ispound %d ispoint %d isplus %d isspace %d isminus %d \
+		isnone %d isasterisc %d iszero %d longfield %d \
+		printlen %d format %c cur_str_pos %d signo %d error %d\n",\
+		str, straux, frmt->ispound, frmt->ispoint, frmt->isplus, \
+		frmt->isspace, frmt->isminus, frmt->isnone,\
+		frmt->isasterisc, frmt->iszero,frmt->longfield, \
+		frmt->prtstrlen, frmt->format,frmt->cur_str_pos, \
+		frmt->error, frmt->error );
 */
-//printf("str %s straux %s cur por %d pos %d\n",str, straux, cur_pos, pos );
+//	printf("str %s straux %s cur por %d pos %d\n",str, straux, cur_pos, pos );

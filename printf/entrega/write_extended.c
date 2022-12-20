@@ -18,12 +18,10 @@ static int	print_zeros(char *str, t_form_data *formato)
 
 	lenstr = (int) ft_strlen(str);
 	out = 0;
-	if (formato->format == 'd' || formato->format == 'i' || \
-		formato->format == 'x' || formato->format == 'X' || \
-		formato->format == 'u')
+	if (is_numeric(formato->format))
 	{
-		if (formato->flag == PLUS_FLAG || formato->ispoint || \
-			formato->iszero >= 0)
+		if (formato->isplus || formato->ispoint || \
+			formato->iszero )
 			out = print_extra_zeros (formato, lenstr);
 	}
 	return (out);
@@ -37,17 +35,17 @@ static int	print_pre_blanc(char *str, t_form_data *formato)
 	lenstr = (int) ft_strlen(str);
 	out = 0;
 	if (ft_printf_suf_str (formato))
-		out = print_extra_char (formato, lenstr, ' ');
+		out = print_prefix (formato, lenstr, ' ');
 	if (ft_printf_suf_int (formato))
-		out = print_extra_char (formato, lenstr, ' ');
+		out = print_prefix (formato, lenstr, ' ');
 	if (ft_printf_suf_lng (formato))
-		out = print_extra_char (formato, lenstr, ' ');
+		out = print_prefix (formato, lenstr, ' ');
 	if (ft_printf_suf_hex (formato))
-		out = print_extra_char (formato, lenstr, ' ');
+		out = print_prefix (formato, lenstr, ' ');
 	if (ft_printf_suf_addr (formato))
-		out = print_extra_char (formato, lenstr, ' ');
-	if (formato->format == PERC_FRMT && formato->flag != MINUS_FLAG)
-		out = print_extra_char (formato, lenstr, ' ');
+		out = print_prefix (formato, lenstr, ' ');
+	if (formato->format == PERC_FRMT && !formato->isminus)
+		out = print_prefix (formato, lenstr, ' ');
 	return (out);
 }
 
@@ -69,9 +67,11 @@ int	write_extended(char *str, t_form_data *formato)
 		out += ft_print_str (substr);
 		free (substr);
 	}
+	else if (formato->format == CHAR_FRMT_C)
+		out += ft_print_char(str[0]);
 	else
 		out += ft_print_str (str);
-	if (formato->flag == '-')
-		out += print_extra_char (formato, lenstr, ' ');
+	if (formato->isminus)
+		out += print_suffix (formato, lenstr, ' ');
 	return (out);
 }
