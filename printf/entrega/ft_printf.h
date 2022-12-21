@@ -34,6 +34,7 @@ typedef struct l_form_data
 	int		cur_str_pos;
 	int		signo;
 	int		error;
+	int		esvalcero;
 }		t_form_data;
 
 typedef struct l_print_data
@@ -95,10 +96,10 @@ int			print_uint_frm(unsigned int val, t_form_data *formato);
 //write_extended
 int			write_extended(char *str, t_form_data *formato);
 //ft_print_chrs
-int			print_suffix(t_form_data *formato, int lenstr, char c);
-int			print_prefix(t_form_data *formato, int lenstr, char c);
-int			print_extra_zeros(t_form_data *formato, int lenstr);
-int			print_symbol(t_form_data *formato);
+int			print_suffix(t_form_data *formato, char *str, char c);
+int			print_prefix(t_form_data *formato, char *str, char c);
+int			print_extra_zeros(t_form_data *formato, char *str);
+int			print_symbol(t_form_data *formato, char *str);
 //ft_print_suf
 int			ft_printf_suf_str(t_form_data *formato);
 int			ft_printf_suf_int(t_form_data *formato);
@@ -111,14 +112,18 @@ void		get_len_zeros(char *str, t_form_data *formato, va_list args);
 t_form_data	*fill_list(char *str, int pos, va_list args);
 int			get_flags(char *str, int pos, t_form_data *frmt);
 //fill_list_utils
-void		isflag(char x, t_form_data *frmt, int addzero);
 int			get_flags(char *str, int pos, t_form_data *frmt);
 void		check_isflag(t_form_data *frmt);
 //check_utils
 int			is_format_char(char c);
-int			find_flag(char c);
 int			is_numeric(char c);
 int			is_integer(char c);
 int			is_hexa(char c);
+//check_utils2
+int			is_flag(char c);
+int			chk_frmt_hex(t_form_data *formato, char *str);
+void		chk_frmt_int(t_form_data *frmt, char *str);
+int			chk_frmt_prefix(t_form_data *frmt, int i);
+int			chk_frmt_prefix_minus(t_form_data *frmt, char c);
 
 #endif

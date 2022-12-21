@@ -26,7 +26,7 @@ int	ft_printf_suf_int(t_form_data *formato)
 	if (is_integer(formato->format))
 	{
 		if (((formato->isnone || formato->isplus) && \
-		 formato->iszero <= 0))
+			formato->iszero <= 0))
 			return (1);
 		if (formato->ispoint && (formato->longfield > formato->prtstrlen))
 			return (1);

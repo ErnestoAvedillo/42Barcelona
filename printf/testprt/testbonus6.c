@@ -88,4 +88,133 @@ void bonustest6(void)
 	cont = ft_printf(" %-8.5x $ %8.5x ", 0, 0);
 	printf ("respuesta ft_printf %d\n", cont);
 
+	printf("%s Test 10 bonus %s %s\n",KGRN,"^.^/%#42.42x^.^/", KNRM );
+	cont = printf("^.^/%#42.42x^.^/",  -2029487914);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#42.42x^.^/", -2029487914);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 10 bonus %s %s\n",KGRN,"^.^/%#x^.^/", KNRM );
+	cont = printf("^.^/%#x^.^/",  -2029487914);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#x^.^/", -2029487914);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 10 bonus %s %s\n",KGRN,"^.^/%#x^.^/", KNRM );
+	cont = printf("^.^/%#x^.^/",  0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#x^.^/", 0);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 10 bonus %s %s\n",KGRN,"^.^/%#x^.^/", KNRM );
+	cont = printf("^.^/%#x^.^/",  9);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#x^.^/", 9);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 6 bonus %s %s\n",KGRN," %#x %#x ", KNRM );
+	cont = printf(" %#x %#x ", INT_MAX, INT_MIN);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf(" %#x %#x ", INT_MAX, INT_MIN);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN," %#x %#x ", KNRM );
+	cont = printf(" %#x %#x ", UINT_MAX, 0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf(" %#x %#x ", UINT_MAX, 0);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN," %#x %#x ", KNRM );
+	cont = printf(" %#lx %#x ", LONG_MIN, 0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf(" %#x %#x ", LONG_MIN, 0);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,">------------<%#9.2x>------------<", KNRM );
+	cont = printf(">------------<%#9.2x>------------<", -1827643996);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf(">------------<%#9.2x>------------<", -1827643996);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"<%#9.2x>", KNRM );
+	cont = printf("<%#9.2x>", 0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%#9.2x>", 0);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%#20.4x^.^/", KNRM );
+	cont = printf("^.^/%#20.4x^.^/", 19162350);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#20.4x^.^/", 19162350);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%#20.10x^.^/", KNRM );
+	cont = printf("^.^/%#20.10x^.^/", 19162350);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#20.10x^.^/", 19162350);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"\\!/%#40.24x\\!/", KNRM );
+	cont = printf("\\!/%#40.24x\\!/", -1827643996);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("\\!/%#40.24x\\!/", -1827643996);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%#20x^.^/", KNRM );
+	cont = printf("^.^/%#20x^.^/", 19162350);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#20x^.^/", 19162350);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"<%-#9.2x>", KNRM );
+	cont = printf("<%-#9.2x>", 0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%-#9.2x>", 0);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%0#20x^.^/", KNRM );
+	cont = printf("^.^/%0#20x^.^/", 19162350);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%0#20x^.^/", 19162350);
+	printf ("respuesta ft_printf %d\n", cont);
+ 
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%#42.9x^.^/", KNRM );
+	cont = printf("^.^/%#42.10x^.^/", 1669661377);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#42.10x^.^/", 1669661377);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%#16.10x^.^/", KNRM );
+	cont = printf("^.^/%0#16.10x^.^/", -1069367408);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%0#16.10x^.^/", -1069367408);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%#16.10x^.^/", KNRM );
+	cont = printf("^.^/%#-16.10x^.^/", -1069367408);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#-16.10x^.^/", -1069367408);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%#16.10x^.^/", KNRM );
+	cont = printf("^.^/%#-16.7x^.^/", -1069367408);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#-16.7x^.^/", -1069367408);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%#32.8x^.^/", KNRM );
+	cont = printf("^.^/%#32.8x^.^/", 170057286);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%#32.8x^.^/", 170057286);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 7 bonus %s %s\n",KGRN,"^.^/%#32.8x^.^/", KNRM );
+	cont = printf("42%-#61.8x42", 59253329);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("42%-#61.8x42", 59253329);
+	printf ("respuesta ft_printf %d\n", cont);
+
+
+
+
 }

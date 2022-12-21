@@ -208,5 +208,12 @@ void bonustest(void)
 	cont = ft_printf(" %.5d ", -1 );
 	printf ("respuesta ft_printf %d\n", cont);
 
+	printf ("respuesta ft_printf %d\n", cont);	
+	printf("%s Test 22 bonus %s %s\n",KGRN,"^.^/%+37.24d^.^/", KNRM );
+	cont = printf("^.^/%+37.24d^.^/", 0 );
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("^.^/%+37.24d^.^/", 0 );
+	printf ("respuesta ft_printf %d\n", cont);
+
 
 }

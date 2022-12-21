@@ -113,16 +113,23 @@ void bonustest2(void)
 	cont = ft_printf("!%59c!", (char)0);
 	printf ("respuesta ft_printf %d\n", cont);
 
-	printf("%s Test 12 bonus %s %s\n",KGRN, "<%5c>", KNRM );
+	printf("%s Test 12 bonus %s %s\n",KGRN, "<%1c, %1c, %1c>", KNRM );
 	cont = printf("<%1c, %1c, %1c>", '5', 'x', '\n');
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("<%1c, %1c, %1c>", '5', 'x', '\n');
 	
 	printf ("respuesta ft_printf %d\n", cont);
-	printf("%s Test 12 bonus %s %s\n",KGRN, "<%5c>", KNRM );
+	printf("%s Test 12 bonus %s %s\n",KGRN, "42%12c42", KNRM );
 	cont = printf("42%12c42", (char)0);
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("42%12c42", (char)0);
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf ("respuesta ft_printf %d\n", cont);
+	printf("%s Test 12 bonus %s %s\n",KGRN, "42%-c42", KNRM );
+	cont = printf("42%-c42", (char)0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("42%-c42", (char)0);
 	printf ("respuesta ft_printf %d\n", cont);
 
 

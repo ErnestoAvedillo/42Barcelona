@@ -94,6 +94,17 @@ void bonustest3(void)
 	cont = ft_printf(">%35s<", NULL);
 	printf ("respuesta ft_printf %d\n", cont);
 
+	printf("%s Test 9 bonus %s %s\n",KGRN,"%1s, %1s, %1s, %1s", KNRM );
+	cont = printf("%1s, %1s, %1s, %1s", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("%1s, %1s, %1s, %1s", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
+	printf ("respuesta ft_printf %d\n", cont);
+
+	printf("%s Test 9 bonus %s %s\n",KGRN,"%10s, %10s, %10s, %10s", KNRM );
+	cont = printf("%10s, %10s, %10s, %10s", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("%10s, %10s, %10s, %10s", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
+	printf ("respuesta ft_printf %d\n", cont);
 
 
 }

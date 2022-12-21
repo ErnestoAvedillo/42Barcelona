@@ -19,6 +19,7 @@ int	getvalue_from_field(char *str, int start_pos)
 	char	*strlen;
 
 	cur_pos = start_pos;
+	last_pos = start_pos;
 	if (str[cur_pos] == POINT_FLAG)
 		cur_pos++;
 	last_pos = start_pos;
@@ -95,14 +96,7 @@ void	get_len_zeros(char *str, t_form_data *formato, va_list args)
 }
 //printf("%s cur pos %d getzeros devuelve %d\n",
 //str, cur_pos, formato->prtstrlen );
-/*
-static void	get_field_info(char *straux, t_form_data *frmt, va_list args)
-{
-	get_len_field(straux, frmt, args);
-	if (frmt->iszero)
-		get_len_zeros(straux, frmt, args);
-}
-*/
+
 t_form_data	*fill_list(char *str, int pos, va_list args)
 {
 	t_form_data	*frmt;
@@ -116,11 +110,7 @@ t_form_data	*fill_list(char *str, int pos, va_list args)
 	cur_pos = pos;
 	pos = get_flags (str, pos, frmt);
 	frmt->format = str[pos];
-	if (str[cur_pos] == ZERO_FLAG)
-		frmt->iszero = 1;
-	while (!ft_isdigit(str[cur_pos]) && str[cur_pos] != '*'&& str[cur_pos] != '.')
-		cur_pos++;
-	if (str[cur_pos] == '0')
+	while (is_flag(str[cur_pos]))
 		cur_pos++;
 	straux = ft_substr (str, cur_pos, pos - cur_pos);
 	if (!straux)
@@ -131,8 +121,6 @@ t_form_data	*fill_list(char *str, int pos, va_list args)
 	get_len_field(straux, frmt, args);
 	if (frmt->ispoint || frmt->iszero)
 		get_len_zeros(straux, frmt, args);
-
-
 	free (straux);
 	return (frmt);
 }

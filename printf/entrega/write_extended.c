@@ -21,8 +21,8 @@ static int	print_zeros(char *str, t_form_data *formato)
 	if (is_numeric(formato->format))
 	{
 		if (formato->isplus || formato->ispoint || \
-			formato->iszero )
-			out = print_extra_zeros (formato, lenstr);
+			formato->iszero)
+			out = print_extra_zeros (formato, str);
 	}
 	return (out);
 }
@@ -30,22 +30,20 @@ static int	print_zeros(char *str, t_form_data *formato)
 static int	print_pre_blanc(char *str, t_form_data *formato)
 {
 	int	out;
-	int	lenstr;
 
-	lenstr = (int) ft_strlen(str);
 	out = 0;
 	if (ft_printf_suf_str (formato))
-		out = print_prefix (formato, lenstr, ' ');
+		out = print_prefix (formato, str, ' ');
 	if (ft_printf_suf_int (formato))
-		out = print_prefix (formato, lenstr, ' ');
+		out = print_prefix (formato, str, ' ');
 	if (ft_printf_suf_lng (formato))
-		out = print_prefix (formato, lenstr, ' ');
+		out = print_prefix (formato, str, ' ');
 	if (ft_printf_suf_hex (formato))
-		out = print_prefix (formato, lenstr, ' ');
+		out = print_prefix (formato, str, ' ');
 	if (ft_printf_suf_addr (formato))
-		out = print_prefix (formato, lenstr, ' ');
+		out = print_prefix (formato, str, ' ');
 	if (formato->format == PERC_FRMT && !formato->isminus)
-		out = print_prefix (formato, lenstr, ' ');
+		out = print_prefix (formato, str, ' ');
 	return (out);
 }
 
@@ -58,7 +56,7 @@ int	write_extended(char *str, t_form_data *formato)
 	out = 0;
 	lenstr = (int) ft_strlen(str);
 	out += print_pre_blanc (str, formato);
-	out += print_symbol (formato);
+	out += print_symbol (formato, str);
 	out += print_zeros(str, formato);
 	if (formato->ispoint && formato->prtstrlen >= 0 && \
 		lenstr > formato->prtstrlen && formato->format == STR_FRMT_S)
@@ -72,6 +70,6 @@ int	write_extended(char *str, t_form_data *formato)
 	else
 		out += ft_print_str (str);
 	if (formato->isminus)
-		out += print_suffix (formato, lenstr, ' ');
+		out += print_suffix (formato, str, ' ');
 	return (out);
 }

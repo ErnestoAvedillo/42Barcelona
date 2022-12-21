@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	print_int_frm(int val, t_form_data *formato)
+int	print_int_frm(int val, t_form_data *frmt)
 {
 	int		lng;
 	char	*strval;
 
 	if (val < 0)
-		formato->signo = -1;
+		frmt->signo = -1;
 	if (val == -2147483648)
 		strval = ft_strdup("2147483648");
 	else if (val < 0)
@@ -25,28 +25,21 @@ int	print_int_frm(int val, t_form_data *formato)
 		val *= -1;
 		strval = ft_itoa (val);
 	}
-	else if (formato->ispoint && formato->prtstrlen == 0 && val == 0)
+	else if (frmt->ispoint && frmt->prtstrlen == 0 && val == 0)
 		strval = ft_strdup("");
 	else
 		strval = ft_itoa (val);
 	if (!strval)
 		return (-1);
-	if (formato->isspace && formato->longfield <= (int) ft_strlen(strval))
-		formato->longfield = (int) ft_strlen(strval) + 1;
-	if (formato->ispoint && formato->longfield < (int) ft_strlen(strval))
-		formato->longfield = (int) ft_strlen(strval);
-	if ((formato->isplus && formato->signo >= 0) || formato->signo < 0)
-	{
-		if (!formato->isplus && !formato->isminus && !formato->isspace && !formato->ispoint)
-			formato->prtstrlen--;
-		formato->longfield--;
-	}
-	lng = write_extended(strval, formato);
+	chk_frmt_int(frmt, strval);
+	lng = write_extended(strval, frmt);
 	free(strval);
 	return (lng);
 }
+//	printf("longfield %d prtstrlen %d \n"
+	//,frmt->longfield, frmt->prtstrlen );
 
-int	print_char_frm(int val, t_form_data *formato)
+int	print_char_frm(int val, t_form_data *frmt)
 {
 	int		lng;
 	char	*strval;
@@ -58,13 +51,13 @@ int	print_char_frm(int val, t_form_data *formato)
 	strval[0] = val;
 	strval[1] = '\0';
 	if (val == 0)
-		formato->longfield--;
-	lng += write_extended(strval, formato);
+		frmt->longfield--;
+	lng += write_extended(strval, frmt);
 	free(strval);
 	return (lng);
 }
 
-int	print_str_frm(char *prtstr, t_form_data *formato)
+int	print_str_frm(char *prtstr, t_form_data *frmt)
 {
 	int		lng;
 
@@ -74,11 +67,11 @@ int	print_str_frm(char *prtstr, t_form_data *formato)
 		if (!prtstr)
 			return (-1);
 	}
-	lng = write_extended(prtstr, formato);
+	lng = write_extended(prtstr, frmt);
 	return (lng);
 }
 
-int	print_addr_frm( size_t ptr, t_form_data *formato)
+int	print_addr_frm( size_t ptr, t_form_data *frmt)
 {
 	int		lng;
 	char	*strval;
@@ -87,33 +80,33 @@ int	print_addr_frm( size_t ptr, t_form_data *formato)
 	if (ptr == 0)
 		strval = ft_strdup("0x0");
 	else
-		strval = ft_addrtoa (ptr, formato->format, formato->ispound);
+		strval = ft_addrtoa (ptr, frmt->format, frmt->ispound);
 	if (!strval)
-			return (-1);
-	lng = write_extended (strval, formato);
+		return (-1);
+	lng = write_extended (strval, frmt);
 	free (strval);
 	return (lng);
 }
 
-int	print_uint_frm( unsigned int val, t_form_data *formato)
+int	print_uint_frm( unsigned int val, t_form_data *frmt)
 {
 	int		lng;
 	char	*strval;
 
 	strval = NULL;
-	if (formato->ispoint && formato->prtstrlen == 0 && val == 0)
+	if (frmt->ispoint && frmt->prtstrlen == 0 && val == 0)
 		strval = ft_strdup("");
 	else if (val == 0)
 		strval = ft_strdup("0");
-	else if (formato->format == LONG_FRMT_U)
+	else if (frmt->format == LONG_FRMT_U)
 		strval = ft_utoa (val);
-	else if (formato->format == 'x' || formato->format == 'X')
-		strval = ft_addrtoa (val, formato->format, formato->ispound);
-	if (formato->ispoint && formato->longfield < (int) ft_strlen(strval))
-		formato->longfield = (int) ft_strlen(strval);
+	else if (frmt->format == 'x' || frmt->format == 'X')
+		strval = ft_addrtoa (val, frmt->format, 0);
+	if (frmt->ispoint && frmt->longfield < (int) ft_strlen(strval))
+		frmt->longfield = (int) ft_strlen(strval);
 	if (!strval)
-			return (-1);
-	lng = write_extended(strval, formato);
+		return (-1);
+	lng = write_extended(strval, frmt);
 	free (strval);
 	return (lng);
 }
