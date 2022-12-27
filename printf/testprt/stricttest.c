@@ -9,7 +9,6 @@
 /*   Updated: 2022/11/01 17:30:14 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"../entrega/ft_printf.h"
 #include"test_lib.h"
 
 void stricttest(void)

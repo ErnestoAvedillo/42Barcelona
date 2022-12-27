@@ -14,9 +14,7 @@
 static int	print_zeros(char *str, t_form_data *formato)
 {
 	int	out;
-	int	lenstr;
 
-	lenstr = (int) ft_strlen(str);
 	out = 0;
 	if (is_numeric(formato->format))
 	{

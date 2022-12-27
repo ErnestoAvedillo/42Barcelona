@@ -62,16 +62,6 @@ int	print_prefix(t_form_data *frmt, char *str, char c)
 	}
 	return (out);
 }
-/*
-		if (frmt->longfield > frmt->prtstrlen && !is_numeric(frmt->format))
-			frmt->longfield--;
-		if (!is_integer(frmt->format) || frmt->signo == 0)
-			out += write (1, &c, 1);
-*/
-
-//printf("lenfield %d,  prtstrlen %d, 
-//lenstr %d str %s \n",\
-//frmt->longfield, frmt->prtstrlen, lenstr, str );
 
 int	print_extra_zeros(t_form_data *frmt, char *str)
 {

@@ -87,7 +87,7 @@ void bonustest5(void)
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("<%-8.5u> $ <%-8.5u> ", 0, 835);
 	printf ("respuesta ft_printf %d\n", cont);
-
+/*
 	printf("%s Test 11 bonus %s %s\n",KGRN," %--120.50 $ %--120.50 ", KNRM );
 	cont = printf("%--120.50d%-%%-112.167X%-32.65u" ,-1355834522,3814946551u,404243169u);
 	printf ("respuesta ???printf %d\n", cont);
@@ -137,6 +137,6 @@ void bonustest5(void)
 	cont = ft_printf("%0163.109u%-140.69d%---91.148s%000132.141i%-52.170x" ,2109506632u,-1086209677,"\nmD^8<.q*'\rD",-1143516304,2879456117u
 );
 	printf ("respuesta ft_printf %d\n", cont);
-
+*/
 
 }

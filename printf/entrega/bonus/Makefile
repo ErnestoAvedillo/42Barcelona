@@ -22,7 +22,7 @@ DEPS := $(addsuffix .d,$(SRC))
 
 SRCS := $(addsuffix .c,$(SRC))
 
-DIRLIBFT := ./libft/
+DIRLIBFT := ../libft/
 LIBNAME := libft.a
 LIBFT := $(addprefix $(DIRLIBFT),$(LIBNAME))
 

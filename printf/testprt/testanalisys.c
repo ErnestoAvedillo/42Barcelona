@@ -282,7 +282,7 @@ void testanalisys(void)
 	cont = ft_printf("<%5p><%1p>",(void *) 12,(void *) 43);
 	printf ("respuesta ft_printf %d\n", cont);
 	testnr++;
-
+/*
 	printf("%s Test con %% %s %s\n",KYEL, "<%%XX%%>", KNRM );
 	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%5%>", KNRM );
 	cont = printf("< %05% >");
@@ -304,6 +304,6 @@ void testanalisys(void)
 	cont = ft_printf("< %5% >");
 	printf ("respuesta ???printf %d\n", cont);
 	testnr++;
-
+*/
 
 }

@@ -15,12 +15,12 @@ INCLUDE = test.h
 
 #Datos de la libreria 1
 #LIB = libft.a
-#DIRLIBS = ./entrega/
+#DIRLIBS = ./entrega/bonus/
 #LIBS = $(addprefix $(DIRLIBS), $(LIB))
 
 #Datos de la libreria 2 (en mi caso los tests.
 LIB_PRT = libftprintf.a
-DIRLIB_PRT = ./entrega/
+DIRLIB_PRT = ./entrega/bonus/
 LIBS_PRT = $(addprefix $(DIRLIB_PRT),$(LIB_PRT))
 
 #Datos de la libreria 2 (en mi caso los tests.
@@ -32,7 +32,7 @@ LIBS_TEST = $(addprefix $(DIRLIB_TEST),$(LIB_TEST))
 SRCS = $(addsuffix .c, $(SRC))
 OBJS = $(addsuffix .o, $(SRC))
 
-CC = gcc
+CC = gcc -g
 
 RM = rm -rfd
 

@@ -149,7 +149,7 @@ void bonustest1(void)
 	cont = ft_printf("% 015d",  0 );
 	printf ("respuesta ft_printf %d\n", cont);
 	printf("1\n");
-
+/*
 	printf("%s Test 15 bonus %s %s\n",KGRN,"\\!/% 06.2d\\!/", KNRM );
 	cont = printf("\\!/% 06.2d\\!/",  646891090 );
 	printf ("respuesta ???printf %d\n", cont);
@@ -167,7 +167,7 @@ void bonustest1(void)
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("!% 02.36d!",  1598578416 );
 	printf ("respuesta ft_printf %d\n", cont);
-
+*/
 	cont = printf("\\!/% d\\!/\n",  20 );
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("\\!/% d\\!/\n",  20 );
@@ -234,12 +234,12 @@ void bonustest1(void)
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("\\!/% 04d\\!/\n",  20 );
 	printf ("respuesta ft_printf %d\n", cont);
-	cont = printf("\\!/% 04.1d\\!/\n",  20 );
-	printf ("respuesta ???printf %d\n", cont);
+//	cont = printf("\\!/% 04.1d\\!/\n",  20 );
+//	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("\\!/% 04.1d\\!/\n",  20 );
 	printf ("respuesta ft_printf %d\n", cont);
-	cont = printf("\\!/% 01.4d\\!/\n",  20 );
-	printf ("respuesta ???printf %d\n", cont);
+//	cont = printf("\\!/% 01.4d\\!/\n",  20 );
+//	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("\\!/% 01.4d\\!/\n",  20 );
 	printf ("respuesta ft_printf %d\n", cont);
 

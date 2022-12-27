@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../entrega/ft_printf.h"
 #include"test_lib.h"
 
 void spectest(void)

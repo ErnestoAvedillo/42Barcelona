@@ -36,10 +36,8 @@ void	check_isflag(t_form_data *frmt)
 
 int	get_flags(char *str, int pos, t_form_data *frmt)
 {
-	int	i;
 	int	curpos;
 
-	i = pos;
 	curpos = pos;
 	while (is_flag(str[curpos]))
 	{
@@ -52,7 +50,7 @@ int	get_flags(char *str, int pos, t_form_data *frmt)
 			frmt->isasterisc = 1;
 		if (str[curpos] == POINT_FLAG)
 			frmt->ispoint = 1;
-			curpos++;
+		curpos++;
 	}
 	check_isflag(frmt);
 	return (curpos);
