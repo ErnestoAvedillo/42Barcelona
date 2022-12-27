@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 16:29:34 by eavedill          #+#    #+#              #
-#    Updated: 2022/11/27 13:52:02 by eavedill         ###   ########.fr        #
+#    Updated: 2022/12/27 20:14:07 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ DEPS = $(addsuffix .d,$(SRC))
 
 SRCS = $(addsuffix .c,$(SRC))
 
-DIRLIBFT = ./libft/
+DIRLIBFT = ../libft/
 LIBNAME = libft.a
 LIBFT= $(addprefix $(DIRLIBFT),$(LIBNAME))
 
