@@ -67,7 +67,8 @@ clean:
 	make -C$(DIRLIBFT) clean
 
 fclean:     clean
-	$(RM) $(NAMES) $(LIBFT) $(LIBNAME)
+	$(RM) $(NAME) $(LIBFT) $(LIBNAME)
+	make -C$(DIRLIBFT) fclean
 
 re:         fclean $(NAME) 
 

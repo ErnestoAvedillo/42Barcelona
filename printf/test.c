@@ -38,11 +38,11 @@ int main (int av, char **ac)
 {
 	if (av == 1 || is_func(ac,"analysis")) 
 		testanalisys();
-	if (av == 1 || is_func(ac,"standard")) 
+	if (av == 1 || is_func(ac, "standard") ||is_func(ac, "onlyman"))
 		stdtest();
-	if (av == 1 || is_func(ac,"special")) 
+	if (av == 1 || is_func(ac, "special") || is_func(ac, "onlyman"))
 		spectest();
-	if (av == 1 || is_func(ac,"strict")) 
+	if (av == 1 || is_func(ac, "strict") || is_func(ac, "onlyman"))
 		stricttest();
 	if (av == 1 || is_func(ac,"bonus0")) 
 		bonustest();

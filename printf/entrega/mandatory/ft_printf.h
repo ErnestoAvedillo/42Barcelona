@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stddef.h>
 # include <stdlib.h>
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct l_form_data
 {

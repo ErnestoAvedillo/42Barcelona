@@ -48,7 +48,7 @@ $(LIBNAME): $(LIBFT)
 	@cp -p $(LIBFT) $(LIBNAME)
 
 $(LIBFT):
-	@make -C$(DIRLIBFT) all
+	@make -C$(DIRLIBFT) bonus
 
 print:
 	@echo $(INCLUDE)
@@ -64,6 +64,7 @@ clean:
 
 fclean:     clean
 	@$(RM) $(NAME) $(LIBFT) $(LIBNAME)
+	make -C$(DIRLIBFT) fclean
 
 re:         fclean libft_make $(NAME) 
 
