@@ -12,9 +12,9 @@
 
 NAME := libftprintf.a
 
-SRC :=  ft_printf ft_utoa ft_addrtoa ft_printf_args bonus fill_list fill_list_utils \
-		bonus_utils print_format write_extended ft_print_suf ft_print_chrs \
-		check_utils check_utils2
+SRC :=  ft_printf_bonus ft_utoa_bonus ft_addrtoa_bonus ft_printf_args_bonus ft_print_ext_bonus \
+		fill_list_bonus fill_list_utl_bonus ft_printf_utl_bonus ft_print_frmt_bonus ft_prnitf_writ_ext_bonus \
+		ft_print_suf_bonus ft_print_chrs_bonus ft_printf_chk_utl_bonus ft_printf_chk_utl2_bonus
 
 OBJS := $(addsuffix .o,$(SRC))
 
@@ -26,7 +26,7 @@ DIRLIBFT := ../libft/
 LIBNAME := libft.a
 LIBFT := $(addprefix $(DIRLIBFT),$(LIBNAME))
 
-INCLUDE := ft_printf.h
+INCLUDE := ft_printf_bonus.h
 
 FLAGS := -Wall -Werror -Wextra
 
