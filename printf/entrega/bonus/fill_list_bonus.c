@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_list.c                                        :+:      :+:    :+:   */
+/*   fill_list_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 11:23:58 by eavedill          #+#    #+#             */
-/*   Updated: 2022/12/02 11:24:01 by eavedill         ###   ########.fr       */
+/*   Created: 2022/12/29 14:30:11 by eavedill          #+#    #+#             */
+/*   Updated: 2022/12/29 14:30:30 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include"ft_printf_bonus.h"
 
 int	getvalue_from_field(char *str, int start_pos)
