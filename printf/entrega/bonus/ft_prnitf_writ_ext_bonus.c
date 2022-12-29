@@ -18,10 +18,12 @@ static int	print_zeros(char *str, t_form_data *formato)
 	out = 0;
 	if (is_numeric(formato->format))
 	{
-		if (formato->isplus || formato->ispoint || \
-			formato->iszero)
+		if ((formato->isplus || formato->ispoint || \
+			formato->iszero))
 			out = print_extra_zeros (formato, str);
 	}
+	if (formato->format == PERC_FRMT && (!formato->isminus))
+			out = print_extra_zeros (formato, str);
 	return (out);
 }
 
@@ -54,7 +56,7 @@ int	write_extended(char *str, t_form_data *formato)
 	out = 0;
 	lenstr = (int) ft_strlen(str);
 	out += print_pre_blanc (str, formato);
-	out += print_symbol (formato, str);
+	out += print_symbol (formato);
 	out += print_zeros(str, formato);
 	if (formato->ispoint && formato->prtstrlen >= 0 && \
 		lenstr > formato->prtstrlen && formato->format == STR_FRMT_S)

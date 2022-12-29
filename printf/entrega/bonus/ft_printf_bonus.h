@@ -98,7 +98,7 @@ int			write_extended(char *str, t_form_data *formato);
 int			print_suffix(t_form_data *formato, char *str, char c);
 int			print_prefix(t_form_data *formato, char *str, char c);
 int			print_extra_zeros(t_form_data *formato, char *str);
-int			print_symbol(t_form_data *formato, char *str);
+int			print_symbol(t_form_data *formato);
 //ft_print_suf
 int			ft_printf_suf_str(t_form_data *formato);
 int			ft_printf_suf_int(t_form_data *formato);
@@ -113,6 +113,9 @@ int			get_flags(char *str, int pos, t_form_data *frmt);
 //fill_list_utils
 int			get_flags(char *str, int pos, t_form_data *frmt);
 void		check_isflag(t_form_data *frmt);
+void		get_len_asterisc(t_form_data *formato, va_list args);
+void		get_zero_asterisc(t_form_data *formato, va_list args);
+
 //check_utils
 int			is_format_char(char c);
 int			is_numeric(char c);

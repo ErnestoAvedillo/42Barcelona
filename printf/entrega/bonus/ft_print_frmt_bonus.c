@@ -26,7 +26,10 @@ int	print_int_frm(int val, t_form_data *frmt)
 		strval = ft_itoa (val);
 	}
 	else if (frmt->ispoint && frmt->prtstrlen == 0 && val == 0)
+	{
 		strval = ft_strdup("");
+		frmt->esvalcero = 0;
+	}
 	else
 		strval = ft_itoa (val);
 	if (!strval)
@@ -60,14 +63,18 @@ int	print_char_frm(int val, t_form_data *frmt)
 int	print_str_frm(char *prtstr, t_form_data *frmt)
 {
 	int		lng;
+	char	*str;
 
 	if (prtstr == NULL)
 	{
-		prtstr = ft_strdup("(null)");
-		if (!prtstr)
+		str = ft_strdup("(null)");
+		if (!str)
 			return (-1);
+		lng = write_extended(str, frmt);
+		free (str);
 	}
-	lng = write_extended(prtstr, frmt);
+	else
+		lng = write_extended(prtstr, frmt);
 	return (lng);
 }
 
@@ -78,7 +85,10 @@ int	print_addr_frm( size_t ptr, t_form_data *frmt)
 
 	lng = 0;
 	if (ptr == 0)
+	{
 		strval = ft_strdup("0x0");
+		frmt->esvalcero = 1;
+	}
 	else
 		strval = ft_addrtoa (ptr, frmt->format, frmt->ispound);
 	if (!strval)
@@ -94,6 +104,8 @@ int	print_uint_frm( unsigned int val, t_form_data *frmt)
 	char	*strval;
 
 	strval = NULL;
+	if (val == 0)
+		frmt->esvalcero = 1;
 	if (frmt->ispoint && frmt->prtstrlen == 0 && val == 0)
 		strval = ft_strdup("");
 	else if (val == 0)

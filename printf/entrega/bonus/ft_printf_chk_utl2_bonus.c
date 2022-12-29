@@ -32,9 +32,9 @@ int	chk_frmt_hex(t_form_data *formato, char *str)
 	int	lenstr;
 
 	lenstr = (int) ft_strlen(str);
-	if (is_hexa(formato->format) && formato->ispound && ft_strncmp(str, "0", 1))
+	if (is_hexa(formato->format) && formato->ispound && !formato->esvalcero)
 	{
-		if (formato->prtstrlen > lenstr)
+		if (formato->prtstrlen >= lenstr)
 			lenstr = formato->prtstrlen + 2;
 		else
 			lenstr += 2;

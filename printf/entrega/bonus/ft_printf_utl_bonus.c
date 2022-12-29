@@ -32,6 +32,7 @@ t_form_data	*newdata(void)
 	ptr->cur_str_pos = 0;
 	ptr->signo = 0;
 	ptr->error = 0;
+	ptr->esvalcero = 0;
 	return (ptr);
 }
 

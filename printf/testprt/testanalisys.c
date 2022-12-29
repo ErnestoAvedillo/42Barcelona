@@ -282,9 +282,9 @@ void testanalisys(void)
 	cont = ft_printf("<%5p><%1p>",(void *) 12,(void *) 43);
 	printf ("respuesta ft_printf %d\n", cont);
 	testnr++;
-/*
+
 	printf("%s Test con %% %s %s\n",KYEL, "<%%XX%%>", KNRM );
-	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%5%>", KNRM );
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%05%>", KNRM );
 	cont = printf("< %05% >");
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("< %05% >");
@@ -304,6 +304,104 @@ void testanalisys(void)
 	cont = ft_printf("< %5% >");
 	printf ("respuesta ???printf %d\n", cont);
 	testnr++;
-*/
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%*.*s>,-10,20", KNRM );
+	cont = printf("<%*.*s>",-10,20,"per");
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%*.*s>",-10,20,"per");
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%*d>,-10,20", KNRM );
+	cont = printf("<%*d>",-10,20);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%*d>",-10,20);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%05%>", KNRM );
+	cont = printf("< %05% >");
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("< %05% >");
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "%-192.131%", KNRM );
+	cont = printf("<%-192.131%>");
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%-192.131%>");
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%05.*d>", KNRM );
+	cont = printf("<%05.*d>",2,42);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%05.*d>",2,42);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%05.*d>", KNRM );
+	cont = printf("<%05.*d>",15,42);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%05.*d>",15,42);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%05.*d>", KNRM );
+	cont = printf("<%05.*d>",-15,42);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%05.*d>",-15,42);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%*.*d>,-10,20", KNRM );
+	cont = printf("<%*.*d>",-10,20,15);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%*.*d>",-10,20,15);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "<%*.*d>,-10,20", KNRM );
+	cont = printf("<%-10.20d>",15);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("<%-10.20d>",15);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "%-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X", KNRM );
+	cont = printf("%-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("%-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "%-#X, %-#X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X", KNRM );
+	cont = printf("%-#X, %-#X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("%-#X, %-#X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X, %-#.0X", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "%-#.0X", KNRM );
+	cont = printf("%-#.0X", 0);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("%-#.0X", 0);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "%#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x", KNRM );
+	cont = printf("%#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("%#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x, %#1.0x", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
+	printf("%s Test %d bonus %s %s\n",KGRN, testnr, "%#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x", KNRM );
+	cont = printf("%#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	printf ("respuesta ???printf %d\n", cont);
+	cont = ft_printf("%#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x, %#5.x", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	printf ("respuesta ???printf %d\n", cont);
+	testnr++;
+
 
 }

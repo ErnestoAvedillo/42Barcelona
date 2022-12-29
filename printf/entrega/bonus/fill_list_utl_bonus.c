@@ -55,3 +55,20 @@ int	get_flags(char *str, int pos, t_form_data *frmt)
 	check_isflag(frmt);
 	return (curpos);
 }
+
+void	get_len_asterisc(t_form_data *formato, va_list args)
+{
+	formato->longfield = va_arg (args, int);
+	if (formato->longfield < 0)
+	{
+		formato->longfield *= -1;
+		formato->isminus = 1;
+	}
+}
+
+void	get_zero_asterisc(t_form_data *formato, va_list args)
+{
+	formato->prtstrlen = va_arg (args, int);
+	if (formato->prtstrlen < 0 && is_numeric(formato->format))
+		formato->prtstrlen = formato->longfield;
+}

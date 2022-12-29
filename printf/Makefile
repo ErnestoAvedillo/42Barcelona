@@ -58,7 +58,7 @@ $(NAME): $(OBJS) $(INCLUDE) $(LIBS_PRT) $(LIBS_TEST)
 
 $(NAME_B): $(OBJS) $(INCLUDE) $(LIBS_PRT_B) $(LIBS_TEST)
 	$(CC) $(CFLAGS) -o $(NAME_B) $(OBJS) $(LIBS_TEST) $(LIBS_PRT) 
-	./$(NAME_B) 
+	./$(NAME_B) analysis
 
 %.o: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $*.c -o $*.o

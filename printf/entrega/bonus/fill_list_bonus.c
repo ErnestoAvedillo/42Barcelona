@@ -51,7 +51,7 @@ void	get_len_field(char *str, t_form_data *formato, va_list args)
 	if (str[start_pos] == POINT_FLAG)
 		return ;
 	if (str[start_pos] == ASTERISC_FLAG)
-		formato->longfield = va_arg (args, int);
+		get_len_asterisc(formato, args);
 	else
 	{
 		if (formato->iszero && !formato->ispoint)
@@ -83,7 +83,7 @@ void	get_len_zeros(char *str, t_form_data *formato, va_list args)
 		while (!ft_isdigit(str[cur_pos]) && str[cur_pos] != 0)
 			cur_pos++;
 	if (str[cur_pos] == ASTERISC_FLAG)
-		formato->prtstrlen = va_arg (args, int);
+		get_zero_asterisc(formato, args);
 	else
 	{
 		val_strlen = getvalue_from_field (str, cur_pos);

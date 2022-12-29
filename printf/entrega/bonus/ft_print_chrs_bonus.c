@@ -87,7 +87,7 @@ int	print_extra_zeros(t_form_data *frmt, char *str)
 //	printf("longfield %d,  prtstrlen %d, signo %d \n", 
 //frmt->longfield, frmt->prtstrlen, frmt->signo );
 
-int	print_symbol(t_form_data *frmt, char *str)
+int	print_symbol(t_form_data *frmt)
 {
 	int	out;
 
@@ -98,7 +98,7 @@ int	print_symbol(t_form_data *frmt, char *str)
 		out = ft_print_char ('-');
 	if (frmt->ispound)
 	{	
-		if (ft_strncmp(str, "0", 1))
+		if (!frmt->esvalcero)
 		{
 			if (frmt->format == HEX_FRMT_X)
 				out += write (1, "0x", 2);
