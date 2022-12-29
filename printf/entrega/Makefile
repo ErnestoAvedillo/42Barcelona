@@ -5,70 +5,64 @@
 #                                                     +:+ +:+         +:+      #
 #    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/07 16:29:34 by eavedill          #+#    #+#              #
-#    Updated: 2022/12/21 16:58:22 by eavedill         ###   ########.fr        #
+#    Created: 2022/12/27 20:19:09 by eavedill          #+#    #+#              #
+#    Updated: 2022/12/27 20:19:12 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libftprintf.a
 
-SRC :=  ft_printf ft_utoa ft_addrtoa ft_printf_args bonus fill_list fill_list_utils \
-		bonus_utils print_format write_extended ft_print_suf ft_print_chrs \
-		check_utils check_utils2
+DIR_BONUS := ./bonus/
+NAME_DIR_BONUS := $(addsuffix $(NAME),$(DIR_BONUS))
+BONUS := .bonus
 
-OBJS := $(addsuffix .o,$(SRC))
+DIR_MANDATORY := ./mandatory/
+NAME_DIR_MANDAT := $(addsuffix $(NAME),$(DIR_MANDATORY))
+MANDAT:= .mandat 
 
-DEPS := $(addsuffix .d,$(SRC))
+RM := rm -rfd
+#---------------------------------
+all: $(NAME)
 
-SRCS := $(addsuffix .c,$(SRC))
+$(NAME): $(MANDAT)
 
-DIRLIBFT := ./libft/
-LIBNAME := libft.a
-LIBFT := $(addprefix $(DIRLIBFT),$(LIBNAME))
+$(MANDAT):$(NAME_DIR_MANDAT)
+	cp -p $(NAME_DIR_MANDAT) $(NAME)
+	touch $(MANDAT)
 
-INCLUDE := ft_printf.h
+$(NAME_DIR_MANDAT):	
+	make -C$(DIR_MANDATORY)
+#---------------------------------
+bonus: $(BONUS)
 
-FLAGS := -Wall -Werror -Wextra
+$(BONUS): $(NAME_DIR_BONUS)
+	cp -p $(NAME_DIR_BONUS) $(NAME)
+	touch $(BONUS)
 
-CC := gcc
-
-all: $(LIBNAME) $(NAME)
-
--include $(INCLUDE))
-
-bonus: $(LIBNAME) $(NAME)
-
-$(NAME): $(OBJS) $(DEPS) $(LIBNAME)
-	cp -p $(LIBNAME) $(NAME)
-	ar -rcs $(NAME) $(OBJS)
-
-%.o : %.c $(INCLUDE)
-	$(CC) $(FLAGS) -c $*.c -o $*.o
-
-%.d : %.c $(INCLUDE)
-	$(CC) -MM $(FLAGS) -c $*.c > $*.d
-
-$(LIBNAME) : $(LIBFT)
-	@cp -p $(LIBFT) $(LIBNAME)
-
-$(LIBFT): 
-	make -C$(DIRLIBFT) bonus
-
-print:
-	@echo $(INCLUDE)
-	@echo $(SRCS)
-	@echo $(OBJS)
-	@echo $(DEPS)
-	@echo $(NAMES)
-	@echo $(LIBFT)
+$(NAME_DIR_BONUS):
+	make -C$(DIR_BONUS)
 
 clean:
-	$(RM) $(OBJS) $(DEPS) $(OBJS_BONUS) $(DEPS_BONUS) $(HEAD_DEPS) $(HEAD_OBJS) $(TARGETLIB)
-	make -C$(DIRLIBFT) clean
+	make -C$(DIR_BONUS) clean
+	make -C$(DIR_MANDATORY) clean
 
-fclean:     clean
-	$(RM) $(NAMES) $(LIBFT) $(LIBNAME)
+fclean: 
+	make -C$(DIR_MANDATORY) fclean
+	make -C$(DIR_BONUS) fclean
+	$(RM) $(NAME) $(NAME_M) $(NAME_B) $(MANDAT) $(BONUS)
 
-re:         fclean $(NAME) 
+re: fclean
+	make all
+	
+.PHONY: all bonus re fclean clean $(NAME) $(NAME_DIR_MANDAT) $(NAME_DIR_BONUS)
 
-.PHONY: all re clean fclean re $(LIBFT) bonus
+print:
+	@echo NAME:$(NAME)
+	@echo NAME_M:$(NAME_M)
+	@echo DIR_MANDATORY:$(DIR_MANDATORY)
+	@echo NAME_DIR_MANDAT:$(NAME_DIR_MANDAT)
+	@echo MANDAT:$(MANDAT)
+	@echo NAME_B:$(NAME_B)
+	@echo DIR_BONUS:$(DIR_BONUS)
+	@echo NAME_DIR_BONUS:$(NAME_DIR_BONUS)
+	@echo BONUS:$(BONUS)

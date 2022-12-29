@@ -15,13 +15,14 @@ INCLUDE = test.h
 
 #Datos de la libreria 1
 #LIB = libft.a
-#DIRLIBS = ./entrega/
+#DIRLIBS = ./entrega/bonus/
 #LIBS = $(addprefix $(DIRLIBS), $(LIB))
 
 #Datos de la libreria 2 (en mi caso los tests.
 LIB_PRT = libftprintf.a
 DIRLIB_PRT = ./entrega/
 LIBS_PRT = $(addprefix $(DIRLIB_PRT),$(LIB_PRT))
+LIBS_PRT_B = $(LIBS_PRT)
 
 #Datos de la libreria 2 (en mi caso los tests.
 LIB_TEST = test_lib.a
@@ -32,7 +33,7 @@ LIBS_TEST = $(addprefix $(DIRLIB_TEST),$(LIB_TEST))
 SRCS = $(addsuffix .c, $(SRC))
 OBJS = $(addsuffix .o, $(SRC))
 
-CC = gcc
+CC = gcc -g
 
 RM = rm -rfd
 
@@ -40,12 +41,24 @@ CFLAGS = -Wall -Wextra -Werror -I.
 
 NAME = $(addsuffix .a, $(SRC))
 
+BONUS = bonus
+
+NAME_B = $(addsuffix .a, $(BONUS))
+
 #tienen que estar en este orden de llamada. 
 # la segunda llama a la primera , la tercera a la segunda y así sucesivamente
+
 all: $(LIBS_TEST) $(NAME)
+
+bonus: $(LIBS_TEST) $(NAME_B)
 
 $(NAME): $(OBJS) $(INCLUDE) $(LIBS_PRT) $(LIBS_TEST)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS_TEST) $(LIBS_PRT) 
+	./$(NAME) onlyman
+
+$(NAME_B): $(OBJS) $(INCLUDE) $(LIBS_PRT_B) $(LIBS_TEST)
+	$(CC) $(CFLAGS) -o $(NAME_B) $(OBJS) $(LIBS_TEST) $(LIBS_PRT) 
+	./$(NAME_B) analysis
 
 %.o: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $*.c -o $*.o
@@ -58,6 +71,9 @@ $(NAME): $(OBJS) $(INCLUDE) $(LIBS_PRT) $(LIBS_TEST)
 $(LIBS_PRT):
 	$(MAKE) -C$(DIRLIB_PRT) all
 
+$(LIBS_PRT_B):
+	$(MAKE) -C$(DIRLIB_PRT) bonus
+
 #To generate the libft_tesst.a (in my case for the test library)
 $(LIBS_TEST):
 	$(MAKE) -C$(DIRLIB_TEST) all
@@ -69,7 +85,7 @@ $(LIBS_TEST):
 #	$(MAKE) -C$(DIRLIB_PRT) clean
 
 fclean:		clean
-	$(RM) $(NAME) $(OBJS)
+	$(RM) $(NAME) $(OBJS) $(NAME_B)
 	$(MAKE) -C$(DIRLIB_TEST) fclean 
 #	$(MAKE) -C$(DIRLIBS) fclean
 	$(MAKE) -C$(DIRLIB_PRT) fclean

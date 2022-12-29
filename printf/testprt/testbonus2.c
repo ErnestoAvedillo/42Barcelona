@@ -88,7 +88,7 @@ void bonustest2(void)
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("{%3c}", 0);
 	printf ("respuesta ft_printf %d\n", cont);
-
+/*
 	printf("%s Test 10 bonus %s %s\n",KGRN, "<%1.c>", KNRM );
 	cont = printf("{%1.c}", 'a');
 	printf ("respuesta ???printf %d\n", cont);
@@ -100,7 +100,7 @@ void bonustest2(void)
 	printf ("respuesta ???printf %d\n", cont);
 	cont = ft_printf("{%5.c}", 'a');
 	printf ("respuesta ft_printf %d\n", cont);
-
+*/
 	printf("%s Test 10 bonus %s %s\n",KGRN, "<%5c>", KNRM );
 	cont = printf("{%5c}", 'a');
 	printf ("respuesta ???printf %d\n", cont);
