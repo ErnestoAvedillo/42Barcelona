@@ -1,14 +1,57 @@
-  
 #!/bin/bash
-wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \
-$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \
-$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \
-$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \
-$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \
-$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \
-$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \
-$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \
-$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \
-$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \
-$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
-$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+
+# Architecture
+ARCH=$(uname -a)
+
+# CPU PHYSICAL
+CPU_PHYSIC=$(cat /proc/cpuinfo | grep "physical id" | wc -l)
+
+# CPU VIRTUAL
+VIRT_CPU=$(cat /proc/cpuinfo |grep "processor" | wc -l)
+
+# RAM usada
+TOTAL_RAM=$(free --mega| grep "Mem:" | awk  '{print $2}')
+USED_RAM=$(free --mega | grep "Mem:" | awk '{print $3}')
+PERC_RAM=$(echo $USED_RAM/$TOTAL_RAM*100| bc -l |xargs  printf "%.2f")
+
+# DISK
+TOTAL_DISK=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{sumat += $2} END {printf ("%.1f"), sumat/1024}')
+USED_DISK=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{sumat += $3} END {printf ("%.1f"), sumat/1024}')
+PERC_DISK=$(echo $USED_DISK/$TOTAL_DISK*100 | bc -l |xargs printf "%.2f")
+
+# CPU LOAD
+LOAD_CPU=$(vmstat 1 2 | tail -1 | awk '{printf $15}')
+USED_CPU=$(echo 100-$LOAD_CPU | bc)
+PERC_CPU=$(printf "%.1f" $USED_CPU)
+
+# LAST BOOT
+LBOOT=$(who -b | grep "system" | awk '{print $3 " " $4}')
+
+# LVM USE
+LVM=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
+
+# TCP CONNEXIONS
+TCP=$(ss -ta | grep ESTAB | wc -l)
+
+# USER LOG
+LOGED_IN=$(users | wc -w)
+
+# NETWORK
+IP=$(hostname -I)
+MAC=$(ip link | grep "link/ether" | awk '{print $2}')
+
+# SUDO
+SUDO_USES=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+
+wall    "#Architecture: $ARCH
+        #CPU physical : $CPU_PHYSIC
+        #vCPU: $VIRT_CPU
+        #Memory Usage: $USED_RAM/$TOTAL_RAM'MB ('$PERC_RAM'%)'
+        #Disk Usage: $USED_DISK/$TOTAL_DISK'Gb ('$PERC_DISK'%)'
+        #CPU load: $PERC_CPU%
+        #Last boot: $LBOOT
+        #LVM use : $LVM
+        #Connections TCP : $TCP ESTABLISHED
+        #User log: $LOGED_IN
+        #Network: IP $IP '('$MAC')'
+        #Sudo : $SUDO_USES cmd"
