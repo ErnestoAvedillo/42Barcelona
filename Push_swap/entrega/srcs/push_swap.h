@@ -37,9 +37,9 @@ typedef struct l_element
 
 //check_errors.c
 int			check_errors(int av, char **ac);
-t_stack 	**createstacks(void);
-int 		free_stack (l_stack *ptr);
-void		sort_stack( t_stack **stacks)
+t_stack 	**createstacks(int av, char **ac);
+int 		free_stack (t_stack *ptr);
+void		sort_stack( t_stack **stacks);
 void 		print_stacks(t_stack **stacks);
 
 

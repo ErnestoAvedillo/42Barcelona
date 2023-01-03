@@ -16,7 +16,7 @@ NAME := push_swap
 SRC := push_swap check_errors create_stacks push_free push_utils sort_stack
 DIR_SRC := ./srcs/
 SRCS := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC)))
-DIR_OBJ := $(addprefix $(DIR_SRC),obj/)
+DIR_OBJ := ./obj/
 OBJS := $(addprefix $(DIR_OBJ),$(addsuffix .o,$(SRC)))
 DSTS := $(addprefix $(DIR_OBJ),$(addsuffix .d,$(SRC)))
 INCLUDE = $(addprefix $(DIR_SRC),$(addsuffix .h,$(NAME)))
@@ -37,19 +37,16 @@ CC := gcc
 FLAG:= -Wall -Wextra -Werror
 
 all:$(NAME)
+	./$(NAME) 1 2 3 4
+-include: (DSTS)
 
 $(NAME): $(DSTS) $(OBJS) $(NAME_PRINTF)
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(NAME_PRINTF)
 
-$(DIR_OBJ)$%.o: $(DIR_OBJ)$%.c $(INCLUDE)
-	echo entro en o
+$(DIR_OBJ)%.o $(DIR_OBJ)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(DIR_OBJ)
-	$(CC) $(CFLAGS) -c $(DIR_OBJ)$*.c -o $(DIR_OBJ)$*.o
-
-$(DIR_OBJ)$%.d: $(DIR_OBJ)$%.c $(INCLUDE)
-	echo entro en d
-	mkdir -p $(DIR_OBJ)
-	$(CC) -MM $(CFLAGS) -c $(DIR_OBJ)$*.c > $(DIR_OBJ)$*.d
+	$(CC) $(CFLAGS) -c $(DIR_SRC)$*.c -o $(DIR_OBJ)$*.o
+	$(CC) -MM $(CFLAGS) -c $(DIR_SRC)$*.c > $(DIR_OBJ)$*.d
 
 $(NAME_PRINTF):$(PRINTF_LIB)
 	@cp -p $(PRINTF_LIB) $(NAME_PRINTF)
@@ -76,6 +73,7 @@ print:
 	@echo PRINTF_LIB:$(PRINTF_LIB)
 	@echo LIBFT_LIB:$(LIBFT_LIB)
 	@echo LIBFT_LIB:$(DIR_OBJ)
+	@echo $(DIR_OBJ)$%.d
 
 
 .PHONY: print all re clean fclean $(PRINTF_LIB)

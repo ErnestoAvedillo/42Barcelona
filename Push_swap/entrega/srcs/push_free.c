@@ -13,7 +13,7 @@ static t_element *free_elem (t_element *ptr)
     return (next_ptr);
 }
 
-int free_stack (l_stack *ptr)
+int free_stack (t_stack *ptr)
 {
     t_element   *cur_elem;
 

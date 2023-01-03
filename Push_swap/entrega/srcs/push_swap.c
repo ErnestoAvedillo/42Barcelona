@@ -17,13 +17,13 @@ int main (int av, char **ac)
 
     if (check_errors(av, ac))
     {
-        ft_printf("Error\n");
+        ft_printf("Error 1\n");
         return(0);
     }
-    stacks = createstacks();
+    stacks = createstacks(av,ac);
     if (!stacks)
      {
-        ft_printf("Error\n");
+        ft_printf("Error 2\n");
         return(0);
     }
     sort_stack(stacks);

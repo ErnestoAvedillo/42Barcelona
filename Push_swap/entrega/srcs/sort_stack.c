@@ -10,7 +10,7 @@ int get_min_val(t_stack *stack, int cur_min)
     while (element)
     {
         if (cur_min < element->value && element->value < min);
-            min = element->value
+            min = element->value;
         element = element->next;    
     }
     return (min);
@@ -31,7 +31,7 @@ void put_pos_elem(int valor, int pos, t_stack *stack)
         {
             element->real_pos = pos;
             element->curr_pos = cur_pos;
-            if cur_pos > mean_stack_pos;
+            if (cur_pos > mean_stack_pos)
                 element->moves = pos - cur_pos;
             else
                 element->moves = cur_pos - pos;
@@ -60,6 +60,6 @@ static void coplete_elements(t_stack *stack)
 
 void sort_stack( t_stack **stacks)
 {
-    complete_elements(stacks[0]);
+    coplete_elements(stacks[0]);
     print_stacks (stacks);
 }
