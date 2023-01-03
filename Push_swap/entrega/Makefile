@@ -13,12 +13,13 @@
 #push-swap project
 NAME := push_swap
 
-SRC := push_swap check_errors
+SRC := push_swap check_errors create_stacks push_free push_utils sort_stack
 DIR_SRC := ./srcs/
 SRCS := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC)))
 DIR_OBJ := $(addprefix $(DIR_SRC),obj/)
 OBJS := $(addprefix $(DIR_OBJ),$(addsuffix .o,$(SRC)))
 DSTS := $(addprefix $(DIR_OBJ),$(addsuffix .d,$(SRC)))
+INCLUDE = $(addprefix $(DIR_SRC),$(addsuffix .h,$(NAME)))
 
 #libraries
 DIR_LIBFT := ./libft/
@@ -35,14 +36,38 @@ RM := re -rfd
 CC := gcc
 FLAG:= -Wall -Wextra -Werror
 
+all:$(NAME)
 
+$(NAME): $(DSTS) $(OBJS) $(NAME_PRINTF)
+	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(NAME_PRINTF)
+
+$(DIR_OBJ)$%.o: $(DIR_OBJ)$%.c $(INCLUDE)
+	echo entro en o
+	mkdir -p $(DIR_OBJ)
+	$(CC) $(CFLAGS) -c $(DIR_OBJ)$*.c -o $(DIR_OBJ)$*.o
+
+$(DIR_OBJ)$%.d: $(DIR_OBJ)$%.c $(INCLUDE)
+	echo entro en d
+	mkdir -p $(DIR_OBJ)
+	$(CC) -MM $(CFLAGS) -c $(DIR_OBJ)$*.c > $(DIR_OBJ)$*.d
+
+$(NAME_PRINTF):$(PRINTF_LIB)
+	@cp -p $(PRINTF_LIB) $(NAME_PRINTF)
+
+$(PRINTF_LIB):
+	make -C$(DIR_PRINTF) all
 
 
 clean:
+	make -C$(DIR_PRINTF) clean
+	$(RM) $(DIR_OBJ)
 
 fclean: clean
+	make -C$(DIR_PRINTF) fclean
+	$(RM) $(NAME)
 
 re: fclean all
+
 
 print: 
 	@echo SRCS:$(SRCS)
@@ -50,6 +75,7 @@ print:
 	@echo DSTS:$(DSTS)
 	@echo PRINTF_LIB:$(PRINTF_LIB)
 	@echo LIBFT_LIB:$(LIBFT_LIB)
+	@echo LIBFT_LIB:$(DIR_OBJ)
 
 
-.PHONY: print
+.PHONY: print all re clean fclean $(PRINTF_LIB)

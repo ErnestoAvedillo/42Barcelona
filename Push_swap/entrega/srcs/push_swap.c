@@ -9,14 +9,23 @@
 /*   Updated: 2022/12/29 17:38:11 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "push_swap.h"
+#include"push_swap.h"
 
 int main (int av, char **ac)
 {
+    t_stack **stacks;
+
     if (check_errors(av, ac))
     {
         ft_printf("Error\n");
         return(0);
     }
+    stacks = createstacks();
+    if (!stacks)
+     {
+        ft_printf("Error\n");
+        return(0);
+    }
+    sort_stack(stacks);
+    return (0);
 }
