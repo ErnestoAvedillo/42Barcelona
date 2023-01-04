@@ -37,7 +37,7 @@ CC := gcc
 FLAG:= -Wall -Wextra -Werror
 
 all:$(NAME)
-	./$(NAME) 1 2 3 4
+	./$(NAME) 1 2 3 43
 -include: (DSTS)
 
 $(NAME): $(DSTS) $(OBJS) $(NAME_PRINTF)

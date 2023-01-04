@@ -3,16 +3,28 @@
 int get_min_val(t_stack *stack, int cur_min)
 {
     int         min;
+    int         cur_val;
     t_element   *element;
 
     min = INT_MAX;
     element = stack->elem1;
     while (element)
     {
-        if (cur_min < element->value && element->value < min);
-            min = element->value;
-        element = element->next;    
+        cur_val = element->value;
+        printf("evolucion %d<%d<%d\n", cur_min, cur_val,min);
+        if (cur_min < cur_val)
+        {
+            printf("Paso1\n");
+            printf("evolucion %d<%d\n", cur_val,min);
+            if (cur_val < min);
+                {
+                    printf("Paso2\n");
+                    min = cur_val;
+                }
+            element = element->next;
+        }
     }
+    printf("evolucion %d\n", min);
     return (min);
 }
 
@@ -48,6 +60,7 @@ static void coplete_elements(t_stack *stack)
     t_element   *element;
 
     min = get_min_val(stack, INT_MIN);
+    printf ("valor minio %d",min);
     element = stack->elem1;
     position = 1;
     while (position < stack->nbr_elements)

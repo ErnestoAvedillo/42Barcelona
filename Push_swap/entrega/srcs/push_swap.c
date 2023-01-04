@@ -14,16 +14,18 @@
 int main (int av, char **ac)
 {
     t_stack **stacks;
+    int     result;
 
-    if (check_errors(av, ac))
+    result = check_errors(av, ac);
+    if (result)
     {
-        ft_printf("Error 1\n");
+        ft_printf("Error\n");
         return(0);
     }
     stacks = createstacks(av,ac);
     if (!stacks)
      {
-        ft_printf("Error 2\n");
+        ft_printf("Error\n");
         return(0);
     }
     sort_stack(stacks);
