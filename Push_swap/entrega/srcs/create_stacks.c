@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_stacks.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/05 08:18:37 by eavedill          #+#    #+#             */
+/*   Updated: 2023/01/05 08:18:43 by eavedill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"push_swap.h"
 
 t_element	*ft_new_element(t_element *content,int value)
@@ -40,7 +52,7 @@ t_stack *retrieve_data(int av, char **ac)
             return (NULL);
         }
     }
-    stack->nbr_elements = i;
+    stack->nbr_elements = i - 1;
     stack->cur_frst_elem = 1;
     return (stack);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_free.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/05 08:18:58 by eavedill          #+#    #+#             */
+/*   Updated: 2023/01/05 08:19:05 by eavedill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"push_swap.h"
 
 static t_element *free_elem (t_element *ptr)
@@ -5,8 +17,8 @@ static t_element *free_elem (t_element *ptr)
     t_element    *next_ptr;
 
     ptr->value = 0;
-    ptr->real_pos = 0;
-    ptr->curr_pos = 0;
+    ptr->soll_pos = 0;
+    ptr->ist_pos = 0;
     ptr->moves = 0;
     next_ptr = ptr->next;
     free (ptr);

@@ -13,7 +13,8 @@
 #push-swap project
 NAME := push_swap
 
-SRC := push_swap check_errors create_stacks push_free push_utils sort_stack
+SRC := push_swap check_errors create_stacks push_free push_utils sort_stack \
+		push_moves
 DIR_SRC := ./srcs/
 SRCS := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC)))
 DIR_OBJ := ./obj/
@@ -37,7 +38,7 @@ CC := gcc
 FLAG:= -Wall -Wextra -Werror
 
 all:$(NAME)
-	./$(NAME) 1 2 3 43
+	./$(NAME) 25 55 1 5 40 3 2
 -include: (DSTS)
 
 $(NAME): $(DSTS) $(OBJS) $(NAME_PRINTF)
