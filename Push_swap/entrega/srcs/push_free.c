@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/29 17:38:08 by eavedill          #+#    #+#             */
-/*   Updated: 2022/12/29 17:38:11 by eavedill         ###   ########.fr       */
+/*   Created: 2023/01/05 08:18:58 by eavedill          #+#    #+#             */
+/*   Updated: 2023/01/05 08:19:05 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include"push_swap.h"
 
-int main (int av, char **ac)
+static t_element *free_elem (t_element *ptr)
 {
-    t_stack **stacks;
-    int     result;
+    t_element    *next_ptr;
 
-    result = check_errors(av, ac);
-    if (result)
-    {
-        ft_printf("Error\n");
-        return(0);
-    }
-    stacks = createstacks(av,ac);
-    if (!stacks)
-     {
-        ft_printf("Error\n");
-        return(0);
-    }
-    sort_stack(stacks);
+    ptr->value = 0;
+    ptr->soll_pos = 0;
+    ptr->ist_pos = 0;
+    ptr->moves = 0;
+    next_ptr = ptr->next;
+    free (ptr);
+    return (next_ptr);
+}
+
+int free_stack (t_stack *ptr)
+{
+    t_element   *cur_elem;
+
+    cur_elem = ptr->elem1;
+    while (cur_elem)
+        cur_elem = free_elem(cur_elem);
+    free (ptr);
     return (0);
 }
