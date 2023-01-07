@@ -42,3 +42,25 @@ void print_stacks(t_stack **stacks)
         ft_printf ("\n");
     }
 }
+
+void *search_item(int i, t_stack *stack)
+{
+    t_element   *element;
+
+    element = stack->elem1;
+    while (element)
+    {
+        if (element->soll_pos == i)
+            return (element);
+        element = element->next;
+    }
+    return (NULL);
+}
+
+int get_sentido (int valor)
+{
+    if (valor >= 0)
+        return (1);
+    return (0);
+    
+}

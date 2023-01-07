@@ -67,9 +67,7 @@ void put_pos_elem(int valor, int pos, t_stack *stack)
 {
     t_element   *element;
     int         cur_pos;
-    int         mean_stack_pos;
 
-    mean_stack_pos = stack->nbr_elements / 2;
     element = stack->elem1;
     cur_pos = 1;
     while (element)
@@ -116,9 +114,42 @@ void calc_all_moves (t_stack *stack)
 
 void sort_stack( t_stack **stacks)
 {
+    int i;
+    int max_elem;
+    t_element *element;
+    int moves_needed;
+    int sentido;
+
+    i = 0;
+    max_elem = stacks[0]->nbr_elements;
     coplete_elements(stacks[0]);
     print_stacks (stacks);
-    printf("pa\n");
+    while (++i < max_elem)
+    {
+        element = search_item(1, stacks[0]);
+        moves_needed = 0;
+        sentido = get_sentido(element->moves);
+        while (++moves_needed <= ft_abs(element->moves))
+        {
+            if (sentido)
+                rotate(stacks[0]);
+            else
+                revrotate(stacks[0]);
+        }
+    push(stacks[0],stacks[1]);
+    coplete_elements(stacks[0]);
+    print_stacks (stacks);
+    }
+    i++;
+    while (--i > 1)
+    {
+        push(stacks[1],stacks[0]);
+    }
+    print_stacks (stacks);
+    free_all_stacks(stacks);
+    return ;
+}
+/*    printf("pa\n");
     push (stacks[0],stacks[1]);
     printf("pa\n");
     push (stacks[0],stacks[1]);
@@ -149,5 +180,5 @@ void sort_stack( t_stack **stacks)
     printf("rrr\n");
     revrotate2 (stacks);
     print_stacks (stacks);
+*/
 
-}

@@ -35,3 +35,21 @@ int free_stack (t_stack *ptr)
     free (ptr);
     return (0);
 }
+
+void free_all_stacks(t_stack **stacks)
+{
+    t_element   *cur_elem;
+
+    cur_elem = stacks[0]->elem1;
+    while (cur_elem)
+        cur_elem = free_elem(cur_elem);
+    free (stacks[0]);
+
+    cur_elem = stacks[1]->elem1;
+    while (cur_elem)
+        cur_elem = free_elem(cur_elem);
+    free (stacks[1]);
+    free (stacks[2]);
+    return ;
+}
+

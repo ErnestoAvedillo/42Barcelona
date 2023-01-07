@@ -45,16 +45,16 @@ void push (t_stack *stack_a, t_stack *stack_b)
 
     element_a = stack_a->elem1;
     stack_a->elem1 = element_a->next;
-    stack_a->cur_frst_elem += 1;
+//    stack_a->cur_frst_elem += 1;
     stack_a->nbr_elements -= 1;
-    coplete_elements (stack_a);
+//    coplete_elements (stack_a);
     
     element_b = stack_b->elem1;
     element_a->next = element_b;
     stack_b->elem1 = element_a;
-    stack_b->cur_frst_elem -= 1;
+//    stack_b->cur_frst_elem -= 1;
     stack_b->nbr_elements += 1;
-    coplete_elements (stack_b);
+//    coplete_elements (stack_b);
     return ;
 } 
 
@@ -74,7 +74,7 @@ void rotate (t_stack *stack)
         }
         element->next = element_2;
         element_2->next = NULL; 
-        coplete_elements (stack);
+//        coplete_elements (stack);
     }
     return ;
 }
@@ -103,7 +103,7 @@ void revrotate (t_stack *stack)
         element_2->next = NULL;
         element->next = stack->elem1;
         stack->elem1 = element;
-        coplete_elements (stack);
+//      coplete_elements (stack);
     }
     return ;
 }
