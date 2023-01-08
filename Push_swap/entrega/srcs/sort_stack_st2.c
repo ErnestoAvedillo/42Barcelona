@@ -19,8 +19,10 @@ void sort_stack_st2(t_stack **stacks)
     t_element *element;
     int moves_needed;
     int sentido;
+    int movim;
 
     i = 0;
+    movim = 0;
     max_elem = stacks[0]->nbr_elements;
     coplete_elements(stacks[0]);
     print_stacks (stacks);
@@ -31,54 +33,22 @@ void sort_stack_st2(t_stack **stacks)
         sentido = get_sentido(element->moves);
         while (++moves_needed <= ft_abs(element->moves))
         {
-            if ()
             if (sentido)
-                ra(stacks);
+                movim += ra(stacks);
             else
-                rra(stacks);
+                movim += rra(stacks);
         }
-    pb(stacks);
-    coplete_elements(stacks[0]);
+        movim += pb(stacks);
+        coplete_elements(stacks[0]);
     }
     i++;
     while (--i > 1)
     {
-        pa(stacks);
+        movim += pa(stacks);
     }
-    print_stacks (stacks);
+    coplete_elements(stacks[0]);
+    print_stacks(stacks);
     free_all_stacks(stacks);
-    return ;
+    ft_printf("numero de moovimientos = %i\n", movim);
+    return;
 }
-/*    printf("pa\n");
-    push (stacks[0],stacks[1]);
-    printf("pa\n");
-    push (stacks[0],stacks[1]);
-    printf("pa\n");
-    push (stacks[0],stacks[1]);
-    print_stacks (stacks);
-    printf("sa\n");
-    swap(stacks[0]);
-    print_stacks (stacks);
-    printf("sb\n");
-    swap(stacks[1]);
-    print_stacks (stacks);
-    printf("ra\n");
-    rotate (stacks[0]);
-    print_stacks (stacks);
-    printf("rb\n");
-    rotate (stacks[1]);
-    print_stacks (stacks);
-    printf("rr\n");
-    rotate2 (stacks);
-    print_stacks (stacks);
-    printf("ss\n");
-    swap2 (stacks);
-    print_stacks (stacks);
-    printf("rra\n");
-    revrotate (stacks[0]);
-    print_stacks (stacks);
-    printf("rrr\n");
-    revrotate2 (stacks);
-    print_stacks (stacks);
-*/
-

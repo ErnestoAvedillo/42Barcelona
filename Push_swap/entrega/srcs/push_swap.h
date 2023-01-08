@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP
 # define PUSH_SWAP
 # include<limits.h>
-# include"../printf/ft_printf.h"
+# include"../printf/ft_printf_bonus.h"
 # include"../libft/libft.h"
 
 typedef struct l_stack
@@ -53,24 +53,24 @@ int 		free_stack (t_stack *ptr);
 //movements
 //swap
 void    	swap (t_stack *stack);
-void    	ss (t_stack **stacks);
-void 		sa (t_stack **stacks);
-void 		sb (t_stack **stacks);
+int    		ss (t_stack **stacks);
+int 		sa (t_stack **stacks);
+int 		sb (t_stack **stacks);
 
 //push
 void	 	push (t_stack *stack_a, t_stack *stack_b);
-void	    pa(t_stack **stacks);
-void	    pb(t_stack **stacks);
+int	    pa(t_stack **stacks);
+int	    pb(t_stack **stacks);
 //rotate
 void 		rotate (t_stack *stack);
-void    	rr (t_stack **stacks);
-void    	ra (t_stack **stacks);
-void    	rb (t_stack **stacks);
+int    	rr (t_stack **stacks);
+int    	ra (t_stack **stacks);
+int    	rb (t_stack **stacks);
 //revrotate
 void 		revrotate (t_stack *stack);
-void    	rrr (t_stack **stacks);
-void    	rra (t_stack **stacks);
-void    	rrb (t_stack **stacks);
+int    	rrr (t_stack **stacks);
+int    	rra (t_stack **stacks);
+int    	rrb (t_stack **stacks);
 
 //push_utils
 void 		print_stacks(t_stack **stacks);

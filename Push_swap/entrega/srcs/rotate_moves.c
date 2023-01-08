@@ -33,23 +33,23 @@ void rotate (t_stack *stack)
     return ;
 }
 
-void    rr (t_stack **stacks)
+int    rr (t_stack **stacks)
 {
     rotate(stacks[0]);
     rotate(stacks[1]);
-    return ;
+    return (1);
 }
 
-void    ra (t_stack **stacks)
+int    ra (t_stack **stacks)
 {
     rotate(stacks[0]);
     ft_printf("ra\n");
-    return ;
+    return (1);
 }
 
-void    rb (t_stack **stacks)
+int    rb (t_stack **stacks)
 {
     rotate(stacks[1]);
     ft_printf("rb\n");
-    return ;
+    return (1);
 }

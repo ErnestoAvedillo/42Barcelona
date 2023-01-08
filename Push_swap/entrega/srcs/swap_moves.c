@@ -31,24 +31,24 @@ void    swap (t_stack *stack)
     return ;
 }
 
-void    ss (t_stack **stacks)
+int    ss (t_stack **stacks)
 {
     swap(stacks[0]);
     swap(stacks[1]);
     ft_printf ("ss\n");
-    return ;
+    return (1);
 }
 
-void sa (t_stack **stacks)
+int sa (t_stack **stacks)
 {
     swap(stacks[0]);
     ft_printf ("sa\n");
-    return ;
+    return (1);
 }
 
-void sb (t_stack **stacks)
+int sb (t_stack **stacks)
 {
     swap(stacks[1]);
     ft_printf ("sb\n");
-    return ;
+    return (1);
 }

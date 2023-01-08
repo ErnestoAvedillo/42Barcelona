@@ -32,16 +32,16 @@ void    push (t_stack *stack_a, t_stack *stack_b)
     return ;
 } 
 
-void    pa(t_stack **stacks)
+int    pa(t_stack **stacks)
 {
     push (stacks[1], stacks[0]);
     ft_printf("pa\n");
-    return ;
+    return (1);
 }
 
-void    pb(t_stack **stacks)
+int    pb(t_stack **stacks)
 {
     push (stacks[0], stacks[1]);
     ft_printf("pa\n");
-    return ;
+    return (1);
 }

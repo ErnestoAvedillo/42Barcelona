@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_args.c                                    :+:      :+:    :+:   */
+/*   ft_printf_args_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/16 11:07:18 by eavedill          #+#    #+#             */
-/*   Updated: 2022/10/16 11:07:31 by eavedill         ###   ########.fr       */
+/*   Created: 2022/12/29 14:34:39 by eavedill          #+#    #+#             */
+/*   Updated: 2022/12/29 14:34:49 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	ft_print_char(char c)
 {
@@ -83,7 +83,7 @@ int	ft_print_addr(size_t val, char formato)
 		str = ft_strdup("0x0");
 	else
 	{
-		str = ft_addrtoa (val, formato, 0);
+		str = ft_addrtoa (val, formato, 1);
 	}
 	if (!str)
 		return (-1);

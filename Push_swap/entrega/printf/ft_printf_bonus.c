@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.c                                      :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 09:51:19 by eavedill          #+#    #+#             */
-/*   Updated: 2022/11/25 17:13:22 by eavedill         ###   ########.fr       */
+/*   Created: 2022/12/29 14:35:16 by eavedill          #+#    #+#             */
+/*   Updated: 2022/12/29 14:35:22 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 static int	print_var(char *str, va_list args, int pos )
 {
@@ -30,6 +30,8 @@ static int	print_var(char *str, va_list args, int pos )
 		longitud = ft_print_addr (va_arg(args, size_t), str[pos]);
 	else if (str[pos] == 'x' || str[pos] == 'X')
 		longitud = ft_print_uint (va_arg(args, size_t), str[pos]);
+	else
+		longitud = ft_print_extended (str, args, pos);
 	return (longitud);
 }
 
