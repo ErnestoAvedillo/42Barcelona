@@ -13,8 +13,9 @@
 #push-swap project
 NAME := push_swap
 
-SRC := push_swap check_errors create_stacks push_free push_utils sort_stack \
-		push_moves
+SRC := push_swap check_errors create_stacks push_free push_moves push_utils \
+revrotate_moves rotate_moves sort_stack sort_stack_st2 sort_utils swap_moves \
+		 
 DIR_SRC := ./srcs/
 SRCS := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC)))
 DIR_OBJ := ./obj/

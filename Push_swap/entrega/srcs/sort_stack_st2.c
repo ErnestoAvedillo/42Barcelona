@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stack.c                                       :+:      :+:    :+:   */
+/*   sort_stack_st2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 08:20:03 by eavedill          #+#    #+#             */
-/*   Updated: 2023/01/05 08:20:11 by eavedill         ###   ########.fr       */
+/*   Created: 2023/01/08 13:47:34 by eavedill          #+#    #+#             */
+/*   Updated: 2023/01/08 13:47:40 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void sort_stack( t_stack **stacks)
+void sort_stack_st2(t_stack **stacks)
 {
     int i;
     int max_elem;
@@ -31,19 +31,19 @@ void sort_stack( t_stack **stacks)
         sentido = get_sentido(element->moves);
         while (++moves_needed <= ft_abs(element->moves))
         {
+            if ()
             if (sentido)
-                rotate(stacks[0]);
+                ra(stacks);
             else
-                revrotate(stacks[0]);
+                rra(stacks);
         }
-    push(stacks[0],stacks[1]);
+    pb(stacks);
     coplete_elements(stacks[0]);
-    print_stacks (stacks);
     }
     i++;
     while (--i > 1)
     {
-        push(stacks[1],stacks[0]);
+        pa(stacks);
     }
     print_stacks (stacks);
     free_all_stacks(stacks);

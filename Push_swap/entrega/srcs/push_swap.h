@@ -39,22 +39,38 @@ typedef struct l_element
 //check_errors.c
 int			check_errors(int av, char **ac);
 t_stack 	**createstacks(int av, char **ac);
+//sort_stack
 void		sort_stack( t_stack **stacks);
+//sort_stack_st2
+void		sort_stack_st2( t_stack **stacks);
+//sort_utils
 int 		calculate_moves(t_element *element, t_stack *stack);
 void 		coplete_elements(t_stack *stack);
 void 		calc_all_moves (t_stack *stack);
-//ush_free
+//push_free
 void 		free_all_stacks(t_stack **stacks);
 int 		free_stack (t_stack *ptr);
-
 //movements
-void    swap (t_stack *stack);
-void 	push (t_stack *stack_a, t_stack *stack_b);
-void 	rotate (t_stack *stack);
-void    swap2 (t_stack **stacks);
-void    rotate2 (t_stack **stacks);
-void 	revrotate (t_stack *stack);
-void    revrotate2 (t_stack **stacks);
+//swap
+void    	swap (t_stack *stack);
+void    	ss (t_stack **stacks);
+void 		sa (t_stack **stacks);
+void 		sb (t_stack **stacks);
+
+//push
+void	 	push (t_stack *stack_a, t_stack *stack_b);
+void	    pa(t_stack **stacks);
+void	    pb(t_stack **stacks);
+//rotate
+void 		rotate (t_stack *stack);
+void    	rr (t_stack **stacks);
+void    	ra (t_stack **stacks);
+void    	rb (t_stack **stacks);
+//revrotate
+void 		revrotate (t_stack *stack);
+void    	rrr (t_stack **stacks);
+void    	rra (t_stack **stacks);
+void    	rrb (t_stack **stacks);
 
 //push_utils
 void 		print_stacks(t_stack **stacks);

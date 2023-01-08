@@ -11,33 +11,7 @@
 /* ************************************************************************** */
 #include"push_swap.h"
 
-void    swap (t_stack *stack)
-{
-    void *ptr;
-    t_element *element1;
-    t_element *element2;
-
-    element1 = stack->elem1;
-    element2 = element1->next;
-    ptr = element2->next;
-    stack->elem1 =  element2;
-    element2->next = element1;
-    element1->next = ptr;
-    element2->ist_pos = stack->cur_frst_elem;
-    element2->moves = calculate_moves (element2, stack);
-    element1->ist_pos = stack->cur_frst_elem + 1;
-    element1->moves = calculate_moves (element1, stack);
-    return ;
-}
-
-void    swap2 (t_stack **stacks)
-{
-    swap(stacks[0]);
-    swap(stacks[1]);
-    return ;
-}
-
-void push (t_stack *stack_a, t_stack *stack_b)
+void    push (t_stack *stack_a, t_stack *stack_b)
 {
     t_element *element_a;
     t_element *element_b;
@@ -58,59 +32,16 @@ void push (t_stack *stack_a, t_stack *stack_b)
     return ;
 } 
 
-void rotate (t_stack *stack)
+void    pa(t_stack **stacks)
 {
-    t_element   *element;
-    t_element   *element_2;
-
-    if (stack->nbr_elements > 1)
-    {
-        element_2 = stack->elem1;
-        stack->elem1 = element_2->next;
-        element = element_2;
-        while  (element->next)
-        {
-            element = element->next;
-        }
-        element->next = element_2;
-        element_2->next = NULL; 
-//        coplete_elements (stack);
-    }
+    push (stacks[1], stacks[0]);
+    ft_printf("pa\n");
     return ;
 }
 
-void    rotate2 (t_stack **stacks)
+void    pb(t_stack **stacks)
 {
-    rotate(stacks[0]);
-    rotate(stacks[1]);
-    return ;
-}
-
-void revrotate (t_stack *stack)
-{
-    t_element   *element;
-    t_element   *element_2;
-
-    if (stack->nbr_elements > 1)
-    {
-        element = stack->elem1;
-        element_2 = element->next;
-        while  (element->next)
-        {
-            element_2 = element;
-            element = element->next;
-        }
-        element_2->next = NULL;
-        element->next = stack->elem1;
-        stack->elem1 = element;
-//      coplete_elements (stack);
-    }
-    return ;
-}
-
-void    revrotate2 (t_stack **stacks)
-{
-    revrotate(stacks[0]);
-    revrotate(stacks[1]);
+    push (stacks[0], stacks[1]);
+    ft_printf("pa\n");
     return ;
 }

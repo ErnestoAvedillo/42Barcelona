@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   revrotate_moves.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/08 13:57:33 by eavedill          #+#    #+#             */
+/*   Updated: 2023/01/08 13:57:36 by eavedill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include"push_swap.h"
+
+void revrotate (t_stack *stack)
+{
+    t_element   *element;
+    t_element   *element_2;
+
+    if (stack->nbr_elements > 1)
+    {
+        element = stack->elem1;
+        element_2 = element->next;
+        while  (element->next)
+        {
+            element_2 = element;
+            element = element->next;
+        }
+        element_2->next = NULL;
+        element->next = stack->elem1;
+        stack->elem1 = element;
+//      coplete_elements (stack);
+    }
+    return ;
+}
+
+void    rrr (t_stack **stacks)
+{
+    revrotate(stacks[0]);
+    revrotate(stacks[1]);
+    return ;
+}
+
+void    rra (t_stack **stacks)
+{
+    revrotate(stacks[0]);
+    ft_printf("rra\n");
+    return ;
+}
+
+void    rrb (t_stack **stacks)
+{
+    revrotate(stacks[1]);
+    ft_printf("rrb\n");
+    return ;
+}

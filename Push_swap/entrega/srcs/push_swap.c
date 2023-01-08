@@ -28,6 +28,6 @@ int main (int av, char **ac)
         ft_printf("Error\n");
         return(0);
     }
-    sort_stack(stacks);
+    sort_stack_st2(stacks);
     return (0);
 }
