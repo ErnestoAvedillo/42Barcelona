@@ -46,17 +46,17 @@ void seek_min_moves(t_stack **stacks)
 
     moves_2_up(stacks);
     elementb_next = stacks[1]->elem1;
-    elementb = get_last_elem (stacks[1]);
+    elementb = get_last_elem(stacks[1]);
     stacks[1]->optim_move = stacks[1]->nbr_elements;
     stacks[1]->optim_elem = stacks[1]->elem1;
     stacks[0]->optim_move = stacks[0]->nbr_elements;
     stacks[0]->optim_elem = stacks[0]->elem1;
-    while (elementb);
+    while (elementb)
     {
         elementa = stacks[0]->elem1;
         while (elementa)
         {
-            if (belong_2_interval(stacks,elementa,elementb))
+            if (belong_2_interval(stacks, elementa, elementb))
                 if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) <
                     ft_abs(elementa->moves) + ft_abs(elementb->moves))
                     {
@@ -185,7 +185,6 @@ void correct_order_b_st(t_stack **stacks)
     if (element1->soll_pos < element2->soll_pos)
         sb(stacks);
     return ;
-
 }
 
 void sort_stack_st2(t_stack **stacks)
@@ -195,15 +194,16 @@ void sort_stack_st2(t_stack **stacks)
    
     i = 0;
     coplete_elements(stacks[0]);
-    print_stacks(stacks);
     pb(stacks);
     pb(stacks);
     correct_order_b_st(stacks);
-    print_stacks(stacks);
     while (++i < stacks[0]->nbr_elements - 1)
     {
         seek_min_moves(stacks);
+        print_stacks(stacks);
+        getchar();
         move_to_start(stacks);
+        print_stacks(stacks);
         element = stacks[0]->elem1;
         if (element->soll_pos >= stacks[0]->nbr_elements - 1 );
             sa(stacks);
