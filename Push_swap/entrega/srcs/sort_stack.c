@@ -46,7 +46,6 @@ void sort_stack( t_stack **stacks)
         push(stacks[1],stacks[0]);
     }
     print_stacks (stacks);
-    free_all_stacks(stacks);
     return ;
 }
 /*    printf("pa\n");

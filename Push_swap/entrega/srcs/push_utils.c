@@ -44,6 +44,12 @@ void print_stacks(t_stack **stacks)
         ft_printf ("\n");
     }
 }
+void print_element (t_element *elem)
+{
+    ft_printf ("Valor:% 5d\t; Soll pos:% 5d\t; Ist pos:% 5d\t; Moves:% 5d\t Adress:%#13.13p\n", elem->value, \
+    elem->soll_pos, elem->ist_pos, elem->moves, elem->next);
+
+}
 
 void *search_item(int i, t_stack *stack)
 {

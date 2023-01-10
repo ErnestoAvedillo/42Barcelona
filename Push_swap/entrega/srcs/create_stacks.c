@@ -25,7 +25,6 @@ t_element	*ft_new_element(t_element *content,int value)
     return (ptr);
 }
 
-
 t_stack *retrieve_data(int av, char **ac)
 {
     int     i;
@@ -54,8 +53,10 @@ t_stack *retrieve_data(int av, char **ac)
     }
     stack->nbr_elements = i - 1;
     stack->cur_frst_elem = 1;
+    stack->optim_move = 0;
     return (stack);
 }
+
 t_stack **createstacks(int av, char **ac)
 {
     t_stack **stacks;
@@ -70,6 +71,7 @@ t_stack **createstacks(int av, char **ac)
         free_stack (stacks[0]);
         stacks[1]->nbr_elements = 0;
         stacks[1]->cur_frst_elem = 0;
+        stacks[1]->optim_move = 0;
         stacks[1]->elem1 = NULL;
         return (NULL);
     }
