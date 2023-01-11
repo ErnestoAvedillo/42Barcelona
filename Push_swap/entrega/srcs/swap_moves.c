@@ -24,10 +24,10 @@ void    swap (t_stack *stack)
     stack->elem1 =  element2;
     element2->next = element1;
     element1->next = ptr;
-    element2->ist_pos = stack->cur_frst_elem;
-    element2->moves = calculate_moves (element2, stack);
-    element1->ist_pos = stack->cur_frst_elem + 1;
-    element1->moves = calculate_moves (element1, stack);
+    element2->ist_pos = 1;
+    element2->moves = 0;
+    element1->ist_pos = 2;
+    element1->moves = 1;
     return ;
 }
 

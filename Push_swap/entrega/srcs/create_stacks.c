@@ -54,6 +54,7 @@ t_stack *retrieve_data(int av, char **ac)
     stack->nbr_elements = i - 1;
     stack->cur_frst_elem = 1;
     stack->optim_move = 0;
+    stack->optim_elem = NULL;
     return (stack);
 }
 

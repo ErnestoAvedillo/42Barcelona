@@ -29,21 +29,21 @@ void print_stacks(t_stack **stacks)
     {
         if(elem_stk_a)
         {
-            ft_printf ("% 5d\t% 5d\t% 5d\t% 5d\t%13.13p\t ---", elem_stk_a->value, \
+            printf ("% 5d\t% 5d\t% 5d\t% 5d\t%13.13p\t ---", elem_stk_a->value, \
                 elem_stk_a->soll_pos, elem_stk_a->ist_pos, elem_stk_a->moves, \
                 elem_stk_a->next);
             elem_stk_a = elem_stk_a->next;
         }
         else
-            ft_printf("%52s", "---");
+            printf("%52s", "---");
         if (elem_stk_b)
         {
-            ft_printf ("% 5d % 5d\t   % 5d  % 5d\t     %#13.13p", elem_stk_b->value, \
+            printf ("% 5d % 5d\t   % 5d  % 5d\t     %#13.13p", elem_stk_b->value, \
                 elem_stk_b->soll_pos, elem_stk_b->ist_pos, elem_stk_b->moves, \
                 elem_stk_b->next);
             elem_stk_b = elem_stk_b->next;
         }
-        ft_printf ("\n");
+        printf ("\n");
     }
 }
 void print_element (t_element *elem)

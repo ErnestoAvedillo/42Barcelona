@@ -1,15 +1,9 @@
 #ignora todos los dicheros llamados.DS_Store 
 .DS_Store
 .mylibft
-<<<<<<< HEAD
-*.o
-*.d
-*.a
-.bous
-=======
 .vscode
 *.a
 *o
 *.d
-.bonus
->>>>>>> d24523bbdda4e631344fc3985ab5bab0812e556b
+*.bonus
+*.exe

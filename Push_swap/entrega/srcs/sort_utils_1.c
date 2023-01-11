@@ -19,6 +19,7 @@ int get_min_val(t_stack *stack, int cur_min)
     int         cur_val;
     t_element   *element;
 
+
     min = INT_MAX;
     element = stack->elem1;
     while (element)
@@ -76,8 +77,8 @@ void put_pos_elem(int valor, int pos, t_stack *stack)
         if (element->value == valor)
         {
             element->soll_pos = pos ;
-            element->ist_pos = cur_pos;
-            element->moves = calculate_moves(element, stack);
+//            element->ist_pos = cur_pos;
+//            element->moves = calculate_moves(element, stack);
         }
         cur_pos++;
         element = element->next;

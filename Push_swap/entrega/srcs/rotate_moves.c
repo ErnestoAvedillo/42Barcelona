@@ -37,12 +37,15 @@ int    rr (t_stack **stacks)
 {
     rotate(stacks[0]);
     rotate(stacks[1]);
+    restore_ist_pos(stacks);
+    ft_printf("rr\n");
     return (1);
 }
 
 int    ra (t_stack **stacks)
 {
     rotate(stacks[0]);
+    restore_ist_pos(stacks);
     ft_printf("ra\n");
     return (1);
 }
@@ -50,6 +53,7 @@ int    ra (t_stack **stacks)
 int    rb (t_stack **stacks)
 {
     rotate(stacks[1]);
+    restore_ist_pos(stacks);
     ft_printf("rb\n");
     return (1);
 }

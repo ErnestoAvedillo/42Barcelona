@@ -52,6 +52,7 @@ void 		calc_all_moves (t_stack *stack);
 //sort_utils_2
 void		moves_2_up (t_stack **stacks);
 t_element 	*get_last_elem (t_stack *stack);
+void 		restore_ist_pos (t_stack **stacks);
 
 //push_free
 void 		free_all_stacks(t_stack **stacks);

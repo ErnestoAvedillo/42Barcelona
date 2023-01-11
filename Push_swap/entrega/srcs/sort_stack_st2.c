@@ -51,13 +51,14 @@ void seek_min_moves(t_stack **stacks)
     stacks[1]->optim_elem = stacks[1]->elem1;
     stacks[0]->optim_move = stacks[0]->nbr_elements;
     stacks[0]->optim_elem = stacks[0]->elem1;
-    while (elementb)
+    while (elementb_next)
     {
         elementa = stacks[0]->elem1;
         while (elementa)
         {
             if (belong_2_interval(stacks, elementa, elementb))
-                if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) <
+            {
+                if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) >
                     ft_abs(elementa->moves) + ft_abs(elementb->moves))
                     {
                         stacks[0]->optim_move = elementa->moves;
@@ -65,11 +66,15 @@ void seek_min_moves(t_stack **stacks)
                         stacks[1]->optim_move = elementb->moves;
                         stacks[1]->optim_elem = elementb;
                     }
+            }
             elementa = elementa->next;
+            if (stacks[0]->optim_move == 0 && stacks[1]->optim_move == 0)
+                return ;
         }
         elementb =  elementb_next;
         elementb_next = elementb->next;
     }
+    return ;
 }
 
 /*
@@ -193,21 +198,22 @@ void sort_stack_st2(t_stack **stacks)
     t_element   *element;
    
     i = 0;
+    restore_ist_pos(stacks);
     coplete_elements(stacks[0]);
     pb(stacks);
     pb(stacks);
     correct_order_b_st(stacks);
-    while (++i < stacks[0]->nbr_elements - 1)
+    restore_ist_pos(stacks);
+    moves_2_up(stacks);
+   while (++i < stacks[0]->nbr_elements - 1)
     {
         seek_min_moves(stacks);
-        print_stacks(stacks);
-        getchar();
         move_to_start(stacks);
         print_stacks(stacks);
-        element = stacks[0]->elem1;
-        if (element->soll_pos >= stacks[0]->nbr_elements - 1 );
-            sa(stacks);
-        
+        getchar();
+    //    element = stacks[0]->elem1;
+    //    if (element->soll_pos >= stacks[0]->nbr_elements - 1 );
+    //        sa(stacks);    
         pb(stacks);
     }
     moves_2_up(stacks);

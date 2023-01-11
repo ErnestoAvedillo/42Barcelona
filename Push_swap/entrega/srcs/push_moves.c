@@ -35,6 +35,7 @@ void    push (t_stack *stack_a, t_stack *stack_b)
 int    pa(t_stack **stacks)
 {
     push (stacks[1], stacks[0]);
+    restore_ist_pos(stacks);
     ft_printf("pa\n");
     return (1);
 }
@@ -42,6 +43,7 @@ int    pa(t_stack **stacks)
 int    pb(t_stack **stacks)
 {
     push (stacks[0], stacks[1]);
+    restore_ist_pos(stacks);
     ft_printf("pa\n");
     return (1);
 }
