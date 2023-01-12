@@ -44,6 +44,6 @@ int    pb(t_stack **stacks)
 {
     push (stacks[0], stacks[1]);
     restore_ist_pos(stacks);
-    ft_printf("pa\n");
+    ft_printf("pb\n");
     return (1);
 }

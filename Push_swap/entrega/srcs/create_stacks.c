@@ -21,6 +21,9 @@ t_element	*ft_new_element(t_element *content,int value)
 		return (NULL);
 	content->next = ptr ;
 	ptr->value = value;
+    ptr->soll_pos = 0;
+    ptr->ist_pos = 0;
+    ptr->moves = 0;
 	ptr->next = NULL;
     return (ptr);
 }

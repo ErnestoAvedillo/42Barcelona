@@ -29,7 +29,7 @@ void print_stacks(t_stack **stacks)
     {
         if(elem_stk_a)
         {
-            printf("% 5d\t% 5d\t% 5d\t% 5d\t%13.13p\t%13.13p\t ---", elem_stk_a->value,
+            printf("% 5d\t% 5d\t% 5d\t% 5d\t%#13.13p\t%#13.13p\t ---", elem_stk_a->value,
                    elem_stk_a->soll_pos, elem_stk_a->ist_pos, elem_stk_a->moves,
                    elem_stk_a, elem_stk_a->next);
             elem_stk_a = elem_stk_a->next;
