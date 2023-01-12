@@ -23,24 +23,24 @@ void print_stacks(t_stack **stacks)
     ft_printf("      ---    stack_b nbr_elem:%i - first_elem :%i\n", stacks[1]->nbr_elements, stacks[1]->cur_frst_elem);
     ft_printf(" stack_a moves optim:%i - element optim :%p", stacks[0]->optim_move, stacks[0]->optim_elem);
     ft_printf("      ---    stack_b moves optim:%i - element optim :%p\n", stacks[1]->optim_move, stacks[1]->optim_elem);
-    ft_printf("value    soll     ist   moves\t next \t         ---");
-    ft_printf ("value    soll    ist   moves\t next\n");
+    ft_printf("value    soll     ist   moves\t cur add.       next \t         ---");
+    ft_printf ("value    soll    ist   moves\t cur add.       next\n");
     while (elem_stk_a || elem_stk_b)
     {
         if(elem_stk_a)
         {
-            printf ("% 5d\t% 5d\t% 5d\t% 5d\t%13.13p\t ---", elem_stk_a->value, \
-                elem_stk_a->soll_pos, elem_stk_a->ist_pos, elem_stk_a->moves, \
-                elem_stk_a->next);
+            printf("% 5d\t% 5d\t% 5d\t% 5d\t%13.13p\t%13.13p\t ---", elem_stk_a->value,
+                   elem_stk_a->soll_pos, elem_stk_a->ist_pos, elem_stk_a->moves,
+                   elem_stk_a, elem_stk_a->next);
             elem_stk_a = elem_stk_a->next;
         }
         else
-            printf("%52s", "---");
+            printf("%67s", "---");
         if (elem_stk_b)
         {
-            printf ("% 5d % 5d\t   % 5d  % 5d\t     %#13.13p", elem_stk_b->value, \
-                elem_stk_b->soll_pos, elem_stk_b->ist_pos, elem_stk_b->moves, \
-                elem_stk_b->next);
+            printf("% 5d % 5d\t   % 5d  % 5d\t     %#13.13p   %#13.13p", elem_stk_b->value,
+                   elem_stk_b->soll_pos, elem_stk_b->ist_pos, elem_stk_b->moves,
+                   elem_stk_b, elem_stk_b->next);
             elem_stk_b = elem_stk_b->next;
         }
         printf ("\n");
