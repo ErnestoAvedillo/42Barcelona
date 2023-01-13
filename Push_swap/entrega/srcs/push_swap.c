@@ -14,10 +14,8 @@
 int main (int av, char **ac)
 {
     t_stack **stacks;
-    int     result;
 
-    result = check_errors(av, ac);
-    if (result)
+    if (check_errors(av, ac))
     {
         ft_printf("Error\n");
         return(0);
@@ -27,6 +25,12 @@ int main (int av, char **ac)
      {
         ft_printf("Error\n");
         return(0);
+    }
+    if (check_duplicates(stacks))
+    {
+        ft_printf("Error\n");
+        free_all_stacks(stacks);
+        return;
     }
     sort_stack_st2(stacks);
     free_all_stacks(stacks);

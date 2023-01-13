@@ -40,6 +40,9 @@ typedef struct l_element
 
 //check_errors.c
 int			check_errors(int av, char **ac);
+//check_duplicates
+int 		check_duplicates(t_stack **stacks);
+// create_stacks
 t_stack 	**createstacks(int av, char **ac);
 //sort_stack
 void		sort_stack( t_stack **stacks);

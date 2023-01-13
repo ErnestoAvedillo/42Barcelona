@@ -187,7 +187,7 @@ void    move_back(t_stack **stacks)
     total_moves = element->moves;
     i = 0;
     if (total_moves < 0)
-        while (--i >= total_moves - 1)
+        while (--i > total_moves)
             rrb(stacks);
     else if (total_moves > 0)
         while (++ i <= total_moves + 1)
@@ -245,6 +245,7 @@ void sort_stack_st2(t_stack **stacks)
     }
     //printf("he salido del bucle\n");
     moves_2_up(stacks);
+    print_stacks(stacks);
     move_back(stacks);
     print_stacks(stacks);
     return;
