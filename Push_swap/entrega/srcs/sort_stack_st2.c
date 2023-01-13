@@ -245,8 +245,8 @@ void sort_stack_st2(t_stack **stacks)
     }
     //printf("he salido del bucle\n");
     moves_2_up(stacks);
-    print_stacks(stacks);
+    //print_stacks(stacks);
     move_back(stacks);
-    print_stacks(stacks);
+    //print_stacks(stacks);
     return;
 }

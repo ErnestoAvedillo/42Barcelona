@@ -11,16 +11,35 @@
 /* ************************************************************************** */
 #include"push_swap.h"
 
+void free_double_point (char **ptr)
+{
+    int i;
+
+    i = 0;
+    while (ptr[i])
+        free(ptr[i++]);
+    free(ptr);
+}
+
 int main (int av, char **ac)
 {
-    t_stack **stacks;
-
-    if (check_errors(av, ac))
+    t_stack     **stacks;
+    char        **str;
+    
+    if (av == 1 )
     {
         ft_printf("Error\n");
         return(0);
     }
-    stacks = createstacks(av,ac);
+    str = input_data(ac);
+    av = len_array(str);
+    if (check_errors(av, str))
+    {
+        ft_printf("Error\n");
+        return(0);
+    }
+    stacks = createstacks(av,str);
+    free_double_point (str);
     if (!stacks)
      {
         ft_printf("Error\n");
@@ -30,7 +49,7 @@ int main (int av, char **ac)
     {
         ft_printf("Error\n");
         free_all_stacks(stacks);
-        return;
+        return (0);
     }
     sort_stack_st2(stacks);
     free_all_stacks(stacks);

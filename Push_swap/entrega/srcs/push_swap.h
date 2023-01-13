@@ -81,12 +81,13 @@ void 		revrotate (t_stack *stack);
 int    		rrr (t_stack **stacks);
 int    		rra (t_stack **stacks);
 int    		rrb (t_stack **stacks);
-
 //push_utils
 void 		print_stacks(t_stack **stacks);
 void 		*search_item(int i, t_stack *stack);
 int 		get_sentido (int valor);
 void 		print_element (t_element *elem);
-
+//input_data
+char    	**input_data(char **ac);
+int			len_array (char **ptr);
 
 # endif

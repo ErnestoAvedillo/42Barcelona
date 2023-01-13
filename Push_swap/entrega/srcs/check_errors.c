@@ -62,9 +62,7 @@ int check_errors(int av, char **ac)
                 return (1);
         }
         if (chk_out_of_lim (ac[i]))
-        {
             return (1);
-        }
         j = -1;
     }
     return (0);
