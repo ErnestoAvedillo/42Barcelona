@@ -12,6 +12,58 @@
 
 #include"push_swap.h"
 
+void analyze_moves (t_stack **stacks, t_element *elema, t_element *elemb)
+{
+    int tot_elem;
+    int moves_a;
+    int moves_b;
+
+
+    tot_elem =  stacks[0]->nbr_elements + stacks[1]->nbr_elements;
+    moves_a = elema->moves;
+    moves_b = elemb->moves;
+
+    if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) >
+        ft_abs(elema->moves) + ft_abs(elemb->moves))
+        {
+            stacks[0]->optim_move = elema->moves;
+            stacks[0]->optim_elem = elema;
+            stacks[1]->optim_move = elemb->moves;
+            stacks[1]->optim_elem = elemb;
+        }
+/*    if ((moves_a > 0 && moves_b > 0) || (moves_a > 0 && moves_b > 0))
+        if (ft_max(ft_abs(stacks[0]->optim_move) , ft_abs(stacks[1]->optim_move)) >
+            ft_max(ft_abs(elema->moves) , ft_abs(elemb->moves)))
+            {
+                stacks[0]->optim_move = elema->moves;
+                stacks[0]->optim_elem = elema;
+                stacks[1]->optim_move = elemb->moves;
+                stacks[1]->optim_elem = elemb;
+            }
+    else if ((moves_a < 0 && moves_b > 0) || (moves_a > 0 && moves_b < 0))
+        if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) >
+            ft_abs(elema->moves) + ft_abs(elemb->moves))
+            {
+                stacks[0]->optim_move = elema->moves;
+                stacks[0]->optim_elem = elema;
+                stacks[1]->optim_move = elemb->moves;
+                stacks[1]->optim_elem = elemb;
+            }
+
+         if (ft_abs(moves_a) + ft_abs(moves_b)< ft_max(ft_abs(stacks[0]->optim_move) , ft_abs(stacks[1]->optim_move)))
+            if (ft_max(ft_abs(stacks[0]->optim_move) , ft_abs(stacks[1]->optim_move)) >
+                ft_max(elema->ist_pos,elemb->ist_pos))
+                {
+                    stacks[0]->optim_move = elementa->ist_pos;
+                    stacks[0]->optim_elem = elementa;
+                    stacks[1]->optim_move = elementb_next->ist_pos;
+                    stacks[1]->optim_elem = elementb_next;
+                }
+        else
+*/
+    return ;
+}
+
 int belong_2_interval(t_stack **stacks, t_element *elema, t_element *elemb)
 {
     t_element *elemb_next;
@@ -70,14 +122,15 @@ void seek_min_moves(t_stack **stacks)
             //getchar();
             if (belongs)
             {
-                if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) >
+                analyze_moves(stacks, elementa, elementb_next);
+            /*    if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) >
                     ft_abs(elementa->moves) + ft_abs(elementb_next->moves))
                     {
                         stacks[0]->optim_move = elementa->moves;
                         stacks[0]->optim_elem = elementa;
                         stacks[1]->optim_move = elementb_next->moves;
                         stacks[1]->optim_elem = elementb_next;
-                    }
+                    }*/
             }
             elementb =  elementb_next;
             elementb_next = elementb->next;
@@ -134,7 +187,6 @@ void    move_to_start (t_stack **stacks)
     int movement;
 
     movement = still_moves(stacks);
-   // printf("movim %i\n", movement);
     while (movement == 1)
     {
         rr(stacks);
@@ -201,11 +253,32 @@ void    move_back(t_stack **stacks)
     return ;
 }
 
-void correct_order_b_st(t_stack **stacks)
+void send_frst_2_elem(t_stack **stacks)
 {
-    t_element *element1;
-    t_element *element2;
-    
+    t_element   *element1;
+    t_element   *element2;
+    int         number_of_elem;
+
+    element1 = stacks[0]->elem1;
+    element2 = element1->next;
+    number_of_elem = stacks[0]->nbr_elements;
+    if (element1->soll_pos == number_of_elem)
+    {
+        ra(stacks);
+        pb(stacks);
+        pb(stacks);
+    }
+    else if (element2->soll_pos == number_of_elem )
+    {
+        pb(stacks);
+        ra(stacks);    
+        pb(stacks);
+    }
+    else 
+    {
+        pb(stacks);
+        pb(stacks);
+    }
     element1 = stacks[1]->elem1;
     element2 = element1->next;
     if (element1->soll_pos < element2->soll_pos)
@@ -213,40 +286,52 @@ void correct_order_b_st(t_stack **stacks)
     return ;
 }
 
+void order_2_elem(t_stack **stacks)
+{
+    t_element *element1; 
+    t_element *element2;
+
+    element1 = stacks[0]->elem1;
+    element2 = element1->next;
+    if (element1->soll_pos > element2->soll_pos)
+        sa(stacks);
+    return;
+}
 void sort_stack_st2(t_stack **stacks)
 {
     int         i;
     int         tot_nbr_elem;
     t_element   *element;
    
-    i = 0;
+    i = 1;
     tot_nbr_elem = stacks[0]->nbr_elements;
+    //    print_stacks(stacks);
     coplete_elements(stacks[0]);
-    pb(stacks);
-    pb(stacks);
-    correct_order_b_st(stacks);
+    //    print_stacks(stacks);
+    send_frst_2_elem(stacks);
     restore_ist_pos(stacks);
-    moves_2_up(stacks);
-    while (++i < tot_nbr_elem - 2)
+    while (++i < tot_nbr_elem - 1)
     {
-        //printf ("1 sigo en el bucle\n");
+        element = stacks[0]->elem1;
+        if (element->soll_pos == tot_nbr_elem && stacks[0]->nbr_elements != 1 )
+            ra(stacks);    
+        moves_2_up(stacks);
         seek_min_moves(stacks);
-        //printf ("2 sigo en el bucle\n");
-        //print_stacks(stacks);
-        //printf ("3 sigo en el bucle\n");
-        //getchar();
-        //printf ("4 sigo en el bucle\n");
         move_to_start(stacks);
-    //    element = stacks[0]->elem1;
-    //    if (element->soll_pos >= stacks[0]->nbr_elements - 1 );
-    //        sa(stacks);    
-        //printf ("5 sigo en el bucle\n");
         pb(stacks);
+    //    print_stacks(stacks);
+    //    getchar();
     }
-    //printf("he salido del bucle\n");
-    moves_2_up(stacks);
     //print_stacks(stacks);
+    //order_2_elem(stacks);
+    //    print_stacks(stacks);
+    //    getchar();
+    moves_2_up(stacks);
+    //    print_stacks(stacks);
+    //    getchar();
     move_back(stacks);
+    //    print_stacks(stacks);
+    //    getchar();
     //print_stacks(stacks);
     return;
 }

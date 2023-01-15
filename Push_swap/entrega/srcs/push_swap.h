@@ -89,5 +89,7 @@ void 		print_element (t_element *elem);
 //input_data
 char    	**input_data(char **ac);
 int			len_array (char **ptr);
+//basic input
+int basic_input(t_stack **stacks);
 
 # endif

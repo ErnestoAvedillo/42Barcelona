@@ -33,10 +33,10 @@ t_stack *retrieve_data(int av, char **ac)
     int     i;
     t_element *cur_ptr;
     t_stack *stack;
+
     stack = (t_stack *) malloc (sizeof (t_stack));
     if (!stack)
         return (NULL);
-    i = 1;
     stack->elem1 = (t_element *) malloc (sizeof (t_element));
     if (!stack->elem1)
         {
@@ -44,6 +44,7 @@ t_stack *retrieve_data(int av, char **ac)
             return (NULL);
         }
     cur_ptr = stack->elem1;
+    i = 0;
     cur_ptr->value = ft_atoi(ac[i]);
     while (av > ++i)
     {
@@ -54,7 +55,7 @@ t_stack *retrieve_data(int av, char **ac)
             return (NULL);
         }
     }
-    stack->nbr_elements = i - 1;
+    stack->nbr_elements = i;
     stack->cur_frst_elem = 1;
     stack->optim_move = 0;
     stack->optim_elem = NULL;

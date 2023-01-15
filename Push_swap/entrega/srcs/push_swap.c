@@ -51,6 +51,8 @@ int main (int av, char **ac)
         free_all_stacks(stacks);
         return (0);
     }
+    if (basic_input(stacks))
+        return (0);
     sort_stack_st2(stacks);
     free_all_stacks(stacks);
     return (0);
