@@ -118,32 +118,19 @@ void seek_min_moves(t_stack **stacks)
         while (elementb_next)
         {
             belongs = belong_2_interval(stacks, elementa, elementb);
-            //printf("result belongs % i; elem a % i; elem b % i\n", belongs, elementa->soll_pos, elementb_next->soll_pos);
-            //getchar();
             if (belongs)
             {
                 analyze_moves(stacks, elementa, elementb_next);
-            /*    if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) >
-                    ft_abs(elementa->moves) + ft_abs(elementb_next->moves))
-                    {
-                        stacks[0]->optim_move = elementa->moves;
-                        stacks[0]->optim_elem = elementa;
-                        stacks[1]->optim_move = elementb_next->moves;
-                        stacks[1]->optim_elem = elementb_next;
-                    }*/
             }
             elementb =  elementb_next;
             elementb_next = elementb->next;
             if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) <= 1)
             {
-            //    printf("salgo 1\n");
                 return ;
             }
         }
         elementa = elementa->next;
-       // printf("sig element %#p\n",elementa);
     }
-   // printf("salgo 2\n");
     return ;
 }
 

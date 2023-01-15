@@ -33,6 +33,8 @@ int main (int av, char **ac)
     }
     str = input_data(ac);
     av = len_array(str);
+    if (av == 1)
+        return (0);
     if (check_errors(av, str))
     {
         ft_printf("Error\n");
