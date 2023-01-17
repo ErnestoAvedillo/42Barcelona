@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ispositiv.c                                     :+:      :+:    :+:   */
+/*   ft_issamesign.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,9 +9,13 @@
 /*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_ispositiv(int c)
+#include"libft.h"
+
+int	ft_issamesign(int a, int b)
 {
-	if (c >= 0)
+	if (ft_ispositive(a) && ft_ispositive(b))
+		return (1);
+	if (!ft_ispositive(a) && !ft_ispositive(b))
 		return (1);
 	return (0);
 }

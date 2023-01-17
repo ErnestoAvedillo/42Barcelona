@@ -66,4 +66,5 @@ void restore_ist_pos (t_stack **stacks)
         element = element->next;
     }  
     stacks[1]->nbr_elements = i - 1;
+    return ;
 }

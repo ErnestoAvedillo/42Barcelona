@@ -69,4 +69,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
 int		ft_abs(int val);
+int		ft_issamesign(int a, int b);
+int		ft_ispositive(int c);
+
 #endif

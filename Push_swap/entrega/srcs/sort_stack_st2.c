@@ -31,36 +31,42 @@ void analyze_moves (t_stack **stacks, t_element *elema, t_element *elemb)
             stacks[1]->optim_move = elemb->moves;
             stacks[1]->optim_elem = elemb;
         }
-/*    if ((moves_a > 0 && moves_b > 0) || (moves_a > 0 && moves_b > 0))
-        if (ft_max(ft_abs(stacks[0]->optim_move) , ft_abs(stacks[1]->optim_move)) >
-            ft_max(ft_abs(elema->moves) , ft_abs(elemb->moves)))
-            {
-                stacks[0]->optim_move = elema->moves;
-                stacks[0]->optim_elem = elema;
-                stacks[1]->optim_move = elemb->moves;
-                stacks[1]->optim_elem = elemb;
-            }
-    else if ((moves_a < 0 && moves_b > 0) || (moves_a > 0 && moves_b < 0))
-        if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) >
-            ft_abs(elema->moves) + ft_abs(elemb->moves))
-            {
-                stacks[0]->optim_move = elema->moves;
-                stacks[0]->optim_elem = elema;
-                stacks[1]->optim_move = elemb->moves;
-                stacks[1]->optim_elem = elemb;
-            }
-
-         if (ft_abs(moves_a) + ft_abs(moves_b)< ft_max(ft_abs(stacks[0]->optim_move) , ft_abs(stacks[1]->optim_move)))
-            if (ft_max(ft_abs(stacks[0]->optim_move) , ft_abs(stacks[1]->optim_move)) >
-                ft_max(elema->ist_pos,elemb->ist_pos))
-                {
-                    stacks[0]->optim_move = elementa->ist_pos;
-                    stacks[0]->optim_elem = elementa;
-                    stacks[1]->optim_move = elementb_next->ist_pos;
-                    stacks[1]->optim_elem = elementb_next;
-                }
-        else
-*/
+/*    if (ft_issamesign(elema->moves,elemb->moves) && ft_issamesign(stacks[0]->optim_move,stacks[1]->optim_move))
+        if (ft_min(ft_abs(elema->moves),ft_abs(elemb->moves) < ft_min(ft_abs(stacks[0]->optim_move),ft_abs(stacks[1]->optim_move))))
+        {
+            stacks[0]->optim_move = elema->moves;
+            stacks[0]->optim_elem = elema;
+            stacks[1]->optim_move = elemb->moves;
+            stacks[1]->optim_elem = elemb;
+            return ;
+        }
+    if (!ft_issamesign(elema->moves,elemb->moves) && ft_issamesign(stacks[0]->optim_move,stacks[1]->optim_move))
+        if ((ft_abs(elema->moves)+ft_abs(elemb->moves) < ft_min(ft_abs(stacks[0]->optim_move),ft_abs(stacks[1]->optim_move))))
+        {
+            stacks[0]->optim_move = elema->moves;
+            stacks[0]->optim_elem = elema;
+            stacks[1]->optim_move = elemb->moves;
+            stacks[1]->optim_elem = elemb;
+            return ;
+        }
+    if (ft_issamesign(elema->moves,elemb->moves) && !ft_issamesign(stacks[0]->optim_move,stacks[1]->optim_move))
+        if (ft_min(ft_abs(elema->moves),ft_abs(elemb->moves) < (ft_abs(stacks[0]->optim_move)+ft_abs(stacks[1]->optim_move))))
+        {
+            stacks[0]->optim_move = elema->moves;
+            stacks[0]->optim_elem = elema;
+            stacks[1]->optim_move = elemb->moves;
+            stacks[1]->optim_elem = elemb;
+            return ;
+        }
+    if (!ft_issamesign(elema->moves,elemb->moves) && !ft_issamesign(stacks[0]->optim_move,stacks[1]->optim_move))
+        if ((ft_abs(elema->moves)+ft_abs(elemb->moves) < (ft_abs(stacks[0]->optim_move)+ft_abs(stacks[1]->optim_move))))
+        {
+            stacks[0]->optim_move = elema->moves;
+            stacks[0]->optim_elem = elema;
+            stacks[1]->optim_move = elemb->moves;
+            stacks[1]->optim_elem = elemb;
+            return ;
+        }*/
     return ;
 }
 
