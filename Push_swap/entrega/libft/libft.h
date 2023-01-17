@@ -70,6 +70,7 @@ int		ft_max(int a, int b);
 int		ft_min(int a, int b);
 int		ft_abs(int val);
 int		ft_issamesign(int a, int b);
-int		ft_ispositive(int c);
+int 	ft_ispositive(int c);
+int 	ft_isodd(int c);
 
 #endif

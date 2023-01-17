@@ -24,7 +24,7 @@ void moves_2_up (t_stack **stacks)
         element = stacks[i]->elem1;
         while (element)
         {
-            if (element->ist_pos <= stacks[i]->nbr_elements / 2)
+            if (element->ist_pos <= stacks[i]->nbr_elements / 2 + 1)
                 element->moves = element->ist_pos - 1;
             else
                 element->moves = element->ist_pos - stacks[i]->nbr_elements - 1;

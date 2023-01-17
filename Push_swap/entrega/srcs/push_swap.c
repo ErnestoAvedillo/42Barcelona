@@ -31,16 +31,21 @@ int main (int av, char **ac)
         ft_printf("Error\n");
         return(0);
     }
-    str = input_data(ac);
-    av = len_array(str);
-    if (av == 1)
-        return (0);
-    if (check_errors(av, str))
+    if (check_errors(av, ac))
     {
         ft_printf("Error\n");
         return(0);
     }
-    stacks = createstacks(av,str);
+    str = input_data(ac);
+    av = len_array(str);
+    if (av == 1)
+        return (0);
+    if (av == 0)
+    {
+        ft_printf("Error\n");
+        return (0);
+    }
+    stacks = createstacks(av, str);
     free_double_point (str);
     if (!stacks)
      {
@@ -55,7 +60,8 @@ int main (int av, char **ac)
     }
     if (basic_input(stacks))
         return (0);
-    sort_stack_st2(stacks);
+    // sort_stack_st2(stacks);
+    sort_stack_st3(stacks);
     free_all_stacks(stacks);
     return (0);
 }

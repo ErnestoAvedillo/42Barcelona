@@ -56,9 +56,21 @@ int check_errors(int av, char **ac)
     j = -1;
     while (av > ++i)
     {
-        while(ac[i][++j])
+        resultcmp = 0;
+        while (ac[i][++j])
+            if (ft_isdigit(ac[i][++j]))
+                resultcmp = 1;
+        if (!resultcmp)
+            return (1);
+        j = -1;
+        while (ac[i][++j])
         {
-            if(!ft_isdigit(ac[i][j]) && ac[i][j] != '-' && ac[i][j] != ' ')
+            if (j > 0)
+                if (ac[i][j] == '-' && ac[i][j - 1] != ' ')
+                    return (1);
+            if (ac[i][j] == '-' && !ft_isdigit(ac[i][j + 1]))
+                return (1);
+            if (!ft_isdigit(ac[i][j]) && ac[i][j] != '-' && ac[i][j] != ' ')
                 return (1);
         }
         if (chk_out_of_lim (ac[i]))

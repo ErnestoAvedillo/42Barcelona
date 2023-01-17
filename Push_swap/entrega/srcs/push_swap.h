@@ -46,9 +46,11 @@ int 		check_duplicates(t_stack **stacks);
 t_stack 	**createstacks(int av, char **ac);
 //sort_stack
 void		sort_stack( t_stack **stacks);
-//sort_stack_st2
-void		sort_stack_st2( t_stack **stacks);
-//sort_utils_1
+// sort_stack_st2
+void sort_stack_st2(t_stack **stacks);
+// sort_stack_st3
+void sort_stack_st3(t_stack **stacks);
+// sort_utils_1
 int 		calculate_moves(t_element *element, t_stack *stack);
 void 		coplete_elements(t_stack *stack);
 void 		calc_all_moves (t_stack *stack);
@@ -90,6 +92,8 @@ void 		print_element (t_element *elem);
 char    	**input_data(char **ac);
 int			len_array (char **ptr);
 //basic input
-int basic_input(t_stack **stacks);
-
-# endif
+int			basic_input(t_stack **stacks);
+void 		solve_3_st(t_stack **stacks);
+//basic_5_input
+void		sort_5_elm_stack(t_stack **stacks);
+#endif

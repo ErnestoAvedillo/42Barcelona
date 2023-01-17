@@ -9,7 +9,7 @@ cases for 3
 312
 321
 */
-static void solve_3_st(t_stack **stacks)
+void solve_3_st(t_stack **stacks)
 {
     t_element   *elem1;
     t_element   *elem2;
@@ -54,8 +54,10 @@ static void solve_2_st (t_stack **stacks)
 int basic_input(t_stack **stacks)
 {
     coplete_elements(stacks[0]);
-    if (stacks[0]->nbr_elements > 3)
+    if (stacks[0]->nbr_elements > 5)
         return (0);
+    if (stacks[0]->nbr_elements == 5)
+        sort_5_elm_stack(stacks);
     if (stacks[0]->nbr_elements == 3)
         solve_3_st(stacks);
     if (stacks[0]->nbr_elements == 2)

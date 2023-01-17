@@ -23,13 +23,42 @@ void analyze_moves (t_stack **stacks, t_element *elema, t_element *elemb)
     moves_a = elema->moves;
     moves_b = elemb->moves;
 
-    if (ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move) >
-        ft_abs(elema->moves) + ft_abs(elemb->moves))
+    if (ft_issamesign(elema->moves,elemb->moves) && ft_issamesign(stacks[0]->optim_move,stacks[1]->optim_move))
+        if (ft_max(ft_abs(elema->moves),ft_abs(elemb->moves)) < ft_max(ft_abs(stacks[0]->optim_move),ft_abs(stacks[1]->optim_move)))
         {
             stacks[0]->optim_move = elema->moves;
             stacks[0]->optim_elem = elema;
             stacks[1]->optim_move = elemb->moves;
             stacks[1]->optim_elem = elemb;
+            return ;
+        }
+    if (!ft_issamesign(elema->moves,elemb->moves) && ft_issamesign(stacks[0]->optim_move,stacks[1]->optim_move))
+        if ((ft_abs(elema->moves)+ft_abs(elemb->moves)) < ft_max(ft_abs(stacks[0]->optim_move),ft_abs(stacks[1]->optim_move)))
+        {
+            stacks[0]->optim_move = elema->moves;
+            stacks[0]->optim_elem = elema;
+            stacks[1]->optim_move = elemb->moves;
+            stacks[1]->optim_elem = elemb;
+            return ;
+        }
+    if (ft_issamesign(elema->moves,elemb->moves) && !ft_issamesign(stacks[0]->optim_move,stacks[1]->optim_move))
+        if (ft_max(ft_abs(elema->moves),ft_abs(elemb->moves)) < (ft_abs(stacks[0]->optim_move)+ft_abs(stacks[1]->optim_move)))
+        {
+            //printf("%i - %i-- > %i, %i\n", elema->moves, elemb->moves, stacks[0]->optim_move, stacks[1]->optim_move);
+            stacks[0]->optim_move = elema->moves;
+            stacks[0]->optim_elem = elema;
+            stacks[1]->optim_move = elemb->moves;
+            stacks[1]->optim_elem = elemb;
+            return ;
+        }
+    if (!ft_issamesign(elema->moves,elemb->moves) && !ft_issamesign(stacks[0]->optim_move,stacks[1]->optim_move))
+        if ((ft_abs(elema->moves)+ft_abs(elemb->moves)) < (ft_abs(stacks[0]->optim_move)+ft_abs(stacks[1]->optim_move)))
+        {
+            stacks[0]->optim_move = elema->moves;
+            stacks[0]->optim_elem = elema;
+            stacks[1]->optim_move = elemb->moves;
+            stacks[1]->optim_elem = elemb;
+            return ;
         }
     return ;
 }
@@ -73,7 +102,7 @@ void seek_min_moves(t_stack **stacks)
     t_element   *elementb_next;
     int         belongs;
 
-    moves_2_up(stacks);
+//    moves_2_up(stacks);
     elementb_next = stacks[1]->elem1;
     elementb = get_last_elem(stacks[1]);
     stacks[1]->optim_move = stacks[1]->nbr_elements;
@@ -186,14 +215,19 @@ void    move_to_start (t_stack **stacks)
 
 void    move_back(t_stack **stacks)
 {
-    t_element   *element;
+    t_element   *element1;
+    t_element   *element2;
     int         total_moves;
     int         i;
 
-    element = stacks[1]->elem1;
-    while (element->soll_pos != 1)
-        element = element->next;
-    total_moves = element->moves;
+    element1 = stacks[1]->elem1;
+    element2 = get_last_elem(stacks[1]);
+    while (element1->soll_pos < element2->soll_pos)
+    {
+        element2 = element1;
+        element1 = element2->next;
+    }
+    total_moves = element2->moves;
     i = 0;
     if (total_moves < 0)
         while (--i > total_moves)
@@ -203,8 +237,7 @@ void    move_back(t_stack **stacks)
             rb(stacks);
     else
         rb(stacks);
-    
-    element = stacks[1]->elem1;
+//    element1 = stacks[1]->elem1;
     while (stacks[1]->elem1)
         pa(stacks);
     return ;
@@ -254,7 +287,7 @@ void order_2_elem(t_stack **stacks)
         sa(stacks);
     return;
 }
-void sort_stack_st2(t_stack **stacks)
+void sort_stack_st3(t_stack **stacks)
 {
     int         i;
     int         tot_nbr_elem;
@@ -273,11 +306,11 @@ void sort_stack_st2(t_stack **stacks)
         if (element->soll_pos == tot_nbr_elem && stacks[0]->nbr_elements != 1 )
             ra(stacks);    
         moves_2_up(stacks);
+        //print_stacks(stacks);
         seek_min_moves(stacks);
         move_to_start(stacks);
         pb(stacks);
-    //    print_stacks(stacks);
-    //    getchar();
+        //getchar();
     }
     //print_stacks(stacks);
     //order_2_elem(stacks);
