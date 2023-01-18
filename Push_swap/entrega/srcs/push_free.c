@@ -53,3 +53,12 @@ void free_all_stacks(t_stack **stacks)
     return ;
 }
 
+void free_double_point (char **ptr)
+{
+    int i;
+
+    i = 0;
+    while (ptr[i])
+        free(ptr[i++]);
+    free(ptr);
+}

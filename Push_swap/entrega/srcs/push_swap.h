@@ -62,6 +62,7 @@ void 		restore_ist_pos (t_stack **stacks);
 //push_free
 void 		free_all_stacks(t_stack **stacks);
 int 		free_stack (t_stack *ptr);
+void 		free_double_point (char **ptr);
 //movements
 //swap
 void    	swap (t_stack *stack);
