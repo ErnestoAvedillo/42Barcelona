@@ -13,16 +13,24 @@
 #push-swap project
 NAME := push_swap
 
-SRC := push_swap check_errors create_stacks push_free push_moves push_utils \
+NAME_BNS := checker
+
+SRC := check_errors create_stacks push_free push_moves push_utils \
 revrotate_moves rotate_moves sort_stack sort_stack_st3 sort_utils_1 sort_utils_2 check_duplicates\
 swap_moves input_data basic_input basic_5_input
-		 
+#Mandatory	 
 DIR_SRC := ./srcs/
-SRCS := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC)))
+SRC_MND := $(NAME) $(SRC)
+SRCS := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC_MND)))
 DIR_OBJ := ./obj/
-OBJS := $(addprefix $(DIR_OBJ),$(addsuffix .o,$(SRC)))
-DSTS := $(addprefix $(DIR_OBJ),$(addsuffix .d,$(SRC)))
+OBJS := $(addprefix $(DIR_OBJ),$(addsuffix .o,$(SRC_MND)))
+DSTS := $(addprefix $(DIR_OBJ),$(addsuffix .d,$(SRC_MND)))
 INCLUDE = $(addprefix $(DIR_SRC),$(addsuffix .h,$(NAME)))
+#Bonus
+SRC_BNS := $(NAME_BNS) $(SRC)
+SRCS_BNS := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC_BNS)))
+OBJS_BNS := $(addprefix $(DIR_OBJ),$(addsuffix .o,$(SRC_BNS)))
+DSTS_BNS := $(addprefix $(DIR_OBJ),$(addsuffix .d,$(SRC_BNS)))
 
 #libraries
 DIR_LIBFT := ./libft/
@@ -63,6 +71,13 @@ $(NAME_PRINTF):$(PRINTF_LIB)
 $(PRINTF_LIB):
 	make -C$(DIR_PRINTF) all
 
+ARGS := "4 1 5 3 2"
+bonus:
+	./$(NAME) $(ARGS) | wc -l
+	./$(NAME) $(ARGS) | ./$(NAME_BONUS) $(ARGS)
+
+$(NAME_BONUS): $(DSTS_BNS) $(OBJS_BNS) $(NAME_PRINTF)
+	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(NAME_PRINTF)
 
 clean:
 	make -C$(DIR_PRINTF) clean
@@ -85,4 +100,4 @@ print:
 	@echo $(DIR_OBJ)$%.d
 
 
-.PHONY: print all re clean fclean $(PRINTF_LIB)
+.PHONY: print all re clean fclean bonus $(PRINTF_LIB)
