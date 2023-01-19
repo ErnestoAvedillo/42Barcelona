@@ -58,6 +58,8 @@ int basic_input(t_stack **stacks)
         return (0);
     if (stacks[0]->nbr_elements == 5)
         sort_5_elm_stack(stacks);
+    if (stacks[0]->nbr_elements == 4)
+        sort_4_elm_stack(stacks);
     if (stacks[0]->nbr_elements == 3)
         solve_3_st(stacks);
     if (stacks[0]->nbr_elements == 2)

@@ -56,6 +56,7 @@ int check_errors(int av, char **ac)
     j = -1;
     while (av > ++i)
     {
+        //printf("dato %s\n", ac[i]);
         resultcmp = 0;
         while (ac[i][++j])
             if (ft_isdigit(ac[i][++j]))

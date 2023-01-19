@@ -96,5 +96,6 @@ int			len_array (char **ptr);
 int			basic_input(t_stack **stacks);
 void 		solve_3_st(t_stack **stacks);
 //basic_5_input
-void		sort_5_elm_stack(t_stack **stacks);
+void 		sort_5_elm_stack(t_stack **stacks);
+void 		sort_4_elm_stack(t_stack **stacks);
 #endif

@@ -11,57 +11,37 @@
 /* ************************************************************************** */
 #include"push_swap.h"
 
-void free_double_point (char **ptr)
-{
-    int i;
-
-    i = 0;
-    while (ptr[i])
-        free(ptr[i++]);
-    free(ptr);
-}
-
 int main (int av, char **ac)
 {
     t_stack     **stacks;
     char        **str;
-    
-    if (av == 1 )
-    {
-        ft_printf("Error\n");
-        return(0);
-    }
-    if (check_errors(av, ac))
-    {
-        ft_printf("Error\n");
-        return(0);
-    }
+    int         error;
+
+    error = 0;
+    if (av == 1)
+        error = 1;
+    if (check_errors(av, ac) && !error)
+        error = 1;
     str = input_data(ac);
     av = len_array(str);
-    if (av == 1)
+    if (av == 1 && !error)
         return (0);
-    if (av == 0)
-    {
-        ft_printf("Error\n");
-        return (0);
-    }
+    if (av == 0 && !error)
+        error = 1;
     stacks = createstacks(av, str);
     free_double_point (str);
-    if (!stacks)
-     {
-        ft_printf("Error\n");
-        return(0);
-    }
-    if (check_duplicates(stacks))
+    if (!stacks && !error)
+        error = 1;
+    if (check_duplicates(stacks) && !error)
+        error = 1;
+    if (error)
     {
         ft_printf("Error\n");
         free_all_stacks(stacks);
         return (0);
     }
-    if (basic_input(stacks))
-        return (0);
-    // sort_stack_st2(stacks);
-    sort_stack_st3(stacks);
+    if (!basic_input(stacks))
+        sort_stack_st3(stacks);
     free_all_stacks(stacks);
     return (0);
 }

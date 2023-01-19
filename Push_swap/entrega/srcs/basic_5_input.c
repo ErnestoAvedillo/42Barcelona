@@ -18,7 +18,7 @@ void move_elm_up (t_stack **stacks, int soll_pos)
     int         moves_needed;
 
     element = stacks[0]->elem1;
-    while (element->soll_pos == soll_pos)
+    while (element->soll_pos != soll_pos)
         element = element->next;
     moves_needed = element->moves;
     i = -1;
@@ -31,23 +31,52 @@ void move_elm_up (t_stack **stacks, int soll_pos)
 
 void sort_5_elm_stack(t_stack **stacks)
 {
+    coplete_elements(stacks[0]);
+    restore_ist_pos(stacks);
     moves_2_up(stacks);
+    //print_stacks(stacks);
     move_elm_up(stacks, 1);
     pb(stacks);
     moves_2_up(stacks);
     move_elm_up(stacks, 2);
-    print_stacks(stacks);
-    getchar();
+    //print_stacks(stacks);
+    //getchar();
     pb(stacks);
-    print_stacks(stacks);
-    getchar();
+    //print_stacks(stacks);
+    //getchar();
     coplete_elements(stacks[0]);
     solve_3_st(stacks);
-    print_stacks(stacks);
-    getchar();
+    //print_stacks(stacks);
+    //getchar();
     pa(stacks);
     pa(stacks);
-    print_stacks(stacks);
-    getchar();
+    //print_stacks(stacks);
+    //getchar();
+    return;
+}
+
+void sort_4_elm_stack(t_stack **stacks)
+{
+    coplete_elements(stacks[0]);
+    restore_ist_pos(stacks);
+    moves_2_up(stacks);
+    // print_stacks(stacks);
+    move_elm_up(stacks, 1);
+    pb(stacks);
+    moves_2_up(stacks);
+    move_elm_up(stacks, 2);
+    // print_stacks(stacks);
+    // getchar();
+    pb(stacks);
+    // print_stacks(stacks);
+    // getchar();
+    coplete_elements(stacks[0]);
+    order_2_elem(stacks);
+    // print_stacks(stacks);
+    // getchar();
+    pa(stacks);
+    pa(stacks);
+    // print_stacks(stacks);
+    // getchar();
     return;
 }
