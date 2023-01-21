@@ -71,13 +71,13 @@ $(NAME_PRINTF):$(PRINTF_LIB)
 $(PRINTF_LIB):
 	make -C$(DIR_PRINTF) all
 
-ARGS := "4 1 5 3 2"
+ARGS := "4 1 5 3 2 8"
 bonus: $(NAME_BNS)
 	./$(NAME) $(ARGS) | wc -l
 	./$(NAME) $(ARGS) | ./$(NAME_BNS) $(ARGS)
 
 $(NAME_BNS): $(DSTS_BNS) $(OBJS_BNS) $(NAME_PRINTF)
-	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(NAME_PRINTF)
+	$(CC) $(FLAG) -o $(NAME_BNS) $(OBJS_BNS) $(NAME_PRINTF)
 
 clean:
 	make -C$(DIR_PRINTF) clean
@@ -91,6 +91,8 @@ re: fclean all
 
 
 print: 
+	@echo SRCS:$(NAME_BNS)
+	@echo SRCS:$(NAME)
 	@echo SRCS:$(SRCS)
 	@echo SRCS:$(SRCS_BNS)
 	@echo OBJS:$(OBJS)

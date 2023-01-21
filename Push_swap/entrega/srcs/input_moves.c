@@ -5,40 +5,50 @@ int is_data_correct(char *str)
     int i;
 
     i = 0;
-    while(--i <= NBR_MOVES)
+    read(1, str, 20);
+    while (str[i] != '\n')
+        i++;
+    str[i] = '\0';
+    i = -1;
+    while (++i < NBR_MOVES)
     {
-        if (!ft_strncmp(str,LIST_MOVES[i][1],ft_strlen(str)))
+        if (!ft_strncmp(str, (char *)LIST_MOVES[i], ft_strlen(str)))
             return (1);
     }
     return (0);
 }
 
-int exec_instruction (t_stack **stacks, char *str)
+int make_move(int (*move)(t_stack**), t_stack **stacks)
 {
-    int i;
-
-    i = -1;
-    while (++i <= NBR_INTRUCTIONS )
-    {
-        if (!ft_strcmp(str,LIST_MOVES[i][1]))
-        {
-            (*LIST_MOVES[i][2])
-            return (1);
-        }
-    }
-    return (0);
+    return (move(stacks));
 }
 
 void input_moves(t_stack **stacks)
 {
-    char    *str;
+    int cont;
+    int     i;
+    char    str[20];
 
-    str = getchar();
-    while (is_data_correct(str))
+    print_stacks(stacks);
+    cont = 1;
+    while (1)
     {
-        exit =  exec_instruction(stacks,str);
-        str = getchar();
+        cont = is_data_correct(str);
+        if (cont)
+        {
+            i = 0;
+            while (i <= 10)
+            {
+                if (!ft_strncmp(str, (char *)LIST_MOVES[i], ft_strlen(str)))
+                {
+                    make_move(FCN_MOVES[i], stacks);
+                    print_stacks(stacks);
+                }
+                i++;
+            }
+        }
+        else
+            return;
     }
-
-    return ;
+    return;
 }

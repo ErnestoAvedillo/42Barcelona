@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 #include"push_swap.h"
 
-
-
 int main (int av, char **ac)
 {
     t_stack     **stacks;
@@ -26,8 +24,8 @@ int main (int av, char **ac)
     av = len_array(str);
     if (av == 1)
         return (0);
-    if (check_errors(av, str))
-        es_error = 1;
+    /*if (check_errors(av, str))
+        es_error = 1;*/
     stacks = createstacks(av,str);
     free_double_point (str);
     if (!stacks)

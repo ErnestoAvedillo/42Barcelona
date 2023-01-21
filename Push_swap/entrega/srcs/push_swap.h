@@ -34,25 +34,12 @@ typedef struct l_element
 	void	*next;
 }		t_element;
 
-#define NBR_MOVES 11
-#define LIST_MOVES [] = { \
-	{"sa",(*sa)(t_stack**)}, \
-	{"sb",(*sb)(t_stack**)}, \
-	{"ss",(*ss)(t_stack**)}, \
-	{"ra",(*ra)(t_stack**)}, \
-	{"rb",(*rb)(t_stack**)}, \
-	{"rr",(*rr)(t_stack**)}, \
-	{"rra",(*rra)(t_stack**)}, \
-	{"rrb",(*rrb)(t_stack**)}, \
-	{"rrr",(*rrr)(t_stack**)}, \
-	{"pa",(*pa)(t_stack**)}, \
-	{"pb",(*pb)(t_stack**)} \
-}
-#define INT_STR_LOWER	"2147483648"
+#define INT_STR_LOWER "2147483648"
 #define INT_STR_UPPER	"2147483647"
 
-//check_errors.c
-int			check_errors(int av, char **ac);
+// check_errors.c
+int
+check_errors(int av, char **ac);
 //check_duplicates
 int 		check_duplicates(t_stack **stacks);
 // create_stacks
@@ -114,4 +101,8 @@ void 		sort_4_elm_stack(t_stack **stacks);
 //input_moves
 void input_moves(t_stack **stacks);
 
+typedef int (*operation_move)(t_stack**);
+#define NBR_MOVES 11
+static char *LIST_MOVES[11] = {"sa", "sb", "ss", "ra", "rb", "rr", "rra", "rrb", "rrr", "pa", "pb\n"};
+static void *FCN_MOVES[11] = {sa, sb, ss, ra, rb, rr, rra, rrb, rrr, pa, pb};
 #endif
