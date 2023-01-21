@@ -53,7 +53,7 @@ printf ${BLUE}"\n-------------------------------------------------------------\n
 printf ${BLUE}"\n\t\t\tCONTROL ERRORS\t\n"${DEF_COLOR};
 printf ${BLUE}"\n-------------------------------------------------------------\n\n"${DEF_COLOR};
 
-./push_swap "a" 2> test_check.txt
+./push_swap "a" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -70,7 +70,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "111a11" 2> test_check.txt
+./push_swap "111a11" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -87,7 +87,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "hello world" 2> test_check.txt
+./push_swap "hello world" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -104,7 +104,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "" 2> test_check.txt
+./push_swap "" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -121,7 +121,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "0 0" 2> test_check.txt
+./push_swap "0 0" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -138,7 +138,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "-1 +1" 2> test_check.txt
+./push_swap "-1 +1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -155,7 +155,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "111-1 2 -3" 2> test_check.txt
+./push_swap "111-1 2 -3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -172,7 +172,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "-3 -2 -2" 2> test_check.txt
+./push_swap "-3 -2 -2" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -189,7 +189,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "\n" 2> test_check.txt
+./push_swap "\n" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -206,7 +206,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "-2147483649" 2> test_check.txt
+./push_swap "-2147483649" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -224,7 +224,7 @@ fi
 rm -rf test_check.txt
 
 
-./push_swap "-2147483650" 2> test_check.txt
+./push_swap "-2147483650" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -241,7 +241,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "2147483648" 2> test_check.txt
+./push_swap "2147483648" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -258,7 +258,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "8 "9 1" 12" 2> test_check.txt
+./push_swap "8 "9 1" 12" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -275,7 +275,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "10 -1 -2 -3 -4 -5 -6 90 99 10" 2> test_check.txt
+./push_swap "10 -1 -2 -3 -4 -5 -6 90 99 10" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -292,7 +292,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "1 +1 -1" 2> test_check.txt
+./push_swap "1 +1 -1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -309,7 +309,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "3333-3333 1 4" 2> test_check.txt
+./push_swap "3333-3333 1 4" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -326,7 +326,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "111a111 -4 3" 2> test_check.txt
+./push_swap "111a111 -4 3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -343,7 +343,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "111111 "-4 3"" 2> test_check.txt
+./push_swap "111111 "-4 3"" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -360,7 +360,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "2147483649" 2> test_check.txt
+./push_swap "2147483649" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -377,7 +377,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "2147483647+1" 2> test_check.txt
+./push_swap "2147483647+1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -394,7 +394,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "0 1 2 3 4 5 0" 2> test_check.txt
+./push_swap "0 1 2 3 4 5 0" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -411,7 +411,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "3 +3" 2> test_check.txt
+./push_swap "3 +3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -428,7 +428,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "3+3" 2> test_check.txt
+./push_swap "3+3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -445,7 +445,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "42 42" 2> test_check.txt
+./push_swap "42 42" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -462,7 +462,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "42 " -42" " 2> test_check.txt
+./push_swap "42 " -42" " > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -479,7 +479,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "4222-4222" 2> test_check.txt
+./push_swap "4222-4222" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -496,7 +496,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "99999999999999999999999999" 2> test_check.txt
+./push_swap "99999999999999999999999999" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -513,7 +513,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "-99999999999999999999999999" 2> test_check.txt
+./push_swap "-99999999999999999999999999" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -530,7 +530,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "0 -0 1 -1" 2> test_check.txt
+./push_swap "0 -0 1 -1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -547,7 +547,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "0 +0 1 -1" 2> test_check.txt
+./push_swap "0 +0 1 -1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -564,7 +564,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "111+111 -4 3" 2> test_check.txt
+./push_swap "111+111 -4 3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -581,7 +581,7 @@ fi
 
 rm -rf test_check.txt
 
-./push_swap "-" 2> test_check.txt
+./push_swap "-" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -596,7 +596,7 @@ else
 	printf "${RED}32.[KO] ${DEF_COLOR}\n";
 fi
 
-./push_swap "+" 2> test_check.txt
+./push_swap "+" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -3994,7 +3994,7 @@ printf ${MAGENTA}"\n------------------------------------------------------------
 printf ${MAGENTA}"\n\t\t\tCONTROL ERRORS\t\n"${DEF_COLOR};
 printf ${MAGENTA}"\n-------------------------------------------------------------\n\n"${DEF_COLOR};
 
-./checker "a" 2> test_check.txt
+./checker "a" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4010,7 +4010,7 @@ else
 fi
 
 
-./checker "111a11" 2> test_check.txt
+./checker "111a11" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4026,7 +4026,7 @@ else
 fi
 
 
-./checker "hello world" 2> test_check.txt
+./checker "hello world" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4042,7 +4042,7 @@ else
 fi
 
 
-./checker "" 2> test_check.txt
+./checker "" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4057,7 +4057,7 @@ else
 	printf "${RED}4.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "0 0" 2> test_check.txt
+./checker "0 0" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4072,7 +4072,7 @@ else
 	printf "${RED}5.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "-1 +1" 2> test_check.txt
+./checker "-1 +1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4087,7 +4087,7 @@ else
 	printf "${RED}6.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "111-1 2 -3" 2> test_check.txt
+./checker "111-1 2 -3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4102,7 +4102,7 @@ else
 	printf "${RED}7.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "-3 -2 -2" 2> test_check.txt
+./checker "-3 -2 -2" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4117,7 +4117,7 @@ else
 	printf "${RED}8.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "\n" 2> test_check.txt
+./checker "\n" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4132,7 +4132,7 @@ else
 	printf "${RED}9.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "-2147483649" 2> test_check.txt
+./checker "-2147483649" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4147,7 +4147,7 @@ else
 	printf "${RED}10.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "-2147483650" 2> test_check.txt
+./checker "-2147483650" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4162,7 +4162,7 @@ else
 	printf "${RED}11.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "2147483648" 2> test_check.txt
+./checker "2147483648" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4177,7 +4177,7 @@ else
 	printf "${RED}12.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "8 "9 1" 12" 2> test_check.txt
+./checker "8 "9 1" 12" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4192,7 +4192,7 @@ else
 	printf "${RED}13.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "10 -1 -2 -3 -4 -5 -6 90 99 10" 2> test_check.txt
+./checker "10 -1 -2 -3 -4 -5 -6 90 99 10" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4207,7 +4207,7 @@ else
 	printf "${RED}14.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "1 +1 -1" 2> test_check.txt
+./checker "1 +1 -1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4222,7 +4222,7 @@ else
 	printf "${RED}15.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "3333-3333 1 4" 2> test_check.txt
+./checker "3333-3333 1 4" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4237,7 +4237,7 @@ else
 	printf "${RED}16.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "111a111 -4 3" 2> test_check.txt
+./checker "111a111 -4 3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4252,7 +4252,7 @@ else
 	printf "${RED}17.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "111111 "-4 3"" 2> test_check.txt
+./checker "111111 "-4 3"" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4267,7 +4267,7 @@ else
 	printf "${RED}18.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "2147483649" 2> test_check.txt
+./checker "2147483649" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4282,7 +4282,7 @@ else
 	printf "${RED}19.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "2147483647+1" 2> test_check.txt
+./checker "2147483647+1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4297,7 +4297,7 @@ else
 	printf "${RED}20.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "0 1 2 3 4 5 0" 2> test_check.txt
+./checker "0 1 2 3 4 5 0" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4312,7 +4312,7 @@ else
 	printf "${RED}21.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "3 +3" 2> test_check.txt
+./checker "3 +3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4327,7 +4327,7 @@ else
 	printf "${RED}22.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "3+3" 2> test_check.txt
+./checker "3+3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4342,7 +4342,7 @@ else
 	printf "${RED}23.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "42 42" 2> test_check.txt
+./checker "42 42" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4357,7 +4357,7 @@ else
 	printf "${RED}24.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "42 " -42" " 2> test_check.txt
+./checker "42 " -42" " > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4372,7 +4372,7 @@ else
 	printf "${RED}25.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "4222-4222" 2> test_check.txt
+./checker "4222-4222" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4387,7 +4387,7 @@ else
 	printf "${RED}26.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "99999999999999999999999999" 2> test_check.txt
+./checker "99999999999999999999999999" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4402,7 +4402,7 @@ else
 	printf "${RED}27.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "-99999999999999999999999999" 2> test_check.txt
+./checker "-99999999999999999999999999" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4417,7 +4417,7 @@ else
 	printf "${RED}28.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "0 -0 1 -1" 2> test_check.txt
+./checker "0 -0 1 -1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4432,7 +4432,7 @@ else
 	printf "${RED}29.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "0 +0 1 -1" 2> test_check.txt
+./checker "0 +0 1 -1" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do
@@ -4447,7 +4447,7 @@ else
 	printf "${RED}30.[KO] ${DEF_COLOR}\n";
 fi
 
-./checker "111+111 -4 3" 2> test_check.txt
+./checker "111+111 -4 3" > test_check.txt
 if [ -s "$FICHERO" ];then
 while IFS= read -r line
 do

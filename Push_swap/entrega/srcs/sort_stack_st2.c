@@ -243,17 +243,6 @@ void send_frst_2_elem(t_stack **stacks)
     return ;
 }
 
-void order_2_elem(t_stack **stacks)
-{
-    t_element *element1; 
-    t_element *element2;
-
-    element1 = stacks[0]->elem1;
-    element2 = element1->next;
-    if (element1->soll_pos > element2->soll_pos)
-        sa(stacks);
-    return;
-}
 void sort_stack_st2(t_stack **stacks)
 {
     int         i;

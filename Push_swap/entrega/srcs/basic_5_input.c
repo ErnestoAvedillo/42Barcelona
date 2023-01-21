@@ -29,6 +29,18 @@ void move_elm_up (t_stack **stacks, int soll_pos)
             rra(stacks);
 }
 
+void sort_2_elem(t_stack **stacks)
+{
+    t_element *element1; 
+    t_element *element2;
+
+    element1 = stacks[0]->elem1;
+    element2 = element1->next;
+    if (element1->soll_pos > element2->soll_pos)
+        sa(stacks);
+    return;
+}
+
 void sort_5_elm_stack(t_stack **stacks)
 {
     coplete_elements(stacks[0]);
@@ -71,7 +83,7 @@ void sort_4_elm_stack(t_stack **stacks)
     // print_stacks(stacks);
     // getchar();
     coplete_elements(stacks[0]);
-    order_2_elem(stacks);
+    sort_2_elem(stacks);
     // print_stacks(stacks);
     // getchar();
     pa(stacks);
