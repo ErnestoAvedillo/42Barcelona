@@ -33,7 +33,7 @@ void input_moves(t_stack **stacks)
 {
     char    *str;
 
-    str = getchar()
+    str = getchar();
     while (is_data_correct(str))
     {
         exit =  exec_instruction(stacks,str);
