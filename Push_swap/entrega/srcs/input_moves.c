@@ -7,7 +7,7 @@ int is_data_correct(char *str)
     i = 0;
     while(--i <= NBR_MOVES)
     {
-        if (!ft_strcmp(str,LIST_MOVES[i][1]))
+        if (!ft_strncmp(str,LIST_MOVES[i][1],ft_strlen(str)))
             return (1);
     }
     return (0);
@@ -36,8 +36,8 @@ void input_moves(t_stack **stacks)
     str = getchar()
     while (is_data_correct(str))
     {
-        exit =  exec_instruction();
-        str = getchar()
+        exit =  exec_instruction(stacks,str);
+        str = getchar();
     }
 
     return ;

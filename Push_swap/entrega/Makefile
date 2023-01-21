@@ -17,7 +17,7 @@ NAME_BNS := checker
 
 SRC := check_errors create_stacks push_free push_moves push_utils \
 revrotate_moves rotate_moves sort_stack sort_stack_st3 sort_utils_1 sort_utils_2 check_duplicates\
-swap_moves input_data basic_input basic_5_input
+swap_moves input_data basic_input basic_5_input input_moves
 #Mandatory	 
 DIR_SRC := ./srcs/
 SRC_MND := $(NAME) $(SRC)
@@ -72,11 +72,11 @@ $(PRINTF_LIB):
 	make -C$(DIR_PRINTF) all
 
 ARGS := "4 1 5 3 2"
-bonus:
+bonus: $(NAME_BNS)
 	./$(NAME) $(ARGS) | wc -l
-	./$(NAME) $(ARGS) | ./$(NAME_BONUS) $(ARGS)
+	./$(NAME) $(ARGS) | ./$(NAME_BNS) $(ARGS)
 
-$(NAME_BONUS): $(DSTS_BNS) $(OBJS_BNS) $(NAME_PRINTF)
+$(NAME_BNS): $(DSTS_BNS) $(OBJS_BNS) $(NAME_PRINTF)
 	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(NAME_PRINTF)
 
 clean:
@@ -92,6 +92,7 @@ re: fclean all
 
 print: 
 	@echo SRCS:$(SRCS)
+	@echo SRCS:$(SRCS_BNS)
 	@echo OBJS:$(OBJS)
 	@echo DSTS:$(DSTS)
 	@echo PRINTF_LIB:$(PRINTF_LIB)
