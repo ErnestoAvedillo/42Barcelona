@@ -18,12 +18,10 @@ int main (int av, char **ac)
     int         error;
 
     error = 0;
-    if (av == 1)
-        error = 1;
-    if (check_errors(av, ac) && !error)
-        error = 1;
     str = input_data(ac);
     av = len_array(str);
+    if (check_errors(av, str))
+        error = 1;
     if (av == 1 && !error)
         return (0);
     if (av == 0 && !error)

@@ -18,6 +18,8 @@ void    swap (t_stack *stack)
     t_element *element1;
     t_element *element2;
 
+    if (stack->nbr_elements <= 1 )
+        return ;
     element1 = stack->elem1;
     element2 = element1->next;
     ptr = element2->next;
@@ -31,24 +33,27 @@ void    swap (t_stack *stack)
     return ;
 }
 
-int    ss (t_stack **stacks)
+int    ss (t_stack **stacks, int print_move)
 {
     swap(stacks[0]);
     swap(stacks[1]);
-    ft_printf ("ss\n");
+    if (print_move)
+        ft_printf ("ss\n");
     return (1);
 }
 
-int sa (t_stack **stacks)
+int sa (t_stack **stacks, int print_move)
 {
     swap(stacks[0]);
-    ft_printf ("sa\n");
+    if (print_move)
+        ft_printf ("sa\n");
     return (1);
 }
 
-int sb (t_stack **stacks)
+int sb (t_stack **stacks, int print_move)
 {
     swap(stacks[1]);
-    ft_printf ("sb\n");
+    if (print_move)
+        ft_printf ("sb\n");
     return (1);
 }

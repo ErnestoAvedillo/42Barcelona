@@ -33,27 +33,30 @@ void revrotate (t_stack *stack)
     return ;
 }
 
-int    rrr (t_stack **stacks)
+int    rrr (t_stack **stacks, int print_move)
 {
     revrotate(stacks[0]);
     revrotate(stacks[1]);
     restore_ist_pos(stacks);
-    ft_printf("rrr\n");
+    if (print_move)
+        ft_printf("rrr\n");
     return (1);
 }
 
-int    rra (t_stack **stacks)
+int    rra (t_stack **stacks, int print_move)
 {
     revrotate(stacks[0]);
     restore_ist_pos(stacks);
-    ft_printf("rra\n");
+    if (print_move)
+        ft_printf("rra\n");
     return (1);
 }
 
-int    rrb (t_stack **stacks)
+int    rrb (t_stack **stacks, int print_move)
 {
     revrotate(stacks[1]);
     restore_ist_pos(stacks);
-    ft_printf("rrb\n");
+    if (print_move)
+        ft_printf("rrb\n");
     return (1);
 }

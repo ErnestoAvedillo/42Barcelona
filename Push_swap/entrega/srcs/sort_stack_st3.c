@@ -175,39 +175,39 @@ void    move_to_start (t_stack **stacks)
     movement = still_moves(stacks);
     while (movement == 1)
     {
-        rr(stacks);
+        rr(stacks, 1);
         stacks[0]->optim_move--;
         stacks[1]->optim_move--;
         movement = still_moves(stacks);
     }
     while (movement == -1)
     {
-        rrr(stacks);
+        rrr(stacks, 1);
         stacks[0]->optim_move++;
         stacks[1]->optim_move++;
         movement = still_moves(stacks);
     }
     while (movement == 2 || movement == 4)
     {
-        ra(stacks);
+        ra(stacks, 1);
         stacks[0]->optim_move--;
         movement = still_moves(stacks);
     }
     while (movement == -2 || movement == -4)
     {
-        rra(stacks);
+        rra(stacks, 1);
         stacks[0]->optim_move++;
         movement = still_moves(stacks);
     }
     while (movement == 3)
     {
-        rb(stacks);
+        rb(stacks, 1);
         stacks[1]->optim_move--;
         movement = still_moves(stacks);
     }
     while (movement == -3)
     {
-        rrb(stacks);
+        rrb(stacks, 1);
         stacks[1]->optim_move++;
         movement = still_moves(stacks);
     }
@@ -231,15 +231,15 @@ void    move_back(t_stack **stacks)
     i = 0;
     if (total_moves < 0)
         while (--i > total_moves)
-            rrb(stacks);
+            rrb(stacks, 1);
     else if (total_moves > 0)
         while (++ i <= total_moves + 1)
-            rb(stacks);
+            rb(stacks, 1);
     else
-        rb(stacks);
+        rb(stacks, 1);
 //    element1 = stacks[1]->elem1;
     while (stacks[1]->elem1)
-        pa(stacks);
+        pa(stacks, 1);
     return ;
 }
 
@@ -254,25 +254,25 @@ void send_frst_2_elem(t_stack **stacks)
     number_of_elem = stacks[0]->nbr_elements;
     if (element1->soll_pos == number_of_elem)
     {
-        ra(stacks);
-        pb(stacks);
-        pb(stacks);
+        ra(stacks, 1);
+        pb(stacks, 1);
+        pb(stacks, 1);
     }
     else if (element2->soll_pos == number_of_elem )
     {
-        pb(stacks);
-        ra(stacks);    
-        pb(stacks);
+        pb(stacks, 1);
+        ra(stacks, 1);    
+        pb(stacks, 1);
     }
     else 
     {
-        pb(stacks);
-        pb(stacks);
+        pb(stacks, 1);
+        pb(stacks, 1);
     }
     element1 = stacks[1]->elem1;
     element2 = element1->next;
     if (element1->soll_pos < element2->soll_pos)
-        sb(stacks);
+        sb(stacks, 1);
     return ;
 }
 
@@ -284,7 +284,7 @@ void order_2_elem(t_stack **stacks)
     element1 = stacks[0]->elem1;
     element2 = element1->next;
     if (element1->soll_pos > element2->soll_pos)
-        sa(stacks);
+        sa(stacks, 1);
     return;
 }
 void sort_stack_st3(t_stack **stacks)
@@ -304,12 +304,12 @@ void sort_stack_st3(t_stack **stacks)
     {
         element = stacks[0]->elem1;
         if (element->soll_pos == tot_nbr_elem && stacks[0]->nbr_elements != 1 )
-            ra(stacks);    
+            ra(stacks, 1);    
         moves_2_up(stacks);
         //print_stacks(stacks);
         seek_min_moves(stacks);
         move_to_start(stacks);
-        pb(stacks);
+        pb(stacks, 1);
         //getchar();
     }
     //print_stacks(stacks);

@@ -22,19 +22,19 @@ void solve_3_st(t_stack **stacks)
         return ;
     else if (elem1->soll_pos == 1 && elem2->soll_pos == 3 && elem3->soll_pos == 2)
     {
-        rra(stacks);
-        sa(stacks);
+        rra(stacks, 1);
+        sa(stacks, 1);
     }
     else if (elem1->soll_pos == 2 && elem2->soll_pos == 1 && elem3->soll_pos == 3)
-        sa(stacks);
+        sa(stacks, 1);
     else if (elem1->soll_pos == 2 && elem2->soll_pos == 3 && elem3->soll_pos == 1)
-        rra(stacks);
+        rra(stacks, 1);
     else if (elem1->soll_pos == 3 && elem2->soll_pos == 1 && elem3->soll_pos == 2)
-        ra(stacks);
+        ra(stacks, 1);
     else if (elem1->soll_pos == 3 && elem2->soll_pos == 2 && elem3->soll_pos == 1)
     {
-        sa(stacks);
-        rra(stacks);
+        sa(stacks, 1);
+        rra(stacks, 1);
     }
     return ;
 }
@@ -47,7 +47,7 @@ static void solve_2_st (t_stack **stacks)
     elem1 = stacks[0]->elem1;
     elem2 = elem1->next;
     if (elem1->soll_pos == 2)
-        sa(stacks);
+        sa(stacks, 1);
     return;
 }
 

@@ -1,54 +1,50 @@
-#include "push_swap.h"
+#include "checker.h"
 
 int is_data_correct(char *str)
 {
     int i;
 
-    i = 0;
-    read(1, str, 20);
-    while (str[i] != '\n')
-        i++;
-    str[i] = '\0';
     i = -1;
     while (++i < NBR_MOVES)
     {
-        if (!ft_strncmp(str, (char *)LIST_MOVES[i], ft_strlen(str)))
+        if (!ft_strncmp(str , (char *)LIST_MOVES[i], ft_strlen(str)))
             return (1);
     }
     return (0);
 }
 
-int make_move(int (*move)(t_stack**), t_stack **stacks)
+int make_move(int (*move)(t_stack**, int), t_stack **stacks, int print_move)
 {
-    return (move(stacks));
+    return (move(stacks, print_move));
 }
 
-void input_moves(t_stack **stacks)
+int input_moves(t_stack **stacks)
 {
-    int cont;
+    int     es_ok;
     int     i;
-    char    str[20];
+    char    *str;
 
     print_stacks(stacks);
-    cont = 1;
-    while (1)
+    es_ok = 1;
+    while (es_ok != -1)
     {
-        cont = is_data_correct(str);
-        if (cont)
+        str = get_next_line(0);
+        es_ok = is_data_correct(str);
+        if (es_ok == 1)
         {
             i = 0;
-            while (i <= 10)
+            while (i < NBR_MOVES)
             {
                 if (!ft_strncmp(str, (char *)LIST_MOVES[i], ft_strlen(str)))
                 {
-                    make_move(FCN_MOVES[i], stacks);
+                    make_move(FCN_MOVES[i], stacks, 0);
                     print_stacks(stacks);
                 }
                 i++;
             }
         }
         else
-            return;
+            return(1);
     }
-    return;
+    return (0);
 }

@@ -50,20 +50,13 @@ int check_errors(int av, char **ac)
     int j;
     int resultcmp;
 
-    if(av == 1)
+    if(av == 0)
         return (1);
     i = 0;
     j = -1;
     while (av > ++i)
     {
-        //printf("dato %s\n", ac[i]);
-        resultcmp = 0;
-        while (ac[i][++j])
-            if (ft_isdigit(ac[i][++j]))
-                resultcmp = 1;
-        if (!resultcmp)
-            return (1);
-        j = -1;
+       j = -1;
         while (ac[i][++j])
         {
             if (j > 0)

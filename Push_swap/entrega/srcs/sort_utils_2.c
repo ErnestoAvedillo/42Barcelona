@@ -44,27 +44,3 @@ t_element *get_last_elem (t_stack *stack)
         element = element->next; 
     return (element);
 }
-
-void restore_ist_pos (t_stack **stacks)
-{
-    t_element *element;
-    int i;
-
-    i = 1;
-    element = stacks[0]->elem1;
-    while (element)
-    {
-        element->ist_pos = i++;
-        element = element->next;
-    }
-    stacks[0]->nbr_elements = i - 1;
-    i = 1;
-    element = stacks[1]->elem1;
-    while (element)
-    {
-        element->ist_pos = i++;
-        element = element->next;
-    }  
-    stacks[1]->nbr_elements = i - 1;
-    return ;
-}

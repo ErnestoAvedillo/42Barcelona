@@ -33,27 +33,30 @@ void rotate (t_stack *stack)
     return ;
 }
 
-int    rr (t_stack **stacks)
+int    rr (t_stack **stacks, int print_move)
 {
     rotate(stacks[0]);
     rotate(stacks[1]);
     restore_ist_pos(stacks);
-    ft_printf("rr\n");
+    if (print_move)
+        ft_printf("rr\n");
     return (1);
 }
 
-int    ra (t_stack **stacks)
+int    ra (t_stack **stacks, int print_move)
 {
     rotate(stacks[0]);
     restore_ist_pos(stacks);
-    ft_printf("ra\n");
+    if (print_move)
+        ft_printf("ra\n");
     return (1);
 }
 
-int    rb (t_stack **stacks)
+int    rb (t_stack **stacks, int print_move)
 {
     rotate(stacks[1]);
     restore_ist_pos(stacks);
-    ft_printf("rb\n");
+    if (print_move)
+        ft_printf("rb\n");
     return (1);
 }
