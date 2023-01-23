@@ -18,7 +18,7 @@ int main (int av, char **ac)
     int         es_error;
     
     es_error = 0;
-    if (av == 1 )
+    if (av <= 1 )
         es_error = 1;
     str = input_data(ac);
     av = len_array(str);

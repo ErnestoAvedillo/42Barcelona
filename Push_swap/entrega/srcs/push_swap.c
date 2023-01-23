@@ -26,7 +26,9 @@ int main (int av, char **ac)
         return (0);
     if (av == 0 && !error)
         error = 1;
+
     stacks = createstacks(av, str);
+    printf("retorna %i\n",av);
     free_double_point (str);
     if (!stacks && !error)
         error = 1;
