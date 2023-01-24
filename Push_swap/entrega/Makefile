@@ -16,11 +16,11 @@ NAME := push_swap
 NAME_BNS := checker
 
 SRC_COMMON := check_errors create_stacks push_free push_moves push_utils \
-revrotate_moves rotate_moves check_duplicates swap_moves input_data
+revrotate_moves rotate_moves check_duplicates swap_moves input_data print_stacks
 
-SRC_M := $(SRC_COMMON) sort_stack sort_stack_st3 sort_utils_1 sort_utils_2 basic_input basic_5_input 
+SRC_M := $(SRC_COMMON) sort_stack_st3 sort_utils_1 sort_utils_2 basic_input basic_5_input 
 
-SRC_B := $(SRC_COMMON) input_moves
+SRC_B := $(SRC_COMMON) input_moves check_final_stacks
 
 #Mandatory	 
 DIR_SRC := ./srcs/
@@ -86,7 +86,9 @@ $(PRINTF_LIB):
 ARGS := "4 1 5 3 2 8"
 bonus: $(NAME_BNS)
 	./$(NAME) $(ARGS) | wc -l
+	./$(NAME) $(ARGS)
 	./$(NAME) $(ARGS) | ./$(NAME_BNS) $(ARGS)
+	./$(NAME_BNS) $(ARGS)
 
 $(NAME_BNS): $(DSTS_BNS) $(OBJS_BNS) $(NAME_PRINTF) $(NAME_NXLN)
 	$(CC) $(FLAG) -o $(NAME_BNS) $(OBJS_BNS) $(NAME_NXLN) $(NAME_PRINTF)

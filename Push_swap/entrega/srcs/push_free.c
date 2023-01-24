@@ -12,53 +12,52 @@
 
 #include"push_swap.h"
 
-static t_element *free_elem (t_element *ptr)
+static t_element	*free_elem(t_element *ptr)
 {
-    t_element    *next_ptr;
+	t_element	*next_ptr;
 
-    ptr->value = 0;
-    ptr->soll_pos = 0;
-    ptr->ist_pos = 0;
-    ptr->moves = 0;
-    next_ptr = ptr->next;
-    free (ptr);
-    return (next_ptr);
+	ptr->value = 0;
+	ptr->soll_pos = 0;
+	ptr->ist_pos = 0;
+	ptr->moves = 0;
+	next_ptr = ptr->next;
+	free (ptr);
+	return (next_ptr);
 }
 
-int free_stack (t_stack *ptr)
+int	free_stack(t_stack *ptr)
 {
-    t_element   *cur_elem;
+	t_element	*cur_elem;
 
-    cur_elem = ptr->elem1;
-    while (cur_elem)
-        cur_elem = free_elem(cur_elem);
-    free (ptr);
-    return (0);
+	cur_elem = ptr->elem1;
+	while (cur_elem)
+		cur_elem = free_elem(cur_elem);
+	free (ptr);
+	return (0);
 }
 
-void free_all_stacks(t_stack **stacks)
+void	free_all_stacks(t_stack **stacks)
 {
-    t_element   *cur_elem;
+	t_element	*cur_elem;
 
-    cur_elem = stacks[0]->elem1;
-    while (cur_elem)
-        cur_elem = free_elem(cur_elem);
-    free (stacks[0]);
-
-    cur_elem = stacks[1]->elem1;
-    while (cur_elem)
-        cur_elem = free_elem(cur_elem);
-    free (stacks[1]);
-    free (stacks[2]);
-    return ;
+	cur_elem = stacks[0]->elem1;
+	while (cur_elem)
+		cur_elem = free_elem(cur_elem);
+	free (stacks[0]);
+	cur_elem = stacks[1]->elem1;
+	while (cur_elem)
+		cur_elem = free_elem(cur_elem);
+	free (stacks[1]);
+	free (stacks[2]);
+	return ;
 }
 
-void free_double_point (char **ptr)
+void	free_double_point(char **ptr)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (ptr[i])
-        free(ptr[i++]);
-    free(ptr);
+	i = 0;
+	while (ptr[i])
+		free(ptr[i++]);
+	free(ptr);
 }

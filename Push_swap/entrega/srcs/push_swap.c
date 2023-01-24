@@ -11,35 +11,31 @@
 /* ************************************************************************** */
 #include"push_swap.h"
 
-int main (int av, char **ac)
+int	main(int av, char **ac)
 {
-    t_stack     **stacks;
-    char        **str;
-    int         error;
+	t_stack	**stacks;
+	char	**str;
 
-    error = 0;
-    str = input_data(ac);
-    av = len_array(str);
-    if (check_errors(av, str))
-        error = 1;
-    if (av == 1 && !error)
-        return (0);
-    if (av == 0 && !error)
-        error = 1;
-    stacks = createstacks(av, str);
-    free_double_point (str);
-    if (!stacks && !error)
-        error = 1;
-    if (check_duplicates(stacks) && !error)
-        error = 1;
-    if (error)
-    {
-        ft_printf("Error\n");
-        free_all_stacks(stacks);
-        return (0);
-    }
-    if (!basic_input(stacks))
-        sort_stack_st3(stacks);
-    free_all_stacks(stacks);
-    return (0);
+	str = input_data(ac);
+	av = len_array(str);
+	if (check_errors(av, str))
+	{
+		ft_printf("Error\n");
+		return (0);
+	}
+	if (av == 1)
+		return (0);
+	stacks = createstacks(av, str);
+	free_double_point (str);
+	if (check_duplicates(stacks) || !stacks)
+	{
+		ft_printf("Error\n");
+		free_all_stacks(stacks);
+		return (0);
+	}
+	else
+		if (!basic_input(stacks))
+			sort_stack_st3(stacks);
+	free_all_stacks(stacks);
+	return (0);
 }

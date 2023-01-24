@@ -12,35 +12,35 @@
 
 #include"push_swap.h"
 
-void moves_2_up (t_stack **stacks)
+void	moves_2_up(t_stack **stacks)
 {
-    t_element   *element;
-    t_stack     stack;
-    int         i;
+	t_element	*element;
+	t_stack		stack;
+	int			i;
 
-    i = -1;
-    while (stacks[++i])
-    {
-        element = stacks[i]->elem1;
-        while (element)
-        {
-            if (element->ist_pos <= stacks[i]->nbr_elements / 2 + 1)
-                element->moves = element->ist_pos - 1;
-            else
-                element->moves = element->ist_pos - stacks[i]->nbr_elements - 1;
-            element = element->next;
-        }
-    }
+	i = -1;
+	while (stacks[++i])
+	{
+		element = stacks[i]->elem1;
+		while (element)
+		{
+			if (element->ist_pos <= stacks[i]->nbr_elements / 2 + 1)
+				element->moves = element->ist_pos - 1;
+			else
+				element->moves = element->ist_pos - stacks[i]->nbr_elements - 1;
+			element = element->next;
+		}
+	}
 }
 
-t_element *get_last_elem (t_stack *stack)
+t_element	*get_last_elem(t_stack *stack)
 {
-    t_element *element;
+	t_element	*element;
 
-    if (!stack->elem1)
-        return (NULL);
-    element = stack->elem1;
-    while (element->next)
-        element = element->next; 
-    return (element);
+	if (!stack->elem1)
+		return (NULL);
+	element = stack->elem1;
+	while (element->next)
+		element = element->next;
+	return (element);
 }
