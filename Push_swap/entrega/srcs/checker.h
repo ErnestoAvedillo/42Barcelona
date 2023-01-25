@@ -20,10 +20,6 @@
 
 //input_moves
 int			input_moves(t_stack **stacks);
-typedef int	(*operation_move)(t_stack**);
 void		check_final_stacks(t_stack **stacks);
-typedef struct l_list_moves {
-char		*name[LEN_MOVES_NAME];
-void		*ptr_function;
-} t_list_moves;
+
 #endif
