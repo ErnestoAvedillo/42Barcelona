@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_duplicates.c                                 :+:      :+:    :+:   */
+/*   check_final_stacks.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,23 +12,28 @@
 
 #include "push_swap.h"
 
-int	check_duplicates(t_stack **stacks)
+void	check_final_stacks(t_stack **stacks)
 {
 	t_element	*element1;
 	t_element	*element2;
 
+	if (stacks[1]->elem1)
+	{
+		ft_printf("KO\n");
+		return ;
+	}
 	element1 = stacks[0]->elem1;
 	element2 = element1->next;
-	while (element1)
+	while (element2)
 	{
-		element2 = element1->next;
-		while (element2)
+		if (element1->value > element2->value)
 		{
-			if (element1->value == element2->value)
-				return (1);
-			element2 = element2->next;
+			ft_printf("KO\n");
+			return ;
 		}
-		element1 = element1->next;
+		element1 = element2;
+		element2 = element1->next;
 	}
-	return (0);
+	ft_printf("OK\n");
+	return ;
 }

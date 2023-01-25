@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                        :+:      :+:    :+:   */
+/*   checker.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,31 +11,26 @@
 /* ************************************************************************** */
 #include"checker.h"
 
-int main (int av, char **ac)
+int	main(int av, char **ac)
 {
-    t_stack     **stacks;
-    char        **str;
-    int         es_error;
-    
-    es_error = 0;
-    if (av <= 1 )
-        es_error = 1;
-    str = input_data(ac);
-    av = len_array(str);
-    if (av == 1)
-        return (0);
-    if (check_errors(av, str))
-        es_error = 1;
-    stacks = createstacks(av,str);
-    free_double_point (str);
-    if (!stacks)
-        es_error = 1;
-    if (check_duplicates(stacks))
-        es_error = 1;
-    if (!es_error)
-        es_error = input_moves(stacks);
-    if (es_error)
-        ft_printf("Error\n");
-    free_all_stacks(stacks);
-    return (0);
+	t_stack	**stacks;
+	char	**str;
+
+	str = input_data(ac);
+	av = len_array(str);
+	if (av == 1)
+		return (0);
+	if (check_errors(av, str))
+	{
+		ft_printf("Error\n");
+		return (0);
+	}
+	stacks = createstacks(av, str);
+	free_double_point(str);
+	if (input_moves(stacks) || check_duplicates(stacks) || !stacks)
+		ft_printf("Error\n");
+	else
+		check_final_stacks(stacks);
+	free_all_stacks(stacks);
+	return (0);
 }
