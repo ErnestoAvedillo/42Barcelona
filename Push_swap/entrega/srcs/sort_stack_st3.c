@@ -21,30 +21,26 @@ void	save_cur_min_move(t_element *elema, t_element *elemb, t_stack **stacks)
 	return ;
 }
 
-void	analyze_moves(t_stack **stacks, t_element *elema, t_element *elemb)
+void	analyze_moves(t_stack **stk, t_element *a, t_element *b)
 {
-	int	same_sign_moves;
-	int	same_sign_stk;
-	int	max_elements;
-	int	max_stacks;
-	int	max_add_elem;
-	int	max_add_stacks;
+	int	def[6];
 
-	same_sign_moves = ft_issamesign(elema->moves, elemb->moves);
-	same_sign_stk = ft_issamesign(stacks[0]->optim_move, stacks[1]->optim_move);
-	max_elements = ft_max(ft_abs(elema->moves), ft_abs(elemb->moves));
-	max_stacks = ft_max(ft_abs(stacks[0]->optim_move), ft_abs(stacks[1]->optim_move));
-	max_add_elem = ft_abs(elema->moves) + ft_abs(elemb->moves);
-	max_add_stacks = ft_abs(stacks[0]->optim_move) + ft_abs(stacks[1]->optim_move);
-
-	if (same_sign_moves && same_sign_stk && (max_elements < max_stacks))
-		save_cur_min_move(elema, elemb, stacks);
-	if (!same_sign_moves && same_sign_stk && (max_add_elem < max_stacks))
-		save_cur_min_move(elema, elemb, stacks);
-	if (same_sign_moves && !same_sign_stk && (max_elements < max_add_stacks))
-		save_cur_min_move(elema, elemb, stacks);
-	if (!same_sign_moves && !same_sign_stk && (max_add_elem < max_add_stacks))
-		save_cur_min_move(elema, elemb, stacks);
+	def[SIGN_MOV] = ft_issamesign(a->moves, b->moves);
+	def[SIGN_STK] = ft_issamesign(stk[0]->optim_move, stk[1]->optim_move);
+	def[MAX_ELEM] = ft_max(ft_abs(a->moves), ft_abs(b->moves));
+	def[MAX_STK] = ft_max(ft_abs(stk[0]->optim_move), \
+						ft_abs(stk[1]->optim_move));
+	def[MAX_ADD_ELEM] = ft_abs(a->moves) + ft_abs(b->moves);
+	def[MAX_ADD_STK] = ft_abs(stk[0]->optim_move) + ft_abs(stk[1]->optim_move);
+	if (def[SIGN_MOV] && def[SIGN_STK] && (def[MAX_ELEM] < def[MAX_STK]))
+		save_cur_min_move(a, b, stk);
+	if (!def[SIGN_MOV] && def[SIGN_STK] && (def[MAX_ADD_ELEM] < def[MAX_STK]))
+		save_cur_min_move(a, b, stk);
+	if (def[SIGN_MOV] && !def[SIGN_STK] && (def[MAX_ELEM] < def[MAX_ADD_STK]))
+		save_cur_min_move(a, b, stk);
+	if (!def[SIGN_MOV] && !def[SIGN_STK] && \
+		(def[MAX_ADD_ELEM] < def[MAX_ADD_STK]))
+		save_cur_min_move(a, b, stk);
 	return ;
 }
 

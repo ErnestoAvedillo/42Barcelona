@@ -77,6 +77,6 @@ void		restore_ist_pos(t_stack **stacks);
 //input_data
 char		**input_data(char **ac);
 int			len_array(char **ptr);
-void print_stacks(t_stack **stacks);
+void		print_stacks(t_stack **stacks);
 
 #endif

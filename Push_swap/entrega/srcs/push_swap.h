@@ -14,6 +14,13 @@
 # define PUSH_SWAP_H
 # include"push_common.h"
 
+#define SIGN_MOV 0
+#define	SIGN_STK 1
+#define	MAX_ELEM 2
+#define	MAX_STK 3
+#define	MAX_ADD_ELEM 4
+#define MAX_ADD_STK 5
+
 //sort_stack
 void		sort_stack( t_stack **stacks);
 // sort_stack_st2
