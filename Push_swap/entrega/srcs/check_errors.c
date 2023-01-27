@@ -46,7 +46,7 @@ int	check_errors(int av, char **ac)
 
 	if (av == 0)
 		return (1);
-	i = 0;
+	i = -1;
 	j = -1;
 	while (av > ++i)
 	{

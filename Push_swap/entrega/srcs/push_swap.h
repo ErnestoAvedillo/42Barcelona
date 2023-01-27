@@ -14,12 +14,12 @@
 # define PUSH_SWAP_H
 # include"push_common.h"
 
-#define SIGN_MOV 0
-#define	SIGN_STK 1
-#define	MAX_ELEM 2
-#define	MAX_STK 3
-#define	MAX_ADD_ELEM 4
-#define MAX_ADD_STK 5
+# define SIGN_MOV 0
+# define SIGN_STK 1
+# define MAX_ELEM 2
+# define MAX_STK 3
+# define MAX_ADD_ELEM 4
+# define MAX_ADD_STK 5
 
 //sort_stack
 void		sort_stack( t_stack **stacks);
@@ -40,4 +40,11 @@ void		solve_3_st(t_stack **stacks);
 //basic_5_input
 void		sort_5_elm_stack(t_stack **stacks);
 void		sort_4_elm_stack(t_stack **stacks);
+//next_move
+void		analyze_moves(t_stack **stk, t_element *a, t_element *b);
+int			belong_2_interval(t_stack **stacks, t_element *elema, \
+								t_element *elemb);
+void		seek_min_moves(t_stack **stks);
+//move2top
+void		move2top(t_stack **stacks);
 #endif
