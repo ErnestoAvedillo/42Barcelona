@@ -41,6 +41,7 @@ void	*create_elements(t_element *elem1, int nbr_elem, char **ac)
 		if (!cur_ptr)
 			return (NULL);
 	}
+	return (cur_ptr);
 }
 
 t_stack	*retrieve_data(int av, char **ac)

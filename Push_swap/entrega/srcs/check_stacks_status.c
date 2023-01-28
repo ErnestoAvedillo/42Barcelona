@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_final_stacks.c                               :+:      :+:    :+:   */
+/*   check_stacks_status.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,16 @@
 
 #include "push_swap.h"
 
-void	check_final_stacks(t_stack **stacks)
+int	check_stacks_status(t_stack **stacks, int print)
 {
 	t_element	*element1;
 	t_element	*element2;
 
 	if (stacks[1]->elem1)
 	{
-		ft_printf("KO\n");
-		return ;
+		if (print)
+			ft_printf("KO\n");
+		return (0);
 	}
 	element1 = stacks[0]->elem1;
 	element2 = element1->next;
@@ -28,12 +29,14 @@ void	check_final_stacks(t_stack **stacks)
 	{
 		if (element1->value > element2->value)
 		{
-			ft_printf("KO\n");
-			return ;
+			if (print)
+				ft_printf("KO\n");
+			return (0);
 		}
 		element1 = element2;
 		element2 = element1->next;
 	}
-	ft_printf("OK\n");
-	return ;
+	if (print)
+		ft_printf("OK\n");
+	return (1);
 }

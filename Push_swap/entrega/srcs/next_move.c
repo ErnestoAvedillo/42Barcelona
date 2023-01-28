@@ -101,7 +101,6 @@ void	seek_min_moves(t_stack **stks)
 		while (elmnt[2])
 		{
 			belongs = belong_2_interval(stks, elmnt[0], elmnt[1]);
-            //printf("pertenece?%i --> [%i ->%i] -- %i\n",elmnt[0]->soll_pos,elmnt[1]->soll_pos,elmnt[2]->soll_pos,belongs);
 			if (belongs)
 				analyze_moves(stks, elmnt[0], elmnt[2]);
 			elmnt[1] = elmnt[2];

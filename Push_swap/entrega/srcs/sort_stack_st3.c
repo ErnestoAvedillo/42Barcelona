@@ -76,6 +76,8 @@ void	sort_stack_st3(t_stack **stacks)
 	int			tot_nbr_elem;
 	t_element	*element;
 
+	if (check_stacks_status(stacks, 0))
+		return ;
 	i = 1;
 	tot_nbr_elem = stacks[0]->nbr_elements;
 	coplete_elements(stacks[0]);
@@ -87,15 +89,11 @@ void	sort_stack_st3(t_stack **stacks)
 		if (element->soll_pos == tot_nbr_elem && stacks[0]->nbr_elements != 1)
 			ra(stacks, 1);
 		moves_2_up(stacks);
-	//print_stacks(stacks);
 		seek_min_moves(stacks);
-	//print_stacks(stacks);
-	//getchar();
 		move2top(stacks);
 		pb(stacks, 1);
 	}
 	moves_2_up(stacks);
 	move_back(stacks);
-	//print_stacks(stacks);
 	return ;
 }

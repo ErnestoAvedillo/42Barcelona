@@ -21,6 +21,7 @@ int	main(int av, char **ac)
 	if (check_errors(av, str))
 	{
 		ft_printf("Error\n");
+		free_double_point (str);
 		return (0);
 	}
 	if (av == 1)

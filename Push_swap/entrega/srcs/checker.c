@@ -23,14 +23,15 @@ int	main(int av, char **ac)
 	if (check_errors(av, str))
 	{
 		ft_printf("Error\n");
+		free_double_point(str);
 		return (0);
 	}
 	stacks = createstacks(av, str);
 	free_double_point(str);
-	if (input_moves(stacks) || check_duplicates(stacks) || !stacks)
-		ft_printf("Error\n");
+	if (input_moves(stacks,0) || check_duplicates(stacks) || !stacks)
+		ft_printf("Error3\n");
 	else
-		check_final_stacks(stacks);
+		check_stacks_status(stacks, 1);
 	free_all_stacks(stacks);
 	return (0);
 }

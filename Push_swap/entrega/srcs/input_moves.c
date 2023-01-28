@@ -47,7 +47,7 @@ int	make_move(int (*move)(t_stack **, int), t_stack **stacks, int print_move)
 	return (move(stacks, print_move));
 }
 
-int	sel_mov2exec(t_stack **stacks, void **move_func, char **data_moves)
+int	sel_mov2exec(t_stack **stacks, void **move_func, char **data_moves, int prt)
 {
 	int		es_ok;
 	int		i;
@@ -62,7 +62,7 @@ int	sel_mov2exec(t_stack **stacks, void **move_func, char **data_moves)
 		{
 			if (!ft_strncmp(str, data_moves[i], ft_strlen(data_moves[i])))
 			{
-				make_move(move_func[i], stacks, 0);
+				make_move(move_func[i], stacks, prt);
 				es_ok = 1;
 				break ;
 			}
@@ -74,7 +74,7 @@ int	sel_mov2exec(t_stack **stacks, void **move_func, char **data_moves)
 	return (0);
 }
 
-int	input_moves(t_stack **stacks)
+int	input_moves(t_stack **stacks, int prt)
 {
 	int		es_ok;
 	char	**data_moves;
@@ -84,7 +84,7 @@ int	input_moves(t_stack **stacks)
 	data_moves = def_arr_mov_names();
 	if (!data_moves)
 		return (0);
-	es_ok = sel_mov2exec(stacks, move_func, data_moves);
+	es_ok = sel_mov2exec(stacks, move_func, data_moves, prt);
 	free_double_point(data_moves);
 	return (es_ok);
 }

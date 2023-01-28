@@ -11,6 +11,13 @@
 /* ************************************************************************** */
 #include"push_swap.h"
 
+	/* tabla de verdad para out of limits.
+	strlen	j	comp	result
+	=10		0	> 0		true
+	>10		0	*		true
+	=11		1	>0		true
+	>11		1	*		true
+	*/
 int	chk_out_of_lim(char *str)
 {
 	int		j;
@@ -24,10 +31,10 @@ int	chk_out_of_lim(char *str)
 	strlen = ft_strlen(str);
 	if ((strlen > 10 && j == 0) || (strlen > 11 && j == 1))
 		return (1);
-	else if (strlen == 10 && j == 0)
+	if (strlen == 10 && j == 0)
 		if (ft_strncmp(str, INT_STR_UPPER, strlen) > 0)
 			return (1);
-	else if (strlen == 11 && j == 1)
+	if (strlen == 11 && j == 1)
 	{
 		mysubstr = ft_substr(str, j, strlen);
 		compstr = ft_strncmp(mysubstr, INT_STR_LOWER, strlen);

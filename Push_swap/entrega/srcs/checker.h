@@ -19,7 +19,6 @@
 # define LEN_MOVES_NAME 5
 
 //input_moves
-int			input_moves(t_stack **stacks);
-void		check_final_stacks(t_stack **stacks);
+int			input_moves(t_stack **stacks, int prt);
 
 #endif
