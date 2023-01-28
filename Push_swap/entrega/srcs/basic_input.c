@@ -64,6 +64,8 @@ static void	solve_2_st(t_stack **stacks)
 
 int	basic_input(t_stack **stacks)
 {
+	if (check_stacks_status(stacks, 0, 1))
+		return (1);
 	coplete_elements(stacks[0]);
 	if (stacks[0]->nbr_elements > 5)
 		return (0);

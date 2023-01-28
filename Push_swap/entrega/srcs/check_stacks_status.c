@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-int	check_stacks_status(t_stack **stacks, int print)
+int	check_stacks_status(t_stack **stacks, int print, int both_stks)
 {
 	t_element	*element1;
 	t_element	*element2;
 
-	if (stacks[1]->elem1)
+	if (stacks[1]->elem1 && both_stks)
 	{
 		if (print)
 			ft_printf("KO\n");

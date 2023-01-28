@@ -39,11 +39,13 @@ char	*getcur_str(char *current_str, int fd)
 		if (readret < BUFFER_SIZE || !current_str)
 			break ;
 	}
+	//printf("en getnextline current str %s---buffer %s- readret %i -\n",current_str, buff_str, readret);
 	free_null (&buff_str);
 	if (readret < 0 || (readret == 0 && my_strlen (current_str) == 0))
 	{
 		return (NULL);
 	}
+	//printf("en getnextline current str %s-\n",current_str);
 	return (current_str);
 }
 

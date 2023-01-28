@@ -49,6 +49,7 @@ void	free_all_stacks(t_stack **stacks)
 		cur_elem = free_elem(cur_elem);
 	free (stacks[1]);
 	free (stacks[2]);
+	free (stacks);
 	return ;
 }
 

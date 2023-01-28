@@ -12,6 +12,22 @@
 
 #include"push_swap.h"
 
+int	check_empty(char **ac)
+{
+	int		i;
+	int		k;
+
+	i = 0;
+	while (ac[++i])
+		if (ac[i][0] == '\0')
+			return (0);
+	i = 0;
+	k = 0;
+	while (ac[++i])
+		k += ft_strlen(ac[i]) + 1;
+	return (k);
+}
+
 char	**input_data(char **ac)
 {
 	char	**str_out;
@@ -20,10 +36,9 @@ char	**input_data(char **ac)
 	int		j;
 	int		k;
 
-	i = 0;
-	k = 0;
-	while (ac[++i])
-		k += ft_strlen(ac[i]) + 1;
+	k = check_empty(ac);
+	if (!k)
+		return (NULL);
 	str_aux = (char *)malloc ((k + 1) * sizeof(char));
 	i = 0;
 	k = 0;

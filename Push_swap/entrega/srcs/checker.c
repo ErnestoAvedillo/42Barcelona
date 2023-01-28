@@ -28,10 +28,10 @@ int	main(int av, char **ac)
 	}
 	stacks = createstacks(av, str);
 	free_double_point(str);
-	if (input_moves(stacks,0) || check_duplicates(stacks) || !stacks)
-		ft_printf("Error3\n");
+	if (input_moves(stacks, 0) || check_duplicates(stacks) || !stacks)
+		ft_printf("Error\n");
 	else
-		check_stacks_status(stacks, 1);
+		check_stacks_status(stacks, 1, 1);
 	free_all_stacks(stacks);
 	return (0);
 }

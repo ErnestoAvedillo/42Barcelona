@@ -71,6 +71,7 @@ int	sel_mov2exec(t_stack **stacks, void **move_func, char **data_moves, int prt)
 			return (1);
 		str = get_next_line(0);
 	}
+	free(str);
 	return (0);
 }
 

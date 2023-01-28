@@ -79,6 +79,6 @@ char		**input_data(char **ac);
 int			len_array(char **ptr);
 void		print_stacks(t_stack **stacks);
 //
-int			check_stacks_status(t_stack **stacks, int print);
+int			check_stacks_status(t_stack **stacks, int print, int both_stks);
 
 #endif

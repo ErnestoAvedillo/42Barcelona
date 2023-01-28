@@ -6,6 +6,7 @@ void print_stacks(t_stack **stacks)
 
     elem_stk_a = stacks[0]->elem1;
     elem_stk_b = stacks[1]->elem1;
+    ft_printf(" stack_a %p stack_b:%p lastStack %p\n", stacks[0], stacks[1], stacks[2]);
     ft_printf(" stack_a nbr_elem:%i - first_elem :%i", stacks[0]->nbr_elements, stacks[0]->cur_frst_elem);
     ft_printf("      ---    stack_b nbr_elem:%i - first_elem :%i\n", stacks[1]->nbr_elements, stacks[1]->cur_frst_elem);
     ft_printf(" stack_a moves optim:%i - element optim :%p", stacks[0]->optim_move, stacks[0]->optim_elem);

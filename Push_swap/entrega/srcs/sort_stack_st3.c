@@ -76,7 +76,7 @@ void	sort_stack_st3(t_stack **stacks)
 	int			tot_nbr_elem;
 	t_element	*element;
 
-	if (check_stacks_status(stacks, 0))
+	if (check_stacks_status(stacks, 0, 1))
 		return ;
 	i = 1;
 	tot_nbr_elem = stacks[0]->nbr_elements;

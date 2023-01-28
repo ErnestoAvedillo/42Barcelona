@@ -11,21 +11,43 @@
 /* ************************************************************************** */
 #include"push_swap.h"
 
-int	main(int av, char **ac)
+char	**analyze_data(int av, char **ac)
 {
-	t_stack	**stacks;
 	char	**str;
 
 	str = input_data(ac);
+	if (str == NULL)
+	{
+		ft_printf("Error\n");
+		return (NULL);
+	}		
 	av = len_array(str);
 	if (check_errors(av, str))
 	{
 		ft_printf("Error\n");
 		free_double_point (str);
-		return (0);
+		return (NULL);
 	}
 	if (av == 1)
+	{
+		free_double_point (str);
+		return (NULL);
+	}
+	return (str);
+}
+
+int	main(int av, char **ac)
+{
+	t_stack	**stacks;
+	char	**str;
+
+	str = analyze_data(av, ac);
+	if (str == NULL)
+	{
+		ft_printf("Error\n");
 		return (0);
+	}
+	av = len_array(str);
 	stacks = createstacks(av, str);
 	free_double_point (str);
 	if (check_duplicates(stacks) || !stacks)
