@@ -11,21 +11,42 @@
 /* ************************************************************************** */
 #include"checker.h"
 
+static char	**analyze_data(int av, char **ac)
+{
+	char	**str;
+
+	str = input_data(ac);
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	av = len_array(str);
+	if (check_errors(av, str))
+	{
+		free_double_point (str);
+		return (NULL);
+	}
+	if (av == 0)
+	{
+		free_double_point (str);
+		return (NULL);
+	}
+	return (str);
+}
+
 int	main(int av, char **ac)
 {
 	t_stack	**stacks;
 	char	**str;
 
-	str = input_data(ac);
-	av = len_array(str);
-	if (av == 1)
-		return (0);
-	if (check_errors(av, str))
+	str = analyze_data(av, ac);
+	if (str == NULL)
 	{
 		ft_printf("Error\n");
-		free_double_point(str);
 		return (0);
 	}
+
+	av = len_array(str);
 	stacks = createstacks(av, str);
 	free_double_point(str);
 	if (input_moves(stacks, 0) || check_duplicates(stacks) || !stacks)

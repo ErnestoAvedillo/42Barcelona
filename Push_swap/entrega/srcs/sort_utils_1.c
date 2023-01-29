@@ -81,11 +81,22 @@ void	put_pos_elem(int valor, int pos, t_stack *stack)
 
 void	coplete_elements(t_stack *stack)
 {
-	int	position;
-	int	min;
+	int			position;
+	int			min;
+	t_element	*elem;
 
 	min = INT_MIN;
 	position = 1;
+	elem = stack->elem1;
+	while (elem)
+	{
+		if (elem->value == INT_MIN)
+		{
+			elem->soll_pos = 1;
+			position ++;
+		}
+		elem = elem->next;
+	}
 	while (position <= stack->nbr_elements)
 	{
 		min = get_min_val(stack, min);

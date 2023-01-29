@@ -11,24 +11,22 @@
 /* ************************************************************************** */
 #include"push_swap.h"
 
-char	**analyze_data(int av, char **ac)
+static char	**analyze_data(int av, char **ac)
 {
 	char	**str;
 
 	str = input_data(ac);
 	if (str == NULL)
 	{
-		ft_printf("Error\n");
 		return (NULL);
-	}		
+	}
 	av = len_array(str);
 	if (check_errors(av, str))
 	{
-		ft_printf("Error\n");
 		free_double_point (str);
 		return (NULL);
 	}
-	if (av == 1)
+	if (av == 0)
 	{
 		free_double_point (str);
 		return (NULL);
@@ -41,6 +39,8 @@ int	main(int av, char **ac)
 	t_stack	**stacks;
 	char	**str;
 
+	if (av == 1)
+		return (0);
 	str = analyze_data(av, ac);
 	if (str == NULL)
 	{

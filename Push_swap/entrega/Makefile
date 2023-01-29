@@ -16,7 +16,7 @@ NAME := push_swap
 NAME_BNS := checker
 
 SRC_COMMON := check_errors create_stacks push_free push_moves push_utils \
-revrotate_moves rotate_moves check_duplicates swap_moves input_data print_stacks\
+revrotate_moves rotate_moves check_duplicates swap_moves input_data \
 check_stacks_status
 
 SRC_M := $(SRC_COMMON) sort_stack_st3 sort_utils_1 sort_utils_2 basic_input \

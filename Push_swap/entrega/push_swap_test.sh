@@ -3475,9 +3475,9 @@ elif [ $N -gt 11500 ]; then
 fi
 S=$(./push_swap $ARG | ./checker_OS $ARG)
 if [ $S == "OK" ]; then
-	printf "${GREEN} [OK]${DEF_COLOR}\n";
+	printf "${GREEN} [OK]${DEF_COLOR} \n";
 else
-	printf "${RED} [KO]${DEF_COLOR}\n";
+	printf "${RED} [KO]${DEF_COLOR} \n";
 fi
 
 ARG=$(ruby -e "puts (-2147483648..-2147483149).to_a.shuffle.join(' ')"); 
@@ -3495,9 +3495,9 @@ elif [ $N -gt 11500 ]; then
 fi
 S=$(./push_swap $ARG | ./checker_OS $ARG)
 if [ $S == "OK" ]; then
-	printf "${GREEN} [OK]${DEF_COLOR}\n";
+	printf "${GREEN} [OK]${DEF_COLOR} \n";
 else
-	printf "${RED} [KO]${DEF_COLOR}\n";
+	printf "${RED} [KO]${DEF_COLOR} \n";
 fi
 
 ARG=$(ruby -e "puts (0..499).to_a.shuffle.join(' ')"); 

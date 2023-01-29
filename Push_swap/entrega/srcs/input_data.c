@@ -19,7 +19,7 @@ int	check_empty(char **ac)
 
 	i = 0;
 	while (ac[++i])
-		if (ac[i][0] == '\0')
+		if ((ac[i][0] == ' ' & ft_strlen(ac[i]) == 1) || ac[i][0] == '\0')
 			return (0);
 	i = 0;
 	k = 0;

@@ -42,7 +42,7 @@ char	*getcur_str(char *current_str, int fd)
 	free_null (&buff_str);
 	if (readret < 0 || (readret == 0 && my_strlen (current_str) == 0))
 	{
-		//free_null (&current_str);
+		free_null (&current_str);
 		return (NULL);
 	}
 	return (current_str);
