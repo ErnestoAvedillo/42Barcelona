@@ -64,6 +64,7 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 	if (!out)
 		return (NULL);
 	i = -1;
+
 	while (++i < longdst && longdst)
 		out[i] = dst[i];
 	i--;
