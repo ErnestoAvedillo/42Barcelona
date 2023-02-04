@@ -24,7 +24,7 @@ int main(void)
 	char *zone[] = {
 		"11111111",
 		"10001001",
-		"10010001",
+		"10010101",
 		"10110001",
 		"11100001",
 	};
@@ -34,10 +34,8 @@ int main(void)
 		printf("%s\n", area[i]);
 	printf("\n");
 
-	t_point begin = {7, 4};
-    printf("paso\n");
+	t_point begin = {6, 4};
 	flood_fill(area, size, begin);
-    printf("paso\n");
 	for (int i = 0; i < size.y; ++i)
 		printf("%s\n", area[i]);
 	return (0);
