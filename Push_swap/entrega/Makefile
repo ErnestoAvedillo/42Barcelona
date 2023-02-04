@@ -42,7 +42,7 @@ INCLUDE_BNS = $(addprefix $(DIR_SRC),$(addsuffix .h,$(NAME_BNS)))
 #libft
 DIR_LIBFT := ./libft/
 NAME_LIBFT := libft.a
-LIBFT_LIB := $(addprefix $(DIR_LIBFT),$(NAME_LIBFT))ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
+LIBFT_LIB := $(addprefix $(DIR_LIBFT),$(NAME_LIBFT))
 #printf
 DIR_PRINTF := ./printf/
 NAME_PRINTF := libftprintf.a

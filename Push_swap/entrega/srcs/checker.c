@@ -45,7 +45,6 @@ int	main(int av, char **ac)
 		ft_printf("Error\n");
 		return (0);
 	}
-
 	av = len_array(str);
 	stacks = createstacks(av, str);
 	free_double_point(str);
