@@ -49,7 +49,7 @@ int	main(int av, char **ac)
 	av = len_array(str);
 	stacks = createstacks(av, str);
 	free_double_point(str);
-	if (input_moves(stacks, 0) || check_duplicates(stacks) || !stacks)
+	if (!stacks || check_duplicates(stacks) || input_moves(stacks, 0))
 		ft_printf("Error\n");
 	else
 		check_stacks_status(stacks, 1, 1);

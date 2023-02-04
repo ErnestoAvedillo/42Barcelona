@@ -50,7 +50,7 @@ int	main(int av, char **ac)
 	av = len_array(str);
 	stacks = createstacks(av, str);
 	free_double_point (str);
-	if (check_duplicates(stacks) || !stacks)
+	if (!stacks || check_duplicates(stacks))
 	{
 		ft_printf("Error\n");
 		free_all_stacks(stacks);
