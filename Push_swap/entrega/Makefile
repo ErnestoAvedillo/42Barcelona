@@ -72,12 +72,16 @@ win:$(NAME)
 -include: (DSTS)
 
 $(NAME): $(DSTS) $(OBJS) $(NAME_PRINTF)
-	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(NAME_PRINTF) 
+	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(NAME_PRINTF)
 
-$(DIR_OBJ)%.o $(DIR_OBJ)%.d: $(DIR_SRC)%.c $(INCLUDE) $(INCLUDE_BNS)
+$(DIR_OBJ)%.d: $(DIR_SRC)%.c $(INCLUDE) $(INCLUDE_BNS)
+	mkdir -p $(DIR_OBJ)
+	$(CC) -MM $(CFLAGS) -c $(DIR_SRC)$*.c > $(DIR_OBJ)$*.d
+	
+$(DIR_OBJ)%.o : $(DIR_SRC)%.c $(DIR_OBJ)%.d
 	mkdir -p $(DIR_OBJ)
 	$(CC) $(CFLAGS) -c $(DIR_SRC)$*.c -o $(DIR_OBJ)$*.o
-	$(CC) -MM $(CFLAGS) -c $(DIR_SRC)$*.c > $(DIR_OBJ)$*.d
+
 
 $(NAME_PRINTF):$(PRINTF_LIB)
 	@cp -p $(PRINTF_LIB) $(NAME_PRINTF)

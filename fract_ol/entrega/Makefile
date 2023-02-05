@@ -16,11 +16,10 @@ DIR_LIBFT := ./libft/
 LIBFT = $(addprefix $(DIR_LIBFT),$(LIBFT_NAME))
 #minilibX
 LIBX_NAME := MiniLibX.a
-DIR_LIBX := ./libx1/
+DIR_LIBX := ./mlx/
 LIBX = $(addprefix $(DIR_LIBFT),$(LIBFT_NAME))
 #link elements
-LIBX_LNK := -lmlx -framework OpenGL -framework AppKit 
-LIBX_DIR := 
+LIBX_LNK :=  -framework OpenGL -framework AppKit 
 RM := rm -rfd
 CC := gcc 
 FLAGS := -Wall -Werror -Wextra
@@ -37,8 +36,8 @@ $(OBJDST_DIR)%.o $(OBJDST_DIR)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	@echo $*.c
 	mkdir -p $(OBJDST_DIR)
 	@echo $*.c
-	$(CC) $(FLAG) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
-	$(CC) -MM $(FLAG) -c $(DIR_SRC)$*.c > $(OBJDST_DIR)$*.d
+	$(CC) $(FLAG)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
+	$(CC) -MM $(FLAG)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR)$*.d
 
 $(LIBFT_NAME):$(LIBFT)
 	cp -p $(LIBFT) $(LIBFT_NAME)
@@ -64,12 +63,14 @@ print:
 
 clean:
 	$(RM) $(OBJDST_DIR)
-	make -C&(DIR_LIBFT) clean
+	make -C$(DIR_LIBFT) clean
+	make -C$(DIR_LIBX) clean
 
 fclean:
-	make -C&(DIR_LIBFT) fclean
+	make -C$(DIR_LIBFT) fclean
+	make -C$(DIR_LIBX) clean
 	$(RM) $(LIBFT_NAME) $(NAME)
 
-
+re: fclean all
 
 PHONY: all bonus clean fclean re $(LIBFT) $(LIBX_NAME)

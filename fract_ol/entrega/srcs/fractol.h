@@ -12,7 +12,7 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-#include "../libx1/mlx.h"
+#include "../mlx/mlx.h"
 #include"../libft/libft.h"
 
 #endif
