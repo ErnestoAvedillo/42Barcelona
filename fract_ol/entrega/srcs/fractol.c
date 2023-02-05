@@ -11,13 +11,35 @@
 /* ************************************************************************** */
 #include"fractol.h"
 
+int deal_key(int key, void *param)
+{
+	write(1, "recibido\n", 9);
+	return (0);
+}
+
 int main ()
 {
-    void *mlx_ptr;
-    void *win_ptr;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int		x;
+	int		y;
 
 	mlx_ptr = mlx_init();
-    win_ptr = mlx_new_window(mlx_ptr,200,200,"mi primera ventana");
-    mlx_loop(mlx_ptr);
+	win_ptr = mlx_new_window(mlx_ptr,1000,1000,"mi primera ventana");
+	x = 100;
+	y = x;
+	while (y <= 300)
+	{
+		x = 100;
+		while (x <= 700)
+		{
+			mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFFFFFF);
+			x++;
+		}
+		y++;
+	}
+	mlx_key_hook(win_ptr, deal_key,(void*)0 );
+	mlx_loop(mlx_ptr);
+	return (0);
 }
 
