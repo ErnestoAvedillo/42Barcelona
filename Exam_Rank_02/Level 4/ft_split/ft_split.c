@@ -27,33 +27,40 @@ char    **ft_split(char *str)
     int i;
     int k;
     int n;
+    int pal;
     int start;
     char **out;
 
-    n = wordcount(str);
+    pal = wordcount(str);
+    printf(" palabras %i\n", pal);
     i = 0;
-    k = -1;
-    out = (char**) malloc((n + 1) * sizeof(char));
-    out[n + 1] = NULL;
+    k = 0;
+    out = (char**) malloc((pal + 1) * sizeof(char));
+    out[pal + 1] = NULL;
     while(str[i])
     {
-        while (str[i] && is_space_or_tab(str[i]) )
+        printf("copmleto pr %c --- %s \n", str[i], out[0]);
+        while (str[i] && is_space_or_tab(str[i]))
             i++;
         if(str[i] && !is_space_or_tab(str[i]))
             start = i;
         while (str[i] && !is_space_or_tab(str[i]))
             i++;
-        if (start != i)
+
+        if (start < i && k < pal)
         {
-            k++;
             out[k] = (char *)malloc ((i - start + 1)* sizeof (char));
             n = -1;
-            while (start <= i)
+            printf("inicio out %p\n", &out[k][0]);
+            while (start < i)
             {
                 out[k][++n] = str[start];
+                printf("spliteado %i , %i --- %c ---- %c\n", k, n, out[k][n], str[start]);
                 start++;
             }
             out[k][n] = '\0';
+            printf("copmleto bis %i --- %s \n", k, out[k]);
+            k++;
         }
     }
     return(out);
@@ -68,8 +75,9 @@ int main (int av, char **ac)
     printf ("era %s\n", ac[1]);
     while (str[i] != NULL)
     {
+        printf("start %i --- %p\n", i, &str[i][0]);
         printf("spliteado %i --- %p ---- %s\n", i, str[i], str[i]);
-        i++;
+    i++;
     }
     printf("paso\n");
     free (str);

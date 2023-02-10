@@ -39,7 +39,8 @@ int main ()
 		}
 		y++;
 	}
-	mlx_key_hook(win_ptr, deal_key,(void*)0 );
+	mlx_key_hook(win_ptr, deal_k
+	ey,(void*)0 );
 	mlx_loop(mlx_ptr);
 	return (0);
 }
