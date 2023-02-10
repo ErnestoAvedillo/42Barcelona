@@ -19,10 +19,10 @@ SRC_COMMON := check_errors create_stacks push_free push_moves push_utils \
 revrotate_moves rotate_moves check_duplicates swap_moves input_data \
 check_stacks_status
 
-SRC_M := $(SRC_COMMON) sort_stack_st3 sort_utils_1 sort_utils_2 basic_input \
+SRC_M := sort_stack_st3 sort_utils_1 sort_utils_2 basic_input \
 		basic_5_input next_move move2top
 
-SRC_B := $(SRC_COMMON) input_moves 
+SRC_B := input_moves 
 
 #Mandatory	 
 DIR_SRC := ./srcs/
@@ -38,6 +38,12 @@ SRCS_BNS := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC_BNS)))
 OBJS_BNS := $(addprefix $(DIR_OBJ),$(addsuffix .o,$(SRC_BNS)))
 DSTS_BNS := $(addprefix $(DIR_OBJ),$(addsuffix .d,$(SRC_BNS)))
 INCLUDE_BNS = $(addprefix $(DIR_SRC),$(addsuffix .h,$(NAME_BNS)))
+#CommonFiles
+DIR_COM := ./obj_com/
+SRCS_COM := $(addprefix $(DIR_COM),$(addsuffix .c,$(SRC_COMMON)))
+OBJS_COM := $(addprefix $(DIR_COM),$(addsuffix .o,$(SRC_COMMON)))
+DSTS_COM := $(addprefix $(DIR_COM),$(addsuffix .d,$(SRC_COMMON)))
+
 #libraries
 #libft
 DIR_LIBFT := ./libft/
@@ -61,9 +67,9 @@ FLAG:= -Wall -Wextra -Werror
 
 ARG := "-607 321 262 229 572 731 -463 653 722 553 11 -654 -476 233 -173 -553 848 226 577 -77 493 -228 -498 -891 -38 -759 -512 -45 955 716 275 786 -977 -334 -960 982 -801 692 -372 -852 -409 854 -328 882 -5 -423 -122 117 276 -704 -789 823 -480 979 134 -573 -867 -165 -667 174 309 293 -827 509 347 88 501 169 -149 798 -608 -227 408 550 -243 -94 -171 862 -312 602 -926 694 759 -963 344 -180 2 50 -427 -109 -986 797 660 880 -748 473 -644 -510 664 -649"
 all:$(NAME)
-	./$(NAME) $(ARG)
+#	./$(NAME) $(ARG)
 	./$(NAME) $(ARG) | wc -l
-	./$(NAME) $(ARG) | ./checker_OS $(ARG)
+#	./$(NAME) $(ARG) | ./checker_OS $(ARG)
 
 win:$(NAME)
 	./$(NAME).exe ""
@@ -71,8 +77,8 @@ win:$(NAME)
 
 -include: (DSTS)
 
-$(NAME): $(DSTS) $(OBJS) $(NAME_PRINTF)
-	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(NAME_PRINTF)
+$(NAME): $(DSTS) $(OBJS) $(OBJS_COM) $(DSTS_COM) $(NAME_PRINTF)
+	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(OBJS_COM) $(NAME_PRINTF)
 
 $(DIR_OBJ)%.d: $(DIR_SRC)%.c $(INCLUDE) $(INCLUDE_BNS)
 	mkdir -p $(DIR_OBJ)
@@ -81,6 +87,15 @@ $(DIR_OBJ)%.d: $(DIR_SRC)%.c $(INCLUDE) $(INCLUDE_BNS)
 $(DIR_OBJ)%.o : $(DIR_SRC)%.c $(DIR_OBJ)%.d
 	mkdir -p $(DIR_OBJ)
 	$(CC) $(CFLAGS) -c $(DIR_SRC)$*.c -o $(DIR_OBJ)$*.o
+
+#commmon compiler
+$(DIR_COM)%.d: $(DIR_SRC)%.c $(INCLUDE) $(INCLUDE_BNS)
+	mkdir -p $(DIR_COM)
+	$(CC) -MM $(CFLAGS) -c $(DIR_SRC)$*.c > $(DIR_COM)$*.d
+	
+$(DIR_COM)%.o : $(DIR_SRC)%.c $(DIR_COM)%.d
+	mkdir -p $(DIR_COM)
+	$(CC) $(CFLAGS) -c $(DIR_SRC)$*.c -o $(DIR_COM)$*.o
 
 
 $(NAME_PRINTF):$(PRINTF_LIB)
@@ -93,11 +108,11 @@ ARGS := "122 -681 657 45 427 139 -568 -606 -813 612 -718 726 119 430 700 -950 90
 bonus: $(NAME_BNS)
 	./$(NAME) $(ARGS) | wc -l
 #	./$(NAME) $(ARGS)
-	./$(NAME) $(ARGS) | ./$(NAME_BNS) $(ARGS)
+#	./$(NAME) $(ARGS) | ./$(NAME_BNS) $(ARGS)
 #	./$(NAME_BNS) $(ARGS)
 
-$(NAME_BNS): $(DSTS_BNS) $(OBJS_BNS) $(NAME_PRINTF) $(NAME_NXLN)
-	$(CC) $(FLAG) -o $(NAME_BNS) $(OBJS_BNS) $(NAME_NXLN) $(NAME_PRINTF)
+$(NAME_BNS): $(DSTS_BNS) $(OBJS_BNS) $(OBJS_COM) $(DSTS_COM) $(NAME_PRINTF) $(NAME_NXLN)
+	$(CC) $(FLAG) -o $(NAME_BNS) $(OBJS_BNS) $(OBJS_COM) $(NAME_NXLN) $(NAME_PRINTF)
 
 $(NAME_NXLN):$(NXLN_LIB)
 	@cp -p $(NXLN_LIB) $(NAME_NXLN)
@@ -108,7 +123,7 @@ $(NXLN_LIB):
 clean:
 	make -C$(DIR_PRINTF) clean
 	make -C$(DIR_NXLN) clean
-	$(RM) $(DIR_OBJ)
+	$(RM) $(DIR_OBJ) $(DIR_COM)
 
 fclean: clean
 	make -C$(DIR_NXLN) clean
