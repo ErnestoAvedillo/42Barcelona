@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include"fractol.h"
+#include"math.h"
 
 int deal_key(int key, void *param)
 {
