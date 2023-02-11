@@ -24,7 +24,11 @@ int main ()
 	void	*win_ptr;
 	int		x;
 	int		y;
+	double complex z0 = 0 ;
+	double complex c = 1;
 
+	fract_calc(z0,c);
+	return(0);
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr,1000,1000,"mi primera ventana");
 	x = 100;
@@ -39,8 +43,7 @@ int main ()
 		}
 		y++;
 	}
-	mlx_key_hook(win_ptr, deal_k
-	ey,(void*)0 );
+	mlx_key_hook(win_ptr, deal_key,(void*)0 );
 	mlx_loop(mlx_ptr);
 	return (0);
 }

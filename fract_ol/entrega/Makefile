@@ -77,6 +77,7 @@ $(LIBX_NAME_LNX) : $(LIBX_LNX)
 $(LIBX_LNX):
 	make -f Makefile.gen -sC $(DIR_LIBX_LNX)
 
+#
 #common compilation
 
 $(LIBFT_NAME):$(LIBFT)

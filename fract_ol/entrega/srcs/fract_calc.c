@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   fract_calc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/04 12:27:21 by eavedill          #+#    #+#             */
-/*   Updated: 2023/02/04 12:29:35 by eavedill         ###   ########.fr       */
+/*   Created: 2023/02/11 14:58:11 by eavedill          #+#    #+#             */
+/*   Updated: 2023/02/11 14:58:13 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
-#include "../mlx/mlx.h"
-#include"../libft/libft.h"
-#include<math.h>
-#include<complex.h>
-#include<stdio.h>
+#include"fractol.h"
 
-#define MAX 0xFFFFFF
-int     fract_calc(int real, int comp);
-
-#endif
+int fract_calc(double complex c, double complex z0)
+{
+    int i;
+    double complex znext;
+    while (i <= max)
+    {
+        znext = cpow(z0,2) + c;
+        modulo = cabs(z0-znext);
+        printf ("convergencia %f + %f i /n", creal(z0-znext), cimag(z0-znext), modulo );
+        getchar();
+    }
+    
+}
