@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include"fractol.h"
-#include"math.h"
 
 int deal_key(int key, void *param)
 {
-	write(1, "recibido\n", 9);
+	printf("recibido %i -- direccion %p\n", key, param);
 	return (0);
 }
 
@@ -24,10 +23,17 @@ int main ()
 	void	*win_ptr;
 	int		x;
 	int		y;
-	double complex z0 = 0 ;
-	double complex c = 1;
+	t_complex z0;
+	t_complex z1;
+	t_complex c;
 
-	fract_calc(z0,c);
+	z0 = casign(1, 3);
+	printf("el valor es %f + %f i", z0.re, z0.im);
+	c = casign(2, 4);
+	printf("el valor es %f + %f i", c.re, c.im);
+	z1 = csum(z0, c);
+	printf("el valor es %f + %f i", z0.re, z0.im);
+
 	return(0);
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr,1000,1000,"mi primera ventana");

@@ -15,10 +15,25 @@
 #include "../mlx/mlx.h"
 #include"../libft/libft.h"
 #include<math.h>
-#include<complex.h>
 #include<stdio.h>
 
+typedef struct s_complex {
+    double re;
+    double im;
+}   t_complex;
+
 #define MAX 0xFFFFFF
-int     fract_calc(int real, int comp);
+
+int     fract_calc(t_complex c, t_complex z0);
+//complex_oper0
+t_complex casign(double a, double b);
+double cmod(t_complex z);
+double cdeg (t_complex z);
+t_complex csum(t_complex a, t_complex b);
+t_complex csub(t_complex a, t_complex b);
+//complex_oper1
+t_complex cmul(t_complex a, t_complex b);
+t_complex cdiv(t_complex a, t_complex b);
+t_complex cpower(t_complex a, t_complex b);
 
 #endif

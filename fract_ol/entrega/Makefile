@@ -1,7 +1,7 @@
 NAME := fractol
 NAME_LNX := fractol_lnx
 
-SRC := fractol
+SRC := fractol fract_calc complex_oper0 complex_oper1
 DIR_SRC := ./srcs/
 
 OBJDST_DIR := ./objdst/
@@ -28,7 +28,7 @@ LIBX = $(addprefix $(DIR_LIBX),$(LIBX_NAME))
 #minilibX Linux
 LIBX_NAME_LNX := libmlx.a
 DIR_LIBX_LNX := ./mlx/
-LIBX_LNX = $(addprefix $(DIR_LIBX),$(LIBX_NAME))
+LIBX_LNX = $(addprefix $(DIR_LIBX),$(LIBX_NAME_LNX))
 #link elements
 LIBX_LNK :=  -Lmlx -lmlx -framework OpenGL -framework AppKit 
 RM := rm -rfd
@@ -41,15 +41,15 @@ all : $(NAME)
 
 #MAC compilation
 $(NAME): $(OBJS_MAN) $(LIBFT_NAME) $(LIBX_NAME)
-	$(CC) $(FLAG) $(LIBX_LNK) $(OBJS_MAN) -o $(NAME)
+	$(CC) $(FLAGS) $(LIBX_LNK) $(OBJS_MAN) -o $(NAME)
 
 $(OBJDST_DIR)%.o: $(DIR_SRC)%.c $(OBJDST_DIR)%.d
 	mkdir -p $(OBJDST_DIR)
-	$(CC) $(FLAG)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
+	$(CC) $(FLAGS)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
 
 $(OBJDST_DIR)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(OBJDST_DIR)
-	$(CC) -MM $(FLAG)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR)$*.d
+	$(CC) -MM $(FLAGS)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR)$*.d
 
 $(LIBX_NAME) : $(LIBX)
 	cp -p $(LIBX) $(LIBX_NAME)
@@ -61,15 +61,15 @@ $(LIBX):
 linux: $(NAME_LNX)
 
 $(NAME_LNX): $(OBJS_MAN_LNX) $(LIBFT_NAME) $(LIBX_NAME_LNX)
-	$(CC) $(OBJS_MAN_LNX) $(LIBX_NAME_LNX) -L/usr/lib -Imlx -lXext -lX11 -L/usr/lib/X11 -lm -lz -o $(NAME_LNX)
+	$(CC) $(FLAGS) $(OBJS_MAN_LNX) $(LIBX_NAME_LNX) -L/usr/lib -Imlx -lXext -lX11 -L/usr/lib/X11 -lm -lz -o $(NAME_LNX)
 
 $(OBJDST_DIR_LNX)%.o: $(DIR_SRC)%.c $(OBJDST_DIR_LNX)%.d
 	mkdir -p $(OBJDST_DIR_LNX)
-	$(CC) $(FLAG) -I/usr/include/ -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR_LNX)$*.o
+	$(CC) $(FLAGS) -I/usr/include/ -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR_LNX)$*.o
 
 $(OBJDST_DIR_LNX)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(OBJDST_DIR_LNX)
-	$(CC) -MM $(FLAG)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR_LNX)$*.d
+	$(CC) -MM $(FLAGS)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR_LNX)$*.d
 
 $(LIBX_NAME_LNX) : $(LIBX_LNX)
 	cp -p $(LIBX_LNX) $(LIBX_NAME_LNX)

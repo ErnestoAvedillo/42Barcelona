@@ -12,16 +12,20 @@
 
 #include"fractol.h"
 
-int fract_calc(double complex c, double complex z0)
+int fract_calc(t_complex c, t_complex z0)
 {
     int i;
-    double complex znext;
-    while (i <= max)
+    t_complex znext;
+    double modulo;
+
+    i = 0;
+    while (i <= MAX)
     {
-        znext = cpow(z0,2) + c;
-        modulo = cabs(z0-znext);
-        printf ("convergencia %f + %f i /n", creal(z0-znext), cimag(z0-znext), modulo );
+        znext = csum(z0, c);
+        modulo = cmod(znext);
+        printf ("convergencia %f + %f i = %f /n", znext.re, znext.im, modulo );
         getchar();
+        i++;
     }
-    
+    return(i);
 }
