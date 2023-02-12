@@ -36,7 +36,7 @@ double cdeg (t_complex z)
     return (i);
 }
 
-t_complex sum(t_complex a, t_complex b)
+t_complex csum(t_complex a, t_complex b)
 {
     t_complex   c;
 

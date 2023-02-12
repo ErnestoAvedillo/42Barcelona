@@ -28,11 +28,19 @@ int main ()
 	t_complex c;
 
 	z0 = casign(1, 3);
-	printf("el valor es %f + %f i", z0.re, z0.im);
+	printf("el valor z0 es %f + %f i\n", z0.re, z0.im);
+	printf("el modulo z0 es %f \n", cmod(z0));
+	printf("la fase z0 es %f \n", cdeg(z0));
 	c = casign(2, 4);
-	printf("el valor es %f + %f i", c.re, c.im);
+	printf("el valor c es %f + %f i\n", c.re, c.im);
 	z1 = csum(z0, c);
-	printf("el valor es %f + %f i", z0.re, z0.im);
+	printf("el valor suma es %f + %f i\n", z1.re, z1.im);
+	z1 = cmul(z0, c);
+	printf("el valor mult es %f + %f i\n", z1.re, z1.im);
+	z1 = cdiv(z0, c);
+	printf("el valor div es %f + %f i\n", z1.re, z1.im);
+	z1 = cpower(z0, c);
+	printf("el valor power es %f + %f i\n", z1.re, z1.im);
 
 	return(0);
 	mlx_ptr = mlx_init();
