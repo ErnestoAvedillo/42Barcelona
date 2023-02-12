@@ -15,6 +15,8 @@ static char	**analyze_data(int av, char **ac)
 {
 	char	**str;
 
+	if (av == 1)
+		return (0);
 	str = input_data(ac);
 	if (str == NULL)
 	{
