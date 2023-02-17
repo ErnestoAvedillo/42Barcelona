@@ -11,47 +11,34 @@
 /* ************************************************************************** */
 #include "fractol.h"
 
-t_complex casign(double a, double b)
+t_complex	casign(double a, double b)
 {
-    t_complex c;
+	t_complex	c;
 
-    c.re =  a;
-    c.im =  b;
-    return (c);
+	c.re = a;
+	c.im = b;
+	return (c);
 }
 
-double cmod(t_complex z)
+t_complex	cequal(t_complex a, t_complex b)
 {
-    double i;
-
-    i = sqrt(pow(z.re, 2) + pow(z.im,2));
-    return (i);
+	a.re = b.re;
+	a.im = b.im;
+	return (a);
 }
 
-double cdeg (t_complex z)
+double	cmod(t_complex z)
 {
-    double i;
+	double	i;
 
-    i = atan2(z.re, z.im);
-    return (i);
+	i = sqrt(pow(z.re, 2) + pow(z.im, 2));
+	return (i);
 }
 
-t_complex csum(t_complex a, t_complex b)
+double	cdeg(t_complex z)
 {
-    t_complex   c;
+	double	i;
 
-    c.re =  a.re + b.re;
-    c.im =  a.im + b.im;
-    return (c);
+	i = atan2(z.im, z.re);
+	return (i);
 }
-
-t_complex csub(t_complex a, t_complex b)
-{
-    t_complex   c;
-
-    c.re =  a.re - b.re;
-    c.im =  a.im - b.im;
-    return (c);
-}
-
-

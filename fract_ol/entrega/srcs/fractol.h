@@ -22,18 +22,35 @@ typedef struct s_complex {
     double im;
 }   t_complex;
 
-#define MAX 0xFFFFFF
+typedef struct s_fract {
+    int         **win;
+    int         size_x;
+    int         size_y;
+    int         origin_x;
+    int         origin_y;
+    t_complex   *z0;
+    t_complex   *c;
+} t_fract;
 
-int     fract_calc(t_complex c, t_complex z0);
-//complex_oper0
+#define MAX 0xFFFFFF
+#define ITER 500
+
+int         fract_calc(t_complex c, t_complex z0);
+//fractol_utils
+t_fract *create_fract(int size_x, int size_y, int orig_x, int orig_y);
+// complex_oper0
 t_complex casign(double a, double b);
+t_complex cequal(t_complex a, t_complex b);
 double cmod(t_complex z);
-double cdeg (t_complex z);
+double      cdeg (t_complex z);
+// complex_oper1
 t_complex csum(t_complex a, t_complex b);
-t_complex csub(t_complex a, t_complex b);
-//complex_oper1
-t_complex cmul(t_complex a, t_complex b);
-t_complex cdiv(t_complex a, t_complex b);
-t_complex cpower(t_complex a, t_complex b);
+t_complex   csub(t_complex a, t_complex b);
+t_complex   cmul(t_complex a, t_complex b);
+t_complex   cdiv(t_complex a, t_complex b);
+t_complex   cpower(t_complex a, t_complex b);
+//mandelbrot
+void win_mandel(t_fract *frac);
+int mandelbrot(t_fract *frac);
 
 #endif

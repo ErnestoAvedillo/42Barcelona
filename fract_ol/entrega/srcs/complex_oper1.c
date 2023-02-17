@@ -11,45 +11,70 @@
 /* ************************************************************************** */
 #include "fractol.h"
 
-t_complex cmul(t_complex a, t_complex b)
+t_complex	csum(t_complex a, t_complex b)
 {
-    t_complex   c;
+	t_complex	c;
 
-    c.re =  a.re * b.re - a.im * b.im;
-    c.im =  a.re * b.im + a.im * b.re;
-    return (c);
+	c.re = a.re + b.re;
+	c.im = a.im + b.im;
+	return (c);
 }
 
-t_complex cdiv(t_complex a, t_complex b)
+t_complex	csub(t_complex a, t_complex b)
 {
-    t_complex   c;
-    t_complex   d;
-    t_complex   e;
+	t_complex	c;
 
-    e.re = b.re;
-    e.im = - b.im;
-    c =  cmul(a, e);
-    d =  cmul(b, e);
-    c.re /= d.re;
-    c.im /= d.re;
-    return (c);
+	c.re = a.re - b.re;
+	c.im = a.im - b.im;
+	return (c);
 }
 
-t_complex cpower(t_complex a, t_complex b)
+t_complex	cmul(t_complex a, t_complex b)
 {
-    t_complex   c;
-    double      module;
-    double      theta;
-    double      aux1;
-    double      aux2;
+	t_complex	c;
 
-    module = cmod(a);
-    theta = cdeg (a);
-    aux1 = pow(module, b.re) / exp(b.im * theta) ;
-    aux2 = b.re * theta + b.im * log(module);
-    c.re = aux1 * cos(aux2);
-    c.im = aux1 * sin(aux2);
-    return (c);
+	c.re = a.re * b.re - a.im * b.im;
+	c.im = a.re * b.im + a.im * b.re;
+	return (c);
 }
 
+t_complex	cdiv(t_complex a, t_complex b)
+{
+	t_complex	c;
+	t_complex	d;
+	t_complex	e;
 
+	e.re = b.re;
+	e.im = -b.im;
+	c = cmul(a, e);
+	d = cmul(b, e);
+	c.re /= d.re;
+	c.im /= d.re;
+	return (c);
+}
+
+/*
+Demostración de la función
+		(c+d*i)    (c + d*i)   (i*theta)*(c + d*i)
+(a + b*i)       = m          *e                   =
+	c    ln(m)*d*i    (-d * theta)    (c*theta*i)
+= m   * e          * e             * e            =
+   c    (-d * theta)    (ln(m)*d + c*theta)*i
+= m  * e             * e
+*/
+t_complex	cpower(t_complex a, t_complex b)
+{
+	t_complex	c;
+	double		module;
+	double		theta;
+	double		aux1;
+	double		aux2;
+
+	module = cmod(a);
+	theta = cdeg (a);
+	aux1 = pow(module, b.re) / exp(b.im * theta);
+	aux2 = b.re * theta + b.im * log(module);
+	c.re = aux1 * cos(aux2);
+	c.im = aux1 * sin(aux2);
+	return (c);
+}
