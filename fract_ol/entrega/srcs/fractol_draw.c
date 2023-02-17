@@ -1,47 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complex_oper0.c                                    :+:      :+:    :+:   */
+/*   fractol_draw.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/12 13:08:22 by eavedill          #+#    #+#             */
-/*   Updated: 2023/02/12 13:08:33 by eavedill         ###   ########.fr       */
+/*   Created: 2023/02/17 19:11:39 by eavedill          #+#    #+#             */
+/*   Updated: 2023/02/17 19:12:36 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "fractol.h"
 
-t_complex	casign(double a, double b)
+#include"fractol.h"
+
+void fractol_draw (t_fract *frac, int (*fractal_func)(t_complex, t_complex))
 {
-	t_complex	c;
+    int i;
+    int j;
+    t_complex c;
 
-	c.re = a;
-	c.im = b;
-	return (c);
-}
-
-t_complex	cequal(t_complex b)
-{
-	t_complex a;
-
-	printf("paso\n");
-	a.re = b.re;
-	a.im = b.im;
-	return (a);
-}
-
-double	cmod(t_complex z)
-{
-	double	i;
-
-	i = sqrt(pow(z.re, 2) + pow(z.im, 2));
-	return (i);
-}
-
-double	cdeg(t_complex z)
-{
-	double	i;
-
-	i = atan2(z.im, z.re);
-	return (i);
+    i = -1;
+    while(i < frac->size_x)
+    {
+        j = -1;
+        while(++j < frac->size_y)
+        {
+            c.re = i;
+            c.im = j;
+            frac->win[i][j] = fractal_func(frac->z0,c)
+        }
+    }
 }

@@ -26,8 +26,9 @@ int main ()
 	t_fract	*frac;
 
 	frac = create_fract(1000, 1000, 500, 500);
-	win_mandel(frac);
+	fractol_draw(frac, mandelbrot);
 	return (0);
+	win_mandel(frac);
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr,1000,1000,"mi primera ventana");
 	x = 100;

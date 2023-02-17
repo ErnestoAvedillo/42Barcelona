@@ -17,6 +17,9 @@ t_complex	csum(t_complex a, t_complex b)
 
 	c.re = a.re + b.re;
 	c.im = a.im + b.im;
+		printf("convergencia %f + %f i = %f \n", a.re, a.im, cmod(c));
+		printf("convergencia %f + %f i = %f \n", b.re, b.im, cmod(c));
+		printf("convergencia %f + %f i = %f \n", c.re, c.im, cmod(c));
 	return (c);
 }
 
@@ -71,9 +74,11 @@ t_complex	cpower(t_complex a, t_complex b)
 	double		aux2;
 
 	module = cmod(a);
+	if (module == 0)
+		return (a);
 	theta = cdeg (a);
 	aux1 = pow(module, b.re) / exp(b.im * theta);
-	aux2 = b.re * theta + b.im * log(module);
+	aux2 = log(module);
 	c.re = aux1 * cos(aux2);
 	c.im = aux1 * sin(aux2);
 	return (c);

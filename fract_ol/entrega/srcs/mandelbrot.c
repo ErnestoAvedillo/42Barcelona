@@ -12,7 +12,7 @@
 
 #include"fractol.h"
 
-int mandelbrot(t_fract *frac)
+int mandelbrot(t_complex z0, t_complex c)
 {
 	int i;
 	t_complex znext;
@@ -20,15 +20,15 @@ int mandelbrot(t_fract *frac)
 
 	i = 0;
 	power = casign(2, 0);
-	znext = cequal(znext, *frac->z0);
+	znext = cequal(z0);
 	while (i <= ITER)
 	{
-		znext = csum(cpower(znext,power), *frac->c);
-		printf("convergencia %f + %f i = %f /n", znext.re, znext.im, cmod(znext));
+		znext = csum(cpower(znext,power), c);
+		printf("convergencia %f + %f i = %f \n", znext.re, znext.im, cmod(znext));
 		getchar();
 		i++;
 	}
-	printf("convergencia %f + %f i = %f /n", znext.re, znext.im, cmod(znext));
+	printf("convergencia %f + %f i = %f \n", znext.re, znext.im, cmod(znext));
 	i = (int)cmod(znext);
 	return (i);
 }
