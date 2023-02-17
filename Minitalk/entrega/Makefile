@@ -6,7 +6,8 @@ INCLUDE_SRV := server.h
 
 SRC_DIR := ./srcs/
 
-OBJ_DST_DIR := ./obj/
+OBJ_DST_DIR_CLI := ./obj_cli/
+OBJ_DST_DIR_SRV := ./obj_srv/
 
 SRC_CLI := $(NAME_CLI) client_utils
 
@@ -15,11 +16,11 @@ SRC_SRV := $(NAME_SRV) server_utils
 SRCS_CLI := $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_CLI)))
 SRCS_SRV := $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_SRV)))
 
-OBJS_CLI := $(addprefix $(OBJ_DST_DIR), $(addsuffix .o, $(SRC_CLI)))
-OBJS_SRV := $(addprefix $(OBJ_DST_DIR), $(addsuffix .o, $(SRC_SRV)))
+OBJS_CLI := $(addprefix $(OBJ_DST_DIR_CLI), $(addsuffix .o, $(SRC_CLI)))
+OBJS_SRV := $(addprefix $(OBJ_DST_DIR_SRV), $(addsuffix .o, $(SRC_SRV)))
 
-DSTS_CLI := $(addprefix $(OBJ_DST_DIR), $(addsuffix .d, $(SRC_CLI)))
-DSTS_SRV := $(addprefix $(OBJ_DST_DIR), $(addsuffix .d, $(SRC_SRV)))
+DSTS_CLI := $(addprefix $(OBJ_DST_DIR_CLI), $(addsuffix .d, $(SRC_CLI)))
+DSTS_SRV := $(addprefix $(OBJ_DST_DIR_SRV), $(addsuffix .d, $(SRC_SRV)))
 
 #libraries
 NAME_PRINTF := libftprintf.a
@@ -42,26 +43,31 @@ FLAGS := -Wall -Wextra -Werror
 
 all: $(NAME_CLI) $(NAME_SRV)
 
+-include $(DSTS_CLI) $(DSTS_SRV)
 
 #Compile Client
-$(NAME_CLI): $(OBJS_CLI) 
+$(NAME_CLI): $(OBJS_CLI) $(NAME_PRINTF) $(NAME_GNXTL)
 	$(CC) $(FLAGS) $(NAME_PRINTF) $(NAME_GNXTL) $(OBJS_CLI) -o $(NAME_CLI)
 
-$(OBJS_CLI): $(DSTS_CLI) $(INCLUDE_CLI)
-	$(CC) $(FLAGS) -c $(DIR_SRCS)$*.c -o $(OBJ_DST_DIR)$*.o
+$(OBJ_DST_DIR_CLI)%.o : $(DIR_SRCS)%.c $(DSTS_CLI) $(INCLUDE_CLI)
+	mkdir -p $(OBJ_DST_DIR_CLI)
+	$(CC) $(FLAGS) -c $(DIR_SRCS)$*.c -o $(OBJ_DST_DIR_CLI)$*.o
 
-$(DSTS_CLI): $(SRCS_CLI) $(INCLUDE_CLI)
-	$(CC) -MM $(FLAGS) -c $(DIR_SRCS)$*.c > $(OBJ_DST_DIR)$*.d
+$(OBJ_DST_DIR_CLI)%.d: $(DIR_SRCS)%.c $(INCLUDE_CLI)
+	mkdir -p $(OBJ_DST_DIR_CLI)
+	$(CC) -MM $(FLAGS) -c $(DIR_SRCS)$*.c > $(OBJ_DST_DIR_CLI)$*.d
 
 #comìle server
-$(NAME_SRV): $(OBJS_SRV) 
+$(NAME_SRV): $(OBJS_SRV) $(NAME_PRINTF) $(NAME_GNXTL)
 	$(CC) $(FLAGS) $(NAME_PRINTF) $(NAME_GNXTL) $(OBJS_SRV) -o $(NAME_SRV)
 
-$(OBJS_SRV): $(DSTS_SRV) $(INCLUDE_SRV)
-	$(CC) $(FLAGS) -c $(DIR_SRCS)$*.c -o $(OBJ_DST_DIR)$*.o
+$(OBJ_DST_DIR_SRV)%.o: $(DIR_SRCS)%.c $(DSTS_SRV) $(INCLUDE_SRV)
+	mkdir -p $(OBJ_DST_DIR_SRV)
+	$(CC) $(FLAGS) -c $(DIR_SRCS)$*.c -o $(OBJ_DST_DIR_SRV)$*.o
 
-$(DSTS_SRV): $(SRCS_SRV) $(INCLUDE_SRV)
-	$(CC) -MM $(FLAGS) -c $(DIR_SRCS)$*.c > $(OBJ_DST_DIR)$*.d
+$(OBJ_DST_DIR_SRV)%.d: $(DIR_SRCS)%.c $(INCLUDE_SRV)
+	mkdir -p $(OBJ_DST_DIR_SRV)
+	$(CC) -MM $(FLAGS) -c $(DIR_SRCS)$*.c > $(OBJ_DST_DIR_SRV)$*.d
 
 # Compiling getnextline.
 $(NAME_GNXTL): $(LIB_GNXTL)
@@ -78,7 +84,7 @@ $(LIB_PRINTF):
 	mane -C$(DIR_PRINTF)
 
 clean:
-	$(RM) $(OBJ_DST_DIR)
+	$(RM) $(OBJ_DST_DIR_CLI) $(OBJ_DST_DIR_SRV)
 	make -C$(DIR_GNXTL) clean
 	make -C$(DIR_PRINTF) clean
 
@@ -94,6 +100,8 @@ print:
 	@echo OBJS_SRV: $(OBJS_SRV)
 	@echo DSTS_CLI: $(DSTS_CLI)
 	@echo DSTS_SRV: $(DSTS_SRV)
+	@echo OBJ_DST_DIR_CLI: $(OBJ_DST_DIR_CLI)
+	@echo OBJ_DST_DIR_SRV: $(OBJ_DST_DIR_SRV)
 	@echo NAME_PRINTF: $(NAME_PRINTF)
 	@echo DIR_PRINTF: $(DIR_PRINTF)
 	@echo LIB_PRINTF: $(LIB_PRINTF)
