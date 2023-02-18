@@ -41,7 +41,7 @@ all : $(NAME)
 
 #MAC compilation
 $(NAME): $(OBJS_MAN) $(LIBFT_NAME) $(LIBX_NAME)
-	$(CC) $(FLAGS) $(LIBX_LNK) $(OBJS_MAN) -o $(NAME)
+	$(CC) $(FLAGS) $(LIBX_LNK) $(OBJS_MAN) $(LIBFT_NAME) -o $(NAME)
 
 $(OBJDST_DIR)%.o: $(DIR_SRC)%.c $(OBJDST_DIR)%.d
 	mkdir -p $(OBJDST_DIR)
@@ -61,7 +61,7 @@ $(LIBX):
 linux: $(NAME_LNX)
 
 $(NAME_LNX): $(OBJS_MAN_LNX) $(LIBFT_NAME) $(LIBX_NAME_LNX)
-	$(CC) $(FLAGS) $(OBJS_MAN_LNX) $(LIBX_NAME_LNX) -L/usr/lib -Imlx -lXext -lX11 -L/usr/lib/X11 -lm -lz -o $(NAME_LNX)
+	$(CC) $(FLAGS) $(OBJS_MAN_LNX) $(LIBX_NAME_LNX) $(LIBFT_NAME) -L/usr/lib -Imlx -lXext -lX11 -L/usr/lib/X11 -lm -lz -o $(NAME_LNX)
 
 $(OBJDST_DIR_LNX)%.o: $(DIR_SRC)%.c $(OBJDST_DIR_LNX)%.d
 	mkdir -p $(OBJDST_DIR_LNX)

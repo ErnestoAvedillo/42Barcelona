@@ -24,7 +24,6 @@ t_complex	cequal(t_complex b)
 {
 	t_complex a;
 
-	printf("paso\n");
 	a.re = b.re;
 	a.im = b.im;
 	return (a);

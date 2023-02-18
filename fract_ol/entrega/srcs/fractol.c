@@ -11,9 +11,21 @@
 /* ************************************************************************** */
 #include"fractol.h"
 
-int deal_key(int key, void *param)
+int deal_key(int key, t_fract *frac)
 {
-	printf("recibido %i -- direccion %p\n", key, param);
+	printf("recibido %i -- direccion %p\n", key, frac);
+	if (key == 12)
+	{
+		printf("paso\n");
+		frac->escala +=50;
+		fractol_draw(frac);
+	}
+	else if (key == 0)
+	{
+		printf("paso\n");
+		frac->escala -=50;
+		fractol_draw(frac);
+	}
 	return (0);
 }
 
@@ -25,26 +37,25 @@ int main ()
 	int		y;
 	t_fract	*frac;
 
-	frac = create_fract(1000, 1000, 500, 500);
-	fractol_draw(frac, mandelbrot);
-	return (0);
-	win_mandel(frac);
+	frac = create_fract(1000, 1000, 500, 500, mandelbrot);
+	fractol_draw(frac);
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr,1000,1000,"mi primera ventana");
-	x = 100;
-	y = x;
-	while (y <= 300)
+	win_ptr = mlx_new_window(mlx_ptr,frac->size_x,frac->size_y,"mi primera ventana");
+	x = 0;
+	y = 0;
+	while (y < frac->size_y)
 	{
-		x = 100;
-		while (x <= 700)
+		x = 0;
+		while (x < frac->size_x)
 		{
-			mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFFFFFF);
+			mlx_pixel_put(mlx_ptr, win_ptr, x, y, frac->win[x][y]);
 			x++;
 		}
 		y++;
 	}
-	mlx_key_hook(win_ptr, deal_key,(void*)0 );
+	mlx_key_hook(win_ptr, deal_key,(t_fract *)frac );
 	mlx_loop(mlx_ptr);
+	free(frac);
 	return (0);
 }
 

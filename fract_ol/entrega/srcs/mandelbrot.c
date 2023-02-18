@@ -24,28 +24,16 @@ int mandelbrot(t_complex z0, t_complex c)
 	while (i <= ITER)
 	{
 		znext = csum(cpower(znext,power), c);
-		printf("convergencia %f + %f i = %f \n", znext.re, znext.im, cmod(znext));
-		getchar();
+		if (cmod(znext) > (double) MAX)
+			break;
 		i++;
 	}
-	printf("convergencia %f + %f i = %f \n", znext.re, znext.im, cmod(znext));
-	i = (int)cmod(znext);
+	//printf("mandelbrot %f + %f i = %f \n", c.re, c.im, cmod(znext));
+	//getchar();
+	
+	if (cmod(znext) > (double) MAX)
+		i = MAX;
+	else
+	i = ft_abs((int)(cmod(znext)* MAX)) ;
 	return (i);
-}
-
-void win_mandel(t_fract *frac)
-{
-	int i;
-	int j;
-
-	i = -1;
-	j = -1;
-	while (++i < frac->size_x)
-	{
-		while (++j < frac->size_y)
-		{
-			frac->win[i][j] = mandelbrot(frac);
-		}
-	}
-	return ;
 }
