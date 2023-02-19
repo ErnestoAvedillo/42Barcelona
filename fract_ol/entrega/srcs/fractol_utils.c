@@ -12,7 +12,7 @@
 #include"fractol.h"
 
 t_fract	*create_fract(int size_x, int size_y, int orig_x, int orig_y \
-					, int (*fractal_func)(t_complex, t_complex))
+					, int (*fractal_func)(t_complex, t_complex, int, int))
 {
 	t_fract	*frac;
 	int		i;
@@ -39,6 +39,11 @@ t_fract	*create_fract(int size_x, int size_y, int orig_x, int orig_y \
 	frac->z0.re = 0;
 	frac->z0.im = 0;
 	frac->escala = 200;
+	frac->color = 0x777777;
+	frac->repet = 200;
+	frac->limit = 3;
+	frac->mlx_ptr = mlx_init();
+	frac->win_ptr = mlx_new_window(frac->mlx_ptr,frac->size_x,frac->size_y,"Los fractales de Ernesto");
 	return (frac);
 }
 
@@ -50,6 +55,8 @@ void	free_fract(t_fract *frac)
 	while (++i < frac->size_x)
 		free(frac->win[i]);
 	free(frac->win);
+	free (frac->mlx_ptr);
+	free(frac->win_ptr);
 	free(frac);
 	return ;
 }

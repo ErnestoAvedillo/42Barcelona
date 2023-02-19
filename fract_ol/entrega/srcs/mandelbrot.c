@@ -12,7 +12,7 @@
 
 #include"fractol.h"
 
-int mandelbrot(t_complex z0, t_complex c)
+int mandelbrot(t_complex z0, t_complex c,int iter,int limit)
 {
 	int i;
 	t_complex znext;
@@ -21,19 +21,19 @@ int mandelbrot(t_complex z0, t_complex c)
 	i = 0;
 	power = casign(2, 0);
 	znext = cequal(z0);
-	while (i <= ITER)
+	while (i <= iter)
 	{
 		znext = csum(cpower(znext,power), c);
-		if (cmod(znext) > (double) MAX)
+		if (cmod(znext) > limit)
 			break;
 		i++;
 	}
 	//printf("mandelbrot %f + %f i = %f \n", c.re, c.im, cmod(znext));
 	//getchar();
 	
-	if (cmod(znext) > (double) MAX)
+/*	if (cmod(znext) > (double) MAX)
 		i = MAX;
 	else
 	i = ft_abs((int)(cmod(znext)* MAX)) ;
-	return (i);
+*/	return (i);
 }

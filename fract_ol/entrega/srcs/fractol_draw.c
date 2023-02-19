@@ -12,7 +12,6 @@
 
 #include"fractol.h"
 
-//void fractol_draw (t_fract *frac, int (*fractal_func)(t_complex, t_complex))
 void fractol_draw (t_fract *frac)
 {
     int i;
@@ -28,8 +27,8 @@ void fractol_draw (t_fract *frac)
         {
             c.re = ((double)i - frac->origin_x) / frac->escala;
             c.im = ((double)j - frac->origin_y) / frac->escala;
-            result = frac->function(frac->z0,c);
-            frac->win[i][j] = result;
+            result = frac->function(frac->z0, c, frac->repet, frac->limit);
+            mlx_pixel_put(frac->mlx_ptr, frac->win_ptr, i, j, result * frac->color);
         } 
     }
 }

@@ -24,7 +24,9 @@ typedef struct s_complex {
 }   t_complex;
 
 typedef struct s_fract {
-	int			(*function)(t_complex, t_complex);
+	int			(*function)(t_complex, t_complex, int, int);
+	void		*mlx_ptr;
+	void		*win_ptr;
 	int			**win;
 	int			size_x;
 	int			size_y;
@@ -32,6 +34,9 @@ typedef struct s_fract {
 	int			origin_y;
 	t_complex	z0;
 	int			escala;
+	int			color;
+	int 		repet;
+	int			limit;
 } t_fract;
 
 #define MAX 0xFFFFFF
@@ -40,7 +45,7 @@ typedef struct s_fract {
 //int			fract_calc(t_complex c, t_complex z0);
 //fractol_utils
 t_fract		*create_fract(int size_x, int size_y, int orig_x, int orig_y \
-						, int (*fractal_func)(t_complex, t_complex));
+						, int (*fractal_func)(t_complex, t_complex, int, int));
 void		free_fract (t_fract *frac);
 // complex_oper0
 t_complex	casign(double a, double b);
@@ -55,9 +60,10 @@ t_complex	cdiv(t_complex a, t_complex b);
 t_complex	cpower(t_complex a, t_complex b);
 //mandelbrot
 void		win_mandel(t_fract *frac);
-int			mandelbrot(t_complex z0, t_complex c);
+int			mandelbrot(t_complex z0, t_complex c,int iter,int limit);
 //fractol_draw
 void		fractol_draw (t_fract *frac);
-//void		fractol_draw (t_fract *frac, int (*fractal_func)(t_complex, t_complex));
+//clse_win
+int	close_win(t_fract *frac);
 
 #endif
