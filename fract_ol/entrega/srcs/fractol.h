@@ -17,6 +17,7 @@
 #include<math.h>
 #include<stdio.h>
 #include<limits.h>
+#include<time.h>
 
 typedef struct s_complex {
 	double	re;
@@ -27,15 +28,17 @@ typedef struct s_fract {
 	int			(*function)(t_complex, t_complex, int, int);
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*image;
 	int			**win;
 	int			size_x;
 	int			size_y;
+	int			frame;
 	int			origin_x;
 	int			origin_y;
 	t_complex	z0;
 	int			escala;
 	int			color;
-	int 		repet;
+	int			repet;
 	int			limit;
 } t_fract;
 

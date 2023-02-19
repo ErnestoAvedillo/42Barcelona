@@ -34,6 +34,7 @@ t_fract	*create_fract(int size_x, int size_y, int orig_x, int orig_y \
 	frac->function = fractal_func;
 	frac->size_x = size_x;
 	frac->size_y = size_y;
+	frac->frame = 50;
 	frac->origin_x = orig_x;
 	frac->origin_y = orig_y;
 	frac->z0.re = 0;
@@ -44,6 +45,7 @@ t_fract	*create_fract(int size_x, int size_y, int orig_x, int orig_y \
 	frac->limit = 3;
 	frac->mlx_ptr = mlx_init();
 	frac->win_ptr = mlx_new_window(frac->mlx_ptr,frac->size_x,frac->size_y,"Los fractales de Ernesto");
+	frac->image = mlx_new_image(frac->mlx_ptr,frac->size_x,frac->size_y);
 	return (frac);
 }
 

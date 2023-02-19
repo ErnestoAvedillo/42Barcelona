@@ -16,19 +16,34 @@ void fractol_draw (t_fract *frac)
 {
     int i;
     int j;
+    int k;
     int result;
+//    clock_t start;
+//    clock_t end;
     t_complex c;
+    int pixel_bits;
+    int line_bytes;
+    int endian;
+    char *buffer = mlx_get_data_addr(frac->image, &pixel_bits, &line_bytes, &endian);
 
-    i = -1;
-    while(++i < frac->size_x)
+    i = frac->frame;
+    k = 0;
+    while(++i < frac->size_x - frac->frame * 2)
     {
-        j = -1;
-        while(++j < frac->size_y)
+        j = frac->frame;
+        while(++j < frac->size_y - frac->frame * 2)
         {
             c.re = ((double)i - frac->origin_x) / frac->escala;
             c.im = ((double)j - frac->origin_y) / frac->escala;
+//            start = clock();
             result = frac->function(frac->z0, c, frac->repet, frac->limit);
-            mlx_pixel_put(frac->mlx_ptr, frac->win_ptr, i, j, result * frac->color);
+//            end = clock();
+            //mlx_pixel_put(frac->mlx_ptr, frac->win_ptr, i, j, result * frac->color);
+            buffer[j * line_bytes + i * pixel_bits / 8 ] = result * frac->color;
+//            if ((double) (end - start) > 20)
+//                printf("tiempo transcurrido %f %i %i %f %f\n",(double) (end - start) / CLOCKS_PER_SEC, i, j, c.re, c.im);
+            k++;
         } 
     }
+    mlx_put_image_to_window(frac->mlx_ptr,frac->win_ptr, frac->image, frac->frame, frac->frame);
 }
