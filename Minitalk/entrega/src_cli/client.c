@@ -55,15 +55,15 @@ static void	mt_kill(int pid, char *str)
 
 int   main(int av, char **ac)
  {
-    if (av != 3 || ft_strlen ac[2] == 0) 
+    if (av != 3 || ft_strlen (ac[2]) == 0) 
       return (1);
     int pid;
     pid = getpid();
 	ft_printf("PID proceso cliente: %i \n",pid);
-	kill(ft_atoi(ac[1]), ac[2]);
-	signal(SIGUSR1, action);
-	signal(SIGUSR2, action);
-	mt_kill(ft_atoi(argv[1]), argv[2]);
+	mt_kill(ft_atoi(ac[1]), ac[2]);
+	signal(SIGUSR1, sigact);
+	signal(SIGUSR2, sigact);
+	mt_kill(ft_atoi(ac[1]), ac[2]);
 	while (1)
 		pause();
 	return (0);
