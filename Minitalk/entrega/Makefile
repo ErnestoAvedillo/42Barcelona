@@ -1,10 +1,13 @@
 NAME_CLI := client
-INCLUDE_CLI := client.h
 
 NAME_SRV := server
-INCLUDE_SRV := server.h
 
-SRC_DIR := ./srcs/
+
+SRC_DIR_CLI := ./src_cli/
+SRC_DIR_SRV := ./src_srv/
+
+INCLUDE_CLI := $(addprefix $(SRC_DIR_CLI), $(addsuffix .h, $(NAME_CLI)))
+INCLUDE_SRV := $(addprefix $(SRC_DIR_SRV), $(addsuffix .h, $(NAME_SRV)))
 
 OBJ_DST_DIR_CLI := ./obj_cli/
 OBJ_DST_DIR_SRV := ./obj_srv/
@@ -13,8 +16,8 @@ SRC_CLI := $(NAME_CLI) client_utils
 
 SRC_SRV := $(NAME_SRV) server_utils
 
-SRCS_CLI := $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_CLI)))
-SRCS_SRV := $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_SRV)))
+SRCS_CLI := $(addprefix $(SRC_DIR_CLI), $(addsuffix .c, $(SRC_CLI)))
+SRCS_SRV := $(addprefix $(SRC_DIR_SRV), $(addsuffix .c, $(SRC_SRV)))
 
 OBJS_CLI := $(addprefix $(OBJ_DST_DIR_CLI), $(addsuffix .o, $(SRC_CLI)))
 OBJS_SRV := $(addprefix $(OBJ_DST_DIR_SRV), $(addsuffix .o, $(SRC_SRV)))
@@ -41,47 +44,52 @@ CC := gcc
 FLAGS := -Wall -Wextra -Werror
 
 
-all: $(NAME_CLI) $(NAME_SRV)
+all: $(NAME_CLI).exe $(NAME_SRV).exe
 
 -include $(DSTS_CLI) $(DSTS_SRV)
 
 #Compile Client
-$(NAME_CLI): $(OBJS_CLI) $(NAME_PRINTF) $(NAME_GNXTL)
-	$(CC) $(FLAGS) $(NAME_PRINTF) $(NAME_GNXTL) $(OBJS_CLI) -o $(NAME_CLI)
+$(NAME_CLI).exe: $(OBJS_CLI) $(NAME_PRINTF) $(NAME_GNXTL)
+	$(CC) $(FLAGS) $(OBJS_CLI) $(NAME_PRINTF) $(NAME_GNXTL) -o $(NAME_CLI).exe
 
-$(OBJ_DST_DIR_CLI)%.o : $(DIR_SRCS)%.c $(DSTS_CLI) $(INCLUDE_CLI)
+$(OBJ_DST_DIR_CLI)%.o : $(SRCS_CLI) $(DSTS_CLI) $(INCLUDE_CLI)
 	mkdir -p $(OBJ_DST_DIR_CLI)
-	$(CC) $(FLAGS) -c $(DIR_SRCS)$*.c -o $(OBJ_DST_DIR_CLI)$*.o
+	@echo paso 4 $(SRC_DIR_CLI)$*.c
+	$(CC) $(FLAGS) -c $(SRC_DIR_CLI)$*.c -o $(OBJ_DST_DIR_CLI)$*.o
 
-$(OBJ_DST_DIR_CLI)%.d: $(DIR_SRCS)%.c $(INCLUDE_CLI)
+$(OBJ_DST_DIR_CLI)%.d:  $(SRCS_CLI) $(INCLUDE_CLI)
 	mkdir -p $(OBJ_DST_DIR_CLI)
-	$(CC) -MM $(FLAGS) -c $(DIR_SRCS)$*.c > $(OBJ_DST_DIR_CLI)$*.d
+	@echo paso 31 $(SRC_DIR_CLI)$*.c
+	$(CC) -MM $(FLAGS) -c $(SRC_DIR_CLI)$*.c > $(OBJ_DST_DIR_CLI)$*.d
 
 #comìle server
-$(NAME_SRV): $(OBJS_SRV) $(NAME_PRINTF) $(NAME_GNXTL)
-	$(CC) $(FLAGS) $(NAME_PRINTF) $(NAME_GNXTL) $(OBJS_SRV) -o $(NAME_SRV)
+$(NAME_SRV).exe: $(OBJS_SRV) $(NAME_PRINTF) $(NAME_GNXTL)
+	$(CC) $(FLAGS) $(OBJS_SRV) $(NAME_PRINTF) $(NAME_GNXTL) -o $(NAME_SRV).exe
 
-$(OBJ_DST_DIR_SRV)%.o: $(DIR_SRCS)%.c $(DSTS_SRV) $(INCLUDE_SRV)
+$(OBJ_DST_DIR_SRV)%.o: $(SRCS_SRV) $(DSTS_SRV) $(INCLUDE_SRV)
 	mkdir -p $(OBJ_DST_DIR_SRV)
-	$(CC) $(FLAGS) -c $(DIR_SRCS)$*.c -o $(OBJ_DST_DIR_SRV)$*.o
+	@echo paso 2 $(SRC_DIR_SRV)$*.c
+	@echo $(SRC_DIR_SRV)$*.c
+	$(CC) $(FLAGS) -c $(SRC_DIR_SRV)$*.c -o $(OBJ_DST_DIR_SRV)$*.o
 
-$(OBJ_DST_DIR_SRV)%.d: $(DIR_SRCS)%.c $(INCLUDE_SRV)
+$(OBJ_DST_DIR_SRV)%.d: $(SRCS_SRV) $(INCLUDE_SRV)
 	mkdir -p $(OBJ_DST_DIR_SRV)
-	$(CC) -MM $(FLAGS) -c $(DIR_SRCS)$*.c > $(OBJ_DST_DIR_SRV)$*.d
+	@echo paso 1 $(SRC_DIR)$*.c
+	$(CC) -MM $(FLAGS) -c $(SRC_DIR_SRV)$*.c > $(OBJ_DST_DIR_SRV)$*.d
 
 # Compiling getnextline.
 $(NAME_GNXTL): $(LIB_GNXTL)
 	$(CP) $(LIB_GNXTL) $(NAME_GNXTL)
 	
 $(LIB_GNXTL):
-	mane -C$(DIR_GNXTL)
+	make -C$(DIR_GNXTL)
 
 # Compiling printf.
 $(NAME_PRINTF): $(LIB_PRINTF)
 	$(CP) $(LIB_PRINTF) $(NAME_PRINTF)
 	
 $(LIB_PRINTF):
-	mane -C$(DIR_PRINTF)
+	make -C$(DIR_PRINTF)
 
 clean:
 	$(RM) $(OBJ_DST_DIR_CLI) $(OBJ_DST_DIR_SRV)
@@ -94,9 +102,11 @@ fclean: clean
 re: fclean all
 
 print:
+	@echo SRC_DIR: $(SRC_DIR_CLI)
+	@echo SRC_DIR: $(SRC_DIR_SRV)
 	@echo SRCS_CLI: $(SRCS_CLI)
-	@echo SRCS_SRV :$(SRCS_SRV)
-	@echo OBJS_CLI :$(OBJS_CLI)
+	@echo SRCS_SRV: $(SRCS_SRV)
+	@echo OBJS_CLI: $(OBJS_CLI)
 	@echo OBJS_SRV: $(OBJS_SRV)
 	@echo DSTS_CLI: $(DSTS_CLI)
 	@echo DSTS_SRV: $(DSTS_SRV)
