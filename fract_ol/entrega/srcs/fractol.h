@@ -16,13 +16,25 @@
 #include"../libft/libft.h"
 #include<math.h>
 #include<stdio.h>
-#include<limits.h>
+///#include<limits.h>
 #include<time.h>
 
 typedef struct s_complex {
 	double	re;
 	double	im;
 }   t_complex;
+
+typedef struct s_mouse_pos {
+	int	x;
+	int	y;
+}   t_mouse_pos;
+
+typedef	struct	s_color{
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+}	t_color;
 
 typedef struct s_fract {
 	int			(*function)(t_complex, t_complex, int, int);
@@ -37,24 +49,30 @@ typedef struct s_fract {
 	int			origin_y;
 	t_complex	z0;
 	int			escala;
-	int			color;
+	t_color		color;
 	int			repet;
 	int			limit;
+	t_mouse_pos	mouse_pos;
 } t_fract;
 
-#define MAX 0xFFFFFF
+#define MAX 0xFFFFFFFFF
 #define ITER 20
+#define MITTE_IMG_X 355
+#define MITTE_IMG_Y 355
 
 //int			fract_calc(t_complex c, t_complex z0);
 //fractol_utils
 t_fract		*create_fract(int size_x, int size_y, int orig_x, int orig_y \
 						, int (*fractal_func)(t_complex, t_complex, int, int));
 void		free_fract (t_fract *frac);
+t_color		new_color(int r, int g, int b, int a);
+void		put_pixel_color(char *pixel, t_color color, int factor);
 // complex_oper0
 t_complex	casign(double a, double b);
 t_complex	cequal(t_complex b);
 double		cmod(t_complex z);
 double		cdeg (t_complex z);
+t_complex	csqr(t_complex a);
 // complex_oper1
 t_complex	csum(t_complex a, t_complex b);
 t_complex	csub(t_complex a, t_complex b);
@@ -66,7 +84,11 @@ void		win_mandel(t_fract *frac);
 int			mandelbrot(t_complex z0, t_complex c,int iter,int limit);
 //fractol_draw
 void		fractol_draw (t_fract *frac);
-//clse_win
+//close_win
 int	close_win(t_fract *frac);
-
+//keyevents
+int key_events(int key, t_fract *frac);
+//mouse_events
+int mouse_events_pre(int mouse, int x, int y, t_fract *frac);
+int mouse_events_rel(int mouse, int x, int y, t_fract *frac);
 #endif

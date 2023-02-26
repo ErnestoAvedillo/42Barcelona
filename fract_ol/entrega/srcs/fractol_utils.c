@@ -40,9 +40,9 @@ t_fract	*create_fract(int size_x, int size_y, int orig_x, int orig_y \
 	frac->z0.re = 0;
 	frac->z0.im = 0;
 	frac->escala = 200;
-	frac->color = 0x777777;
+	frac->color = new_color(0x60,0x70,0x40,0x0);
 	frac->repet = 200;
-	frac->limit = 3;
+	frac->limit = 2;
 	frac->mlx_ptr = mlx_init();
 	frac->win_ptr = mlx_new_window(frac->mlx_ptr,frac->size_x,frac->size_y,"Los fractales de Ernesto");
 	frac->image = mlx_new_image(frac->mlx_ptr,frac->size_x,frac->size_y);
@@ -61,4 +61,25 @@ void	free_fract(t_fract *frac)
 	free(frac->win_ptr);
 	free(frac);
 	return ;
+}
+
+void put_pixel_color(char *pixel, t_color color, int factor)
+{
+	pixel[0] = color.r * factor;
+	pixel[1] = color.g;
+	pixel[2] = color.b;
+	pixel[3] = color.a;
+}
+
+/* Return a new color, each value can go from 0 to 255.
+* With alpha at 0 the image is opaque, and with it at 255 is completely transparent. */
+t_color	new_color(int r, int g, int b, int a)
+{
+	t_color	color;
+
+	color.r = (char)r;
+	color.g = (char)g;
+	color.b = (char)b;
+	color.a = (char)a;
+	return (color);
 }

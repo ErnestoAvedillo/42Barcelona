@@ -44,3 +44,37 @@ double	cdeg(t_complex z)
 	i = atan2(z.im, z.re);
 	return (i);
 }
+
+/* 
+Demostración de la función
+								  (c = d * i)
+		(c+d*i)         (theta *i)
+(a + b*i)       = (m * e         )
+
+    (c + d*i)   (i*theta)*(c + d*i)
+= m          *e                     =
+
+	c    ln(m)*d*i    (-d * theta)    (c*theta*i)
+= m   * e          * e             * e            =
+
+   c    (-d * theta)    (ln(m)*d + c*theta)*i
+= m  * e             * e
+*/
+t_complex	csqr(t_complex a)
+{
+	t_complex	c;
+	double		module;
+	double		theta;
+	double		aux1;
+	double		aux2;
+
+	module = cmod(a);
+	if (module == 0)
+		return (a);
+	theta = cdeg (a);
+	aux1 = pow(module, 2) ;
+	aux2 = 2 * theta;
+	c.re = aux1 * cos(aux2);
+	c.im = aux1 * sin(aux2);
+	return (c);
+}

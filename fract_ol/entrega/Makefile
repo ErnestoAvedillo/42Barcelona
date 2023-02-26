@@ -1,7 +1,7 @@
 NAME := fractol
 NAME_LNX := fractol_lnx
 
-SRC := fractol fractol_utils mandelbrot complex_oper0 complex_oper1 fractol_draw close_win
+SRC := fractol fractol_utils mandelbrot complex_oper0 complex_oper1 fractol_draw close_win key_events mouse_events
 DIR_SRC := ./srcs/
 
 OBJDST_DIR := ./objdst/
