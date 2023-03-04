@@ -11,36 +11,36 @@
 /* ************************************************************************** */
 #include"fractol.h"
 
-t_fract	*create_fract(int size_x, int size_y, int orig_x, int orig_y \
-					, int (*fractal_func)(t_complex, t_complex, int, int))
+t_fract	*create_fract(int (*fractal_func)(t_complex, t_complex, int, int))
 {
 	t_fract	*frac;
 	int		i;
 	int		j;
 
 	frac = (t_fract *)malloc(sizeof(t_fract));
-	frac->win = (int **)malloc(size_x * sizeof(int *));
+	frac->win = (int **)malloc(SIZE_X * sizeof(int *));
 	i = -1;
 	j = -1;
-	while (++i < size_x)
+	while (++i < SIZE_X)
 	{
 		j = -1;
-		frac->win[i] = (int *) malloc(size_y * sizeof(int));
-		while (++j < size_y)
+		frac->win[i] = (int *) malloc(SIZE_Y * sizeof(int));
+		while (++j < SIZE_Y)
 		{
 			frac->win[i][j] = 0;
 		}
 	}
 	frac->function = fractal_func;
-	frac->size_x = size_x;
-	frac->size_y = size_y;
+	frac->size_x = SIZE_X;
+	frac->size_y = SIZE_Y;
 	frac->frame = 50;
-	frac->origin_x = orig_x;
-	frac->origin_y = orig_y;
+	frac->c1 = casign(ORIG_SUP_RE,ORIG_SUP_IM);
+	frac->c2 = casign(ORIG_INF_RE,ORIG_INF_IM);
 	frac->z0.re = 0;
 	frac->z0.im = 0;
-	frac->escala = 200;
-	frac->zoom_fact = 1.5;
+	frac->escala_x = (double) (ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
+	frac->escala_y = (double) (ORIG_INF_IM - ORIG_SUP_IM) /  (frac->size_y - 2 * frac->frame);
+	frac->zoom_fact = 1.2;
 	frac->color = new_color(0x60, 0x70, 0x40, 0x0);
 	frac->repet = 200;
 	frac->limit = 4;

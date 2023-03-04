@@ -16,8 +16,14 @@
 #include"../libft/libft.h"
 #include<math.h>
 #include<stdio.h>
-#include "/usr/include/X11/keysymdef.h"
 /// #include<limits.h>
+#ifdef KEY_MOUSE_COD_LNX_H
+# include "key_mouse_cod_lnx.h"
+#endif
+#ifdef KEY_MOUSE_COD_MAC_H
+# include "key_mouse_cod_mac.h"
+#endif
+
 #include<time.h>
 
 typedef struct s_complex {
@@ -46,10 +52,11 @@ typedef struct s_fract {
 	int			size_x;
 	int			size_y;
 	int			frame;
-	double origin_x;
-	double origin_y;
+	t_complex	c1;
+	t_complex	c2;
 	t_complex	z0;
-	int			escala;
+	double		escala_x;
+	double		escala_y;
 	double 		zoom_fact;
 	t_color 	color;
 	int			repet;
@@ -57,8 +64,22 @@ typedef struct s_fract {
 	t_mouse_pos	mouse_pos;
 } t_fract;
 
-#define XK_uparrow 0xff52	 /* U+2191 UPWARDS ARROW */
-#define XK_downarrow 0xff54	 /* U+2193 DOWNWARDS ARROW */
+#define MOUSE_BTN_LEFT 1
+#define MOUSE_BTN_RIGHT 2
+#define MOUSE_BTN_MIDDLE 3
+#define MOUSE_BTN_ROT_UP 4
+#define MOUSE_BTN_ROT_DW 5
+
+#define SCALE_UP 1
+#define SCALE_DW 0
+
+#define SIZE_X 750
+#define SIZE_Y 750
+
+#define ORIG_SUP_RE -2
+#define ORIG_SUP_IM -2
+#define ORIG_INF_RE 2
+#define ORIG_INF_IM 2
 
 #define MAX 0xFFFFFFFFF
 #define ITER 20
@@ -67,8 +88,7 @@ typedef struct s_fract {
 
 //int			fract_calc(t_complex c, t_complex z0);
 //fractol_utils
-t_fract		*create_fract(int size_x, int size_y, int orig_x, int orig_y \
-						, int (*fractal_func)(t_complex, t_complex, int, int));
+t_fract		*create_fract(int (*fractal_func)(t_complex, t_complex, int, int));
 void		free_fract (t_fract *frac);
 t_color		new_color(int r, int g, int b, int a);
 void		put_pixel_color(char *pixel, t_color color, int factor);
@@ -89,6 +109,7 @@ void		win_mandel(t_fract *frac);
 int			mandelbrot(t_complex z0, t_complex c,int iter,int limit);
 //fractol_draw
 void		fractol_draw (t_fract *frac);
+void		new_scale(int sense, t_fract *fract, int x, int y);
 //close_win
 int	close_win(t_fract *frac);
 //keyevents

@@ -1,21 +1,24 @@
 NAME := fractol
 NAME_LNX := fractol_lnx
 
-SRC := fractol fractol_utils mandelbrot complex_oper0 complex_oper1 fractol_draw close_win key_events mouse_events
+SRC := fractol fractol_utils mandelbrot complex_oper0 complex_oper1 fractol_draw close_win key_events_mac mouse_events
+SRC_LNX := fractol fractol_utils mandelbrot complex_oper0 complex_oper1 fractol_draw close_win key_events_lnx mouse_events
 DIR_SRC := ./srcs/
 
 OBJDST_DIR := ./objdst/
 #source files mac
+INC = key_mouse_cod_mac
 SRCS_MAN := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC)))
 OBJS_MAN := $(addprefix $(OBJDST_DIR),$(addsuffix .o,$(SRC)))
 DPNS_MAN := $(addprefix $(OBJDST_DIR),$(addsuffix .d,$(SRC)))
-INCLUDE := $(addprefix $(DIR_SRC),$(addsuffix .h,$(NAME)))
+INCLUDE := $(addprefix $(DIR_SRC),$(addsuffix .h,$(NAME))) $(addprefix $(DIR_SRC),$(addsuffix .h,$(INC)))
 #source files linux
+INC_LNX = key_mouse_cod_lnx
 OBJDST_DIR_LNX := ./objdstlnx/
-SRCS_MAN_LNX := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC)))
-OBJS_MAN_LNX := $(addprefix $(OBJDST_DIR_LNX),$(addsuffix .o,$(SRC)))
-DPNS_MAN_LNX := $(addprefix $(OBJDST_DIR_LNX),$(addsuffix .d,$(SRC)))
-INCLUDE_LNX := $(addprefix $(DIR_SRC),$(addsuffix .h,$(NAME)))
+SRCS_MAN_LNX := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC_LNX)))
+OBJS_MAN_LNX := $(addprefix $(OBJDST_DIR_LNX),$(addsuffix .o,$(SRC_LNX)))
+DPNS_MAN_LNX := $(addprefix $(OBJDST_DIR_LNX),$(addsuffix .d,$(SRC_LNX)))
+INCLUDE_LNX := $(addprefix $(DIR_SRC),$(addsuffix .h,$(INC_LNX)))
 #libraries
 #libft
 LIBFT_NAME := libft.a
@@ -45,7 +48,7 @@ $(NAME): $(OBJS_MAN) $(LIBFT_NAME) $(LIBX_NAME)
 
 $(OBJDST_DIR)%.o: $(DIR_SRC)%.c $(OBJDST_DIR)%.d
 	mkdir -p $(OBJDST_DIR)
-	$(CC) $(FLAGS)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
+	$(CC) $(FLAGS) -D KEY_MOUSE_COD_MAC_H  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
 
 $(OBJDST_DIR)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(OBJDST_DIR)
@@ -65,7 +68,7 @@ $(NAME_LNX): $(LIBFT_NAME) $(LIBX_NAME_LNX) $(OBJS_MAN_LNX)
 
 $(OBJDST_DIR_LNX)%.o: $(DIR_SRC)%.c $(OBJDST_DIR_LNX)%.d
 	mkdir -p $(OBJDST_DIR_LNX)
-	$(CC) $(FLAGS) -I/usr/include/ -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR_LNX)$*.o
+	$(CC) $(FLAGS) -D KEY_MOUSE_COD_LNX_H -I/usr/include/ -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR_LNX)$*.o
 
 $(OBJDST_DIR_LNX)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(OBJDST_DIR_LNX)

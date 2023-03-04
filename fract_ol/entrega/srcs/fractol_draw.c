@@ -35,8 +35,8 @@ void fractol_draw (t_fract *frac)
 		j = frac->frame;
 		while(++j < frac->size_y - frac->frame * 2)
 		{
-			c.re = ((double)i - frac->origin_x) / frac->escala;
-			c.im = ((double)j - frac->origin_y) / frac->escala;
+			c.re = (frac->c1.re + i * frac->escala_x);
+			c.im = (frac->c1.im + j * frac->escala_y);
 			//start = clock();
 			result = frac->function(frac->z0, c, frac->repet, frac->limit);
 			//end = clock();
@@ -51,4 +51,35 @@ void fractol_draw (t_fract *frac)
 	mlx_put_image_to_window(frac->mlx_ptr,frac->win_ptr, frac->image, frac->frame, frac->frame);
 	//end1 = clock();
 	//printf("tiempo transcurrido %f --- %f \n",(double) (end - start) / CLOCKS_PER_SEC, (double) (end1 - start1) / CLOCKS_PER_SEC);
+}
+
+void	new_scale(int sense, t_fract *frac, int x, int y)
+{
+	t_complex	cur;
+	x -= frac->frame;
+	y -= frac->frame;
+
+	printf("\n\n\n inicio\n\n\n");
+	printf("escla_x %f ;escla_y %f ; ofigen X %f --  origen Y %f\n", frac->escala_x, frac->escala_y, frac->c1.re, frac->c1.im);
+	printf(" Pos x %i -- Pos y %i \n", x, y);
+	printf("valor de c = %f %+fi\n",frac->c1.re, frac->c1.im);
+	if (sense == SCALE_UP)
+	{
+		printf("SCALE UP\n");
+		cur = casign (frac->c1.re + x * frac->escala_x, frac->c1.im + y * frac->escala_y);
+		frac->escala_x /= frac->zoom_fact;
+		frac->escala_y /= frac->zoom_fact;
+		frac->c1 = casign(cur.re - x * frac->escala_x, cur.im - y * frac->escala_y);
+	}
+	else if (sense == SCALE_DW)
+	{
+		printf("SCALE DOWN\n");
+		cur = casign (frac->c1.re + x * frac->escala_x, frac->c1.im + y * frac->escala_y);
+		frac->escala_x *= frac->zoom_fact;
+		frac->escala_y *= frac->zoom_fact;
+		frac->c1 = casign(cur.re - x * frac->escala_x,cur.im - y * frac->escala_y);
+	}
+	printf("escla_x %f ;escla_y %f ; ofigen X %f --  origen Y %f\n", frac->escala_x, frac->escala_y, frac->c1.re, frac->c1.im);
+	printf(" Pos x %i -- Pos y %i \n", x, y);
+	printf("valor de c = %f %+fi\n",frac->c1.re, frac->c1.im);
 }
