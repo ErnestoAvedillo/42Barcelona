@@ -40,9 +40,10 @@ t_fract	*create_fract(int size_x, int size_y, int orig_x, int orig_y \
 	frac->z0.re = 0;
 	frac->z0.im = 0;
 	frac->escala = 200;
-	frac->color = new_color(0x60,0x70,0x40,0x0);
+	frac->zoom_fact = 1.5;
+	frac->color = new_color(0x60, 0x70, 0x40, 0x0);
 	frac->repet = 200;
-	frac->limit = 2;
+	frac->limit = 4;
 	frac->mlx_ptr = mlx_init();
 	frac->win_ptr = mlx_new_window(frac->mlx_ptr,frac->size_x,frac->size_y,"Los fractales de Ernesto");
 	frac->image = mlx_new_image(frac->mlx_ptr,frac->size_x,frac->size_y);

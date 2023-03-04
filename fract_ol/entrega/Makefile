@@ -60,7 +60,7 @@ $(LIBX):
 #linux compilation
 linux: $(NAME_LNX)
 
-$(NAME_LNX): $(OBJS_MAN_LNX) $(LIBFT_NAME) $(LIBX_NAME_LNX)
+$(NAME_LNX): $(LIBFT_NAME) $(LIBX_NAME_LNX) $(OBJS_MAN_LNX) 
 	$(CC) $(FLAGS) $(OBJS_MAN_LNX) $(LIBX_NAME_LNX) $(LIBFT_NAME) -L/usr/lib -Imlx -lXext -lX11 -L/usr/lib/X11 -lm -lz -o $(NAME_LNX)
 
 $(OBJDST_DIR_LNX)%.o: $(DIR_SRC)%.c $(OBJDST_DIR_LNX)%.d
@@ -100,6 +100,9 @@ print:
 	@echo $(LIBX_NAME)
 	@echo $(DIR_LIBX)
 	@echo $(LIBX)
+	@echo $(LIBX_LNX)
+	@echo $(DIR_LIBX_LNX)
+	@echo $(LIBX_NAME_LNX)
 
 clean:
 	$(RM) $(OBJDST_DIR) $(OBJDST_DIR_LNX)
@@ -113,4 +116,4 @@ fclean:
 
 re: fclean all
 
-PHONY: all bonus clean fclean re $(LIBFT) $(LIBX_NAME)
+.PHONY: all bonus clean fclean re $(LIBFT) $(LIBX_NAME) $(LIBX_LNX)

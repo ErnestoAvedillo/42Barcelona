@@ -63,18 +63,7 @@ Demostración de la función
 t_complex	csqr(t_complex a)
 {
 	t_complex	c;
-	double		module;
-	double		theta;
-	double		aux1;
-	double		aux2;
-
-	module = cmod(a);
-	if (module == 0)
-		return (a);
-	theta = cdeg (a);
-	aux1 = pow(module, 2) ;
-	aux2 = 2 * theta;
-	c.re = aux1 * cos(aux2);
-	c.im = aux1 * sin(aux2);
+	c.re = a.re * a.re - a.im * a.im;
+	c.im = 2 * a.re * a.im;
 	return (c);
 }

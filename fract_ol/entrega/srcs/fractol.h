@@ -16,7 +16,8 @@
 #include"../libft/libft.h"
 #include<math.h>
 #include<stdio.h>
-///#include<limits.h>
+#include "/usr/include/X11/keysymdef.h"
+/// #include<limits.h>
 #include<time.h>
 
 typedef struct s_complex {
@@ -45,15 +46,19 @@ typedef struct s_fract {
 	int			size_x;
 	int			size_y;
 	int			frame;
-	int			origin_x;
-	int			origin_y;
+	double origin_x;
+	double origin_y;
 	t_complex	z0;
 	int			escala;
-	t_color		color;
+	double 		zoom_fact;
+	t_color 	color;
 	int			repet;
 	int			limit;
 	t_mouse_pos	mouse_pos;
 } t_fract;
+
+#define XK_uparrow 0xff52	 /* U+2191 UPWARDS ARROW */
+#define XK_downarrow 0xff54	 /* U+2193 DOWNWARDS ARROW */
 
 #define MAX 0xFFFFFFFFF
 #define ITER 20
@@ -91,4 +96,5 @@ int key_events(int key, t_fract *frac);
 //mouse_events
 int mouse_events_pre(int mouse, int x, int y, t_fract *frac);
 int mouse_events_rel(int mouse, int x, int y, t_fract *frac);
+int mouse_events_mov(int mouse, int x, int y, t_fract *frac);
 #endif

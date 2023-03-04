@@ -18,20 +18,21 @@ int mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 	printf("recibido pressed %i posicion %i %i-- direccion %p\n", mouse, x, y, frac);
 	if (mouse == 4)
 	{
-		frac->escala +=100;
-		frac->origin_x += 150;
-//		frac->z0.re += 100;
-//		frac->z0.im += 100;
-//		frac->origin_y -= 100;
+		frac->escala *= frac->zoom_fact;
+		frac->origin_x = frac->origin_x * frac->zoom_fact; //- x * (frac->zoom_fact - 1);
+		frac->origin_y = frac->origin_y * frac->zoom_fact; //- y * (frac->zoom_fact - 1);
+		printf("ofigen X %f --  origen Y %f\n", frac->origin_x, frac->origin_y);
+		printf(" pos x %i -- Pos y %i \n", x, y);
+
 		fractol_draw(frac);
 	}
 	else if (mouse == 5)
 	{
-		frac->escala -= 100;
-		frac->origin_x -= 150;
-//		frac->z0.re += 100;
-//		frac->z0.im += 100;
-//		frac->origin_y += 100;
+		frac->escala /= frac->zoom_fact;
+		frac->origin_x = frac->origin_x / frac->zoom_fact + x * (1 / frac->zoom_fact - 1);
+		frac->origin_y = frac->origin_y / frac->zoom_fact + y * (1 / frac->zoom_fact - 1);
+		printf("ofigen X %f --  origen Y %f\n", frac->origin_x, frac->origin_y);
+		printf(" pos x %i -- Pos y %i \n", x, y);
 		fractol_draw(frac);
 	}	
 	else if (mouse == 1)
@@ -54,5 +55,12 @@ int mouse_events_rel(int mouse, int x, int y, t_fract *frac)
 		fractol_draw(frac);
 	}
 
-	return (0);	
+	return (0);
+}
+int mouse_events_mov(int mouse, int x, int y, t_fract *frac)
+{
+
+	printf("recibido move %i posicion %i %i-- direccion %p\n", mouse, x, y, frac);
+
+	return (0);
 }

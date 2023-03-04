@@ -15,16 +15,28 @@
 int key_events(int key, t_fract *frac)
 {
 	int aux;
+	int x;
+	int y;
 
-	printf("recibido %i -- direccion %p\n", key, frac);
-	if (key == 12)
+	printf("recibido %x -- direccion %p\n", key, frac);
+	if (key == XK_uparrow)
 	{
-		frac->escala +=100;
+		frac->escala *= frac->zoom_fact;
+		mlx_mouse_get_pos(frac->mlx_ptr, frac->win_ptr, &x, &y);
+		frac->origin_x = frac->origin_x * frac->zoom_fact - x * (frac->zoom_fact - 1);
+		frac->origin_y = frac->origin_y * frac->zoom_fact - y * (frac->zoom_fact - 1);
 		fractol_draw(frac);
+		printf("ofigen X %f --  origen Y %f\n", frac->origin_x, frac->origin_y);
+		printf(" pos x %i -- Pos y %i \n", x, y);
 	}
-	else if (key == 0)
+	else if (key == XK_downarrow)
 	{
-		frac->escala -=100;
+		frac->escala /= frac->zoom_fact;
+		mlx_mouse_get_pos(frac->mlx_ptr, frac->win_ptr, &x, &y);
+		frac->origin_x = frac->origin_x / frac->zoom_fact - x * (1 / frac->zoom_fact - 1);
+		frac->origin_y = frac->origin_y / frac->zoom_fact - y * (1 / frac->zoom_fact - 1);
+		printf("ofigen X %f --  origen Y %f\n", frac->origin_x, frac->origin_y);
+		printf(" pos x %i -- Pos y %i \n", x, y);
 		fractol_draw(frac);
 	}	
 	else if (key == 1)
