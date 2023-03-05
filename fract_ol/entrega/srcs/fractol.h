@@ -53,7 +53,7 @@ typedef struct s_fract {
 	int			size_y;
 	int			frame;
 	t_complex	c1;
-	t_complex	c2;
+	t_complex	c;
 	t_complex	z0;
 	double		escala_x;
 	double		escala_y;
@@ -76,8 +76,8 @@ typedef struct s_fract {
 #define SIZE_X 750
 #define SIZE_Y 750
 
-#define ORIG_SUP_RE -2
-#define ORIG_SUP_IM -2
+#define ORIG_SUP_RE -2.5
+#define ORIG_SUP_IM -2.5
 #define ORIG_INF_RE 2
 #define ORIG_INF_IM 2
 

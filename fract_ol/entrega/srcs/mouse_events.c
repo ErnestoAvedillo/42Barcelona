@@ -14,7 +14,7 @@
 
 int mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 {
-	printf("mouse %i, x %i, y, %i", mouse, x, y);
+	//printf("mouse %i, x %i, y, %i", mouse, x, y);
 	if (mouse == MOUSE_BTN_ROT_UP)
 	{
 		new_scale(SCALE_UP, frac, x , y);

@@ -35,10 +35,10 @@ void fractol_draw (t_fract *frac)
 		j = frac->frame;
 		while(++j < frac->size_y - frac->frame * 2)
 		{
-			c.re = (frac->c1.re + i * frac->escala_x);
-			c.im = (frac->c1.im + j * frac->escala_y);
+			frac->z0.re = (frac->c1.re + i * frac->escala_x);
+			frac->z0.im = (frac->c1.im + j * frac->escala_y);
 			//start = clock();
-			result = frac->function(frac->z0, c, frac->repet, frac->limit);
+			result = frac->function(c, frac->z0, frac->repet, frac->limit);
 			//end = clock();
 			//mlx_pixel_put(frac->mlx_ptr, frac->win_ptr, i, j, result * frac->color);
 			put_pixel_color (&buffer[j * line_bytes + i * pixel_bits / 8 ] , frac->color, result);
@@ -59,13 +59,13 @@ void	new_scale(int sense, t_fract *frac, int x, int y)
 	x -= frac->frame;
 	y -= frac->frame;
 
-	printf("\n\n\n inicio\n\n\n");
-	printf("escla_x %f ;escla_y %f ; ofigen X %f --  origen Y %f\n", frac->escala_x, frac->escala_y, frac->c1.re, frac->c1.im);
-	printf(" Pos x %i -- Pos y %i \n", x, y);
-	printf("valor de c = %f %+fi\n",frac->c1.re, frac->c1.im);
+//	printf("\n\n\n inicio\n\n\n");
+//	printf("escla_x %f ;escla_y %f ; ofigen X %f --  origen Y %f\n", frac->escala_x, frac->escala_y, frac->c1.re, frac->c1.im);
+///	printf(" Pos x %i -- Pos y %i \n", x, y);
+//	printf("valor de c = %f %+fi\n",frac->c1.re, frac->c1.im);
 	if (sense == SCALE_UP)
 	{
-		printf("SCALE UP\n");
+//		printf("SCALE UP\n");
 		cur = casign (frac->c1.re + x * frac->escala_x, frac->c1.im + y * frac->escala_y);
 		frac->escala_x /= frac->zoom_fact;
 		frac->escala_y /= frac->zoom_fact;
@@ -73,13 +73,13 @@ void	new_scale(int sense, t_fract *frac, int x, int y)
 	}
 	else if (sense == SCALE_DW)
 	{
-		printf("SCALE DOWN\n");
+//		printf("SCALE DOWN\n");
 		cur = casign (frac->c1.re + x * frac->escala_x, frac->c1.im + y * frac->escala_y);
 		frac->escala_x *= frac->zoom_fact;
 		frac->escala_y *= frac->zoom_fact;
 		frac->c1 = casign(cur.re - x * frac->escala_x,cur.im - y * frac->escala_y);
 	}
-	printf("escla_x %f ;escla_y %f ; ofigen X %f --  origen Y %f\n", frac->escala_x, frac->escala_y, frac->c1.re, frac->c1.im);
-	printf(" Pos x %i -- Pos y %i \n", x, y);
-	printf("valor de c = %f %+fi\n",frac->c1.re, frac->c1.im);
+//	printf("escla_x %f ;escla_y %f ; ofigen X %f --  origen Y %f\n", frac->escala_x, frac->escala_y, frac->c1.re, frac->c1.im);
+//	printf(" Pos x %i -- Pos y %i \n", x, y);
+//	printf("valor de c = %f %+fi\n",frac->c1.re, frac->c1.im);
 }
