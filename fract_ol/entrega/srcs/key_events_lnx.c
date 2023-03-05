@@ -22,12 +22,14 @@ int key_events(int key, t_fract *frac)
 	if (key == XK_uparrow)
 	{
 		mlx_mouse_get_pos(frac->mlx_ptr, frac->win_ptr, &x, &y);
+		printf("KEY ARRW UP posicion x = %i ; posicion y = %i\n", x, y);
 		new_scale(SCALE_UP, frac, x, y);
 		fractol_draw(frac);
 	}
 	else if (key == XK_downarrow)
 	{
 		mlx_mouse_get_pos(frac->mlx_ptr, frac->win_ptr, &x, &y);
+		printf("KEY ARRW DWN posicion x = %i ; posicion y = %i\n", x, y);
 		new_scale(SCALE_UP, frac, x, y);
 		fractol_draw(frac);
 	}
