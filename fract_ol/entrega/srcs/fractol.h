@@ -44,7 +44,8 @@ typedef	struct	s_color{
 }	t_color;
 
 typedef struct s_fract {
-	int			(*function)(t_complex, t_complex, int, int);
+	int			fract_code;
+	int			(*function)(t_complex, t_complex, int);
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*image;
@@ -58,11 +59,15 @@ typedef struct s_fract {
 	double		escala_x;
 	double		escala_y;
 	double 		zoom_fact;
-	t_color 	color;
-	int			repet;
+	t_color 	*color;
 	int			limit;
 	t_mouse_pos	mouse_pos;
+	int			button_pressed;
+	int			key_pressed;
 } t_fract;
+
+#define FRACT_MAND	1
+#define FRACT_JULIA	2
 
 #define MOUSE_BTN_LEFT 1
 #define MOUSE_BTN_RIGHT 2
@@ -82,16 +87,26 @@ typedef struct s_fract {
 #define ORIG_INF_IM 2.5
 
 #define MAX 0xFFFFFFFFF
-#define ITER 20
+#define ITER 150
 #define MITTE_IMG_X 355
 #define MITTE_IMG_Y 355
+// eventslist
+//Key	Event	 	Key	Event	 	Key	Event
+#define	EVENT_KEY_PRESS 02
+#define	EVENT_KEY_RELEASE 03 
+#define	EVENT_BUTTON_PRESS 04
+#define	EVENT_BUTTON_RELEASE 05
+#define	EVENT_MOTION_NOTIFY 06
+#define	EVENT_DESTROY_NOTIFY 17
 
 //int			fract_calc(t_complex c, t_complex z0);
 //fractol_utils
-t_fract		*create_fract(int (*fractal_func)(t_complex, t_complex, int, int));
+t_fract		*create_fract();
 void		free_fract (t_fract *frac);
+void		put_pixel_color(char *pixel, t_color color);
+//palette
+t_color		*palette();
 t_color		new_color(int r, int g, int b, int a);
-void		put_pixel_color(char *pixel, t_color color, int factor);
 // complex_oper0
 t_complex	casign(double a, double b);
 t_complex	cequal(t_complex b);
@@ -105,8 +120,9 @@ t_complex	cmul(t_complex a, t_complex b);
 t_complex	cdiv(t_complex a, t_complex b);
 t_complex	cpower(t_complex a, t_complex b);
 //mandelbrot
-void		win_mandel(t_fract *frac);
-int			mandelbrot(t_complex c, t_complex z0,int iter,int limit);
+int			mandelbrot(t_complex z0, t_complex c, int limit);
+//julia
+int			julia(t_complex z0, t_complex c, int limit);
 //fractol_draw
 void		fractol_draw (t_fract *frac);
 void		new_scale(int sense, t_fract *fract, int x, int y);
@@ -117,5 +133,6 @@ int key_events(int key, t_fract *frac);
 //mouse_events
 int mouse_events_pre(int mouse, int x, int y, t_fract *frac);
 int mouse_events_rel(int mouse, int x, int y, t_fract *frac);
-int mouse_events_mov(int mouse, int x, int y, t_fract *frac);
+int mouse_events_mov(int x, int y, t_fract *frac);
+//int mouse_events_mov(int mouse, int x, int y, t_fract *frac);
 #endif

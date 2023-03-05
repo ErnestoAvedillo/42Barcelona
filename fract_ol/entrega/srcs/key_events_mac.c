@@ -14,7 +14,6 @@
 
 int key_events(int key, t_fract *frac)
 {
-	int aux;
 	int x;
 	int y;
 
@@ -33,6 +32,28 @@ int key_events(int key, t_fract *frac)
 		new_scale(SCALE_DW, frac, x ,y);
 		fractol_draw(frac);
 	}	
+	else if (key == XK_m)
+	{
+		frac->fract_code = FRACT_MAND;
+		frac->function = mandelbrot;
+		frac->c = casign(0,0);
+		frac->z0 = casign(0,0);
+		frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
+		frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
+		frac->escala_y = frac->escala_x;
+		fractol_draw(frac);
+	}
+	else if (key == XK_j)
+	{
+		frac->fract_code = FRACT_JULIA;
+		frac->function = julia;
+		frac->c = casign(0,-0.8);
+		frac->z0 = casign(0,0);
+		frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
+		frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
+		frac->escala_y = frac->escala_x;
+		fractol_draw(frac);
+	}
 	else if (key == 1)
 	{
 		frac->c1.re += 0.1;
@@ -51,22 +72,6 @@ int key_events(int key, t_fract *frac)
 	else if (key == 8)
 	{
 		frac->c1.im +=0.01;
-		fractol_draw(frac);
-	}
-	else if (key == 17)
-	{
-		aux = frac->color.r;
-		frac->color.r = frac->color.b;
-		frac->color.b = frac->color.g;
-		frac->color.g = aux;
-		fractol_draw(frac);
-	}
-	else if (key == 5)
-	{
-		aux = frac->color.g;
-		frac->color.g = frac->color.b;
-		frac->color.b = frac->color.r;
-		frac->color.r = aux;
 		fractol_draw(frac);
 	}
 	else if (key == 16)

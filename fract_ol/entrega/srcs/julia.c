@@ -1,7 +1,8 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +13,7 @@
 
 #include"fractol.h"
 
-int mandelbrot(t_complex z0, t_complex c, int limit)
+int julia(t_complex c, t_complex z0, int limit)
 {
 	int i;
 	t_complex znext;

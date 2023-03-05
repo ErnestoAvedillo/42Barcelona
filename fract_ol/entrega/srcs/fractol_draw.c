@@ -12,6 +12,16 @@
 
 #include"fractol.h"
 
+void put_pixel_color(char *pixel, t_color color)
+{
+
+	pixel[0] = color.r;
+	pixel[1] = color.g;
+	pixel[2] = color.b;
+	pixel[3] = color.a;
+
+}
+
 void fractol_draw (t_fract *frac)
 {
 	int i;
@@ -37,10 +47,10 @@ void fractol_draw (t_fract *frac)
 			frac->z0.re = (frac->c1.re + i * frac->escala_x);
 			frac->z0.im = (frac->c1.im + j * frac->escala_y);
 			//start = clock();
-			result = frac->function(frac->c, frac->z0, frac->repet, frac->limit);
+			result = frac->function(frac->c, frac->z0, frac->limit);
 			//end = clock();
 			//mlx_pixel_put(frac->mlx_ptr, frac->win_ptr, i, j, result * frac->color);
-			put_pixel_color (&buffer[j * line_bytes + i * pixel_bits / 8 ] , frac->color, result);
+			put_pixel_color (&buffer[j * line_bytes + i * pixel_bits / 8 ] , frac->color[result]);
 			//if ((double) (end - start) > 40)
 			//	printf("tiempo transcurrido %f %d %i %f %f\n",(double) (end - start) / CLOCKS_PER_SEC, i, j, c.re, c.im);
 			k++;
