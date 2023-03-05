@@ -73,13 +73,13 @@ typedef struct s_fract {
 #define SCALE_UP 1
 #define SCALE_DW 0
 
-#define SIZE_X 750
+#define SIZE_X 1000
 #define SIZE_Y 750
 
 #define ORIG_SUP_RE -2.5
 #define ORIG_SUP_IM -2.5
-#define ORIG_INF_RE 2
-#define ORIG_INF_IM 2
+#define ORIG_INF_RE 2.5
+#define ORIG_INF_IM 2.5
 
 #define MAX 0xFFFFFFFFF
 #define ITER 20
@@ -106,7 +106,7 @@ t_complex	cdiv(t_complex a, t_complex b);
 t_complex	cpower(t_complex a, t_complex b);
 //mandelbrot
 void		win_mandel(t_fract *frac);
-int			mandelbrot(t_complex z0, t_complex c,int iter,int limit);
+int			mandelbrot(t_complex c, t_complex z0,int iter,int limit);
 //fractol_draw
 void		fractol_draw (t_fract *frac);
 void		new_scale(int sense, t_fract *fract, int x, int y);

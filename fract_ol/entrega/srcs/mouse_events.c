@@ -17,18 +17,26 @@ int mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 	//printf("mouse %i, x %i, y, %i", mouse, x, y);
 	if (mouse == MOUSE_BTN_ROT_UP)
 	{
+		printf("BTN ROT UP posicion x = %i ; posicion y = %i\n",x , y);
 		new_scale(SCALE_UP, frac, x , y);
 		fractol_draw(frac);
 	}
 	else if (mouse == MOUSE_BTN_ROT_DW)
 	{
+		printf("BTN ROT DWN posicion x = %i ; posicion y = %i\n",x , y);
 		new_scale(SCALE_DW, frac, x, y);
 		fractol_draw(frac);
 	}	
 	else if (mouse == MOUSE_BTN_LEFT)
 	{
+		printf("BTN LEFT posicion x = %i ; posicion y = %i\n",x , y);
 		frac->mouse_pos.x = x;
 		frac->mouse_pos.y = y;
+	}
+	else if (mouse == MOUSE_BTN_RIGHT)
+	{
+		printf("BTN RIGHT posicion x = %i ; posicion y = %i\n",x , y);
+
 	}
 
 	return (0);	

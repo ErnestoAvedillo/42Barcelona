@@ -12,7 +12,7 @@
 
 #include"fractol.h"
 
-int mandelbrot(t_complex z0, t_complex c, int iter, int limit)
+int mandelbrot(t_complex c, t_complex z0, int iter, int limit)
 {
 	int i;
 	t_complex znext;

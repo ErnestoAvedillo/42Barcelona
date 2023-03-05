@@ -35,10 +35,11 @@ t_fract	*create_fract(int (*fractal_func)(t_complex, t_complex, int, int))
 	frac->size_y = SIZE_Y;
 	frac->frame = 50;
 	frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
-	frac->c = casign(0,0);
+	frac->c = casign(-0.8,0);
 	frac->z0 = casign(0, 0);
 	frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
-	frac->escala_y = (double) (ORIG_INF_IM - ORIG_SUP_IM) /  (frac->size_y - 2 * frac->frame);
+	frac->escala_y = frac->escala_x;
+	//frac->escala_y = (double)(ORIG_INF_IM - ORIG_SUP_IM) /  (frac->size_y - 2 * frac->frame);
 	frac->zoom_fact = 1.2;
 	frac->color = new_color(0x60, 0x70, 0x40, 0x0);
 	frac->repet = 150;
