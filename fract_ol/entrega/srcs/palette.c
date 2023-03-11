@@ -26,7 +26,7 @@ t_color	new_color(int r, int g, int b, int a)
 	return (color);
 }
 
-t_color *palette ()
+t_color *palette (int n)
 {
     t_color *color_pal;
     int i;
@@ -35,7 +35,16 @@ t_color *palette ()
     i = 0;
     while (i < ITER)
     {
-        color_pal [i] = new_color(0x20 * i , 0x50 * i ,0x80 * i , 0 );
+        if (n == XK_1)
+            color_pal[i] = new_color(i, 0xFF * i / ITER, i, 0);
+        else if (n == XK_2)
+            color_pal[i] = new_color(0xFF * i,  i, 0xFF, 0);
+        else if (n == XK_3)
+            color_pal[i] = new_color(0xFF * i / ITER, 0xFF * i / ITER, 0xFF * i / ITER, 0);
+        else if (n == XK_4)
+            color_pal[i] = new_color(0x20 * (i / ITER), 0xff * (i / ITER), 0x40 * (i / ITER), 0);
+        else
+            color_pal[i] = new_color(0x20 * i, 0x30 * i, 0x10 * i, 0);
         i++;
     }
     return(color_pal) ;

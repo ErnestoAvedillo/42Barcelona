@@ -42,7 +42,7 @@ t_fract	*create_fract()
 	frac->escala_y = frac->escala_x;
 	//frac->escala_y = (double)(ORIG_INF_IM - ORIG_SUP_IM) /  (frac->size_y - 2 * frac->frame);
 	frac->zoom_fact = 1.2;
-	frac->color = palette();
+	frac->color = palette(1);
 	frac->limit = 4;
 	frac->mlx_ptr = mlx_init();
 	frac->win_ptr = mlx_new_window(frac->mlx_ptr,frac->size_x,frac->size_y,"Los fractales de Ernesto");

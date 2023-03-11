@@ -14,7 +14,7 @@
 
 int mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 {
-	//printf("mouse %i, x %i, y, %i", mouse, x, y);
+	printf("mouse %i, x %i, y, %i", mouse, x, y);
 	if (mouse == MOUSE_BTN_ROT_UP)
 	{
 		printf("BTN ROT UP posicion x = %i ; posicion y = %i\n",x , y);
@@ -42,7 +42,7 @@ int mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 	{
 		printf("BTN RIGHT posicion x = %i ; posicion y = %i\n",x , y);
 		frac->button_pressed = MOUSE_BTN_RIGHT;
-		if (frac->fract_code == FRACT_JULIA && x > 0 > y > 0)
+		if (frac->fract_code == FRACT_JULIA && x > 0 && y > 0)
 		{
 			frac->c.re = frac->c1.re + frac->escala_x * x;
 			frac->c.im = frac->c1.im + frac->escala_y * y;
@@ -55,6 +55,7 @@ int mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 
 int mouse_events_rel(int mouse, int x, int y, t_fract *frac)
 {
+	printf("mouse %i, x %i, y, %i", mouse, x, y);
 	frac->button_pressed = 0;
 	if (mouse == MOUSE_BTN_LEFT)
 	{
@@ -68,8 +69,9 @@ int mouse_events_rel(int mouse, int x, int y, t_fract *frac)
 int mouse_events_mov(int x, int y, t_fract *frac)
 {
 
-	printf("recibido posicion %i %i-- direccion %p\n", x, y, frac);
-	if (frac->fract_code == FRACT_JULIA && x > 0 && y > 0 && frac->button_pressed == MOUSE_BTN_RIGHT )
+	//printf("recibido posicion %i %i-- direccion %p\n", x, y, frac);
+	
+	if (x > 0 && y > 0 && frac->button_pressed == MOUSE_BTN_RIGHT )
 	{
 		frac->c.re = frac->c1.re + frac->escala_x * x;
 		frac->c.im = frac->c1.im + frac->escala_y * y;

@@ -20,9 +20,9 @@ int main ()
 	fractol_draw(frac);
 	mlx_key_hook(frac->win_ptr, key_events,(t_fract *)frac );
 	//mlx_hook(frac->win_ptr, EVENT_KEY_PRESS, 1L << EVENT_KEY_PRESS, key_events, (t_fract *)frac );
-	mlx_hook(frac->win_ptr, EVENT_BUTTON_PRESS, MASK_BUTTON_PRESS, mouse_events_pre, (t_fract *)frac );
-	mlx_hook(frac->win_ptr, EVENT_BUTTON_RELEASE,  MASK_BUTTON_RELEASE, mouse_events_rel, (t_fract *)frac);
-	mlx_hook(frac->win_ptr, EVENT_MOTION_NOTIFY, MASK_MOTION_NOTIFY, mouse_events_mov, (t_fract *)frac);
+	mlx_mouse_hook_pre(frac->win_ptr, mouse_events_pre, (t_fract *)frac);
+	mlx_mouse_hook_rel(frac->win_ptr, mouse_events_rel, (t_fract *)frac);
+	mlx_mouse_hook_mov(frac->win_ptr, mouse_events_mov, (t_fract *)frac);
 	mlx_hook(frac->win_ptr, EVENT_DESTROY_NOTIFY, MASK_DESTROY_NOTIFY, close_win, (t_fract *) frac);
 	mlx_loop(frac->mlx_ptr);
 	return (0);

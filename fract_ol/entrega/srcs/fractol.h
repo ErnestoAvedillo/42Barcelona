@@ -67,7 +67,8 @@ typedef struct s_fract {
 } t_fract;
 
 #define FRACT_MAND	1
-#define FRACT_JULIA	2
+#define FRACT_JULIA 2
+#define FRACT_BURN 3
 
 #define MOUSE_BTN_LEFT 1
 #define MOUSE_BTN_RIGHT 2
@@ -78,26 +79,33 @@ typedef struct s_fract {
 #define SCALE_UP 1
 #define SCALE_DW 0
 
-#define SIZE_X 1000
-#define SIZE_Y 750
+#define SIZE_X 500
+#define SIZE_Y 500
 
-#define ORIG_SUP_RE -2.5
-#define ORIG_SUP_IM -2.5
-#define ORIG_INF_RE 2.5
-#define ORIG_INF_IM 2.5
+#define ORIG_SUP_RE -3
+#define ORIG_SUP_IM -3
+#define ORIG_INF_RE 2
+#define ORIG_INF_IM 2
 
 #define MAX 0xFFFFFFFFF
-#define ITER 150
+#define ITER 100
 #define MITTE_IMG_X 355
 #define MITTE_IMG_Y 355
 // eventslist
-//Key	Event	 	Key	Event	 	Key	Event
-#define	EVENT_KEY_PRESS 02
-#define	EVENT_KEY_RELEASE 03 
-#define	EVENT_BUTTON_PRESS 04
-#define	EVENT_BUTTON_RELEASE 05
-#define	EVENT_MOTION_NOTIFY 06
-#define	EVENT_DESTROY_NOTIFY 17
+// Key	Event	 	Key	Event	 	Key	Event
+#define EVENT_KEY_PRESS 02
+#define EVENT_KEY_RELEASE 03
+#define EVENT_BUTTON_PRESS 04
+#define EVENT_BUTTON_RELEASE 05
+#define EVENT_MOTION_NOTIFY 06
+#define EVENT_DESTROY_NOTIFY 17
+// Key	Event	 	Key	Event	 	Key	Event
+#define MASK_KEY_PRESS 1L << 0
+#define MASK_KEY_RELEASE 1L << 1
+#define MASK_BUTTON_PRESS 1L << 2
+#define MASK_BUTTON_RELEASE 1L << 3
+#define MASK_MOTION_NOTIFY 1L << 6
+#define MASK_DESTROY_NOTIFY 1L << 17
 
 //int			fract_calc(t_complex c, t_complex z0);
 //fractol_utils
@@ -105,8 +113,8 @@ t_fract		*create_fract();
 void		free_fract (t_fract *frac);
 void		put_pixel_color(char *pixel, t_color color);
 //palette
-t_color		*palette();
-t_color		new_color(int r, int g, int b, int a);
+t_color *palette(int n);
+t_color new_color(int r, int g, int b, int a);
 // complex_oper0
 t_complex	casign(double a, double b);
 t_complex	cequal(t_complex b);
@@ -135,4 +143,6 @@ int mouse_events_pre(int mouse, int x, int y, t_fract *frac);
 int mouse_events_rel(int mouse, int x, int y, t_fract *frac);
 int mouse_events_mov(int x, int y, t_fract *frac);
 //int mouse_events_mov(int mouse, int x, int y, t_fract *frac);
+//burning_ship
+int burning(t_complex z0, t_complex c, int limit);
 #endif
