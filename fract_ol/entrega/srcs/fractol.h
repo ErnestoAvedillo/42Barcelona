@@ -69,6 +69,7 @@ typedef struct s_fract {
 #define FRACT_MAND	1
 #define FRACT_JULIA 2
 #define FRACT_BURN 3
+#define FRACT_TRICORN 4
 
 #define MOUSE_BTN_LEFT 1
 #define MOUSE_BTN_RIGHT 2
@@ -79,11 +80,25 @@ typedef struct s_fract {
 #define SCALE_UP 1
 #define SCALE_DW 0
 
-#define SIZE_X 500
-#define SIZE_Y 500
+#define SIZE_X 1000
+#define SIZE_Y 750
 
-#define ORIG_SUP_RE -3
-#define ORIG_SUP_IM -3
+#define ORIG_X_MANDEL -2.5
+#define ORIG_Y_MANDEL -1.5
+#define ESC_MANDEL 0.004
+
+#define ORIG_X_JULIA -2.1
+#define ORIG_Y_JULIA -1.6
+#define ESC_JULIA 0.004
+
+#define ORIG_X_BURNING -2.7
+#define ORIG_Y_BURNING -2.4
+#define ESC_BURNING 0.005
+
+#define ORIG_X_TRICORN -3
+#define ORIG_Y_TRICORN -2.4
+#define ESC_TRICORN 0.006
+
 #define ORIG_INF_RE 2
 #define ORIG_INF_IM 2
 
@@ -131,8 +146,12 @@ t_complex	cpower(t_complex a, t_complex b);
 int			mandelbrot(t_complex z0, t_complex c, int limit);
 //julia
 int			julia(t_complex z0, t_complex c, int limit);
+// tricorn
+int			tricorn(t_complex z0, t_complex c, int limit);
+
 //fractol_draw
 void		fractol_draw (t_fract *frac);
+
 void		new_scale(int sense, t_fract *fract, int x, int y);
 //close_win
 int	close_win(t_fract *frac);

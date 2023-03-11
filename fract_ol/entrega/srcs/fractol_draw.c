@@ -18,7 +18,8 @@ void put_pixel_color(char *pixel, t_color color)
 	pixel[0] = color.r;
 	pixel[1] = color.g;
 	pixel[2] = color.b;
-	pixel[3] = color.a;
+	//pixel[3] = color.a;
+	pixel[3] = 0;
 
 }
 

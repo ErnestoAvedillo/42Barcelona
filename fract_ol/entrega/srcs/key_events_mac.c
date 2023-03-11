@@ -17,20 +17,18 @@ int key_events(int key, t_fract *frac)
 	int x;
 	int y;
 
-	printf("recibido %x -- direccion %p\n", key, frac);
+	printf("mac recibido %x -- %x -- direccion %p\n", key, XK_b, frac);
 	if (key == XK_uparrow)
 	{
 		mlx_mouse_get_pos(frac->win_ptr, &x, &y);
 		printf("KEY ARRW UP posicion x = %i ; posicion y = %i\n",x , y);
 		new_scale(SCALE_UP, frac, x ,y);
-		fractol_draw(frac);
 	}
 	else if (key == XK_downarrow)
 	{
 		mlx_mouse_get_pos(frac->win_ptr, &x, &y);
 		printf("KEY ARRW DWN posicion x = %i ; posicion y = %i\n",x , y);
 		new_scale(SCALE_DW, frac, x ,y);
-		fractol_draw(frac);
 	}	
 	else if (key == XK_m)
 	{
@@ -38,10 +36,9 @@ int key_events(int key, t_fract *frac)
 		frac->function = mandelbrot;
 		frac->c = casign(0,0);
 		frac->z0 = casign(0,0);
-		frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
-		frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
+		frac->c1 = casign(ORIG_X_MANDEL, ORIG_Y_MANDEL);
+		frac->escala_x = (double)ESC_MANDEL;
 		frac->escala_y = frac->escala_x;
-		fractol_draw(frac);
 	}
 	else if (key == XK_j)
 	{
@@ -49,41 +46,63 @@ int key_events(int key, t_fract *frac)
 		frac->function = julia;
 		frac->c = casign(0,-0.8);
 		frac->z0 = casign(0,0);
-		frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
-		frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
+		frac->c1 = casign(ORIG_X_JULIA, ORIG_Y_JULIA);
+		frac->escala_x = (double)ESC_JULIA;
 		frac->escala_y = frac->escala_x;
-		fractol_draw(frac);
 	}
+	else if (key == XK_t)
+	{
+		printf("enro");
+		frac->fract_code = FRACT_TRICORN;
+		frac->function = tricorn;
+		frac->c = casign(0,0);
+		frac->z0 = casign(0,0);
+		frac->c1 = casign(ORIG_X_TRICORN, ORIG_Y_TRICORN);
+		frac->escala_x = (double)ESC_TRICORN;
+		frac->escala_y = frac->escala_x;
+	}
+		else if (key == XK_b)
+	{
+		printf("entro");
+		frac->fract_code = FRACT_BURN;
+		frac->function = burning;
+		frac->c = casign(0, 0);
+		frac->z0 = casign(0, 0);
+		frac->c1 = casign(ORIG_X_BURNING, ORIG_Y_BURNING);
+		frac->escala_x = (double)ESC_BURNING;
+		frac->escala_y = frac->escala_x;
+		frac->limit = 10;
+	}
+	else if (key >= XK_1 && key <= XK_6)
+		frac->color = palette(key);
+	else if (key == XK_ESC)
+		close_win(frac);
 	else if (key == 1)
 	{
 		frac->c1.re += 0.1;
-		fractol_draw(frac);
 	}
 	else if (key == 3)
 	{
 		frac->c1.re -=0.1;
-		fractol_draw(frac);
 	}
 	else if (key == 14)
 	{
 		frac->c1.im +=0.1;
-		fractol_draw(frac);
 	}
 	else if (key == 8)
 	{
 		frac->c1.im +=0.01;
-		fractol_draw(frac);
 	}
 	else if (key == 16)
 	{
 		frac->limit += 1;
-		fractol_draw(frac);
 	}
 	else if (key == 4)
 	{
 		if (frac->limit > 1)
 			frac->limit -= 1;
-		fractol_draw(frac);
 	}
+	fractol_draw(frac);
+
 	return (0);	
 }

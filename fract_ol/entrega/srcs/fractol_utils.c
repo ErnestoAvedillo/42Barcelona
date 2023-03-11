@@ -35,14 +35,13 @@ t_fract	*create_fract()
 	frac->size_x = SIZE_X;
 	frac->size_y = SIZE_Y;
 	frac->frame = 50;
-	frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
+	frac->c1 = casign(ORIG_X_MANDEL, ORIG_Y_MANDEL);
 	frac->c = casign(0,0);
 	frac->z0 = casign(0,0);
-	frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
+	frac->escala_x = (double)ESC_MANDEL;
 	frac->escala_y = frac->escala_x;
-	//frac->escala_y = (double)(ORIG_INF_IM - ORIG_SUP_IM) /  (frac->size_y - 2 * frac->frame);
 	frac->zoom_fact = 1.2;
-	frac->color = palette(1);
+	frac->color = palette(XK_5);
 	frac->limit = 4;
 	frac->mlx_ptr = mlx_init();
 	frac->win_ptr = mlx_new_window(frac->mlx_ptr,frac->size_x,frac->size_y,"Los fractales de Ernesto");

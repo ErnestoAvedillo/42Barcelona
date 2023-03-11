@@ -34,9 +34,12 @@ int mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 	else if (mouse == MOUSE_BTN_LEFT)
 	{
 		printf("BTN LEFT posicion x = %i ; posicion y = %i\n",x , y);
-		frac->button_pressed = MOUSE_BTN_LEFT;
-		frac->mouse_pos.x = x;
-		frac->mouse_pos.y = y;
+		if ( x > 0 && y > 0)
+		{
+			frac->button_pressed = MOUSE_BTN_LEFT;
+			frac->mouse_pos.x = x;
+			frac->mouse_pos.y = y;
+		}
 	}
 	else if (mouse == MOUSE_BTN_RIGHT)
 	{
@@ -63,6 +66,7 @@ int mouse_events_rel(int mouse, int x, int y, t_fract *frac)
 		frac->c1.im += (frac->mouse_pos.y - y) * frac->escala_y;
 		fractol_draw(frac);
 	}
+	printf("mouse x %f, y, %f, escala x = %f , escala y = %f", frac->c1.re, frac->c1.im, frac->escala_x, frac->escala_y);
 	return (0);
 }
 //int mouse_events_mov(int mouse, int x, int y, t_fract *frac)

@@ -1,8 +1,8 @@
 NAME := fractol
 NAME_LNX := fractol_lnx
 
-SRC := fractol fractol_utils mandelbrot complex_oper0 complex_oper1 fractol_draw close_win key_events_mac mouse_events julia palette burning_ship
-SRC_LNX := fractol_lnx fractol_utils mandelbrot complex_oper0 complex_oper1 fractol_draw close_win key_events_lnx mouse_events julia palette burning_ship
+SRC := fractol fractol_utils mandelbrot complex_oper0 complex_oper1 fractol_draw close_win key_events_mac mouse_events julia palette burning_ship tricorn
+SRC_LNX := fractol_lnx fractol_utils mandelbrot complex_oper0 complex_oper1 fractol_draw close_win key_events_lnx mouse_events julia palette burning_ship tricorn
 DIR_SRC := ./srcs/
 
 OBJDST_DIR := ./objdst/
@@ -36,7 +36,7 @@ LIBX_LNX = $(addprefix $(DIR_LIBX),$(LIBX_NAME_LNX))
 LIBX_LNK :=  -Lmlx -lmlx -framework OpenGL -framework AppKit 
 RM := rm -rfd
 CC := gcc 
-FLAGS := -Wall -Werror -Wextra
+FLAGS := -Wall -Werror -Wextra -O2
 
 all : $(NAME)
 
