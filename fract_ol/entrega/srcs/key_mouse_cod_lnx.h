@@ -14,8 +14,8 @@
 #define XK_1 	0x31	 /*key 1 */
 #define XK_2 	0x32	 /*key 2*/
 #define XK_3 	0x33	 /*key 3*/
-#define XK_4 	0x34	 /*key 4*/
-#define XK_5 	0x35	 /*key 5*/
-#define XK_6 	0x36	 /*key 6*/
+#define XK_4 	0x34	 /*key 3*/
+#define XK_5 	0x35	 /*key 3*/
+#define XK_5 	0x36	 /*key 3*/
 
 #endif
