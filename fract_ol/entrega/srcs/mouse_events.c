@@ -72,7 +72,7 @@ int mouse_events_rel(int mouse, int x, int y, t_fract *frac)
 //int mouse_events_mov(int mouse, int x, int y, t_fract *frac)
 int mouse_events_mov(int x, int y, t_fract *frac)
 {
-
+	t_complex	pos;
 	//printf("recibido posicion %i %i-- direccion %p\n", x, y, frac);
 	
 	if (x > 0 && y > 0 && frac->button_pressed == MOUSE_BTN_RIGHT )
@@ -88,6 +88,12 @@ int mouse_events_mov(int x, int y, t_fract *frac)
 		fractol_draw(frac);
 		frac->mouse_pos.x = x;
 		frac->mouse_pos.y = y;
+	}
+	else
+	{
+		pos.re = frac->c1.re + frac->escala_x * x;
+		pos.im = frac->c1.im + frac->escala_y * y;
+			printf("result  = %i\n", frac->function(frac->c,pos,frac->limit));
 	}
 	return (0);
 }

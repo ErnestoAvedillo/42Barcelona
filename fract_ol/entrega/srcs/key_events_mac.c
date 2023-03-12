@@ -17,7 +17,7 @@ int key_events(int key, t_fract *frac)
 	int x;
 	int y;
 
-	printf("mac recibido %x -- %x -- direccion %p\n", key, XK_b, frac);
+	printf("mac recibido %x -- direccion %p\n", key, frac);
 	if (key == XK_uparrow)
 	{
 		mlx_mouse_get_pos(frac->win_ptr, &x, &y);
@@ -52,7 +52,6 @@ int key_events(int key, t_fract *frac)
 	}
 	else if (key == XK_t)
 	{
-		printf("enro");
 		frac->fract_code = FRACT_TRICORN;
 		frac->function = tricorn;
 		frac->c = casign(0,0);
@@ -73,7 +72,7 @@ int key_events(int key, t_fract *frac)
 		frac->escala_y = frac->escala_x;
 		frac->limit = 10;
 	}
-	else if (key >= XK_1 && key <= XK_6)
+	else if (key >= XK_1 && key <= XK_5)
 		frac->color = palette(key);
 	else if (key == XK_ESC)
 		close_win(frac);

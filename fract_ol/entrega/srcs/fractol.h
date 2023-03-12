@@ -13,7 +13,7 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 #include "../mlx/mlx.h"
-#include"../libft/libft.h"
+#include"../printf/ft_printf_bonus.h"
 #include<math.h>
 #include<stdio.h>
 /// #include<limits.h>
@@ -127,6 +127,7 @@ typedef struct s_fract {
 t_fract		*create_fract();
 void		free_fract (t_fract *frac);
 void		put_pixel_color(char *pixel, t_color color);
+int			get_fractal(char *name);
 //palette
 t_color *palette(int n);
 t_color new_color(int r, int g, int b, int a);

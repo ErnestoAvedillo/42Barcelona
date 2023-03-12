@@ -20,10 +20,10 @@ OBJS_MAN_LNX := $(addprefix $(OBJDST_DIR_LNX),$(addsuffix .o,$(SRC_LNX)))
 DPNS_MAN_LNX := $(addprefix $(OBJDST_DIR_LNX),$(addsuffix .d,$(SRC_LNX)))
 INCLUDE_LNX := $(addprefix $(DIR_SRC),$(addsuffix .h,$(INC_LNX)))
 #libraries
-#libft
-LIBFT_NAME := libft.a
-DIR_LIBFT := ./libft/
-LIBFT = $(addprefix $(DIR_LIBFT),$(LIBFT_NAME))
+#printf
+PRINTF_NAME := libftprintf.a
+DIR_PRINTF := ./printf/
+PRINTF = $(addprefix $(DIR_PRINTF),$(PRINTF_NAME))
 #minilibX
 LIBX_NAME := libmlx.dylib
 DIR_LIBX := ./mlx/
@@ -43,16 +43,16 @@ all : $(NAME)
 -include:$(DPNS_MAN) $(DPNS_MAN_LNX)
 
 #MAC compilation
-$(NAME): $(OBJS_MAN) $(LIBFT_NAME) $(LIBX_NAME)
-	$(CC) $(FLAGS) $(LIBX_LNK) $(OBJS_MAN) $(LIBFT_NAME) -o $(NAME)
+$(NAME): $(OBJS_MAN) $(PRINTF_NAME) $(LIBX_NAME)
+	$(CC) $(FLAGS) $(LIBX_LNK) $(OBJS_MAN) $(PRINTF_NAME) -o $(NAME)
 
 $(OBJDST_DIR)%.o: $(DIR_SRC)%.c $(OBJDST_DIR)%.d
 	mkdir -p $(OBJDST_DIR)
-	$(CC) $(FLAGS) -D KEY_MOUSE_COD_MAC_H  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
+	$(CC) $(FLAGS) -D KEY_MOUSE_COD_MAC_H  -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
 
 $(OBJDST_DIR)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(OBJDST_DIR)
-	$(CC) -MM $(FLAGS)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR)$*.d
+	$(CC) -MM $(FLAGS)  -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR)$*.d
 
 $(LIBX_NAME) : $(LIBX)
 	cp -p $(LIBX) $(LIBX_NAME)
@@ -63,16 +63,16 @@ $(LIBX):
 #linux compilation
 linux: $(NAME_LNX)
 
-$(NAME_LNX): $(LIBFT_NAME) $(LIBX_NAME_LNX) $(OBJS_MAN_LNX) 
-	$(CC) $(FLAGS) $(OBJS_MAN_LNX) $(LIBX_NAME_LNX) $(LIBFT_NAME) -L/usr/lib -Imlx -lXext -lX11 -L/usr/lib/X11 -lm -lz -o $(NAME_LNX)
+$(NAME_LNX): $(PRINTF_NAME) $(LIBX_NAME_LNX) $(OBJS_MAN_LNX) 
+	$(CC) $(FLAGS) $(OBJS_MAN_LNX) $(LIBX_NAME_LNX) $(PRINTF_NAME) -L/usr/lib -Imlx -lXext -lX11 -L/usr/lib/X11 -lm -lz -o $(NAME_LNX)
 
 $(OBJDST_DIR_LNX)%.o: $(DIR_SRC)%.c $(OBJDST_DIR_LNX)%.d
 	mkdir -p $(OBJDST_DIR_LNX)
-	$(CC) $(FLAGS) -D KEY_MOUSE_COD_LNX_H -I/usr/include/ -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR_LNX)$*.o
+	$(CC) $(FLAGS) -D KEY_MOUSE_COD_LNX_H -I/usr/include/ -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR_LNX)$*.o
 
 $(OBJDST_DIR_LNX)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(OBJDST_DIR_LNX)
-	$(CC) -MM $(FLAGS)  -I $(DIR_LIBFT) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR_LNX)$*.d
+	$(CC) -MM $(FLAGS)  -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR_LNX)$*.d
 
 $(LIBX_NAME_LNX) : $(LIBX_LNX)
 	cp -p $(LIBX_LNX) $(LIBX_NAME_LNX)
@@ -83,11 +83,11 @@ $(LIBX_LNX):
 #
 #common compilation
 
-$(LIBFT_NAME):$(LIBFT)
-	cp -p $(LIBFT) $(LIBFT_NAME)
+$(PRINTF_NAME):$(PRINTF)
+	cp -p $(PRINTF) $(PRINTF_NAME)
 
-$(LIBFT):
-	make -C $(DIR_LIBFT) bonus
+$(PRINTF):
+	make -C $(DIR_PRINTF) bonus
 
 
 
@@ -97,9 +97,9 @@ print:
 	@echo $(OBJS_MAN)
 	@echo $(DPNS_MAN)
 	@echo $(INCLUDE)
-	@echo $(LIBFT_NAME)
-	@echo $(DIR_LIBFT)
-	@echo $(LIBFT)
+	@echo $(PRINTF_NAME)
+	@echo $(DIR_PRINTF)
+	@echo $(PRINTF)
 	@echo $(LIBX_NAME)
 	@echo $(DIR_LIBX)
 	@echo $(LIBX)
@@ -109,14 +109,14 @@ print:
 
 clean:
 	$(RM) $(OBJDST_DIR) $(OBJDST_DIR_LNX)
-	make -C$(DIR_LIBFT) clean
+	make -C$(DIR_PRINTF) clean
 	make -C$(DIR_LIBX) clean
 
 fclean:
-	make -C$(DIR_LIBFT) fclean
+	make -C$(DIR_PRINTF) fclean
 	make -C$(DIR_LIBX) clean
-	$(RM) $(LIBFT_NAME) $(NAME) $(NAME_LNX) $(LIBX_NAME) $(LIBX_NAME_LNX)
+	$(RM) $(PRINTF_NAME) $(NAME) $(NAME_LNX) $(LIBX_NAME) $(LIBX_NAME_LNX)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re $(LIBFT) $(LIBX_NAME) $(LIBX_LNX)
+.PHONY: all bonus clean fclean re $(PRINTF) $(LIBX_NAME) $(LIBX_LNX)

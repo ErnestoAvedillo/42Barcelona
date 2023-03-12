@@ -30,25 +30,28 @@ t_color *palette (int n)
 {
     t_color *color_pal;
     int i;
+    double grado;
 
     color_pal = (t_color*) malloc (ITER * sizeof(t_color));
     i = 0;
     while (i < ITER)
     {
+        grado = (double) (1 - i / ITER);
         if (n == XK_1)
-            color_pal[i] = new_color(0xaf + 0x50 * i / ITER, 0xff * i / ITER, 0x8f + 0x70 * i / ITER, 0);
+            color_pal[i] = new_color(0, 2 * (int)log(grado) % 0xa0 + 0x50, 2 * (int)log(grado) % 0xa0 + 0x50, 0);
         else if (n == XK_2)
-            color_pal[i] = new_color(0xff * i / ITER, 0x70 * i / ITER, 0xE0 * i / ITER, 0);
+            color_pal[i] = new_color((int) grado % 0x4f + 0xb0, (int) grado % 0x4f + 0xb0, 0, 0);
         else if (n == XK_3)
-            color_pal[i] = new_color(0xFF * (1 - i) / ITER, 0xFF * (1 - i) / ITER, 0xFF * (1 - i) / ITER, 0);
+            color_pal[i] = new_color((int) sin(i) % 0x4f + 0xb0, 0xff, (int) sin(i) % 0x4f + 0xb0, 0);
         else if (n == XK_4)
-            color_pal[i] = new_color(0xe0 * (i / ITER), 0xff * (i / ITER), 0xa0 * (i / ITER), 0);
+            color_pal[i] = new_color(0xFF * (1 - i) / ITER, 0xFF * (1 - i) / ITER, 0xFF * (1 - i) / ITER, 0);
         else if (n == XK_5)
-            color_pal[i] = new_color(0x20 * i, 0x30 * i, 0x10 * i, 0);
+            color_pal[i] = new_color(rand() % 0xff, rand() % 0xff, rand() % 0xff, 0);
         else
-            color_pal[i] = new_color(0x20 * i, 0x30 * i, 0x10 * i, 0x50);
+            color_pal[i] = new_color(rand() % 0xff, rand() % 0xff, rand() % 0xff, 0xa0);
         i++;
     }
     return(color_pal) ;
 }
 
+        //    color_pal[i] = new_color(0xff, i / ITER % 0x4f + 0xb0, i / ITER % 0x4f + 0xb0, 0);

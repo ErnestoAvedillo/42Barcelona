@@ -11,7 +11,31 @@
 /* ************************************************************************** */
 #include"fractol.h"
 
-t_fract	*create_fract()
+int get_fractal(char *name)
+{
+	if (!ft_strncmp(name, "M", 0))
+		return (FRACT_MAND);
+	else if (!ft_strncmp(name, "J", 0))
+		return (FRACT_MAND);
+	else if (!ft_strncmp(name, "T", 0))
+		return (FRACT_TRICORN);
+	else if (!ft_strncmp(name, "B", 0))
+		return (FRACT_BURN);
+	return (0);
+}
+
+static void *get_frac_cfunct (int fract_type)
+{
+	if (fract_type == FRACT_MAND)
+		return (mandelbrot);
+	else if (fract_type == FRACT_JULIA)
+		return (julia);
+	else if (fract_type == FRACT_TRICORN)
+		return (tricorn);
+	return (burning);
+}
+
+t_fract	*create_fract(int fract_type)
 {
 	t_fract	*frac;
 	int		i;
@@ -30,8 +54,8 @@ t_fract	*create_fract()
 			frac->win[i][j] = 0;
 		}
 	}
-	frac->fract_code = FRACT_MAND;
-	frac->function = mandelbrot;
+	frac->fract_code = fract_type;
+	frac->function = get_frac_cfunct(fract_type);
 	frac->size_x = SIZE_X;
 	frac->size_y = SIZE_Y;
 	frac->frame = 50;

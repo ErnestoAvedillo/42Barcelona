@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include"fractol.h"
 
-void print_help_message()
+static void print_help_message()
 {
 	ft_printf("=========Usage==========\n");
 	ft_printf("Available fractals are\n");
@@ -31,15 +31,23 @@ void print_help_message()
 	ft_printf("\tKey t to change to Tricorn\n");
 }
 
-int main (int av, char **ac);
+int main (int av, char **ac)
 {
 	t_fract	*frac;
+	int		fract_type;
+
 	if (av <2)
 	{
-		print_help_message ()
+		print_help_message();
 		return (0);
 	}
-	frac = create_fract();
+	fract_type = get_fractal(ac[1]);
+	if (fract_type == 0)
+	{
+		print_help_message();
+		return (0);
+	}
+	frac = create_fract(fract_type);
 	fractol_draw(frac);
 	mlx_key_hook(frac->win_ptr, key_events,(t_fract *)frac );
 	mlx_hook(frac->win_ptr, EVENT_BUTTON_PRESS, MASK_BUTTON_PRESS, mouse_events_pre, (t_fract *)frac );
