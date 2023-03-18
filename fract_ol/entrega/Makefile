@@ -18,7 +18,7 @@ OBJDST_DIR_LNX := ./objdstlnx/
 SRCS_MAN_LNX := $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC_LNX)))
 OBJS_MAN_LNX := $(addprefix $(OBJDST_DIR_LNX),$(addsuffix .o,$(SRC_LNX)))
 DPNS_MAN_LNX := $(addprefix $(OBJDST_DIR_LNX),$(addsuffix .d,$(SRC_LNX)))
-INCLUDE_LNX := $(addprefix $(DIR_SRC),$(addsuffix .h,$(INC_LNX)))
+INCLUDE_LNX := $(addprefix $(DIR_SRC),$(addsuffix .h,$(NAME))) $(addprefix $(DIR_SRC),$(addsuffix .h,$(INC_LNX)))
 #libraries
 #printf
 PRINTF_NAME := libftprintf.a
@@ -70,7 +70,7 @@ $(OBJDST_DIR_LNX)%.o: $(DIR_SRC)%.c $(OBJDST_DIR_LNX)%.d
 	mkdir -p $(OBJDST_DIR_LNX)
 	$(CC) $(FLAGS) -D KEY_MOUSE_COD_LNX_H -I/usr/include/ -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR_LNX)$*.o
 
-$(OBJDST_DIR_LNX)%.d: $(DIR_SRC)%.c $(INCLUDE)
+$(OBJDST_DIR_LNX)%.d: $(DIR_SRC)%.c $(INCLUDE_LNX)
 	mkdir -p $(OBJDST_DIR_LNX)
 	$(CC) -MM $(FLAGS)  -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c > $(OBJDST_DIR_LNX)$*.d
 
@@ -92,11 +92,14 @@ $(PRINTF):
 
 
 print:
+	@echo $(NAME)
+	@echo $(NAME_LNX)
 	@echo $(DIR_SRC)
 	@echo $(SRCS_MAN)
 	@echo $(OBJS_MAN)
 	@echo $(DPNS_MAN)
 	@echo $(INCLUDE)
+	@echo $(INCLUDE_LNX)
 	@echo $(PRINTF_NAME)
 	@echo $(DIR_PRINTF)
 	@echo $(PRINTF)
@@ -110,12 +113,12 @@ print:
 clean:
 	$(RM) $(OBJDST_DIR) $(OBJDST_DIR_LNX)
 	make -C$(DIR_PRINTF) clean
-	make -C$(DIR_LIBX) clean
+	#make -C$(DIR_LIBX) clean
 
-fclean:
-	make -C$(DIR_PRINTF) fclean
-	make -C$(DIR_LIBX) clean
+fclean: clean
+	@echo BORRO LOS FICHEROS DE EJECUCION Y LIBRERIAS
 	$(RM) $(PRINTF_NAME) $(NAME) $(NAME_LNX) $(LIBX_NAME) $(LIBX_NAME_LNX)
+	make -C$(DIR_PRINTF) fclean
 
 re: fclean all
 

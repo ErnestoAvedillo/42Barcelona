@@ -12,18 +12,18 @@
 
 #include"fractol.h"
 
-int mandelbrot(t_complex z0, t_complex c, int limit)
+int	mandelbrot(t_complex z0, t_complex c, int limit)
 {
-	int i;
-	t_complex znext;
-	t_complex tmp;
+	int			i;
+	t_complex	znext;
+	t_complex	tmp;
 
 	i = 0;
 	znext = cequal(z0);
 	while (i <= ITER)
 	{
 		if ((znext.re * znext.re + znext.im * znext.im) > (double)limit)
-			break;
+			break ;
 		tmp.re = znext.re;
 		tmp.im = znext.im;
 		znext.re = tmp.re * tmp.re - tmp.im * tmp.im + c.re;
@@ -32,3 +32,17 @@ int mandelbrot(t_complex z0, t_complex c, int limit)
 	}
 	return (i);
 }
+<<<<<<< HEAD
+=======
+
+void	conf_mandel(t_fract *frac)
+{
+	frac->fract_code = FRACT_MAND;
+	frac->function = mandelbrot;
+	frac->c = casign(0, 0);
+	frac->z0 = casign(0, 0);
+	frac->c1 = casign(ORIG_X_MANDEL, ORIG_Y_MANDEL);
+	frac->escala_x = (double)ESC_MANDEL;
+	frac->escala_y = frac->escala_x;
+}
+>>>>>>> 7fd21a0fa3f737f23759be2bdb299b1ac15c448e

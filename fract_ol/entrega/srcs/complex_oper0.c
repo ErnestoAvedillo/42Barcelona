@@ -22,7 +22,7 @@ t_complex	casign(double a, double b)
 
 t_complex	cequal(t_complex b)
 {
-	t_complex a;
+	t_complex	a;
 
 	a.re = b.re;
 	a.im = b.im;
@@ -63,6 +63,7 @@ Demostración de la función
 t_complex	csqr(t_complex a)
 {
 	t_complex	c;
+
 	c.re = a.re * a.re - a.im * a.im;
 	c.im = 2 * a.re * a.im;
 	return (c);

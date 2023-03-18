@@ -12,10 +12,10 @@
 
 #include"fractol.h"
 
-int key_events(int key, t_fract *frac)
+int	key_events(int key, t_fract *frac)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	printf("hola recibido %x -- direccion %p\n", key, frac);
 	if (key == XK_uparrow)
@@ -31,46 +31,13 @@ int key_events(int key, t_fract *frac)
 		new_scale(SCALE_UP, frac, x, y);
 	}
 	else if (key == XK_m)
-	{
-		frac->fract_code = FRACT_MAND;
-		frac->function = mandelbrot;
-		frac->c = casign(0, 0);
-		frac->z0 = casign(0, 0);
-		frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
-		frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
-		frac->escala_y = frac->escala_x;
-	}
+		conf_mandel(frac);
 	else if (key == XK_j)
-	{
-		frac->fract_code = FRACT_JULIA;
-		frac->function = julia;
-		frac->c = casign(0, -0.8);
-		frac->z0 = casign(0,0);
-		frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
-		frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
-		frac->escala_y = frac->escala_x;
-	}
+		conf_julia(frac);
 	else if (key == XK_b)
-	{
-		frac->fract_code = FRACT_BURN;
-		frac->function = burning;
-		frac->c = casign(0, 0);
-		frac->z0 = casign(0, 0);
-		frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
-		frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
-		frac->escala_y = frac->escala_x;
-		frac->limit = 4;
-	}
+		conf_burning(frac);
 	else if (key == XK_t)
-	{
-		frac->fract_code = FRACT_TRICORN;
-		frac->function = tricorn;
-		frac->c = casign(0,-0.8);
-		frac->z0 = casign(0,0);
-		frac->c1 = casign(ORIG_SUP_RE, ORIG_SUP_IM);
-		frac->escala_x = (double)(ORIG_INF_RE - ORIG_SUP_RE) / (frac->size_x - 2 * frac->frame);
-		frac->escala_y = frac->escala_x;
-	}
+		conf_tricorn(frac);
 	else if (key >= XK_1 && key <= XK_5)
 		frac->color = palette(key);
 	else if (key == XK_ESC)
@@ -91,5 +58,5 @@ int key_events(int key, t_fract *frac)
 			frac->limit -= 1;
 	}
 	fractol_draw(frac);
-	return (0);	
+	return (0);
 }
