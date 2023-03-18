@@ -13,15 +13,17 @@
 #include"fractol.h"
 /*
 	//pixel = color.r <<24 | color.g << 16 | color.b << 8 | color.a;
-	//pixel[3] = color.a;
 
 */
 void	put_pixel_color(char *pixel, t_color color)
 {
 	pixel[0] = color.r;
-	pixel[1] = color.g;
-	pixel[2] = color.b;
-	pixel[3] = 0;
+	pixel[1] = color.g >> 8;
+	pixel[2] = color.b >> 16;
+	pixel[3] = color.a >> 24;
+	//printf("entrada R%x G%x B%x A%x --> salida pixel %x\n", color.r, color.g>>8, color.b>>16, color.a>>24, *pixel);
+//	getchar();
+	//pixel[3] = 0;
 }
 
 /*

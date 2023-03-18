@@ -52,4 +52,5 @@ void	conf_burning(t_fract *frac)
 	frac->escala_x = (double)ESC_BURNING;
 	frac->escala_y = frac->escala_x;
 	frac->limit = 4;
+	palette(XK_4, frac->color);
 }

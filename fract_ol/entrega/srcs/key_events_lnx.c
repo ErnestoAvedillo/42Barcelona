@@ -39,7 +39,7 @@ int	key_events(int key, t_fract *frac)
 	else if (key == XK_t)
 		conf_tricorn(frac);
 	else if (key >= XK_1 && key <= XK_5)
-		frac->color = palette(key);
+		palette(key, frac->color);
 	else if (key == XK_ESC)
 		close_win(frac);
 	else if (key == 1)

@@ -81,7 +81,7 @@ int	mouse_events_rel(int mouse, int x, int y, t_fract *frac)
 //int mouse_events_mov(int mouse, int x, int y, t_fract *frac)
 	//printf("recibido posicion %i %i-- direccion %p\n", x, y, frac);
 int	mouse_events_mov(int x, int y, t_fract *frac)
-{
+{	
 	if (x > 0 && y > 0 && frac->button_pressed == MOUSE_BTN_RIGHT)
 	{
 		frac->c.re = frac->c1.re + frac->escala_x * x;
@@ -96,14 +96,11 @@ int	mouse_events_mov(int x, int y, t_fract *frac)
 		frac->mouse_pos.x = x;
 		frac->mouse_pos.y = y;
 	}
-<<<<<<< HEAD
-	else
+/*	else
 	{
 		pos.re = frac->c1.re + frac->escala_x * x;
 		pos.im = frac->c1.im + frac->escala_y * y;
-//			printf("result  = %i\n", frac->function(frac->c,pos,frac->limit));
-	}
-=======
->>>>>>> 7fd21a0fa3f737f23759be2bdb299b1ac15c448e
+			printf("result  = %i\n", frac->function(frac->c,pos,frac->limit));
+	}*/
 	return (0);
 }

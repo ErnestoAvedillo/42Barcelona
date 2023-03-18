@@ -32,8 +32,6 @@ int	mandelbrot(t_complex z0, t_complex c, int limit)
 	}
 	return (i);
 }
-<<<<<<< HEAD
-=======
 
 void	conf_mandel(t_fract *frac)
 {
@@ -44,5 +42,5 @@ void	conf_mandel(t_fract *frac)
 	frac->c1 = casign(ORIG_X_MANDEL, ORIG_Y_MANDEL);
 	frac->escala_x = (double)ESC_MANDEL;
 	frac->escala_y = frac->escala_x;
+	palette(XK_1, frac->color);
 }
->>>>>>> 7fd21a0fa3f737f23759be2bdb299b1ac15c448e

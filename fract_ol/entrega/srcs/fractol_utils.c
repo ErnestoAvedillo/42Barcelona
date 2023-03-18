@@ -43,7 +43,7 @@ t_fract	*create_fract(int fract_type)
 //	int		j;
 
 	frac = (t_fract *)malloc(sizeof(t_fract));
-
+	frac->color = (t_color *) malloc (ITER * sizeof(t_color));
 	frac->fract_code = fract_type;
 	frac->function = get_frac_cfunct(fract_type);
 	frac->size_x = SIZE_X;
@@ -55,7 +55,6 @@ t_fract	*create_fract(int fract_type)
 	frac->escala_x = (double)ESC_MANDEL;
 	frac->escala_y = frac->escala_x;
 	frac->zoom_fact = 1.2;
-	frac->color = palette(XK_5);
 	frac->limit = 4;
 	frac->mlx_ptr = mlx_init();
 	frac->win_ptr = mlx_new_window(frac->mlx_ptr, frac->size_x, frac->size_y, \
@@ -70,8 +69,8 @@ void	free_fract(t_fract *frac)
 {
 	mlx_destroy_image(frac->mlx_ptr, frac->image);
 	mlx_destroy_window(frac->mlx_ptr, frac->win_ptr);
-	mlx_destroy_display(frac->mlx_ptr);
-	ree(frac->mlx_ptr);
+	//mlx_destroy_display(frac->mlx_ptr);
+	free(frac->mlx_ptr);
 	free(frac->color);
 	free(frac);
 	return ;

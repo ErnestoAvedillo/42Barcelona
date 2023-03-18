@@ -45,4 +45,5 @@ void	conf_tricorn(t_fract *frac)
 	frac->c1 = casign(ORIG_X_TRICORN, ORIG_Y_TRICORN);
 	frac->escala_x = (double)ESC_TRICORN;
 	frac->escala_y = frac->escala_x;
+	palette(XK_5, frac->color);
 }

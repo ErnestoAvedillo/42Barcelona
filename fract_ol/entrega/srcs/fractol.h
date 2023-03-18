@@ -144,7 +144,7 @@ void		free_fract(t_fract *frac);
 void		put_pixel_color(char *pixel, t_color color);
 int			get_fractal(char *name);
 //palette
-t_color		*palette(int n);
+void		palette(int n, t_color *color_pal);
 t_color		new_color(int r, int g, int b, int a);
 // complex_oper0
 t_complex	casign(double a, double b);
