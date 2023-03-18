@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include"fractol.h"
 
-static void print_help_message()
+static int	print_help_message(void)
 {
 	ft_printf("=========Usage==========\n");
 	ft_printf("Available fractals are\n");
@@ -29,32 +29,30 @@ static void print_help_message()
 	ft_printf("\tKey m to change to Mandelbrot\n");
 	ft_printf("\tKey j to change to Julia\n");
 	ft_printf("\tKey t to change to Tricorn\n");
+	return (0);
 }
 
-int main (int av, char **ac)
+int	main(int av, char **ac)
 {
 	t_fract	*frac;
 	int		fract_type;
 
-	if (av <2)
-	{
-		print_help_message();
-		return (0);
-	}
+	if (av < 2)
+		return (print_help_message());
 	fract_type = get_fractal(ac[1]);
 	if (fract_type == 0)
-	{
-		print_help_message();
-		return (0);
-	}
+		return (print_help_message());
 	frac = create_fract(fract_type);
 	fractol_draw(frac);
-	mlx_key_hook(frac->win_ptr, key_events,(t_fract *)frac );
-	mlx_hook(frac->win_ptr, EVENT_BUTTON_PRESS, MASK_BUTTON_PRESS, mouse_events_pre, (t_fract *)frac );
-	mlx_hook(frac->win_ptr, EVENT_BUTTON_RELEASE,  MASK_BUTTON_RELEASE, mouse_events_rel, (t_fract *)frac);
-	mlx_hook(frac->win_ptr, EVENT_MOTION_NOTIFY, MASK_MOTION_NOTIFY, mouse_events_mov, (t_fract *)frac);
-	mlx_hook(frac->win_ptr, EVENT_DESTROY_NOTIFY, MASK_DESTROY_NOTIFY, close_win, (t_fract *) frac);
+	mlx_key_hook(frac->win_ptr, key_events, (t_fract *)frac);
+	mlx_hook(frac->win_ptr, EVENT_BUTTON_PRESS, MASK_BUTTON_PRESS, \
+			mouse_events_pre, (t_fract *)frac);
+	mlx_hook(frac->win_ptr, EVENT_BUTTON_RELEASE, MASK_BUTTON_RELEASE, \
+	mouse_events_rel, (t_fract *)frac);
+	mlx_hook(frac->win_ptr, EVENT_MOTION_NOTIFY, MASK_MOTION_NOTIFY, \
+	mouse_events_mov, (t_fract *)frac);
+	mlx_hook(frac->win_ptr, EVENT_DESTROY_NOTIFY, MASK_DESTROY_NOTIFY, \
+	close_win, (t_fract *) frac);
 	mlx_loop(frac->mlx_ptr);
 	return (0);
 }
-

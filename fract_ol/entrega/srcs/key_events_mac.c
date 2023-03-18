@@ -12,66 +12,32 @@
 
 #include"fractol.h"
 
-int key_events(int key, t_fract *frac)
+int	key_events(int key, t_fract *frac)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	printf("mac recibido %x -- direccion %p\n", key, frac);
 	if (key == XK_uparrow)
 	{
 		mlx_mouse_get_pos(frac->win_ptr, &x, &y);
-		printf("KEY ARRW UP posicion x = %i ; posicion y = %i\n",x , y);
-		new_scale(SCALE_UP, frac, x ,y);
+		printf("KEY ARRW UP posicion x = %i ; posicion y = %i\n", x, y);
+		new_scale(SCALE_UP, frac, x, y);
 	}
 	else if (key == XK_downarrow)
 	{
 		mlx_mouse_get_pos(frac->win_ptr, &x, &y);
-		printf("KEY ARRW DWN posicion x = %i ; posicion y = %i\n",x , y);
-		new_scale(SCALE_DW, frac, x ,y);
-	}	
+		printf("KEY ARRW DWN posicion x = %i ; posicion y = %i\n", x, y);
+		new_scale(SCALE_DW, frac, x, y);
+	}
 	else if (key == XK_m)
-	{
-		frac->fract_code = FRACT_MAND;
-		frac->function = mandelbrot;
-		frac->c = casign(0,0);
-		frac->z0 = casign(0,0);
-		frac->c1 = casign(ORIG_X_MANDEL, ORIG_Y_MANDEL);
-		frac->escala_x = (double)ESC_MANDEL;
-		frac->escala_y = frac->escala_x;
-	}
+		conf_mandel(frac);
 	else if (key == XK_j)
-	{
-		frac->fract_code = FRACT_JULIA;
-		frac->function = julia;
-		frac->c = casign(0,-0.8);
-		frac->z0 = casign(0,0);
-		frac->c1 = casign(ORIG_X_JULIA, ORIG_Y_JULIA);
-		frac->escala_x = (double)ESC_JULIA;
-		frac->escala_y = frac->escala_x;
-	}
+		conf_julia(frac);
+	else if (key == XK_b)
+		conf_burning(frac);
 	else if (key == XK_t)
-	{
-		frac->fract_code = FRACT_TRICORN;
-		frac->function = tricorn;
-		frac->c = casign(0,0);
-		frac->z0 = casign(0,0);
-		frac->c1 = casign(ORIG_X_TRICORN, ORIG_Y_TRICORN);
-		frac->escala_x = (double)ESC_TRICORN;
-		frac->escala_y = frac->escala_x;
-	}
-		else if (key == XK_b)
-	{
-		printf("entro");
-		frac->fract_code = FRACT_BURN;
-		frac->function = burning;
-		frac->c = casign(0, 0);
-		frac->z0 = casign(0, 0);
-		frac->c1 = casign(ORIG_X_BURNING, ORIG_Y_BURNING);
-		frac->escala_x = (double)ESC_BURNING;
-		frac->escala_y = frac->escala_x;
-		frac->limit = 10;
-	}
+		conf_tricorn(frac);
 	else if (key >= XK_1 && key <= XK_5)
 		frac->color = palette(key);
 	else if (key == XK_ESC)
@@ -82,15 +48,15 @@ int key_events(int key, t_fract *frac)
 	}
 	else if (key == 3)
 	{
-		frac->c1.re -=0.1;
+		frac->c1.re -= 0.1;
 	}
 	else if (key == 14)
 	{
-		frac->c1.im +=0.1;
+		frac->c1.im += 0.1;
 	}
 	else if (key == 8)
 	{
-		frac->c1.im +=0.01;
+		frac->c1.im += 0.01;
 	}
 	else if (key == 16)
 	{
@@ -102,6 +68,5 @@ int key_events(int key, t_fract *frac)
 			frac->limit -= 1;
 	}
 	fractol_draw(frac);
-
-	return (0);	
+	return (0);
 }
