@@ -13,13 +13,14 @@
 
 int get_fractal(char *name)
 {
-	if (!ft_strncmp(name, "M", 0))
+	printf ("recibido %s compara con M %i\n", name, ft_strncmp("WER", "WERI", 2));
+	if (!ft_strncmp(name, "M", 2))
 		return (FRACT_MAND);
-	else if (!ft_strncmp(name, "J", 0))
-		return (FRACT_MAND);
-	else if (!ft_strncmp(name, "T", 0))
+	else if (!ft_strncmp(name, "J", 2))
+		return (FRACT_JULIA);
+	else if (!ft_strncmp(name, "T", 2))
 		return (FRACT_TRICORN);
-	else if (!ft_strncmp(name, "B", 0))
+	else if (!ft_strncmp(name, "B", 2))
 		return (FRACT_BURN);
 	return (0);
 }

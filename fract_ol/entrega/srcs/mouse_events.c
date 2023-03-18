@@ -93,7 +93,7 @@ int mouse_events_mov(int x, int y, t_fract *frac)
 	{
 		pos.re = frac->c1.re + frac->escala_x * x;
 		pos.im = frac->c1.im + frac->escala_y * y;
-			printf("result  = %i\n", frac->function(frac->c,pos,frac->limit));
+//			printf("result  = %i\n", frac->function(frac->c,pos,frac->limit));
 	}
 	return (0);
 }
