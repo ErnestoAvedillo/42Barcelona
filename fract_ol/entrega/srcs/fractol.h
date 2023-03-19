@@ -74,7 +74,7 @@ typedef struct s_fract {
 	double		escala_x;
 	double		escala_y;
 	double		zoom_fact;
-	t_color		*color;
+	uint		*color;
 	int			limit;
 	t_mouse_pos	mouse_pos;
 	int			button_pressed;
@@ -141,11 +141,11 @@ typedef struct s_fract {
 //fractol_utils
 t_fract		*create_fract(int fract_type);
 void		free_fract(t_fract *frac);
-void		put_pixel_color(char *pixel, t_color color);
+//void		put_pixel_color(char *pixel, uint color);
 int			get_fractal(char *name);
 //palette
-void		palette(int n, t_color *color_pal);
-t_color		new_color(int r, int g, int b, int a);
+void		palette(int n, uint *color_pal);
+uint		new_color(uint r, uint g, uint b, uint a);
 // complex_oper0
 t_complex	casign(double a, double b);
 t_complex	cequal(t_complex b);

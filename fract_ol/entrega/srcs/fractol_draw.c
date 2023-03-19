@@ -15,12 +15,12 @@
 	//pixel = color.r <<24 | color.g << 16 | color.b << 8 | color.a;
 
 */
-void	put_pixel_color(char *pixel, t_color color)
+void	put_pixel_color(char *pixel, uint color)
 {
-	pixel[0] = color.r;
-	pixel[1] = color.g >> 8;
-	pixel[2] = color.b >> 16;
-	pixel[3] = color.a >> 24;
+	pixel[0] = color;
+	pixel[1] = color >> 8;
+	pixel[2] = color >> 16;
+	pixel[3] = color >> 24;
 	//printf("entrada R%x G%x B%x A%x --> salida pixel %x\n", color.r, color.g>>8, color.b>>16, color.a>>24, *pixel);
 //	getchar();
 	//pixel[3] = 0;
@@ -47,7 +47,6 @@ void	fractol_draw(t_fract *frac)
 	buf.buffer = mlx_get_data_addr(frac->image, &buf.pixel_bits, \
 			&buf.line_bytes, &buf.endian);
 	ind.i = frac->frame;
-	ind.k = 0;
 	while (++ind.i < frac->size_x - frac->frame)
 	{
 		ind.j = frac->frame;
@@ -56,9 +55,8 @@ void	fractol_draw(t_fract *frac)
 			frac->z0.re = (frac->c1.re + ind.i * frac->escala_x);
 			frac->z0.im = (frac->c1.im + ind.j * frac->escala_y);
 			result = frac->function(frac->c, frac->z0, frac->limit);
-			put_pixel_color(&buf.buffer[ind.j * buf.line_bytes + \
-					ind.i * buf.pixel_bits / 8], frac->color[result]);
-			ind.k++;
+			put_pixel_color(&buf.buffer[ind.j * buf.line_bytes + ind.i * buf.pixel_bits / 8], frac->color[result]);
+			//buf.buffer[ind.j * buf.line_bytes + ind.i * buf.pixel_bits / 8] = frac->color[result];
 		}
 	}
 	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr, frac->image, 0, 0);

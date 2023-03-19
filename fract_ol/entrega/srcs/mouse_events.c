@@ -81,7 +81,12 @@ int	mouse_events_rel(int mouse, int x, int y, t_fract *frac)
 //int mouse_events_mov(int mouse, int x, int y, t_fract *frac)
 	//printf("recibido posicion %i %i-- direccion %p\n", x, y, frac);
 int	mouse_events_mov(int x, int y, t_fract *frac)
-{	
+{
+	t_complex pos;
+	int res;
+	t_img_buff buf;
+	uint micolor;
+
 	if (x > 0 && y > 0 && frac->button_pressed == MOUSE_BTN_RIGHT)
 	{
 		frac->c.re = frac->c1.re + frac->escala_x * x;
@@ -96,11 +101,15 @@ int	mouse_events_mov(int x, int y, t_fract *frac)
 		frac->mouse_pos.x = x;
 		frac->mouse_pos.y = y;
 	}
-/*	else
+	else
 	{
+		buf.buffer = mlx_get_data_addr(frac->image, &buf.pixel_bits,
+									   &buf.line_bytes, &buf.endian);
 		pos.re = frac->c1.re + frac->escala_x * x;
 		pos.im = frac->c1.im + frac->escala_y * y;
-			printf("result  = %i\n", frac->function(frac->c,pos,frac->limit));
-	}*/
+		res = frac->function(frac->c, pos, frac->limit);
+		micolor = buf.buffer[y * buf.line_bytes + x * buf.pixel_bits / 8];
+		printf("result  = %i color %x en pantalla %x \n", res, frac->color[res], micolor);
+	}
 	return (0);
 }

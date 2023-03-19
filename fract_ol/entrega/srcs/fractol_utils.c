@@ -43,7 +43,7 @@ t_fract	*create_fract(int fract_type)
 //	int		j;
 
 	frac = (t_fract *)malloc(sizeof(t_fract));
-	frac->color = (t_color *) malloc (ITER * sizeof(t_color));
+	frac->color = (uint *) malloc (ITER * sizeof(t_color));
 	frac->fract_code = fract_type;
 	frac->function = get_frac_cfunct(fract_type);
 	frac->size_x = SIZE_X;
