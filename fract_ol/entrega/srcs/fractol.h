@@ -139,13 +139,14 @@ typedef struct s_fract {
 
 //int			fract_calc(t_complex c, t_complex z0);
 //fractol_utils
-t_fract		*create_fract(int fract_type);
+t_fract		*create_fract(int fract_type, t_complex init_c);
 void		free_fract(t_fract *frac);
+t_complex	get_z0(int frac_type, int av, char **ac);
 //void		put_pixel_color(char *pixel, uint color);
 int			get_fractal(char *name);
 //palette
 void		palette(int n, t_color *color_pal);
-t_color		new_color(uint r, uint g, uint b, uint a);
+t_color		new_color(unsigned int r, unsigned int g, unsigned int b, unsigned int a);
 // complex_oper0
 t_complex	casign(double a, double b);
 t_complex	cequal(t_complex b);

@@ -13,7 +13,6 @@
 
 int	get_fractal(char *name)
 {
-	printf ("recibido %s compara con M %i\n", name, ft_strncmp("WER", "WERI", 2));
 	if (!ft_strncmp(name, "M", 2))
 		return (FRACT_MAND);
 	else if (!ft_strncmp(name, "J", 2))
@@ -36,22 +35,21 @@ static void	*get_frac_cfunct(int fract_type)
 	return (burning);
 }
 
-t_fract	*create_fract(int fract_type)
+t_fract	*create_fract(int fract_type, t_complex init_c)
 {
 	t_fract	*frac;
-//	int		i;
-//	int		j;
 
 	frac = (t_fract *)malloc(sizeof(t_fract));
 	frac->color = (t_color *) malloc (ITER * sizeof(t_color));
+	palette(XK_5, frac->color);
 	frac->fract_code = fract_type;
 	frac->function = get_frac_cfunct(fract_type);
 	frac->size_x = SIZE_X;
 	frac->size_y = SIZE_Y;
 	frac->frame = 50;
 	frac->c1 = casign(ORIG_X_MANDEL, ORIG_Y_MANDEL);
-	frac->c = casign(0, 0);
-	frac->z0 = casign(0, 0);
+	frac->c = casign(init_c.re, init_c.im);
+	frac->z0 = casign(init_c.re, init_c.im);
 	frac->escala_x = (double)ESC_MANDEL;
 	frac->escala_y = frac->escala_x;
 	frac->zoom_fact = 1.2;
@@ -65,18 +63,32 @@ t_fract	*create_fract(int fract_type)
 	return (frac);
 }
 
+t_complex	get_z0(int frac_type, int av, char **ac)
+{
+	t_complex	out;
+
+	out = casign (0,0);
+	if (frac_type == FRACT_JULIA || frac_type == FRACT_MAND)
+	{
+		if (av >= 3)
+			out.re = ft_atoi(ac[2]);
+		if (av >= 4)
+			out.im = ft_atoi(ac[3]);
+	}
+	return (out);
+}
+
 void	free_fract(t_fract *frac)
 {
 	mlx_destroy_image(frac->mlx_ptr, frac->image);
 	mlx_destroy_window(frac->mlx_ptr, frac->win_ptr);
-	//mlx_destroy_display(frac->mlx_ptr);
 	free(frac->mlx_ptr);
 	free(frac->color);
 	free(frac);
 	return ;
 }
 
+	//mlx_destroy_display(frac->mlx_ptr);
 	//free(frac->mlx_ptr);
 	/*free(frac->win_ptr);*/
 	/*free(frac->image);*/
-

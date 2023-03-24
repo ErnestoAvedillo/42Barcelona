@@ -34,15 +34,18 @@ static int	print_help_message(void)
 
 int	main(int av, char **ac)
 {
-	t_fract	*frac;
-	int		fract_type;
+	t_fract		*frac;
+	int			fract_type;
+	t_complex	init_c;
 
 	if (av < 2)
 		return (print_help_message());
 	fract_type = get_fractal(ac[1]);
 	if (fract_type == 0)
 		return (print_help_message());
-	frac = create_fract(fract_type);
+	init_c = get_z0(fract_type, av, ac);
+	printf("%f %f este es el vlor entrado\n",init_c.re, init_c.im);
+	frac = create_fract(fract_type, init_c);
 	fractol_draw(frac);
 	mlx_key_hook(frac->win_ptr, key_events, (t_fract *)frac);
 	mlx_hook(frac->win_ptr, EVENT_BUTTON_PRESS, MASK_BUTTON_PRESS, \

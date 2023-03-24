@@ -37,7 +37,7 @@ void	conf_julia(t_fract *frac)
 {
 	frac->fract_code = FRACT_JULIA;
 	frac->function = julia;
-	frac->c = casign(0, 0);
+	frac->c = casign(0, 0.8);
 	frac->z0 = casign(-0.8, -0.8);
 	frac->c1 = casign(ORIG_X_JULIA, ORIG_Y_JULIA);
 	frac->escala_x = (double)ESC_JULIA;
