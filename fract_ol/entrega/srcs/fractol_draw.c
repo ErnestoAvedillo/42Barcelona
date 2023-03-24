@@ -15,12 +15,12 @@
 	//pixel = color.r <<24 | color.g << 16 | color.b << 8 | color.a;
 
 */
-void	put_pixel_color(char *pixel, uint color)
+void	put_pixel_color(char *pixel, t_color color)
 {
-	pixel[0] = color;
-	pixel[1] = color >> 8;
-	pixel[2] = color >> 16;
-	pixel[3] = color >> 24;
+	pixel[0] = color.b;
+	pixel[1] = color.g;
+	pixel[2] = color.r;
+	pixel[3] = color.a;
 	//printf("entrada R%x G%x B%x A%x --> salida pixel %x\n", color.r, color.g>>8, color.b>>16, color.a>>24, *pixel);
 //	getchar();
 	//pixel[3] = 0;

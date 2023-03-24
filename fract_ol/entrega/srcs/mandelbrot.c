@@ -20,7 +20,7 @@ int	mandelbrot(t_complex z0, t_complex c, int limit)
 
 	i = 0;
 	znext = cequal(z0);
-	while (i <= ITER)
+	while (i < ITER)
 	{
 		if ((znext.re * znext.re + znext.im * znext.im) > (double)limit)
 			break ;
