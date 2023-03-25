@@ -33,16 +33,16 @@ typedef struct s_complex {
 
 typedef struct s_mouse_pos
 {
-	int x;
-	int y;
-} t_mouse_pos;
+	int	x;
+	int	y;
+}	t_mouse_pos;
 
 typedef struct s_indexes
 {
 	int	i;
 	int	j;
 	int	k;
-} t_indexes;
+}	t_indexes;
 
 typedef struct s_img_buff
 {
@@ -50,7 +50,7 @@ typedef struct s_img_buff
 	int		line_bytes;
 	int		endian;
 	char	*buffer;
-} t_img_buff;
+}	t_img_buff;
 
 typedef struct s_color{
 	int	r;
@@ -130,12 +130,12 @@ typedef struct s_fract {
 # define EVENT_MOTION_NOTIFY 06
 # define EVENT_DESTROY_NOTIFY 17
 // Key	Event	 	Key	Event	 	Key	Event
-# define MASK_KEY_PRESS 1L<<0
-# define MASK_KEY_RELEASE 1L<<1
-# define MASK_BUTTON_PRESS 1L<<2
-# define MASK_BUTTON_RELEASE 1L<<3
-# define MASK_MOTION_NOTIFY 1L<<6
-# define MASK_DESTROY_NOTIFY 1L<<17
+# define MASK_KEY_PRESS 0
+# define MASK_KEY_RELEASE 1
+# define MASK_BUTTON_PRESS 2
+# define MASK_BUTTON_RELEASE 3
+# define MASK_MOTION_NOTIFY 6
+# define MASK_DESTROY_NOTIFY 17
 
 //int			fract_calc(t_complex c, t_complex z0);
 //fractol_utils
@@ -146,7 +146,8 @@ t_complex	get_z0(int frac_type, int av, char **ac);
 int			get_fractal(char *name);
 //palette
 void		palette(int n, t_color *color_pal);
-t_color		new_color(unsigned int r, unsigned int g, unsigned int b, unsigned int a);
+t_color		new_color(unsigned int r, unsigned int g, unsigned int b, \
+					unsigned int a);
 // complex_oper0
 t_complex	casign(double a, double b);
 t_complex	cequal(t_complex b);
@@ -167,7 +168,7 @@ int			julia(t_complex z0, t_complex c, int limit);
 void		conf_julia(t_fract *frac);
 // tricorn
 int			tricorn(t_complex z0, t_complex c, int limit);
-void 		conf_tricorn(t_fract *frac);
+void		conf_tricorn(t_fract *frac);
 // fractol_draw
 void		fractol_draw(t_fract *frac);
 

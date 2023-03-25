@@ -12,37 +12,45 @@
 
 #include"fractol.h"
 
+static void	generate_fract(int key, t_fract *frac);
+{
+	if (key == XK_M)
+		conf_mandel(frac);
+	else if (key == XK_J)
+		conf_julia(frac);
+	else if (key == XK_B)
+		conf_burning(frac);
+	else if (key == XK_T)
+		conf_tricorn(frac);
+	return ;
+}
+
 int	key_events(int key, t_fract *frac)
 {
 	int	x;
 	int	y;
 
-	printf("hola recibido %x -- direccion %p\n", key, frac);
-	if (key == XK_uparrow)
+	if (key == XK_UPPRROW)
 	{
 		mlx_mouse_get_pos(frac->mlx_ptr, frac->win_ptr, &x, &y);
-		printf("KEY ARRW UP posicion x = %i ; posicion y = %i\n", x, y);
 		new_scale(SCALE_UP, frac, x, y);
 	}
-	else if (key == XK_downarrow)
+	else if (key == XK_DOWNARROW)
 	{
 		mlx_mouse_get_pos(frac->mlx_ptr, frac->win_ptr, &x, &y);
-		printf("KEY ARRW DWN posicion x = %i ; posicion y = %i\n", x, y);
 		new_scale(SCALE_UP, frac, x, y);
 	}
-	else if (key == XK_m)
-		conf_mandel(frac);
-	else if (key == XK_j)
-		conf_julia(frac);
-	else if (key == XK_b)
-		conf_burning(frac);
-	else if (key == XK_t)
-		conf_tricorn(frac);
 	else if (key >= XK_1 && key <= XK_5)
 		palette(key, frac->color);
 	else if (key == XK_ESC)
 		close_win(frac);
-	else if (key == 1)
+	else
+		generate_fract(key, frac);
+	fractol_draw(frac);
+	return (0);
+}
+
+/*	else if (key == 1)
 		frac->c1.re += 0.1;
 	else if (key == 3)
 		frac->c1.re -= 0.1;
@@ -56,7 +64,4 @@ int	key_events(int key, t_fract *frac)
 	{
 		if (frac->limit > 1)
 			frac->limit -= 1;
-	}
-	fractol_draw(frac);
-	return (0);
-}
+	}*/

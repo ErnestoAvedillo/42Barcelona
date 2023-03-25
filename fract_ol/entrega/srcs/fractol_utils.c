@@ -67,7 +67,7 @@ t_complex	get_z0(int frac_type, int av, char **ac)
 {
 	t_complex	out;
 
-	out = casign (0,0);
+	out = casign(0, 0);
 	if (frac_type == FRACT_JULIA || frac_type == FRACT_MAND)
 	{
 		if (av >= 3)

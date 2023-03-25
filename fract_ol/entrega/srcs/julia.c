@@ -43,5 +43,4 @@ void	conf_julia(t_fract *frac)
 	frac->escala_x = (double)ESC_JULIA;
 	frac->escala_y = frac->escala_x;
 	palette(XK_5, frac->color);
-
 }

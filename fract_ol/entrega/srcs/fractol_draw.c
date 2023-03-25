@@ -11,33 +11,15 @@
 /* ************************************************************************** */
 
 #include"fractol.h"
-/*
-	//pixel = color.r <<24 | color.g << 16 | color.b << 8 | color.a;
 
-*/
 void	put_pixel_color(char *pixel, t_color color)
 {
 	pixel[0] = color.b;
 	pixel[1] = color.g;
 	pixel[2] = color.r;
 	pixel[3] = color.a;
-	//printf("entrada R%x G%x B%x A%x --> salida pixel %x\n", color.r, color.g>>8, color.b>>16, color.a>>24, *pixel);
-//	getchar();
-	//pixel[3] = 0;
 }
 
-/*
-	int max;
-	int min;
-	max = 0;
-	min = ITER;
-			if (result > max)
-				max = result;
-			if (result < min)
-				min = result;
-	printf ("rango %i -- %i\n", max, min);
-
-*/
 void	fractol_draw(t_fract *frac)
 {
 	t_indexes	ind;
@@ -55,8 +37,8 @@ void	fractol_draw(t_fract *frac)
 			frac->z0.re = (frac->c1.re + ind.i * frac->escala_x);
 			frac->z0.im = (frac->c1.im + ind.j * frac->escala_y);
 			result = frac->function(frac->c, frac->z0, frac->limit);
-			put_pixel_color(&buf.buffer[ind.j * buf.line_bytes + ind.i * buf.pixel_bits / 8], frac->color[result]);
-			//buf.buffer[ind.j * buf.line_bytes + ind.i * buf.pixel_bits / 8] = frac->color[result];
+			put_pixel_color(&buf.buffer[ind.j * buf.line_bytes + \
+					ind.i * buf.pixel_bits / 8], frac->color[result]);
 		}
 	}
 	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr, frac->image, 0, 0);
