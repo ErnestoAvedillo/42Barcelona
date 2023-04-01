@@ -44,7 +44,6 @@ int	main(int av, char **ac)
 	if (fract_type == 0)
 		return (print_help_message());
 	init_c = get_z0(fract_type, av, ac);
-	printf("%f %f este es el vlor entrado\n", init_c.re, init_c.im);
 	frac = create_fract(fract_type, init_c);
 	fractol_draw(frac);
 	mlx_key_hook(frac->win_ptr, key_events, (t_fract *)frac);

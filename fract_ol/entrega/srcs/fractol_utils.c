@@ -41,7 +41,6 @@ t_fract	*create_fract(int fract_type, t_complex init_c)
 
 	frac = (t_fract *)malloc(sizeof(t_fract));
 	frac->color = (t_color *) malloc (ITER * sizeof(t_color));
-	palette(XK_5, frac->color);
 	frac->fract_code = fract_type;
 	frac->function = get_frac_cfunct(fract_type);
 	frac->size_x = SIZE_X;
@@ -54,6 +53,7 @@ t_fract	*create_fract(int fract_type, t_complex init_c)
 	frac->escala_y = frac->escala_x;
 	frac->zoom_fact = 1.2;
 	frac->limit = 4;
+//	palette(XK_5, frac->color);
 	frac->mlx_ptr = mlx_init();
 	frac->win_ptr = mlx_new_window(frac->mlx_ptr, frac->size_x, frac->size_y, \
 				"Los fractales de Ernesto");

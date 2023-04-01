@@ -42,5 +42,5 @@ void	conf_mandel(t_fract *frac)
 	frac->c1 = casign(ORIG_X_MANDEL, ORIG_Y_MANDEL);
 	frac->escala_x = (double)ESC_MANDEL;
 	frac->escala_y = frac->escala_x;
-	palette(XK_1, frac->color);
+	palette(XK_5, frac->color);
 }

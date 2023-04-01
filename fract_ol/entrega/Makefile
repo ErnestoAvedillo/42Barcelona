@@ -38,6 +38,8 @@ RM := rm -rfd
 CC := gcc 
 FLAGS := -Wall -Werror -Wextra -O2 -fsanitize=address
 
+#-fsanitize=address
+
 all : $(NAME)
 
 -include:$(DPNS_MAN) $(DPNS_MAN_LNX)
@@ -48,7 +50,7 @@ $(NAME): $(OBJS_MAN) $(PRINTF_NAME) $(LIBX_NAME)
 
 $(OBJDST_DIR)%.o: $(DIR_SRC)%.c $(OBJDST_DIR)%.d
 	mkdir -p $(OBJDST_DIR)
-	$(CC) $(FLAGS) -D KEY_MOUSE_COD_MAC_H  -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
+	$(CC) $(FLAGS) -D KEY_MAC_H  -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
 
 $(OBJDST_DIR)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(OBJDST_DIR)
@@ -66,9 +68,10 @@ linux: $(NAME_LNX)
 $(NAME_LNX): $(PRINTF_NAME) $(LIBX_NAME_LNX) $(OBJS_MAN_LNX) 
 	$(CC) $(FLAGS) $(OBJS_MAN_LNX) $(LIBX_NAME_LNX) $(PRINTF_NAME) -L/usr/lib -Imlx -lXext -lX11 -L/usr/lib/X11 -lm -lz -o $(NAME_LNX)
 
+ 
 $(OBJDST_DIR_LNX)%.o: $(DIR_SRC)%.c $(OBJDST_DIR_LNX)%.d
 	mkdir -p $(OBJDST_DIR_LNX)
-	$(CC) $(FLAGS) -D KEY_MOUSE_COD_LNX_H -I/usr/include/ -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR_LNX)$*.o
+	$(CC) $(FLAGS) -D KEY_LNX_H -I/usr/include/ -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR_LNX)$*.o
 
 $(OBJDST_DIR_LNX)%.d: $(DIR_SRC)%.c $(INCLUDE_LNX)
 	mkdir -p $(OBJDST_DIR_LNX)

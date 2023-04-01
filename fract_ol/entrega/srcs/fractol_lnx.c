@@ -9,7 +9,7 @@
 /*   Updated: 2023/02/04 11:28:02 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"fractol.h"
+#include "fractol.h"
 
 static int	print_help_message(void)
 {
@@ -34,15 +34,17 @@ static int	print_help_message(void)
 
 int	main(int av, char **ac)
 {
-	t_fract	*frac;
-	int		fract_type;
+	t_fract		*frac;
+	int			fract_type;
+	t_complex	init_c;
 
 	if (av < 2)
 		return (print_help_message());
 	fract_type = get_fractal(ac[1]);
 	if (fract_type == 0)
 		return (print_help_message());
-	frac = create_fract(fract_type);
+	init_c = get_z0(fract_type, av, ac);
+	frac = create_fract(fract_type, init_c);
 	fractol_draw(frac);
 	mlx_key_hook(frac->win_ptr, key_events, (t_fract *)frac);
 	mlx_mouse_hook_pre(frac->win_ptr, mouse_events_pre, (t_fract *)frac);

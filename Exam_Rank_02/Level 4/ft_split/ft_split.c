@@ -1,86 +1,103 @@
-#include<stdlib.h>
-#include<stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 15:06:42 by eavedill          #+#    #+#             */
+/*   Updated: 2023/03/26 17:01:08 by eavedill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int is_space_or_tab (char c)
+#include "stdlib.h"
+
+int isdelimiter(char c)
 {
-    if (c == ' ' || c == '\t')
+    if (c == ' ' || c == '\t' || c == '\n')
         return (1);
-    return(0);
+    return (0);
 }
-int wordcount(char *str)
-{
-    int i;
-    int n;
 
-    i = 0;
-    if (!is_space_or_tab(str[0]))
-        n = 1;
-    while(str[++i])
-    {
-        if (str[i + 1] && (is_space_or_tab(str[i]) && !is_space_or_tab(str[i + 1])))
-            n++;
-    }
-    return (n);
-}
-char    **ft_split(char *str)
+int nr_words(char *s)
 {
     int i;
-    int k;
-    int n;
-    int pal;
+    int out;
+
+    out = 0;
+    i = 0;
+    while (isdelimiter(s[i]))
+        i++;
+    if (s[i] == '\0')
+        return (0);
+    out++;
+    while (s[++i])
+    {
+        while (isdelimiter(s[i]))
+            i++;
+        if (s[i] != '\0' && isdelimiter(s[i - 1]))
+            out++;
+    }
+    return (out);
+}
+
+char **ft_split(char *str)
+{
+    int i;
     int start;
+    int nr;
+    int j;
     char **out;
 
-    pal = wordcount(str);
-    printf(" palabras %i\n", pal);
-    i = 0;
-    k = 0;
-    out = (char**) malloc((pal + 1) * sizeof(char));
-    out[pal] = NULL;
-    while(str[i])
+    nr = nr_words(str);
+    if (nr == 0)
     {
-        printf("copmleto pr %c --- %s \n", str[i], out[0]);
-        while (str[i] && is_space_or_tab(str[i]))
-            i++;
-        if(str[i] && !is_space_or_tab(str[i]))
-            start = i;
-        while (str[i] && !is_space_or_tab(str[i]))
-            i++;
-        printf("start %i i %i k %i pal %i\n", start, i, k , pal);
-        if (start < i && k < pal)
-        {
-            out[k] = (char *)malloc ((i - start + 1)* sizeof (char));
-            n = -1;
-            printf("inicio out %p\n", &out[k][0]);
-            while (start <= i)
-            {
-                out[k][++n] = str[start];
-                printf("spliteado %i , %i --- %c ---- %c\n", k, n, out[k][n], str[start]);
-                start++;
-            }
-            out[k][n] = '\0';
-            printf("copmleto bis %i --- %s \n", k, out[k]);
-            k++;
-        }
+        out = (char **)malloc(1 * sizeof(char *));
+        return (out);
     }
-    return(out);
+    out = (char **)malloc((nr + 1) * sizeof(char *));
+    out[nr] = NULL;
+    i = 0;
+    nr = 0;
+    while (str[i])
+    {
+        while (isdelimiter(str[i]) && str[i])
+            i++;
+        if (!str[i])
+            return (out);
+        start = i;
+        while (!isdelimiter(str[i]) && str[i])
+            i++;
+        out[nr] = (char *)malloc((i - start + 1) * sizeof(char));
+        j = 0;
+        while (start < i)
+            out[nr][j++] = str[start++];
+        out[nr][j] = '\0';
+        if (!str[i])
+            return (out);
+        i++;
+        nr++;
+    }
+    return (out);
 }
+/*
+#include "stdio.h"
 
-int main (int av, char **ac)
+int main(int av, char **ac)
 {
-    int i = 0;
-    char **str;
+    int i;
+    char **out;
+
     if (av == 2)
     {
-        str = ft_split (ac[1]);
-        printf ("era %s\n", ac[1]);
-        while (str[i] != NULL)
+        i = 0;
+        out = ft_split(ac[1]);
+        while (out[i])
         {
-            printf("control %i ---- %p\n", i, str[i]);
-            printf("spliteado %i ---- %p ---- %s\n", i, str[i], str[i]);
+            printf("salida %p --  %s --  %i \n", out[i], out[i], i);
             i++;
         }
-        printf("paso\n");
-        free (str);
     }
 }
+
+*/

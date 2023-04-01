@@ -15,23 +15,11 @@
 int	mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 {
 	if (mouse == MOUSE_BTN_ROT_UP)
-	{
 		new_scale(SCALE_UP, frac, x, y);
-		fractol_draw(frac);
-	}
 	else if (mouse == MOUSE_BTN_MIDDLE)
 		frac->button_pressed = MOUSE_BTN_MIDDLE;
 	else if (mouse == MOUSE_BTN_ROT_DW)
-	{
 		new_scale(SCALE_DW, frac, x, y);
-		fractol_draw(frac);
-	}	
-	else if (mouse == MOUSE_BTN_LEFT && x > 0 && y > 0)
-	{
-		frac->button_pressed = MOUSE_BTN_LEFT;
-		frac->mouse_pos.x = x;
-		frac->mouse_pos.y = y;
-	}
 	else if (mouse == MOUSE_BTN_RIGHT)
 	{
 		frac->button_pressed = MOUSE_BTN_RIGHT;
@@ -39,16 +27,21 @@ int	mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 		{
 			frac->c.re = frac->c1.re + frac->escala_x * x;
 			frac->c.im = frac->c1.im + frac->escala_y * y;
-			fractol_draw(frac);
 		}
 	}
+	if (mouse == MOUSE_BTN_LEFT && x > 0 && y > 0)
+	{
+		frac->button_pressed = MOUSE_BTN_LEFT;
+		frac->mouse_pos.x = x;
+		frac->mouse_pos.y = y;
+	}
+	else
+		fractol_draw(frac);
 	return (0);
 }
 
 int	mouse_events_rel(int mouse, int x, int y, t_fract *frac)
 {
-	t_complex	pos;
-
 	frac->button_pressed = 0;
 	if (mouse == MOUSE_BTN_LEFT)
 	{
@@ -56,21 +49,18 @@ int	mouse_events_rel(int mouse, int x, int y, t_fract *frac)
 		frac->c1.im += (frac->mouse_pos.y - y) * frac->escala_y;
 		fractol_draw(frac);
 	}
+	return (0);
+}
+/*	//t_complex	pos;
 	if (mouse == MOUSE_BTN_RIGHT)
 	{
 		pos.re = frac->c1.re + frac->escala_x * x;
 		pos.im = frac->c1.im + frac->escala_y * y;
 	}
-	return (0);
-}
+*/
 
 int	mouse_events_mov(int x, int y, t_fract *frac)
 {
-	t_complex pos;
-	int res;
-	t_img_buff buf;
-	char *micolor;
-
 	if (x > 0 && y > 0 && frac->button_pressed == MOUSE_BTN_RIGHT)
 	{
 		frac->c.re = frac->c1.re + frac->escala_x * x;
@@ -85,14 +75,21 @@ int	mouse_events_mov(int x, int y, t_fract *frac)
 		frac->mouse_pos.x = x;
 		frac->mouse_pos.y = y;
 	}
-	else
+	return (0);
+}
+
+/*	t_complex	pos;
+	int			res;
+	t_img_buff	buf;
+	char		*micolor;
+*/
+/*	else
 	{
-		buf.buffer = mlx_get_data_addr(frac->image, &buf.pixel_bits,
-									   &buf.line_bytes, &buf.endian);
+		buf.buffer = mlx_get_data_addr(frac->image, &buf.pixel_bits, \
+										&buf.line_bytes, &buf.endian);
 		pos.re = frac->c1.re + frac->escala_x * x;
 		pos.im = frac->c1.im + frac->escala_y * y;
 		res = frac->function(frac->c, pos, frac->limit);
 		micolor = &buf.buffer[y * buf.line_bytes + x * buf.pixel_bits / 8];
 	}
-	return (0);
-}
+*/

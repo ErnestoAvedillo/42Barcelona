@@ -17,7 +17,7 @@
 
 int	close_win(t_fract *frac)
 {
-	mlx_destroy_window(frac->mlx_ptr, frac->win_ptr);
+	//mlx_destroy_window(frac->mlx_ptr, frac->win_ptr);
 	free_fract(frac);
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);

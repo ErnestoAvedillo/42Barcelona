@@ -12,7 +12,7 @@
 
 #include"fractol.h"
 
-static void	generate_fract(int key, t_fract *frac);
+static void	generate_fract(int key, t_fract *frac)
 {
 	if (key == XK_M)
 		conf_mandel(frac);
@@ -30,7 +30,7 @@ int	key_events(int key, t_fract *frac)
 	int	x;
 	int	y;
 
-	if (key == XK_UPPRROW)
+	if (key == XK_UPARROW)
 	{
 		mlx_mouse_get_pos(frac->mlx_ptr, frac->win_ptr, &x, &y);
 		new_scale(SCALE_UP, frac, x, y);

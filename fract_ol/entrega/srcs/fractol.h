@@ -17,10 +17,10 @@
 # include<math.h>
 # include<stdio.h>
 /// #include<limits.h>
-# ifdef KEY_MOUSE_COD_LNX_H
+# ifdef KEY_LNX_H
 #  include "key_mouse_cod_lnx.h"
 # endif
-# ifdef KEY_MOUSE_COD_MAC_H
+# ifdef KEY_MAC_H
 #  include "key_mouse_cod_mac.h"
 # endif
 
