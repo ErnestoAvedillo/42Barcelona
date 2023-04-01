@@ -46,11 +46,11 @@ all : $(NAME)
 
 #MAC compilation
 $(NAME): $(OBJS_MAN) $(PRINTF_NAME) $(LIBX_NAME)
-	$(CC) $(FLAGS) $(LIBX_LNK) $(OBJS_MAN) $(PRINTF_NAME) -o $(NAME)
+	$(CC) $(FLAGS) -static-libsan $(LIBX_LNK) $(OBJS_MAN) $(PRINTF_NAME) -o $(NAME)
 
 $(OBJDST_DIR)%.o: $(DIR_SRC)%.c $(OBJDST_DIR)%.d
 	mkdir -p $(OBJDST_DIR)
-	$(CC) $(FLAGS) -D KEY_MAC_H  -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
+	$(CC) $(FLAGS) -g -D KEY_MAC_H  -I $(DIR_PRINTF) -I $(DIR_LIBX) -c $(DIR_SRC)$*.c -o $(OBJDST_DIR)$*.o
 
 $(OBJDST_DIR)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(OBJDST_DIR)

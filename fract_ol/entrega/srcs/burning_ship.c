@@ -37,7 +37,7 @@ int	burning(t_complex z0, t_complex c, int limit)
 		znext.im = brn_abs(2 * tmp.re * tmp.im) + c.im;
 		i++;
 	}
-	if (i == ITER + 1)
+	if (i == ITER)
 		i = 0;
 	return (i);
 }

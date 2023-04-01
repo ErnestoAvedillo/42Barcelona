@@ -33,8 +33,8 @@ void	palette(int n, t_color *palte)
 	int		gr;
 	double	gr_bn;
 
-	i = 0;
-	while (++i <= ITER)
+	i = -1;
+	while (++i < ITER)
 	{
 		gr_bn = (int)(0xff * (1 - i / (double)ITER));
 		gr = (int)(0xff * (-pow((2 * (double)i / ITER - 1), 2) + 1));
@@ -52,8 +52,8 @@ void	palette(int n, t_color *palte)
 			palte[i] = nw_col(rand() % 0xff, rand() % 0xff, \
 				rand() % 0xff, 0xa0);
 	}
-	if (n != XK_2)
-		palte[ITER] = nw_col(0, 0, 0, 0);
+	if (n == XK_4)
+		palte[0] = nw_col(0, 0, 0, 0);
 }
 
 /*		//grado1 = i / (double)ITER;

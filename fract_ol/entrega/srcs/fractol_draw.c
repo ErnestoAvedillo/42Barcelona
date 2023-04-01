@@ -14,9 +14,9 @@
 
 void	put_pixel_color(char *pixel, t_color color)
 {
-	pixel[0] = color.b;
+	pixel[0] = color.r;
 	pixel[1] = color.g;
-	pixel[2] = color.r;
+	pixel[2] = color.b;
 	pixel[3] = color.a;
 }
 
@@ -28,10 +28,10 @@ void	fractol_draw(t_fract *frac)
 
 	buf.buffer = mlx_get_data_addr(frac->image, &buf.pixel_bits, \
 			&buf.line_bytes, &buf.endian);
-	ind.i = frac->frame;
+	ind.i = frac->frame -1;
 	while (++ind.i < frac->size_x - frac->frame)
 	{
-		ind.j = frac->frame;
+		ind.j = frac->frame - 1;
 		while (++ind.j < frac->size_y - frac->frame)
 		{
 			frac->z0.re = (frac->c1.re + ind.i * frac->escala_x);

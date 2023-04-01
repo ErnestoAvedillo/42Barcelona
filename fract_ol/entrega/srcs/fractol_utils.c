@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 08:28:36 by eavedill          #+#    #+#             */
-/*   Updated: 2023/02/14 08:28:38 by eavedill         ###   ########.fr       */
+/*   Updated: 2023/04/01 13:57:19 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include"fractol.h"
@@ -41,11 +41,12 @@ t_fract	*create_fract(int fract_type, t_complex init_c)
 
 	frac = (t_fract *)malloc(sizeof(t_fract));
 	frac->color = (t_color *) malloc (ITER * sizeof(t_color));
+	palette(XK_5, frac->color);
 	frac->fract_code = fract_type;
 	frac->function = get_frac_cfunct(fract_type);
 	frac->size_x = SIZE_X;
 	frac->size_y = SIZE_Y;
-	frac->frame = 50;
+	frac->frame = WIN_FRAME;
 	frac->c1 = casign(ORIG_X_MANDEL, ORIG_Y_MANDEL);
 	frac->c = casign(init_c.re, init_c.im);
 	frac->z0 = casign(init_c.re, init_c.im);
@@ -53,7 +54,6 @@ t_fract	*create_fract(int fract_type, t_complex init_c)
 	frac->escala_y = frac->escala_x;
 	frac->zoom_fact = 1.2;
 	frac->limit = 4;
-//	palette(XK_5, frac->color);
 	frac->mlx_ptr = mlx_init();
 	frac->win_ptr = mlx_new_window(frac->mlx_ptr, frac->size_x, frac->size_y, \
 				"Los fractales de Ernesto");
@@ -71,9 +71,9 @@ t_complex	get_z0(int frac_type, int av, char **ac)
 	if (frac_type == FRACT_JULIA || frac_type == FRACT_MAND)
 	{
 		if (av >= 3)
-			out.re = ft_atoi(ac[2]);
+			out.re = atof(ac[2]);
 		if (av >= 4)
-			out.im = ft_atoi(ac[3]);
+			out.im = atof(ac[3]);
 	}
 	return (out);
 }

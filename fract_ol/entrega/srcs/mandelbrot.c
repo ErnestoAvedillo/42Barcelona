@@ -30,6 +30,8 @@ int	mandelbrot(t_complex z0, t_complex c, int limit)
 		znext.im = 2 * tmp.re * tmp.im + c.im;
 		i++;
 	}
+	if (i == ITER)
+		i = 99;
 	return (i);
 }
 

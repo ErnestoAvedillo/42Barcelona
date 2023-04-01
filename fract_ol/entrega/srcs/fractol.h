@@ -95,6 +95,7 @@ typedef struct s_fract {
 # define SCALE_UP 1
 # define SCALE_DW 0
 
+# define WIN_FRAME 50
 # define SIZE_X 1000
 # define SIZE_Y 750
 

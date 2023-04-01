@@ -30,6 +30,8 @@ int	julia(t_complex c, t_complex z0, int limit)
 		znext.im = 2 * tmp.re * tmp.im + c.im;
 		i++;
 	}
+	if (i == ITER)
+		i = 0 ;
 	return (i);
 }
 

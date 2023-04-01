@@ -85,11 +85,18 @@ int	mouse_events_mov(int x, int y, t_fract *frac)
 */
 /*	else
 	{
-		buf.buffer = mlx_get_data_addr(frac->image, &buf.pixel_bits, \
-										&buf.line_bytes, &buf.endian);
-		pos.re = frac->c1.re + frac->escala_x * x;
-		pos.im = frac->c1.im + frac->escala_y * y;
-		res = frac->function(frac->c, pos, frac->limit);
-		micolor = &buf.buffer[y * buf.line_bytes + x * buf.pixel_bits / 8];
+		if(x > 0 && y > 0 && x < SIZE_X && y < SIZE_Y)
+		{
+			buf.buffer = mlx_get_data_addr(frac->image, &buf.pixel_bits, \
+											&buf.line_bytes, &buf.endian);
+			pos.re = frac->c1.re + frac->escala_x * x;
+			pos.im = frac->c1.im + frac->escala_y * y;
+			res = frac->function(frac->c, pos, frac->limit);
+			micolor = &buf.buffer[y * buf.line_bytes + x * buf.pixel_bits / 8];
+			printf("color encontrado %x - %x -%x - %x\n",micolor[0],micolor[1],\
+			micolor[2],micolor[3]);
+			printf("color guardado %i - %x - %x -%x - %x\n",res, frac->color[res].r,\
+			frac->color[res].g,frac->color[res].b,frac->color[res].a);
+		}
 	}
 */

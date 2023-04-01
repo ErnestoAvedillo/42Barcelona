@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 11:24:07 by eavedill          #+#    #+#             */
-/*   Updated: 2023/02/04 11:28:02 by eavedill         ###   ########.fr       */
+/*   Updated: 2023/04/01 14:05:01 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include"fractol.h"
@@ -14,11 +14,14 @@
 static int	print_help_message(void)
 {
 	ft_printf("=========Usage==========\n");
-	ft_printf("Available fractals are\n");
+	ft_printf("./fractol fractal real imaginary\n");
+	ft_printf("fractal: parameter can be\n");
 	ft_printf("\tM - Mandelbrot\n");
-	ft_printf("\tJ - Julia\n");
+	ft_printf("\tI- Julia\n");
 	ft_printf("\tT - Tricorn\n");
 	ft_printf("\tB - Burningship\n");
+	ft_printf("=========Numeric Prameters in real format======\n");
+	ft_printf("real:0.00 ; imaginary:0.00 \n");
 	ft_printf("=========Mouse Usage instructions==========\n");
 	ft_printf("\tLeft Button to move fractal\n");
 	ft_printf("\tWheel to zoom in & zoom out\n");
