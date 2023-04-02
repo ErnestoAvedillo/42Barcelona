@@ -44,13 +44,13 @@ CC := gcc
 FLAGS := -Wall -Wextra -Werror
 
 
-all: $(NAME_CLI).exe $(NAME_SRV).exe
+all: nextline printf $(NAME_CLI) $(NAME_SRV) 
 
 -include $(DSTS_CLI) $(DSTS_SRV)
 
 #Compile Client
-$(NAME_CLI).exe: $(OBJS_CLI) $(NAME_PRINTF) $(NAME_GNXTL)
-	$(CC) $(FLAGS) $(OBJS_CLI) $(NAME_PRINTF) $(NAME_GNXTL) -o $(NAME_CLI).exe
+$(NAME_CLI): $(OBJS_CLI) $(LIB_PRINTF) $(LIB_GNXTL)
+	$(CC) $(FLAGS) $(OBJS_CLI) $(LIB_PRINTF) $(LIB_GNXTL) -o $(NAME_CLI)
 
 $(OBJ_DST_DIR_CLI)%.o : $(SRCS_CLI) $(DSTS_CLI) $(INCLUDE_CLI)
 	mkdir -p $(OBJ_DST_DIR_CLI)
@@ -63,8 +63,8 @@ $(OBJ_DST_DIR_CLI)%.d:  $(SRCS_CLI) $(INCLUDE_CLI)
 	$(CC) -MM $(FLAGS) -c $(SRC_DIR_CLI)$*.c > $(OBJ_DST_DIR_CLI)$*.d
 
 #comìle server
-$(NAME_SRV).exe: $(OBJS_SRV) $(NAME_PRINTF) $(NAME_GNXTL)
-	$(CC) $(FLAGS) $(OBJS_SRV) $(NAME_PRINTF) $(NAME_GNXTL) -o $(NAME_SRV).exe
+$(NAME_SRV): $(OBJS_SRV) $(LIB_PRINTF) $(LIB_GNXTL)
+	$(CC) $(FLAGS) $(OBJS_SRV) $(LIB_PRINTF) $(LIB_GNXTL) -o $(NAME_SRV)
 
 $(OBJ_DST_DIR_SRV)%.o: $(SRCS_SRV) $(DSTS_SRV) $(INCLUDE_SRV)
 	mkdir -p $(OBJ_DST_DIR_SRV)
@@ -78,17 +78,11 @@ $(OBJ_DST_DIR_SRV)%.d: $(SRCS_SRV) $(INCLUDE_SRV)
 	$(CC) -MM $(FLAGS) -c $(SRC_DIR_SRV)$*.c > $(OBJ_DST_DIR_SRV)$*.d
 
 # Compiling getnextline.
-$(NAME_GNXTL): $(LIB_GNXTL)
-	$(CP) $(LIB_GNXTL) $(NAME_GNXTL)
-	
-$(LIB_GNXTL):
+nextline:
 	make -C$(DIR_GNXTL)
 
 # Compiling printf.
-$(NAME_PRINTF): $(LIB_PRINTF)
-	$(CP) $(LIB_PRINTF) $(NAME_PRINTF)
-	
-$(LIB_PRINTF):
+printf:
 	make -C$(DIR_PRINTF)
 
 clean:
@@ -97,7 +91,7 @@ clean:
 	make -C$(DIR_PRINTF) clean
 
 fclean: clean
-	$(RM) $(NAME_CLI) $(NAME_GNXTL) $(NAME_PRINTF) $(NAME_SRV) $(LIB_GNXTL) $(LIB_PRINTF)
+	$(RM) $(NAME_CLI) $(NAME_SRV) $(LIB_GNXTL) $(LIB_PRINTF)
 
 re: fclean all
 
@@ -119,4 +113,4 @@ print:
 	@echo DIR_GNXTL: $(DIR_GNXTL)
 	@echo LIB_GNXTL: $(LIB_GNXTL)
 
-.PHONY: print all re clean fclean $(LIB_GNXTL) $(LIB_PRINTF)
+.PHONY: print all re clean fclean nextline printf

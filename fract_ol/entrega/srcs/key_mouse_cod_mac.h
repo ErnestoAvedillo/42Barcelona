@@ -15,6 +15,8 @@
 
 # define XK_UPARROW 0x7e	 /* U+2191 UPWARDS ARROW */
 # define XK_DOWNARROW 0x7d	 /* U+2193 DOWNWARDS ARROW */
+# define XK_LEFTARROW 0x7b	 /* U+2191 UPWARDS ARROW */
+# define XK_RIGHTARROW 0x7c	 /* U+2193 DOWNWARDS ARROW */
 
 # define XK_ESC 	0x35	 /*key ESC*/
 
