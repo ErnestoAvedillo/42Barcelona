@@ -12,18 +12,6 @@
 
 #include"client.h"
 
-/*void print_bin(char c)
-{
-	int n = 8;
-
-	while (--n >= 0)
-	{
-		ft_putnbr_fd((c >> n) & 1, 1);
-	}
-	write(1, " Fin\n", 5);
-	return;
-}
-*/
 static void	sigact(int sig)
 {
 	static int	received = 0;
@@ -32,8 +20,7 @@ static void	sigact(int sig)
 		++received;
 	else
 	{
-		ft_putnbr_fd(received, 1);
-		ft_putchar_fd('\n', 1);
+		ft_printf("Charachters recived %i\n", received);
 		exit(0);
 	}
 }
