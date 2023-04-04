@@ -41,10 +41,12 @@ CP := cp -p
 
 CC := gcc
 
-FLAGS := -Wall -Wextra -Werror
+FLAGS := -Wall -Wextra -Werror 
 
 
 all: nextline printf $(NAME_CLI) $(NAME_SRV) 
+
+bonus: nextline printf $(NAME_CLI) $(NAME_SRV) 
 
 -include $(DSTS_CLI) $(DSTS_SRV)
 
@@ -113,4 +115,4 @@ print:
 	@echo DIR_GNXTL: $(DIR_GNXTL)
 	@echo LIB_GNXTL: $(LIB_GNXTL)
 
-.PHONY: print all re clean fclean nextline printf
+.PHONY: print all bonus re clean fclean nextline printf

@@ -1,30 +1,41 @@
- #include"client.h"
- 
- static void	sigact(int sig)//, siginfo_t *info, void *context)
-{
-	static int				i = 0;
-	static pid_t			client_pid = 0;
-	static unsigned char	c = 0;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/04 12:24:01 by eavedill          #+#    #+#             */
+/*   Updated: 2023/04/04 12:24:03 by eavedill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	//(void)context;
-	//if (!client_pid)
-	//	client_pid = info->si_pid;
-	c |= (sig == SIGUSR2);
-	if (++i == 8)
+#include"client.h"
+
+/*void print_bin(char c)
+{
+	int n = 8;
+
+	while (--n >= 0)
 	{
-		i = 0;
-		if (!c)
-		{
-			kill(client_pid, SIGUSR2);
-			client_pid = 0;
-			return ;
-		}
-		ft_putchar_fd(c, 1);
-		c = 0;
-		kill(client_pid, SIGUSR1);
+		ft_putnbr_fd((c >> n) & 1, 1);
 	}
+	write(1, " Fin\n", 5);
+	return;
+}
+*/
+static void	sigact(int sig)
+{
+	static int	received = 0;
+
+	if (sig == SIGUSR1)
+		++received;
 	else
-		c <<= 1;
+	{
+		ft_putnbr_fd(received, 1);
+		ft_putchar_fd('\n', 1);
+		exit(0);
+	}
 }
 
 static void	mt_kill(int pid, char *str)
@@ -53,19 +64,18 @@ static void	mt_kill(int pid, char *str)
 	}
 }
 
-int   main(int av, char **ac)
- {
-    if (av != 3 || ft_strlen (ac[2]) == 0) 
-      return (1);
-    int pid;
-    pid = getpid();
-	ft_printf("PID proceso cliente: %i \n",pid);
-	mt_kill(ft_atoi(ac[1]), ac[2]);
+int	main(int av, char **ac)
+{
+	int	pid;
+
+	if (av != 3 || ft_strlen (ac[2]) == 0)
+		return (1);
+	pid = getpid();
+	ft_printf("PID proceso cliente: %i \n", pid);
 	signal(SIGUSR1, sigact);
 	signal(SIGUSR2, sigact);
 	mt_kill(ft_atoi(ac[1]), ac[2]);
 	while (1)
 		pause();
 	return (0);
-
- }
+}
