@@ -12,9 +12,9 @@ INCLUDE_SRV := $(addprefix $(SRC_DIR_SRV), $(addsuffix .h, $(NAME_SRV)))
 OBJ_DST_DIR_CLI := ./obj_cli/
 OBJ_DST_DIR_SRV := ./obj_srv/
 
-SRC_CLI := $(NAME_CLI) client_utils
+SRC_CLI := $(NAME_CLI) 
 
-SRC_SRV := $(NAME_SRV) server_utils
+SRC_SRV := $(NAME_SRV) 
 
 SRCS_CLI := $(addprefix $(SRC_DIR_CLI), $(addsuffix .c, $(SRC_CLI)))
 SRCS_SRV := $(addprefix $(SRC_DIR_SRV), $(addsuffix .c, $(SRC_SRV)))
@@ -30,11 +30,6 @@ NAME_PRINTF := libftprintf.a
 DIR_PRINTF := ./printf/
 LIB_PRINTF := $(addprefix $(DIR_PRINTF),$(NAME_PRINTF))
 
-NAME_GNXTL := get_next_line.a
-DIR_GNXTL := ./nextline/
-LIB_GNXTL := $(addprefix $(DIR_GNXTL),$(NAME_GNXTL))
-
-
 RM := rm -rfd
 
 CP := cp -p
@@ -44,9 +39,9 @@ CC := gcc
 FLAGS := -Wall -Wextra -Werror 
 
 
-all: nextline printf $(NAME_CLI) $(NAME_SRV) 
+all: printf $(NAME_CLI) $(NAME_SRV) 
 
-bonus: nextline printf $(NAME_CLI) $(NAME_SRV) 
+bonus: printf $(NAME_CLI) $(NAME_SRV) 
 
 -include $(DSTS_CLI) $(DSTS_SRV)
 
@@ -79,17 +74,12 @@ $(OBJ_DST_DIR_SRV)%.d: $(SRCS_SRV) $(INCLUDE_SRV)
 	@echo paso 1 $(SRC_DIR)$*.c
 	$(CC) -MM $(FLAGS) -c $(SRC_DIR_SRV)$*.c > $(OBJ_DST_DIR_SRV)$*.d
 
-# Compiling getnextline.
-nextline:
-	make -C$(DIR_GNXTL)
-
 # Compiling printf.
 printf:
 	make -C$(DIR_PRINTF)
 
 clean:
 	$(RM) $(OBJ_DST_DIR_CLI) $(OBJ_DST_DIR_SRV)
-	make -C$(DIR_GNXTL) clean
 	make -C$(DIR_PRINTF) clean
 
 fclean: clean
