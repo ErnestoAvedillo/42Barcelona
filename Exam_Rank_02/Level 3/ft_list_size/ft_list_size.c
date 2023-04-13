@@ -1,21 +1,18 @@
 #include"./ft_list.h"
 
-int	ft_list_size(t_list *begin_list)
+int ft_list_size(t_list *begin_list)
 {
 	int i;
-	t_list *ptr;
-	
-	if (!begin_list->next)
-		return (0);
-	i = 1;
-	ptr = begin_list->next;
-	while(ptr)
+
+	i = 0;
+	while (begin_list)
 	{
-		ptr = ptr->next;
 		i++;
+		begin_list = begin_list->next;
 	}
 	return (i);
 }
+
 /*
 #include <stdio.h>
 #include <stdlib.h>

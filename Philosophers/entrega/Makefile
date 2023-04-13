@@ -1,6 +1,6 @@
 NAME := philo
 
-SRC := $(NAME)
+SRC := $(NAME) philo_utils ft_isdigit ft_atoi
 
 DIR_SRC := ./src/
 
@@ -20,18 +20,18 @@ RM= rm -rfd
 
 all: $(NAME)
 
--include $(DSPS)
+-include $(DSTS)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME) 
+	$(CC) $(FLAGS)  $(OBJS) -o $(NAME) 
 
-$(DIR_OBJ_DST)%.o : $(SRCS) %(INCLUDE)
-	mkdir -d $(DIR_OBJ_DST)
-	$(CC) $(FLAGS) -c $(DIR_SRC)*.c -o $(DIR_OBJ_DST)*.o 
+$(DIR_OBJ_DST)%.o : $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
+	mkdir -p $(DIR_OBJ_DST)
+	$(CC) $(FLAGS) -static-libasan -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o 
 
-$(DIR_OBJ_DST)%.d : $(SRCS) %(INCLUDE)
-	mkdir -d $(DIR_OBJ_DST)
-	$(CC) $(FLAGS) -MM -c $(DIR_SRC)*.c -o $(DIR_OBJ_DST)*.o 
+$(DIR_OBJ_DST)%.d : $(DIR_SRC)%.c $(INCLUDE)
+	mkdir -p $(DIR_OBJ_DST)
+	$(CC) $(FLAGS) -MM -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o 
 
 
 
@@ -39,3 +39,8 @@ print:
 	#echo INCLUDE: $(INCLUDE)
 	#echo NAME: $(NAME)
 	#echo SRC: $(SRCS)
+	#echo OBJS: $(OBJS)
+	#echo DSTS: $(DSTS)
+	#echo DIR_OBJ_DST: $(DIR_OBJ_DST)
+
+PHONY: all re print

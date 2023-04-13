@@ -21,6 +21,11 @@ int main (int av, char **ac)
     if (av == 2)
     {
         n =  atoi(ac[1]);
+        if (n <= 0)
+        {
+            write(1, "\n", 1);
+            return (0);
+        }
         if (n == 1)
             write(1, "1", 1);
         i = 2;
