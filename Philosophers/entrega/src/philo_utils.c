@@ -39,10 +39,8 @@ void *work_proc(void *var)
 	t_list_philo *philos;
 
 	philos = (t_list_philo *)var;
-	printf("entro %i\n", philos->philo_nr);
 	while (philos->die->time--)
-	{/*
-		printf("\033[13;1Hdireccion2 %p \n", philos);
+	{
 		if (philos->eat->status)
 		{
 			philos->eat->t1 = get_time();
@@ -57,7 +55,6 @@ void *work_proc(void *var)
 		}
 		else
 		{
-			printf("\033[14;1Hdireccion3 %p %i %i\n", philos, philos->fork_left, philos->fork_rght);
 			if (!philos->arr_forks[philos->fork_left] && !philos->arr_forks[philos->fork_rght])
 			{
 				philos->eat->t0 = get_time();
@@ -67,18 +64,19 @@ void *work_proc(void *var)
 				philos->eat->t1 = 0;
 			}
 		}
-		printf("\033[15;1Hdireccion4 %p \n", philos);
 		if (philos->die->status)
 			if (philos->die->time >= get_time() - philos->die->t0)
 			{
 			philos->die->finished = 1;
 			print_status(philos);
 			break;
-		}*/
+		}
 		print_status(philos);
-		printf("\033[%i;1Hdireccion1 %p -- %i", philos->philo_nr + 12, philos, philos->philo_nr);
-		printf("impreso %i\n", philos->philo_nr);
-		sleep(1);
+//		printf("\033[%i;1Hdireccion1 %p -- %i", philos->philo_nr + 12, philos, philos->philo_nr);
+//		printf("impreso %i\n", philos->philo_nr);
+		usleep(5000);
+		if (philos->die->time == 0)
+			philos->die->finished = 1;
 	}
 	return (philos);
 }
@@ -120,28 +118,25 @@ t_list_philo *start_proc(t_philo *philo)
 		else
 			philos->fork_left = i;
 		philos->fork_rght = i - 1;
-		printf("\033[%i;1Hdireccion1 %p -- %i\t", philos->philo_nr + 12, philos, philos->philo_nr);
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
-		sleep(1);
+		usleep(5000);
 		philos = philos->next;
-		printf("\033[18;1Hpaso%p\n",philos);
+
 		i++;
 	}
-	printf("\033[16;1Hpaso\n");
-	getchar();
 	return (frst_philo);
 }
 
 void	join_thread(t_list_philo *philos)
 {
-	t_list_philo *aux;
-	free(philos->arr_forks);
+//	t_list_philo *aux;
+//	free(philos->arr_forks);
 	while (philos)
 	{
 		pthread_join(philos->thrd, NULL);
-		aux = philos->next;
-		free(philos);
-		philos = aux;
+//		aux = ;
+//		free(philos);
+		philos = philos->next;
 	}
 }
 
@@ -152,9 +147,14 @@ void finish_control(t_list_philo *philos)
 	aux = philos;
 	while (!aux->die->finished)
 	{
-		if (!aux)
+//		printf("\033[%i;1Hdireccion1 %p -->%p , %i\n", aux->philo_nr + 12, aux, aux->next, aux->die->finished);
+		if (!aux->next)
 			aux = philos;
 		else
 			aux = aux->next;
 	}
+//	usleep(500);
+//	printf("salgo\n");
+//	getchar();
+	return ;
 }

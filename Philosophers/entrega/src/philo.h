@@ -48,6 +48,7 @@ typedef struct s_list_philo
 	int				fork_left;
 	int				fork_rght;
 	int				*arr_forks;
+	pthread_mutex_t	*mutex;
 	void			*next;
 } t_list_philo;
 

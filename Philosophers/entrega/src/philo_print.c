@@ -21,7 +21,7 @@ void print_status(t_list_philo *philos)
 	j++;
 	printf("\033[%i;1HAddress  \033[%i;%iH%p", j, j, philos->philo_nr * 20, philos);
 	j++;
-	printf("\033[%i;1Hthread  \033[%i;%iH%lu", j, j, philos->philo_nr * 20, philos->thrd);
+	printf("\033[%i;1Hthread  \033[%i;%iH%lu", j, j, philos->philo_nr * 20,(long) philos->thrd);
 	j++;
 	printf("\033[%i;1Hdie \033[%i;%iH%u", j, j, philos->philo_nr * 20, philos->die->time);
 	j++;
