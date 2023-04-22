@@ -1,12 +1,12 @@
 NAME := philo
 
-SRC := $(NAME) philo_utils ft_isdigit ft_atoi
+SRC := $(NAME) philo_utils ft_isdigit ft_atoi philo_mem philo_print
 
 DIR_SRC := ./src/
 
 DIR_OBJ_DST := ./obj_dst/
 
-INCLUDE:= $(addprefix $(DIR_SRC),$(addsuffix .h, $(INCLUDE)))
+INCLUDE:= $(addprefix $(DIR_SRC),$(addsuffix .h, $(NAME)))
 
 SRCS:= $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC)))
 OBJS:= $(addprefix $(DIR_OBJ_DST),$(addsuffix .o,$(SRC)))
@@ -23,17 +23,23 @@ all: $(NAME)
 -include $(DSTS)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS)  $(OBJS) -o $(NAME) 
+	$(CC) $(FLAGS) -static-libasan  $(OBJS) -o $(NAME) 
 
-$(DIR_OBJ_DST)%.o : $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
+$(DIR_OBJ_DST)%.o: $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
 	mkdir -p $(DIR_OBJ_DST)
-	$(CC) $(FLAGS) -static-libasan -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o 
+	$(CC) $(FLAGS) -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o 
 
-$(DIR_OBJ_DST)%.d : $(DIR_SRC)%.c $(INCLUDE)
+$(DIR_OBJ_DST)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(DIR_OBJ_DST)
 	$(CC) $(FLAGS) -MM -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o 
 
+clean:
+	$(RM) $(DIR_OBJ_DST)
 
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
 
 print:
 	#echo INCLUDE: $(INCLUDE)
@@ -43,4 +49,4 @@ print:
 	#echo DSTS: $(DSTS)
 	#echo DIR_OBJ_DST: $(DIR_OBJ_DST)
 
-PHONY: all re print
+PHONY: all re clean fclean print

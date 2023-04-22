@@ -24,7 +24,13 @@ int main(int av, char **ac)
 	}
 	philo = get_params(av, ac);
 	philos = start_proc(philo);
-	free(philo);
-	join_thread(philos);
-	return (0);
+	if (!philos)
+		{
+		printf("ERROR TO ALLOCATE MEMORY\n");
+		return (0);
+		}
+		finish_control(philos);
+		join_thread(philos);
+		free(philo);
+		return (0);
 }

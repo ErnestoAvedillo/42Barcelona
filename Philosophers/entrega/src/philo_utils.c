@@ -26,21 +26,70 @@ t_philo	*get_params(int av, char **ac)
 	return (philo);
 }
 
+long long get_time(void)
+{
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+}
+
 void *work_proc(void *var)
 {
 	t_list_philo *philos;
-	
+
 	philos = (t_list_philo *)var;
-	printf("adress Philo  %p\n", philos);
-	printf("parameters cur philos  %lu\n", philos->thrd);
-	printf("parameters die %u\n", philos->die);
-	printf("parameters eat %u\n", philos->eat);
-	printf("parameters eat %u\n", philos->sleep);
-	printf("parameters nr_eats %u\n", philos->nr_eats);
-	printf("parameters max_phil %i\n", philos->max_philos);
-	printf("parameters left fork %i,\n", philos->fork_left);
-	printf("parameters right fork %i,\n\n", philos->fork_rght);
+	printf("entro %i\n", philos->philo_nr);
+	while (philos->die->time--)
+	{/*
+		printf("\033[13;1Hdireccion2 %p \n", philos);
+		if (philos->eat->status)
+		{
+			philos->eat->t1 = get_time();
+			if (philos->eat->time >= (unsigned int) (get_time() - philos->eat->t0))
+			{
+				philos->eat->status = 0;
+				philos->eat->t1 = 0;
+				philos->eat->t0 = 0;
+				philos->die->status = 1;
+				philos->die->t0 = get_time();
+			}
+		}
+		else
+		{
+			printf("\033[14;1Hdireccion3 %p %i %i\n", philos, philos->fork_left, philos->fork_rght);
+			if (!philos->arr_forks[philos->fork_left] && !philos->arr_forks[philos->fork_rght])
+			{
+				philos->eat->t0 = get_time();
+				philos->eat->status = 1;
+				philos->die->status = 0;
+				philos->eat->t0 = 0;
+				philos->eat->t1 = 0;
+			}
+		}
+		printf("\033[15;1Hdireccion4 %p \n", philos);
+		if (philos->die->status)
+			if (philos->die->time >= get_time() - philos->die->t0)
+			{
+			philos->die->finished = 1;
+			print_status(philos);
+			break;
+		}*/
+		print_status(philos);
+		printf("\033[%i;1Hdireccion1 %p -- %i", philos->philo_nr + 12, philos, philos->philo_nr);
+		printf("impreso %i\n", philos->philo_nr);
+		sleep(1);
+	}
 	return (philos);
+}
+
+void fill_data_proc (t_control_proc *data, int val)
+{
+	data->status = 0;
+	data->finished = 0;
+	data->time = val;
+	data->t0 = 0;
+	data->t1 = 0;
 }
 
 t_list_philo *start_proc(t_philo *philo)
@@ -48,27 +97,22 @@ t_list_philo *start_proc(t_philo *philo)
 	int				i;
 	t_list_philo	*philos = NULL;
 	t_list_philo	*frst_philo = NULL;
-	t_list_philo	*aux = NULL;
 
-	i = 0;
+	i = system("clear");
 	if (philo->nr_ph == 0)
 		return (NULL);
-	while (++i <= philo->nr_ph)
+	print_header(philo->nr_ph);
+	frst_philo = alloc_var(philo->nr_ph);
+	if (!frst_philo)
+		return (NULL);
+	philos = frst_philo;
+	i = 1;
+	while (philos)
 	{
-		philos = (t_list_philo *)malloc(sizeof(t_list_philo));
-		if (i == 1)
-		{
-			frst_philo = philos;
-			philos->arr_forks = (int *)malloc(philo->nr_ph * sizeof(int));
-		}
-		else
-		{
-			aux->next = philos;
-			philos->arr_forks = aux->arr_forks;
-		}
-		philos->die = philo->die;
-		philos->eat = philo->eat;
-		philos->sleep = philo->sleep;
+		philos->philo_nr = i;
+		fill_data_proc(philos->die, philo->die);
+		fill_data_proc(philos->eat, philo->eat);
+		fill_data_proc(philos->sleep, philo->sleep);
 		philos->nr_eats = philo->nr_eats;
 		philos->max_philos = philo->nr_ph;
 		if (i == philo->nr_ph)
@@ -76,10 +120,15 @@ t_list_philo *start_proc(t_philo *philo)
 		else
 			philos->fork_left = i;
 		philos->fork_rght = i - 1;
-		philos->next = NULL;
+		printf("\033[%i;1Hdireccion1 %p -- %i\t", philos->philo_nr + 12, philos, philos->philo_nr);
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
-		aux = philos;
+		sleep(1);
+		philos = philos->next;
+		printf("\033[18;1Hpaso%p\n",philos);
+		i++;
 	}
+	printf("\033[16;1Hpaso\n");
+	getchar();
 	return (frst_philo);
 }
 
@@ -89,11 +138,23 @@ void	join_thread(t_list_philo *philos)
 	free(philos->arr_forks);
 	while (philos)
 	{
-		printf("paso1 %p\n", philos);
 		pthread_join(philos->thrd, NULL);
 		aux = philos->next;
 		free(philos);
 		philos = aux;
 	}
-	printf("paso\n");
+}
+
+void finish_control(t_list_philo *philos)
+{
+	t_list_philo *aux;
+
+	aux = philos;
+	while (!aux->die->finished)
+	{
+		if (!aux)
+			aux = philos;
+		else
+			aux = aux->next;
+	}
 }

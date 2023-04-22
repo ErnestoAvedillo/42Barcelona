@@ -63,7 +63,7 @@ NXLN_LIB := $(addprefix $(DIR_NXLN),$(NAME_NXLN))
 #instruciont for execution
 RM := rm -rfd
 CC := gcc
-FLAG:= -Wall -Wextra -Werror
+FLAG:= -Wall -Wextra -Werror -fsanitize=address
 
 ARG := "-607 321 262 229 572 731 -463 653 722 553 11 -654 -476 233 -173 -553 848 226 577 -77 493 -228 -498 -891 -38 -759 -512 -45 955 716 275 786 -977 -334 -960 982 -801 692 -372 -852 -409 854 -328 882 -5 -423 -122 117 276 -704 -789 823 -480 979 134 -573 -867 -165 -667 174 309 293 -827 509 347 88 501 169 -149 798 -608 -227 408 550 -243 -94 -171 862 -312 602 -926 694 759 -963 344 -180 2 50 -427 -109 -986 797 660 880 -748 473 -644 -510 664 -649"
 all:$(NAME)
@@ -86,7 +86,7 @@ $(DIR_OBJ)%.d: $(DIR_SRC)%.c $(INCLUDE) $(INCLUDE_BNS)
 	
 $(DIR_OBJ)%.o : $(DIR_SRC)%.c $(DIR_OBJ)%.d
 	mkdir -p $(DIR_OBJ)
-	$(CC) $(CFLAGS) -c $(DIR_SRC)$*.c -o $(DIR_OBJ)$*.o
+	$(CC) $(CFLAGS) -static-libasan -c $(DIR_SRC)$*.c -o $(DIR_OBJ)$*.o
 
 #commmon compiler
 $(DIR_COM)%.d: $(DIR_SRC)%.c $(INCLUDE) $(INCLUDE_BNS)
