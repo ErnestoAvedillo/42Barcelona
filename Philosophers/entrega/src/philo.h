@@ -48,25 +48,35 @@ typedef struct s_list_philo
 	int				fork_left;
 	int				fork_rght;
 	int				*arr_forks;
-	pthread_mutex_t	*mutex;
+	pthread_mutex_t	*mutex_forks;
+	pthread_mutex_t	*mutex_prt;
+	pthread_mutex_t	*dead;
 	void			*next;
 } t_list_philo;
+
+//const char *prt_concepts[] = {"Address","thread","die","eat","sleep","sleep","nr_eats","max_phil","left_fork","rigt_fork"};
+
 
 //philo_utils
 t_philo			*get_params(int av, char **ac);
 t_list_philo	*start_proc(t_philo *philo);
 void			join_thread(t_list_philo *philos);
 void			finish_control(t_list_philo *philos);
+long long		get_time(void);
 
 // ft_isdigit
 int				ft_isdigit(int c);
 //ft_atoi
 int				ft_atoi(const char *str);
-//philo_mem
+//philo_free
 void			free_vars(t_list_philo *philos);
+//philo_mem
 t_list_philo	*alloc_var(int nr_phil);
+//philo_init_mutex
+int				init_mutex(t_list_philo *philos, int nr_phil);
 // philo_print
 void			print_status(t_list_philo *philos);
-void			print_header(int nr);
-
+void			print_header(void);
+//philo_work_proc
+void			*work_proc(void *var);
 #endif

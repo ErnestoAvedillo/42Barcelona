@@ -12,52 +12,13 @@
 
 #include"philo.h"
 
-void	free_vars(t_list_philo *philos)
-{
-	t_list_philo	*aux;
 
-	while (philos)
-	{
-		if (!philos)
-			return ;
-		if (philos->die)
-			free(philos->die);
-		if (philos->eat)
-			free(philos->eat);
-		if (philos->sleep)
-			free(philos->sleep);
-		if (philos->arr_forks)
-			free(philos->arr_forks);
-		if (philos->mutex)
-			free(philos->mutex);
-		if (philos->next)
-		{
-			aux = philos->next;
-			free(philos->next);
-		}
-		free(philos);
-		philos = aux;
-	}
-}
-
-static int	*fork_arr(int nr)
-{
-	int	*i;
-	int	j;
-
-	i = (int *)malloc(nr * sizeof(int));
-	if (!i)
-		return (NULL);
-	j = 0;
-	while (j < nr)
-		i[j++] = 0;
-	return (i);
-}
 
 int	check_mem(t_list_philo *ph)
 {
-	if (!ph->arr_forks || !ph->die | !ph->eat \
-		|| !ph->sleep || !ph->next)
+	if (!ph->mutex_forks || !ph->die || !ph->eat \
+		|| !ph->sleep || !ph->mutex_prt || !ph->next \
+		|| !ph->dead )
 		return (0);
 	return (1);
 }
@@ -67,7 +28,9 @@ int	set_mem(t_list_philo *philos)
 	philos->die = (t_control_proc *)malloc(sizeof(t_control_proc));
 	philos->eat = (t_control_proc *)malloc(sizeof(t_control_proc));
 	philos->sleep = (t_control_proc *)malloc(sizeof(t_control_proc));
-	philos->arr_forks = (int *)malloc(sizeof(int));
+	philos->mutex_forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	philos->mutex_prt = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	philos->dead = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	philos->next = (void *)malloc(sizeof(void));
 	if (!check_mem(philos))
 		return (0);
@@ -101,25 +64,22 @@ t_list_philo	*create_lst_philos(int nr_phil)
 	return (frst_phil);
 }
 
+
+
 t_list_philo	*alloc_var(int nr_phil)
 {
 	t_list_philo	*aux;
 	t_list_philo	*frst_phil;
-	int				*arr_forks;
-	pthread_mutex_t	*mutex;
 
 	aux = NULL;
-	arr_forks = fork_arr(nr_phil);
-	mutex = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));
-	if (!arr_forks)
-		return (NULL);
 	frst_phil = create_lst_philos(nr_phil);
-	aux = frst_phil;
-	while (aux)
+	if (!frst_phil)
+		return (NULL);
+	if (!init_mutex(frst_phil,nr_phil))
 	{
-		aux->mutex = mutex;
-		aux->arr_forks = arr_forks;
-		aux = aux->next;
+		free_vars(frst_phil);
+		return (NULL);
 	}
+
 	return (frst_phil);
 }

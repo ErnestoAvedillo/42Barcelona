@@ -23,6 +23,8 @@ t_philo	*get_params(int av, char **ac)
 	philo->sleep = ft_atoi(ac[4]);
 	if (av == 6)
 		philo->nr_eats = ft_atoi(ac[5]);
+	else
+		philo->nr_eats = 0;
 	return (philo);
 }
 
@@ -32,53 +34,6 @@ long long get_time(void)
 
 	gettimeofday(&t, NULL);
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
-}
-
-void *work_proc(void *var)
-{
-	t_list_philo *philos;
-
-	philos = (t_list_philo *)var;
-	while (philos->die->time--)
-	{
-		if (philos->eat->status)
-		{
-			philos->eat->t1 = get_time();
-			if (philos->eat->time >= (unsigned int) (get_time() - philos->eat->t0))
-			{
-				philos->eat->status = 0;
-				philos->eat->t1 = 0;
-				philos->eat->t0 = 0;
-				philos->die->status = 1;
-				philos->die->t0 = get_time();
-			}
-		}
-		else
-		{
-			if (!philos->arr_forks[philos->fork_left] && !philos->arr_forks[philos->fork_rght])
-			{
-				philos->eat->t0 = get_time();
-				philos->eat->status = 1;
-				philos->die->status = 0;
-				philos->eat->t0 = 0;
-				philos->eat->t1 = 0;
-			}
-		}
-		if (philos->die->status)
-			if (philos->die->time >= get_time() - philos->die->t0)
-			{
-			philos->die->finished = 1;
-			print_status(philos);
-			break;
-		}
-		print_status(philos);
-//		printf("\033[%i;1Hdireccion1 %p -- %i", philos->philo_nr + 12, philos, philos->philo_nr);
-//		printf("impreso %i\n", philos->philo_nr);
-		usleep(5000);
-		if (philos->die->time == 0)
-			philos->die->finished = 1;
-	}
-	return (philos);
 }
 
 void fill_data_proc (t_control_proc *data, int val)
@@ -96,10 +51,10 @@ t_list_philo *start_proc(t_philo *philo)
 	t_list_philo	*philos = NULL;
 	t_list_philo	*frst_philo = NULL;
 
-	i = system("clear");
+	printf("\033[2J");
 	if (philo->nr_ph == 0)
 		return (NULL);
-	print_header(philo->nr_ph);
+	print_header();
 	frst_philo = alloc_var(philo->nr_ph);
 	if (!frst_philo)
 		return (NULL);
@@ -121,7 +76,6 @@ t_list_philo *start_proc(t_philo *philo)
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		usleep(5000);
 		philos = philos->next;
-
 		i++;
 	}
 	return (frst_philo);
