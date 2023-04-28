@@ -15,7 +15,6 @@
 int main(int av, char **ac)
 {
 	t_philo *philo;
-	t_list_philo *philos;
 
 	if (av < 5)
 	{
@@ -23,14 +22,14 @@ int main(int av, char **ac)
 		return (0);
 	}
 	philo = get_params(av, ac);
-	philos = start_proc(philo);
-	if (!philos)
+	philo = start_proc(philo);
+	if (!philo)
 		{
 		printf("ERROR TO ALLOCATE MEMORY\n");
 		return (0);
 		}
-		finish_control(philos);
-		join_thread(philos);
-		free(philo);
+		finish_control(philo);
+		join_thread(philo);
+		free_vars(philo);
 		return (0);
 }

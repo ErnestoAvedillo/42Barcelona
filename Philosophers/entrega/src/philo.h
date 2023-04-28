@@ -21,15 +21,6 @@
 //for print prouposes
 #define SPACING 15
 
-typedef struct s_philo
-{
-	int nr_ph;
-	unsigned int die;
-	unsigned int eat;
-	unsigned int sleep;
-	unsigned int nr_eats;
-} t_philo;
-
 typedef struct s_control_proc
 {
 	unsigned int	time;
@@ -57,14 +48,25 @@ typedef struct s_list_philo
 	void			*next;
 } t_list_philo;
 
+typedef struct s_philo
+{
+	int				nr_ph;
+	unsigned int	die;
+	unsigned int	eat;
+	unsigned int	sleep;
+	unsigned int	nr_eats;
+	int				proc_finished;
+	t_list_philo	*first_philo;
+} t_philo;
+
 //const char *prt_concepts[] = {"Address","thread","die","eat","sleep","sleep","nr_eats","max_phil","left_fork","rigt_fork"};
 
 
 //philo_utils
 t_philo			*get_params(int av, char **ac);
-t_list_philo	*start_proc(t_philo *philo);
-void			join_thread(t_list_philo *philos);
-void			finish_control(t_list_philo *philos);
+t_philo			*start_proc(t_philo *philo);
+void			join_thread(t_philo *philos);
+void			finish_control(t_philo *philos);
 long long		get_time(void);
 
 // ft_isdigit
@@ -72,7 +74,7 @@ int				ft_isdigit(int c);
 //ft_atoi
 int				ft_atoi(const char *str);
 //philo_free
-void			free_vars(t_list_philo *philos);
+void			free_vars(t_philo *philos);
 //philo_mem
 t_list_philo	*alloc_var(int nr_phil);
 //philo_init_mutex

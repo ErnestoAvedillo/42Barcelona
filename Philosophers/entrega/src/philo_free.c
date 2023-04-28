@@ -22,33 +22,41 @@ void	free_mutex_forks(pthread_mutex_t *mutex, int nr)
 	return;
 }
 
-void	free_vars(t_list_philo *philos)
+void	free_vars(t_philo *header)
 {
 	t_list_philo	*aux;
+	t_list_philo	*philos;
 
 	aux = NULL;
+	if (!header)
+		return ;
+	philos = header->first_philo;
 	while (philos)
 	{
 		if (!philos)
-			return ;
-		if (philos->die)
-			free(philos->die);
-		if (philos->eat)
-			free(philos->eat);
-		if (philos->sleep)
-			free(philos->sleep);
-		if (philos->mutex_forks)
-			pthread_mutex_destroy(philos->mutex_prt);
-		if (philos->mutex_prt)
-			pthread_mutex_destroy(philos->mutex_prt);
-		if (philos->dead)
-			pthread_mutex_destroy(philos->dead);
-		if (philos->next)
 		{
-			aux = philos->next;
-			free(philos->next);
+			if (philos->die)
+				free(philos->die);
+			if (philos->eat)
+				free(philos->eat);
+			if (philos->sleep)
+				free(philos->sleep);
+			if (philos->mutex_forks)
+				pthread_mutex_destroy(philos->mutex_prt);
+			if (philos->mutex_prt)
+				pthread_mutex_destroy(philos->mutex_prt);
+			if (philos->dead)
+				pthread_mutex_destroy(philos->dead);
+			if (philos->next)
+			{
+				aux = philos->next;
+				free(philos->next);
+			}
+			free(philos);
+			philos = aux;
 		}
-		free(philos);
-		philos = aux;
+		else
+			return ;
 	}
+	free(header);
 }

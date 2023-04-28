@@ -12,6 +12,21 @@
 
 #include"philo.h"
 
+int dying_cntrol(t_list_philo *philos)
+{
+	philos->die->status -= get_time() - philos->die->t0;
+	if (philos->die->status <= 0)
+	{
+		philos->die->finished = 1;
+		pthread_mutex_lock(philos->mutex_prt);
+		print_status(philos);
+		pthread_mutex_unlock(philos->mutex_prt);
+		return (1);
+	}
+	return (0);
+	
+}
+
 void process_eating(t_list_philo *philos)
 {
 	if (!philos->arr_forks[philos->fork_left] && !philos->arr_forks[philos->fork_rght] && !philos->eat->status && !philos->sleep->status)
@@ -27,7 +42,10 @@ void process_eating(t_list_philo *philos)
 		while (philos->eat->status >= 0)
 		{		
 			philos->eat->status -= get_time() - philos->eat->t0;
-			philos->die->status -= get_time() - philos->die->t0;
+			if (dying_cntrol(philos))
+			{
+				break;
+			}
 			pthread_mutex_lock(philos->mutex_prt);
 			print_status(philos);
 			pthread_mutex_unlock(philos->mutex_prt);
@@ -47,17 +65,20 @@ void process_sleeping(t_list_philo *philos)
 	while (philos->sleep->status >= 0)
 	{
 		philos->sleep->status -= get_time() - philos->sleep->t0;
-		philos->die->status -= get_time() - philos->die->t0;
+		if (dying_cntrol(philos))
+		{
+			break;
+		}
 		pthread_mutex_lock(philos->mutex_prt);
 		print_status(philos);
 		pthread_mutex_unlock(philos->mutex_prt);
 	}
-	else philos->die->status = 0;
-		if (philos->die->status == 0)
-			philos->die->finished = 1;
-		philos->sleep->status = 0;
+	if (philos->die->status == 0)
+		philos->die->finished = 1;
+	philos->sleep->status = 0;
 }
-	void *work_proc(void *var)
+
+void *work_proc(void *var)
 {
 	t_list_philo *philos;
 
@@ -65,6 +86,7 @@ void process_sleeping(t_list_philo *philos)
 	while (!philos->die->finished)
 	{
 		process_eating(philos);
+		process_sleeping(philos);
 
 		pthread_mutex_lock(philos->mutex_prt);
 		print_status(philos);

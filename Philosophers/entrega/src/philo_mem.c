@@ -53,10 +53,7 @@ t_list_philo	*create_lst_philos(int nr_phil)
 		if (i != 1)
 			philos = (t_list_philo *)malloc(sizeof(t_list_philo));
 		if (!philos || !set_mem(philos))
-		{
-			free_vars(frst_phil);
 			return (NULL);
-		}
 		if (i != 1)
 			aux->next = philos;
 		philos->philo_nr = i;
@@ -77,7 +74,6 @@ t_list_philo	*alloc_var(int nr_phil)
 		return (NULL);
 	if (!init_mutex(frst_phil,nr_phil))
 	{
-		free_vars(frst_phil);
 		return (NULL);
 	}
 
