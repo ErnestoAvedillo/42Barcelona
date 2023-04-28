@@ -45,11 +45,13 @@ t_list_philo	*create_lst_philos(int nr_phil)
 	int				i;
 
 	i = 0;
+	philos = (t_list_philo *)malloc(sizeof(t_list_philo));
+	frst_phil = philos;
+	aux = NULL;
 	while (++i <= nr_phil)
 	{
-		philos = (t_list_philo *)malloc(sizeof(t_list_philo));
-		if (i == 1)
-			frst_phil = philos;
+		if (i != 1)
+			philos = (t_list_philo *)malloc(sizeof(t_list_philo));
 		if (!philos || !set_mem(philos))
 		{
 			free_vars(frst_phil);
@@ -68,10 +70,8 @@ t_list_philo	*create_lst_philos(int nr_phil)
 
 t_list_philo	*alloc_var(int nr_phil)
 {
-	t_list_philo	*aux;
 	t_list_philo	*frst_phil;
 
-	aux = NULL;
 	frst_phil = create_lst_philos(nr_phil);
 	if (!frst_phil)
 		return (NULL);

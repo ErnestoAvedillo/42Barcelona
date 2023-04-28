@@ -26,6 +26,7 @@ void	free_vars(t_list_philo *philos)
 {
 	t_list_philo	*aux;
 
+	aux = NULL;
 	while (philos)
 	{
 		if (!philos)
@@ -37,7 +38,7 @@ void	free_vars(t_list_philo *philos)
 		if (philos->sleep)
 			free(philos->sleep);
 		if (philos->mutex_forks)
-			free_mutex_forks(philos->mutex_forks, philos->max_philos);
+			pthread_mutex_destroy(philos->mutex_prt);
 		if (philos->mutex_prt)
 			pthread_mutex_destroy(philos->mutex_prt);
 		if (philos->dead)

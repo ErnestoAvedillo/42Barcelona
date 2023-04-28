@@ -18,6 +18,9 @@
 #include <pthread.h>
 #include <sys/time.h>
 
+//for print prouposes
+#define SPACING 15
+
 typedef struct s_philo
 {
 	int nr_ph;
@@ -30,7 +33,7 @@ typedef struct s_philo
 typedef struct s_control_proc
 {
 	unsigned int	time;
-	int				status;
+	long long		status;
 	long long		t0;
 	long long		t1;
 	int				finished;

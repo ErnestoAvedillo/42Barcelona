@@ -85,13 +85,19 @@ void	join_thread(t_list_philo *philos)
 {
 //	t_list_philo *aux;
 //	free(philos->arr_forks);
+	printf("entro en joinv%p\n", philos);
 	while (philos)
 	{
 		pthread_join(philos->thrd, NULL);
 //		aux = ;
 //		free(philos);
 		philos = philos->next;
+		pthread_mutex_lock(philos->mutex_prt);
+		printf("\033[%i;1Hdireccion1 %p -- %i", philos->philo_nr + 20, philos, philos->philo_nr);
+		printf("bucle status %lld --gettime %lld --t0 %lld--resta %lld \n", philos->die->status, get_time(), philos->die->t0, get_time() - philos->die->t0);
+		pthread_mutex_unlock(philos->mutex_prt);
 	}
+	printf("salgo de join\n");
 }
 
 void finish_control(t_list_philo *philos)
@@ -101,14 +107,11 @@ void finish_control(t_list_philo *philos)
 	aux = philos;
 	while (!aux->die->finished)
 	{
-//		printf("\033[%i;1Hdireccion1 %p -->%p , %i\n", aux->philo_nr + 12, aux, aux->next, aux->die->finished);
 		if (!aux->next)
 			aux = philos;
 		else
 			aux = aux->next;
 	}
-//	usleep(500);
-//	printf("salgo\n");
-//	getchar();
-	return ;
+	printf("FINALIZADO\n");
+	return;
 }
