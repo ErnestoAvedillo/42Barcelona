@@ -89,17 +89,21 @@ void	join_thread(t_philo *philo)
 	philos = philo->first_philo;
 //	t_list_philo *aux;
 //	free(philos->arr_forks);
-	printf("entro en joinv%p\n", philos);
+//	pthread_mutex_lock(philos->mutex_prt);
+//	printf("\nEntro en joinv%p\n", philos);
+//	pthread_mutex_unlock(philos->mutex_prt);
+	print_header();
 	while (philos)
 	{
 		pthread_cancel(philos->thrd);
 		pthread_join(philos->thrd, NULL);
 //		aux = ;
 //		free(philos);
-		pthread_mutex_lock(philos->mutex_prt);
-		printf("\033[%i;1Hdireccion1 %p -- %i", philos->philo_nr + 20, philos, philos->philo_nr);
-		printf("bucle status %lld --gettime %lld --t0 %lld--resta %lld \n", philos->die->status, get_time(), philos->die->t0, get_time() - philos->die->t0);
-		pthread_mutex_unlock(philos->mutex_prt);
+//		pthread_mutex_lock(philos->mutex_prt);
+//		printf("\033[%i;1Hdireccion1 %p -- %i", philos->philo_nr + 20, philos, philos->philo_nr);
+//		printf("bucle status %lld --gettime %lld --t0 %lld--resta %lld \n", philos->die->status, get_time(), philos->die->t0, get_time() - philos->die->t0);
+//		pthread_mutex_unlock(philos->mutex_prt);
+		print_status(philos,"impreson en join");
 		philos = philos->next;
 	}
 	printf("salgo de join\n");

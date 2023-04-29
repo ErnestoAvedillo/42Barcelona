@@ -80,7 +80,7 @@ t_list_philo	*alloc_var(int nr_phil);
 //philo_init_mutex
 int				init_mutex(t_list_philo *philos, int nr_phil);
 // philo_print
-void			print_status(t_list_philo *philos);
+void			print_status(t_list_philo *philos, char *origen);
 void			print_header(void);
 //philo_work_proc
 void			*work_proc(void *var);
