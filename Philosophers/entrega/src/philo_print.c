@@ -31,7 +31,9 @@ void print_status(t_list_philo *philos, char *origen)
 	//	printf("\033[%i;%iH%ld", philos->philo_nr + 1, j * SPACING, philos->thrd);
 	//	j++;
 	printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->die->status);
-	printf("\033[%i;%iH%lld", k, j++ * SPACING, get_time() - philos->die->t0);
+	printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->die->t0);
+	printf("\033[%i;%iH%lld", k, j++ * SPACING, get_time());
+	printf("\033[%i;%iH%lld", k, j++ * SPACING, get_time()  - philos->die->t0);
 	printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->eat->status);
 	printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->sleep->status);
 	printf("\033[%i;%iH%u", k, j++ * SPACING, philos->nr_eats);
@@ -60,6 +62,8 @@ void print_header(void)
 	j = 1;
 	printf("\033[1;%iHdie rest", j++ * SPACING);
 	printf("\033[1;%iHdie passed", j++ * SPACING);
+	printf("\033[1;%iHdie t0", j++ * SPACING);
+	printf("\033[1;%iHget-time", j++ * SPACING);
 	printf("\033[1;%iHeat", j++ * SPACING);
 	printf("\033[1;%iHsleep", j++ * SPACING);
 	printf("\033[1;%iHnr_eats", j++ * SPACING);
