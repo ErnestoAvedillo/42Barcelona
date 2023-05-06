@@ -11,42 +11,47 @@
 /* ************************************************************************** */
 
 #include "philo.h"
+#include "colors.h"
 
 void print_status(t_list_philo *philos, char *origen)
 {
 	int j;
-	static int k;
-
-	if (!k)
-		k = 2;
-	else 
-		k++;
+//	static int k;
+	int k;
+	int col;
+//	if (!k)
+//		k = 2;
+//	else 
+//		k++;
+	col = philos->philo_nr / COL_LEN * NEXT_COL;
+	k = philos->philo_nr + 1 - (philos->philo_nr / COL_LEN) * COL_LEN;
 	pthread_mutex_lock(philos->mutex_prt);
-	printf("\033[%i;%iHOrigen print %s\n",k, 1, origen);
-	k++;
-	printf("\033[%i;%iH%i", k, 1, philos->philo_nr);
+//	printf("\033[%i;%iHOrigen print %s\n",k, 1, origen);
+//	k++;
+	printf("\033[%i;%iH%i", k, col + 1 , philos->philo_nr);
 	j = 1;
 	//	printf("\033[%i;%iH%p", philos->philo_nr + 1, j * SPACING, philos);
 	//	j++;
 	//	printf("\033[%i;%iH%ld", philos->philo_nr + 1, j * SPACING, philos->thrd);
 	//	j++;
-	printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->die->status);
-	printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->die->t0);
-	printf("\033[%i;%iH%lld", k, j++ * SPACING, get_time());
-	printf("\033[%i;%iH%lld", k, j++ * SPACING, get_time()  - philos->die->t0);
-	printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->eat->status);
-	printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->sleep->status);
-	printf("\033[%i;%iH%u", k, j++ * SPACING, philos->nr_eats);
-	printf("\033[%i;%iH%i", k, j++ * SPACING, philos->max_philos);
+	printf("\033[%i;%iH%s", k, col + j++ * SPACING, origen);
+	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->die->status);
+	//printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->die->t0);
+	//printf("\033[%i;%iH%lld", k, j++ * SPACING, get_time());
+	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time()  - philos->die->t0);
+	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->eat->status);
+	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->sleep->status);
+	printf("\033[%i;%iH%u", k, col + j++ * SPACING, philos->nr_eats);
+	//printf("\033[%i;%iH%i", k, j++ * SPACING, philos->max_philos);
 	if (philos->eat->status)
 	{
-		printf("\033[%i;%iH%i,%i", k, j++ * SPACING, philos->fork_left, philos->arr_forks[philos->fork_left]);
-		printf("\033[%i;%iH%i,%i", k, j * SPACING, philos->fork_rght, philos->arr_forks[philos->fork_rght]);
+		printf("%s\e[30m\033[%i;%iH%i,% 2i%s", BCK_RED, k, col + j++ * SPACING, philos->fork_left, philos->arr_forks[philos->fork_left], BCK_STD);
+		printf("%s\e[30m\033[%i;%iH%i,% 2i%s", BCK_RED, k, col + j * SPACING, philos->fork_rght, philos->arr_forks[philos->fork_rght], BCK_STD);
 	}
 	else
 	{
-		printf("\033[%i;%iH%i,*%i*", k, j++ * SPACING, philos->fork_left, philos->arr_forks[philos->fork_left]);
-		printf("\033[%i;%iH%i,*%i*", k, j * SPACING, philos->fork_rght, philos->arr_forks[philos->fork_rght]);
+		printf("%s\e[30m\033[%i;%iH%i,*%i*%s", BCK_WHITE, k, col + j++ * SPACING, philos->fork_left, philos->arr_forks[philos->fork_left], BCK_STD);
+		printf("%s\e[30m\033[%i;%iH%i,*%i*%s", BCK_WHITE, k, col + j * SPACING, philos->fork_rght, philos->arr_forks[philos->fork_rght], BCK_STD);
 	}	
 	printf("\n");
 	pthread_mutex_unlock(philos->mutex_prt);
@@ -60,14 +65,15 @@ void print_header(void)
 	//	printf("\033[1;20HAddress");
 	//	printf("\033[1;40Hthread");
 	j = 1;
-	printf("\033[1;%iHdie rest", j++ * SPACING);
-	printf("\033[1;%iHdie passed", j++ * SPACING);
-	printf("\033[1;%iHdie t0", j++ * SPACING);
+	printf("\033[1;%iHorigen", j++ * SPACING);
+	printf("\033[1;%iHtime to die", j++ * SPACING);
+	//printf("\033[1;%iHdie passed", j++ * SPACING);
+	//printf("\033[1;%iHdie t0", j++ * SPACING);
 	printf("\033[1;%iHget-time", j++ * SPACING);
 	printf("\033[1;%iHeat", j++ * SPACING);
 	printf("\033[1;%iHsleep", j++ * SPACING);
 	printf("\033[1;%iHnr_eats", j++ * SPACING);
-	printf("\033[1;%iHmax_phil", j++ * SPACING);
+	//printf("\033[1;%iHmax_phil", j++ * SPACING);
 	printf("\033[1;%iHleft_fork", j++ * SPACING);
 	printf("\033[1;%iHrigt_fork", j++ * SPACING);
 	printf("\n");

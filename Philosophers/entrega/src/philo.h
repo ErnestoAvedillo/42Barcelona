@@ -19,7 +19,9 @@
 #include <sys/time.h>
 
 //for print prouposes
-#define SPACING 15
+#define SPACING 8
+#define COL_LEN 50
+#define NEXT_COL 80
 
 typedef struct s_control_proc
 {

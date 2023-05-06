@@ -18,9 +18,9 @@ t_philo	*get_params(int av, char **ac)
 
 	philo = (t_philo *)malloc(sizeof(t_philo));
 	philo->nr_ph = ft_atoi(ac[1]);
-	philo->die = ft_atoi(ac[2]);
-	philo->eat = ft_atoi(ac[3]);
-	philo->sleep = ft_atoi(ac[4]);
+	philo->die = ft_atoi(ac[2]) * 1000;
+	philo->eat = ft_atoi(ac[3]) * 1000;
+	philo->sleep = ft_atoi(ac[4]) * 1000;
 	if (av == 6)
 		philo->nr_eats = ft_atoi(ac[5]);
 	else
@@ -103,7 +103,7 @@ void	join_thread(t_philo *philo)
 //		printf("\033[%i;1Hdireccion1 %p -- %i", philos->philo_nr + 20, philos, philos->philo_nr);
 //		printf("bucle status %lld --gettime %lld --t0 %lld--resta %lld \n", philos->die->status, get_time(), philos->die->t0, get_time() - philos->die->t0);
 //		pthread_mutex_unlock(philos->mutex_prt);
-		print_status(philos,"impreson en join");
+		print_status(philos,"join");
 		philos = philos->next;
 	}
 	printf("salgo de join\n");

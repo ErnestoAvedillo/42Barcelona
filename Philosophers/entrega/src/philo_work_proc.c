@@ -43,18 +43,16 @@ int process_eating(t_list_philo *philos)
 	}
 //	print_status(philos,"fin bucle eat");
 	philos->eat->status = 1;
-	pthread_mutex_lock(philos->mutex_forks);
+	pthread_mutex_lock(&philos->mutex_forks[philos->fork_left]);
 	philos->arr_forks[philos->fork_left] = 1;
-	pthread_mutex_unlock(philos->mutex_forks);
-	pthread_mutex_lock(philos->mutex_forks);
+	pthread_mutex_lock(&philos->mutex_forks[philos->fork_rght]);
 	philos->arr_forks[philos->fork_rght] = 1;
-	pthread_mutex_unlock(philos->mutex_forks);
-	print_status(philos, "start eating");
+	print_status(philos, "eat");
 	usleep(philos->eat->time);
-	pthread_mutex_lock(philos->mutex_forks);
 	philos->arr_forks[philos->fork_left] = 0;
 	philos->arr_forks[philos->fork_rght] = 0;
-	pthread_mutex_unlock(philos->mutex_forks);
+	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
+	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_rght]);
 	philos->sleep->status = 1;
 	philos->eat->status = 0;
 	philos->nr_eats++ ;
@@ -69,7 +67,7 @@ int process_eating(t_list_philo *philos)
 
 int process_sleeping(t_list_philo *philos)
 {
-//	print_status(philos, "start sleeping");
+	print_status(philos, "sleep");
 	usleep(philos->sleep->time);
 	philos->sleep->status = 0;
 	if (dying_cntrol(philos))
@@ -77,7 +75,7 @@ int process_sleeping(t_list_philo *philos)
 //			printf("Salgo en sleeping");
 		return (0);
 	}
-//	print_status(philos, "finish sleeping");
+	print_status(philos, "think");
 	return (1);
 }
 

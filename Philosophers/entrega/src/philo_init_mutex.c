@@ -49,7 +49,7 @@ int init_mutex(t_list_philo *philos, int nr_phil)
 
 	
     arr_forks = get_arr_forks(nr_phil);
-	//mutex_forks = fork_mutex_arr(nr_phil);
+	mutex_forks = fork_mutex_arr(nr_phil);
 	mutex_forks = (pthread_mutex_t*) malloc (sizeof(pthread_mutex_t));
 	pthread_mutex_init(mutex_forks, NULL);
 	mutex_prt = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));

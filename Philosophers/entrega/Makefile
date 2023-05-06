@@ -7,7 +7,9 @@ DIR_SRC := ./src/
 
 DIR_OBJ_DST := ./obj_dst/
 
-INCLUDE:= $(addprefix $(DIR_SRC),$(addsuffix .h, $(NAME)))
+INC = $(NAME) colors
+
+INCLUDE:= $(addprefix $(DIR_SRC),$(addsuffix .h, $(INC)))
 
 SRCS:= $(addprefix $(DIR_SRC),$(addsuffix .c,$(SRC)))
 OBJS:= $(addprefix $(DIR_OBJ_DST),$(addsuffix .o,$(SRC)))
