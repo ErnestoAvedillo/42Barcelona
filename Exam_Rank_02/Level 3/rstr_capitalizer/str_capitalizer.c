@@ -1,49 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rot_13.c                                           :+:      :+:    :+:   */
+/*   str_capitalizer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:08:26 by eavedill          #+#    #+#             */
-/*   Updated: 2023/05/02 10:23:20 by eavedill         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:46:05 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<unistd.h>
 
-char rot_13 (unsigned int c)
+char upper (unsigned int c)
 {
 	if (c >= 'a' && c <= 'z')
 	{
-		c +=13;
-		if (c > 'z')
-			c -= 'z' - 'a' + 1;
+		c += 'A' - 'a';
 	}
-	else if (c >= 'A' && c <= 'Z')
+	return (c);
+}
+
+char lower (unsigned int c)
+{
+	if (c >= 'A' && c <= 'Z')
 	{
-		c +=13;
-		if (c > 'Z')
-			c -= 'Z' - 'A' + 1;
+		c += 'a' - 'A';
 	}
 	return (c);
 }
 
 int main (int av, char **ac)
 {
-	int i = -1;
+	int i;
+	int j = 0;
 	char c;
 
-	if (av != 2)
+	if (av < 2)
 	{
 		write(1, "\n", 1);
 		return (0);
 	}
-	while(ac[1][++i])
+	while(++j < av)
 	{
-		c = rot_13(ac[1][i]);
-		write (1, &c, 1);		
+		i = -1;
+		while(ac[j][++i])
+		{
+			if(ac[j][i - 1] == ' ' || i == 0)
+			{
+				c= upper(ac[j][i]);
+			}
+			else
+				c = lower(ac[j][i]);
+			write (1, &c, 1);		
+		}
+		write(1, "\n", 1);
 	}
-	write(1, "\n", 1);
 	return (0);
 }

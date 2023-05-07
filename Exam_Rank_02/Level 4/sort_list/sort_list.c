@@ -1,107 +1,85 @@
-#include"list.h"
-#include <stdlib.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_list.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 10:08:26 by eavedill          #+#    #+#             */
+/*   Updated: 2023/05/02 11:27:11 by eavedill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include"list.h"
+
+t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
+{
+	t_list *aux;
+	int tmp;
+	aux = lst;
+	while(aux->next)
+	{
+		if (!cmp(aux->data, aux->next->data))
+		{
+			tmp = aux->next->data;
+			aux->next->data = aux->data;
+			aux->data = tmp; 
+			aux = lst;
+		}
+		else
+			aux = aux->next;
+	}
+	return (lst);
+}
+
+/*
 int ascending(int a, int b)
 {
 	return (a <= b);
 }
 
-t_list *get_first(t_list *lst, int (*cmp)(int, int))
-{
-    t_list *element_a;
-    t_list *element_b;
-    t_list *element_c;
-
-    element_a = lst;
-    element_b = element_a->next;
-    element_c = element_b->next;
-    if (!cmp(element_a->data, element_b->data))
-    {
-        lst = element_b;
-        lst->next = element_a;
-        element_a->next = element_c;
-    }
-    return (lst);
-}
-    t_list *sort_list(t_list *lst, int (*cmp)(int, int))
-{
-    t_list *element_a;
-    t_list *element_b;
-    t_list *element_c;
-
-    if (!lst || !lst->next)
-        return (lst);
-    lst = get_first(lst, cmp);
-    element_a = lst;
-    element_b = element_a->next;
-    element_c = element_b->next;
-    while (element_c)
-    {
-        if (!cmp(element_b->data,element_c->data))
-        {
-            element_a->next = element_c;
-            element_b->next = element_c->next;
-            element_c->next = element_b;
-            lst = get_first(lst, cmp);
-            element_a = lst;
-            element_b = element_a->next;
-            element_c = element_b->next;
-        }
-        else
-        {
-            element_a = element_b;
-            element_b = element_a->next;
-            element_c = element_b->next;
-        }
-    }
-    return (lst);
-}
-
-
 #include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
 int main (int av, char **ac)
 {
-    int i;
-    t_list *lst;
-    t_list *element_a;
-    t_list *element_b;
+	int j = 1;
+	t_list *lst;
+	t_list *aux1;
+	t_list *aux2;
 
-    i = 1;
-    if (av < 2)
-        return (0);
-    lst = (t_list *)malloc(sizeof(t_list));
-    lst->data = atoi(ac[i]);
-    element_a = lst;
-    while (++i < av)
-    {
-        element_b = (t_list *)malloc(sizeof(t_list));
-        element_a->next = element_b;
-        element_b->data = atoi(ac[i]);
-        element_b->next = NULL;
-        element_a = element_b;
-    }
-    element_a = lst;
-    while (element_a)
-    {
-        printf("dato (%p) %i -->%p \n", element_a,  element_a->data, element_a->next);
-        element_a = element_a->next;
-    }
-    printf("entro\n");
-    lst = sort_list(lst,ascending);
-    printf("salgo\n");
-    element_a = lst;
-    while (element_a)
-    {
-        printf("dato (%p) %i -->%p \n", element_a,  element_a->data, element_a->next);
-        element_a = element_a->next;
-    }
-    element_a = lst->next;
-    while (element_a)
-    {
-        element_b = element_a->next;
-        free(element_a);
-        element_a = element_b;
-    }
-    free(lst);
-}
+	if (av < 2)
+	{
+		write(1, "\n", 1);
+		return (0);
+	}
+
+	lst = (t_list *) malloc(sizeof(t_list));
+	lst->data = atoi(ac[j]);
+	lst->next = 0;
+	aux2 = lst;
+	while(++j < av)
+	{
+		aux1 = (t_list *) malloc(sizeof(t_list));
+		aux1->data = atoi(ac[j]);
+		aux1->next = NULL;
+		aux2->next = aux1;
+		aux2 = aux1;
+	}
+	aux1 = lst;
+	printf("ANTES\n");
+	while(aux1)
+	{
+		printf("%p -- %i -- %p\n",aux1, aux1->data, aux1->next);
+		aux1 = aux1->next;
+	}
+	sort_list(lst,ascending);
+	printf("DESPUES\n");
+	aux1 = lst;
+	while(aux1)
+	{
+		printf("%p -- %i -- %p\n",aux1, aux1->data, aux1->next);
+		aux1 = aux1->next;
+	}
+	return (0);
+}*/

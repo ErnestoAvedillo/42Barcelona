@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rot_13.c                                           :+:      :+:    :+:   */
+/*   snake_to_camel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:08:26 by eavedill          #+#    #+#             */
-/*   Updated: 2023/05/02 10:23:20 by eavedill         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:30:20 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<unistd.h>
 
-char rot_13 (unsigned int c)
+char convert (unsigned int c)
 {
 	if (c >= 'a' && c <= 'z')
 	{
-		c +=13;
-		if (c > 'z')
-			c -= 'z' - 'a' + 1;
-	}
-	else if (c >= 'A' && c <= 'Z')
-	{
-		c +=13;
-		if (c > 'Z')
-			c -= 'Z' - 'A' + 1;
+		c += 'A' - 'a';
 	}
 	return (c);
 }
@@ -41,7 +33,12 @@ int main (int av, char **ac)
 	}
 	while(ac[1][++i])
 	{
-		c = rot_13(ac[1][i]);
+		if(ac[1][i] == '_')
+		{
+			c= convert(ac[1][++i]);
+		}
+		else
+			c = ac[1][i];
 		write (1, &c, 1);		
 	}
 	write(1, "\n", 1);
