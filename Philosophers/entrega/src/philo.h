@@ -17,11 +17,12 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <sys/time.h>
+#include "colors.h"
 
 //for print prouposes
-#define SPACING 8
+#define SPACING 16
 #define COL_LEN 50
-#define NEXT_COL 80
+#define NEXT_COL SPACING * 10
 
 typedef struct s_control_proc
 {
@@ -29,7 +30,6 @@ typedef struct s_control_proc
 	long long		status;
 	long long		t0;
 	long long		t1;
-	int				finished;
 } t_control_proc;
 
 typedef struct s_list_philo
@@ -39,6 +39,7 @@ typedef struct s_list_philo
 	t_control_proc	*die;
 	t_control_proc	*eat;
 	t_control_proc	*sleep;
+	int				think;
 	unsigned int	nr_eats;
 	int				max_philos;
 	int				fork_left;
@@ -58,6 +59,7 @@ typedef struct s_philo
 	unsigned int	sleep;
 	unsigned int	nr_eats;
 	int				proc_finished;
+	int				*arr_forks;
 	t_list_philo	*first_philo;
 } t_philo;
 

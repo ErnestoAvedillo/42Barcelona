@@ -22,10 +22,15 @@ int main(int av, char **ac)
 		return (0);
 	}
 	philo = get_params(av, ac);
+	if (!philo)
+		{
+		printf("ERROR TO ALLOCATE MEMORY1\n");
+		return (0);
+		}
 	philo = start_proc(philo);
 	if (!philo)
 		{
-		printf("ERROR TO ALLOCATE MEMORY\n");
+		printf("ERROR TO ALLOCATE MEMORY2\n");
 		return (0);
 		}
 		finish_control(philo);

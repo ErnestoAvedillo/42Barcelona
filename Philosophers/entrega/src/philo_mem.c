@@ -58,6 +58,7 @@ t_list_philo	*create_lst_philos(int nr_phil)
 			aux->next = philos;
 		philos->philo_nr = i;
 		philos->next = NULL;
+		philos->think = 1;
 		aux = philos;
 	}
 	return (frst_phil);

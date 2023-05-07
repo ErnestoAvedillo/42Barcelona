@@ -15,8 +15,11 @@
 t_philo	*get_params(int av, char **ac)
 {
 	t_philo *philo;
+	int i;
 
 	philo = (t_philo *)malloc(sizeof(t_philo));
+	if (!philo)
+		return (NULL);
 	philo->nr_ph = ft_atoi(ac[1]);
 	philo->die = ft_atoi(ac[2]) * 1000;
 	philo->eat = ft_atoi(ac[3]) * 1000;
@@ -25,6 +28,13 @@ t_philo	*get_params(int av, char **ac)
 		philo->nr_eats = ft_atoi(ac[5]);
 	else
 		philo->nr_eats = 0;
+	philo->proc_finished = 0;
+	philo->arr_forks = (int *) malloc(philo->nr_ph * sizeof(int));
+	if (!philo->arr_forks)
+		return (NULL);
+	i = -1;
+	while(++i < philo->nr_ph)
+		philo->arr_forks[i] = 0;
 	return (philo);
 }
 
@@ -39,7 +49,6 @@ long long get_time(void)
 void fill_data_proc (t_control_proc *data, int val)
 {
 	data->status = 0;
-	data->finished = 0;
 	data->time = val;
 	data->t0 = 0;
 	data->t1 = 0;
@@ -75,6 +84,7 @@ t_philo *start_proc(t_philo *philo)
 		else
 			philos->fork_left = i;
 		philos->fork_rght = i - 1;
+		philos->arr_forks = philo->arr_forks;
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;
 		i++;
@@ -114,7 +124,7 @@ void finish_control(t_philo *philos)
 	t_list_philo *aux;
 
 	aux = philos->first_philo;
-	while (!aux->die->finished)
+	while (!aux->die->status)
 	{
 		if (!aux->next)
 			aux = philos->first_philo;

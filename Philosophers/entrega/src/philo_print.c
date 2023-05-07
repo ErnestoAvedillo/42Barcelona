@@ -34,24 +34,30 @@ void print_status(t_list_philo *philos, char *origen)
 	//	j++;
 	//	printf("\033[%i;%iH%ld", philos->philo_nr + 1, j * SPACING, philos->thrd);
 	//	j++;
-	printf("\033[%i;%iH%s", k, col + j++ * SPACING, origen);
-	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->die->status);
+
+	printf("\033[%i;%iH%6s", k, col + j++ * SPACING, origen);
+//	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->die->status);
 	//printf("\033[%i;%iH%lld", k, j++ * SPACING, philos->die->t0);
 	//printf("\033[%i;%iH%lld", k, j++ * SPACING, get_time());
-	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time()  - philos->die->t0);
+	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->die->time - get_time()  + philos->die->t0);
 	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->eat->status);
 	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->sleep->status);
 	printf("\033[%i;%iH%u", k, col + j++ * SPACING, philos->nr_eats);
 	//printf("\033[%i;%iH%i", k, j++ * SPACING, philos->max_philos);
 	if (philos->eat->status)
 	{
-		printf("%s\e[30m\033[%i;%iH%i,% 2i%s", BCK_RED, k, col + j++ * SPACING, philos->fork_left, philos->arr_forks[philos->fork_left], BCK_STD);
-		printf("%s\e[30m\033[%i;%iH%i,% 2i%s", BCK_RED, k, col + j * SPACING, philos->fork_rght, philos->arr_forks[philos->fork_rght], BCK_STD);
+		printf("%s\e[30m\033[%i;%iH%i,%p%s", BCK_RED, k, col + j++ * SPACING, philos->fork_left, &philos->arr_forks[philos->fork_left], BCK_STD);
+		printf("%s\e[30m\033[%i;%iH%i,%p%s", BCK_RED, k, col + j * SPACING, philos->fork_rght, &philos->arr_forks[philos->fork_rght], BCK_STD);
+	}
+	else if (philos->sleep->status)
+	{
+		printf("%s\e[30m\033[%i;%iH%i,*%p*%s", BCK_GREEN, k, col + j++ * SPACING, philos->fork_left, &philos->arr_forks[philos->fork_left], BCK_STD);
+		printf("%s\e[30m\033[%i;%iH%i,*%p*%s", BCK_GREEN, k, col + j * SPACING, philos->fork_rght, &philos->arr_forks[philos->fork_rght], BCK_STD);
 	}
 	else
 	{
-		printf("%s\e[30m\033[%i;%iH%i,*%i*%s", BCK_WHITE, k, col + j++ * SPACING, philos->fork_left, philos->arr_forks[philos->fork_left], BCK_STD);
-		printf("%s\e[30m\033[%i;%iH%i,*%i*%s", BCK_WHITE, k, col + j * SPACING, philos->fork_rght, philos->arr_forks[philos->fork_rght], BCK_STD);
+		printf("%s\e[30m\033[%i;%iH%i,*%p*%s", BCK_WHITE, k, col + j++ * SPACING, philos->fork_left, &philos->arr_forks[philos->fork_left], BCK_STD);
+		printf("%s\e[30m\033[%i;%iH%i,*%p*%s", BCK_WHITE, k, col + j * SPACING, philos->fork_rght, &philos->arr_forks[philos->fork_rght], BCK_STD);
 	}	
 	printf("\n");
 	pthread_mutex_unlock(philos->mutex_prt);
@@ -61,15 +67,15 @@ void print_header(void)
 {
 	int j;
 
-	printf("\033[1;1HPhilosofer");
+	printf("\033[1;1HPhilo");
 	//	printf("\033[1;20HAddress");
 	//	printf("\033[1;40Hthread");
 	j = 1;
 	printf("\033[1;%iHorigen", j++ * SPACING);
-	printf("\033[1;%iHtime to die", j++ * SPACING);
+	printf("\033[1;%iHtime2die", j++ * SPACING);
 	//printf("\033[1;%iHdie passed", j++ * SPACING);
 	//printf("\033[1;%iHdie t0", j++ * SPACING);
-	printf("\033[1;%iHget-time", j++ * SPACING);
+//	printf("\033[1;%iHget-time", j++ * SPACING);
 	printf("\033[1;%iHeat", j++ * SPACING);
 	printf("\033[1;%iHsleep", j++ * SPACING);
 	printf("\033[1;%iHnr_eats", j++ * SPACING);
