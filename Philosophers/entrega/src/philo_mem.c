@@ -28,7 +28,7 @@ int	set_mem(t_list_philo *philos)
 	philos->die = (t_control_proc *)malloc(sizeof(t_control_proc));
 	philos->eat = (t_control_proc *)malloc(sizeof(t_control_proc));
 	philos->sleep = (t_control_proc *)malloc(sizeof(t_control_proc));
-	philos->mutex_forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	//philos->mutex_forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	philos->mutex_prt = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	philos->dead = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	philos->next = (void *)malloc(sizeof(void));

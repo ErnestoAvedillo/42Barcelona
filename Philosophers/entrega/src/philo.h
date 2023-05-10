@@ -20,9 +20,9 @@
 #include "colors.h"
 
 //for print prouposes
-#define SPACING 16
+#define SPACING 8
 #define COL_LEN 50
-#define NEXT_COL SPACING * 10
+#define NEXT_COL SPACING * 9
 
 typedef struct s_control_proc
 {

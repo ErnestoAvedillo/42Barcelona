@@ -14,10 +14,14 @@
 
 int dying_cntrol(t_list_philo *philos)
 {
-	philos->die->t1 = get_time() ;
-//	print_status(philos, "dying control");
-			if(philos->philo_nr == 1)
-				printf("%s\033[2;1H%6s%s",BCK_YELLOW,"paso",BCK_STD);
+	int k;
+	int col;
+
+	col = philos->philo_nr / COL_LEN * NEXT_COL;
+	k = philos->philo_nr + 1 - (philos->philo_nr / COL_LEN) * COL_LEN;
+	philos->die->t1 = get_time();
+	//	print_status(philos, "dying control");
+	printf("\033[%i;%iH%s%6s%s", k, col, BCK_YELLOW, "paso", BCK_STD);
 
 	if (philos->die->t1 - philos->die->t0 >= philos->die->time)
 	{
@@ -31,19 +35,17 @@ int dying_cntrol(t_list_philo *philos)
 int process_eating(t_list_philo *philos)
 {
 	philos->die->t0 = get_time();
-//	philos->die->status = philos->die->time;
-//	print_status(philos,"inicio bucle eat");
-	//while (philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght] || philos->think->status )
+	//	philos->die->status = philos->die->time;
+	//	print_status(philos,"inicio bucle eat");
+	// while (philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght] || philos->think->status )
 	while (!philos->eat->status)
 	{
-		while ((philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght]))
+		while (philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght]);
+		if (dying_cntrol(philos))
+			return (0);
+		if (!pthread_mutex_lock(&philos->mutex_forks[philos->fork_left]))
 		{
-			if (dying_cntrol(philos))
-				return (0);
-		}
-		if 	(pthread_mutex_lock(&philos->mutex_forks[philos->fork_left]))
-		{
-			if (!pthread_mutex_lock(&philos->mutex_forks[philos->fork_rght]))
+			if (pthread_mutex_lock(&philos->mutex_forks[philos->fork_rght]))
 				pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
 			else
 			{
@@ -58,12 +60,12 @@ int process_eating(t_list_philo *philos)
 //	print_status(philos,"fin bucle eat");
 	print_status(philos, "eat");
 	usleep(philos->eat->time);
-	philos->arr_forks[philos->fork_left] = 0;
-	philos->arr_forks[philos->fork_rght] = 0;
 	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
+	philos->arr_forks[philos->fork_left] = 0;
 	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_rght]);
-	philos->sleep->status = 1;
+	philos->arr_forks[philos->fork_rght] = 0;
 	philos->eat->status = 0;
+	philos->sleep->status = 1;
 	philos->nr_eats++ ;
 //	print_status(philos,"finish eating");
 	if (dying_cntrol(philos))
