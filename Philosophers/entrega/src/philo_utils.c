@@ -21,9 +21,9 @@ t_philo	*get_params(int av, char **ac)
 	if (!philo)
 		return (NULL);
 	philo->nr_ph = ft_atoi(ac[1]);
-	philo->die = ft_atoi(ac[2]) * 1000;
-	philo->eat = ft_atoi(ac[3]) * 1000;
-	philo->sleep = ft_atoi(ac[4]) * 1000;
+	philo->die = ft_atoi(ac[2]);
+	philo->eat = ft_atoi(ac[3]);
+	philo->sleep = ft_atoi(ac[4]);
 	if (av == 6)
 		philo->nr_eats = ft_atoi(ac[5]);
 	else
