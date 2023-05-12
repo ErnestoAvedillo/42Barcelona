@@ -21,7 +21,7 @@ int dying_cntrol(t_list_philo *philos)
 	k = philos->philo_nr + 1 - (philos->philo_nr / COL_LEN) * COL_LEN;
 	philos->die->t1 = get_time();
 	//	print_status(philos, "dying control");
-	printf("\033[%i;%iH%s%6s%s", k, col, BCK_YELLOW, "paso", BCK_STD);
+	//rintf("\033[%i;%iH%s%6s%s", k, col, BCK_YELLOW, "paso", BCK_STD);
 
 	if (philos->die->t1 - philos->die->t0 >= philos->die->time)
 	{
@@ -35,21 +35,29 @@ int dying_cntrol(t_list_philo *philos)
 int process_eating(t_list_philo *philos)
 {
 	philos->die->t0 = get_time();
+	//			print_status(philos, "in eat");
 	//	philos->die->status = philos->die->time;
 	//	print_status(philos,"inicio bucle eat");
 	// while (philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght] || philos->think->status )
 	while (!philos->eat->status)
 	{
-		while (philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght]);
-		if (dying_cntrol(philos))
-			return (0);
+	//getchar();
+	//			print_status(philos, "in buc");
+
+		while (philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght])
+			if (dying_cntrol(philos))
+				return (0);
+		print_status(philos, "in boc");
 		if (!pthread_mutex_lock(&philos->mutex_forks[philos->fork_left]))
 		{
+			philos->arr_forks[philos->fork_left] = 1;
 			if (pthread_mutex_lock(&philos->mutex_forks[philos->fork_rght]))
+			{
 				pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
+				philos->arr_forks[philos->fork_left] = 0;
+			}
 			else
 			{
-				philos->arr_forks[philos->fork_left] = 1;
 				philos->arr_forks[philos->fork_rght] = 1;
 				philos->think = 0;
 				philos->eat->status = 1;
@@ -59,7 +67,7 @@ int process_eating(t_list_philo *philos)
 	}
 //	print_status(philos,"fin bucle eat");
 	print_status(philos, "eat");
-	usleep(philos->eat->time);
+	usleep(philos->eat->time*1000);
 	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
 	philos->arr_forks[philos->fork_left] = 0;
 	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_rght]);
@@ -79,7 +87,7 @@ int process_eating(t_list_philo *philos)
 int process_sleeping(t_list_philo *philos)
 {
 	print_status(philos, "sleep");
-	usleep(philos->sleep->time);
+	usleep(philos->sleep->time*1000);
 	philos->sleep->status = 0;
 	if (dying_cntrol(philos))
 		return (0);
@@ -93,6 +101,7 @@ void *work_proc(void *var)
 	t_list_philo *philos;
 
 	philos = (t_list_philo *)var;
+
 	while (!philos->die->status)
 	{
 		if (!process_eating(philos))

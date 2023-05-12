@@ -102,7 +102,8 @@ void	join_thread(t_philo *philo)
 //	pthread_mutex_lock(philos->mutex_prt);
 //	printf("\nEntro en joinv%p\n", philos);
 //	pthread_mutex_unlock(philos->mutex_prt);
-	print_header();
+//	print_header();
+printf("paso acabado\n");
 	while (philos)
 	{
 		pthread_cancel(philos->thrd);
@@ -130,6 +131,13 @@ void finish_control(t_philo *philos)
 			aux = philos->first_philo;
 		else
 			aux = aux->next;
+	}
+	print_status(aux,"exit");
+	aux = philos->first_philo;
+	while (aux)
+	{
+		aux->die->status = 1;
+		aux = aux->next;
 	}
 	printf("FINALIZADO\n");
 	return;
