@@ -14,11 +14,11 @@
 
 int dying_cntrol(t_list_philo *philos)
 {
-	int k;
-	int col;
+	//int k;
+	//int col;
 
-	col = philos->philo_nr / COL_LEN * NEXT_COL;
-	k = philos->philo_nr + 1 - (philos->philo_nr / COL_LEN) * COL_LEN;
+	//col = philos->philo_nr / COL_LEN * NEXT_COL;
+	//k = philos->philo_nr + 1 - (philos->philo_nr / COL_LEN) * COL_LEN;
 	philos->die->t1 = get_time();
 	//	print_status(philos, "dying control");
 	//rintf("\033[%i;%iH%s%6s%s", k, col, BCK_YELLOW, "paso", BCK_STD);
@@ -44,7 +44,7 @@ int process_eating(t_list_philo *philos)
 	//getchar();
 	//			print_status(philos, "in buc");
 
-		while (philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght])
+		while ((philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght]) && !philos->eat->status)
 			if (dying_cntrol(philos))
 				return (0);
 		print_status(philos, "in boc");

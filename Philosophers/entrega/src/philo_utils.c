@@ -15,7 +15,7 @@
 t_philo	*get_params(int av, char **ac)
 {
 	t_philo *philo;
-	int i;
+//	int i;
 
 	philo = (t_philo *)malloc(sizeof(t_philo));
 	if (!philo)
@@ -29,13 +29,18 @@ t_philo	*get_params(int av, char **ac)
 	else
 		philo->nr_eats = 0;
 	philo->proc_finished = 0;
-	philo->arr_forks = (int *) malloc(philo->nr_ph * sizeof(int));
+	if (!init_mutex(philo))
+		return(NULL);
+/*
+	philo->arr_forks = (int *)malloc(philo->nr_ph * sizeof(int));
 	if (!philo->arr_forks)
 		return (NULL);
 	i = -1;
 	while(++i < philo->nr_ph)
 		philo->arr_forks[i] = 0;
+*/
 	return (philo);
+
 }
 
 long long get_time(void)
@@ -85,6 +90,9 @@ t_philo *start_proc(t_philo *philo)
 			philos->fork_left = i;
 		philos->fork_rght = i - 1;
 		philos->arr_forks = philo->arr_forks;
+		philos->mutex_forks = philo->mutex_forks;
+		philos->mutex_prt = philo->mutex_prt;
+		philos->dead = philo->dead;
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;
 		i++;
@@ -132,11 +140,11 @@ void finish_control(t_philo *philos)
 		else
 			aux = aux->next;
 	}
-	print_status(aux,"exit");
 	aux = philos->first_philo;
 	while (aux)
 	{
 		aux->die->status = 1;
+		print_status(aux, "exit");
 		aux = aux->next;
 	}
 	printf("FINALIZADO\n");

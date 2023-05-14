@@ -40,31 +40,15 @@ int *get_arr_forks(int nr)
 	return (i);
 }
 
-int init_mutex(t_list_philo *philos, int nr_phil)
+int init_mutex(t_philo *phi_head)
 {
-	pthread_mutex_t	*mutex_forks;
-	pthread_mutex_t	*mutex_prt;
-	pthread_mutex_t	*mutex_die;
-    int             *arr_forks;
-
-	
-    arr_forks = get_arr_forks(nr_phil);
-	mutex_forks = fork_mutex_arr(nr_phil);
-	//mutex_forks = (pthread_mutex_t*) malloc (sizeof(pthread_mutex_t));
-	//pthread_mutex_init(mutex_forks, NULL);
-	mutex_prt = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(mutex_prt, NULL);
-	mutex_die = (pthread_mutex_t*) malloc (sizeof(pthread_mutex_t));
-	pthread_mutex_init(mutex_die, NULL);
-	if (!mutex_forks || !mutex_die || !mutex_prt)
+	phi_head->arr_forks = get_arr_forks(phi_head->nr_ph);
+	phi_head->mutex_forks = fork_mutex_arr(phi_head->nr_ph);
+	phi_head->mutex_prt = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(phi_head->mutex_prt, NULL);
+	phi_head->dead = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(phi_head->dead, NULL);
+	if (!phi_head->mutex_forks || !phi_head->mutex_prt || !phi_head->dead)
 		return (0);
-	while(philos)
-	{
-        philos->arr_forks = arr_forks;
-		philos->mutex_prt = mutex_prt;
-		philos->mutex_forks = mutex_forks;
-		philos->dead = mutex_die;
-		philos = philos->next;
-	}
 	return (1);
 }

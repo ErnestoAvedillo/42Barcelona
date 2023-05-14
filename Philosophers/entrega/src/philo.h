@@ -60,7 +60,11 @@ typedef struct s_philo
 	unsigned int	nr_eats;
 	int				proc_finished;
 	int				*arr_forks;
+	pthread_mutex_t *mutex_forks;
+	pthread_mutex_t *mutex_prt;
+	pthread_mutex_t *dead;
 	t_list_philo	*first_philo;
+
 } t_philo;
 
 //const char *prt_concepts[] = {"Address","thread","die","eat","sleep","sleep","nr_eats","max_phil","left_fork","rigt_fork"};
@@ -82,9 +86,9 @@ void			free_vars(t_philo *philos);
 //philo_mem
 t_list_philo	*alloc_var(int nr_phil);
 //philo_init_mutex
-int				init_mutex(t_list_philo *philos, int nr_phil);
+int init_mutex(t_philo *phi_head);
 // philo_print
-void			print_status(t_list_philo *philos, char *origen);
+void print_status(t_list_philo *philos, char *origen);
 void			print_header(void);
 //philo_work_proc
 void			*work_proc(void *var);

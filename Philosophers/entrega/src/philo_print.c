@@ -47,8 +47,8 @@ void print_status(t_list_philo *philos, char *origen)
 	//printf("\033[%i;%iH%i", k, j++ * SPACING, philos->max_philos);
 	if (philos->eat->status)
 	{
-		printf("%s\e[30m\033[%i;%iH% 3i,%i%s", BCK_RED, k, col + j++ * SPACING, philos->fork_left, philos->arr_forks[philos->fork_left], BCK_STD);
-		printf("%s\e[30m\033[%i;%iH% 3i,%i%s", BCK_RED, k, col + j * SPACING, philos->fork_rght, philos->arr_forks[philos->fork_rght], BCK_STD);
+		printf("%s\e[30m\033[%i;%iH% 3i,%3i%s", BCK_RED, k, col + j++ * SPACING, philos->fork_left, philos->arr_forks[philos->fork_left], BCK_STD);
+		printf("%s\e[30m\033[%i;%iH% 3i,%3i%s", BCK_RED, k, col + j * SPACING, philos->fork_rght, philos->arr_forks[philos->fork_rght], BCK_STD);
 	}
 	else if (philos->sleep->status)
 	{
