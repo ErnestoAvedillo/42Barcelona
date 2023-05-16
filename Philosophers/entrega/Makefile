@@ -26,7 +26,7 @@ all: $(NAME)
 -include $(DSTS)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) -static-libasan  $(OBJS) -o $(NAME) 
+	$(CC) $(FLAGS) -static-libsan  $(OBJS) -o $(NAME) 
 
 $(DIR_OBJ_DST)%.o: $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
 	mkdir -p $(DIR_OBJ_DST)

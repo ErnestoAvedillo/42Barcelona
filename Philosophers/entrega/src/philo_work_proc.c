@@ -14,18 +14,12 @@
 
 int dying_cntrol(t_list_philo *philos)
 {
-	//int k;
-	//int col;
-
-	//col = philos->philo_nr / COL_LEN * NEXT_COL;
-	//k = philos->philo_nr + 1 - (philos->philo_nr / COL_LEN) * COL_LEN;
 	philos->die->t1 = get_time();
-	//	print_status(philos, "dying control");
-	//rintf("\033[%i;%iH%s%6s%s", k, col, BCK_YELLOW, "paso", BCK_STD);
 
 	if (philos->die->t1 - philos->die->t0 >= philos->die->time)
 	{
 		philos->die->status = 1;
+		print_msg(philos, "is dead");
 		return (1);
 	}
 	return (0);
@@ -35,39 +29,34 @@ int dying_cntrol(t_list_philo *philos)
 int process_eating(t_list_philo *philos)
 {
 	philos->die->t0 = get_time();
-	//			print_status(philos, "in eat");
-	//	philos->die->status = philos->die->time;
-	//	print_status(philos,"inicio bucle eat");
-	// while (philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght] || philos->think->status )
 	while (!philos->eat->status)
 	{
-	//getchar();
-	//			print_status(philos, "in buc");
-
 		while ((philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght]) && !philos->eat->status)
 			if (dying_cntrol(philos))
 				return (0);
-		print_status(philos, "in boc");
 		if (!pthread_mutex_lock(&philos->mutex_forks[philos->fork_left]))
 		{
 			philos->arr_forks[philos->fork_left] = 1;
+			print_msg(philos, "has taken left fork");
 			if (pthread_mutex_lock(&philos->mutex_forks[philos->fork_rght]))
 			{
 				pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
+				print_msg(philos, "has leaved left fork");
 				philos->arr_forks[philos->fork_left] = 0;
 			}
 			else
 			{
 				philos->arr_forks[philos->fork_rght] = 1;
+				print_msg(philos, "has taken right fork");
 				philos->think = 0;
 				philos->eat->status = 1;
 			}
 		}
-		print_status(philos, "wait");
+		//print_status(philos, "wait");
 	}
-//	print_status(philos,"fin bucle eat");
-	print_status(philos, "eat");
-	usleep(philos->eat->time*1000);
+	//print_status(philos, "eat");
+	print_msg(philos, "is eating");
+	ft_usleep(philos->eat->time, philos);
 	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
 	philos->arr_forks[philos->fork_left] = 0;
 	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_rght]);
@@ -75,24 +64,22 @@ int process_eating(t_list_philo *philos)
 	philos->eat->status = 0;
 	philos->sleep->status = 1;
 	philos->nr_eats++ ;
-//	print_status(philos,"finish eating");
 	if (dying_cntrol(philos))
-	{
-//			printf("Salgo sin en el primer if");
 		return (0);
-	}
 	return (1);
 }
 
 int process_sleeping(t_list_philo *philos)
 {
-	print_status(philos, "sleep");
-	usleep(philos->sleep->time*1000);
-	philos->sleep->status = 0;
 	if (dying_cntrol(philos))
 		return (0);
+	//print_status(philos, "sleep");
+	print_msg(philos, "is sleeping");
+	ft_usleep(philos->sleep->time, philos);
+	philos->sleep->status = 0;
 	philos->think = 1;
-	print_status(philos, "think");
+	//print_status(philos, "think");
+	print_msg(philos, "is thinking");
 	return (1);
 }
 
@@ -101,17 +88,18 @@ void *work_proc(void *var)
 	t_list_philo *philos;
 
 	philos = (t_list_philo *)var;
-
+	while(!*philos->start)
+		usleep (200);
 	while (!philos->die->status)
 	{
 		if (!process_eating(philos))
 			return (philos);
 		if (!process_sleeping(philos))
 			return (philos);
-//		print_status(philos, "dead function");
-//		printf("\033[%i;1Hdireccion1 %p -- %i", philos->philo_nr + 12, philos, philos->philo_nr);
-//		printf("impreso status %lld --gettime %lld --t0 %lld--resta %lld \n", philos->die->status, get_time(), philos->die->t0, get_time() - philos->die->t0);
-	//	getchar();
+		if(philos->lim_eats && philos->lim_eats == philos->nr_eats )
+		{
+			break;
+		}
 	}
 	return (philos);
 }

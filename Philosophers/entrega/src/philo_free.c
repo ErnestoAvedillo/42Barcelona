@@ -27,7 +27,7 @@ void	free_vars(t_philo *header)
 	t_list_philo	*aux;
 	t_list_philo	*philos;
 
-	printf("Liberando memoria\n");
+	//printf("Liberando memoria\n");
 
 	aux = NULL;
 	if (!header)
@@ -42,6 +42,8 @@ void	free_vars(t_philo *header)
 		pthread_mutex_destroy(header->dead);
 	if (header->first_philo)
 		philos = header->first_philo;
+	else 
+		philos = NULL;
 	free(header);
 	while (philos)
 	{
@@ -64,5 +66,5 @@ void	free_vars(t_philo *header)
 		else
 			return ;
 	}
-	printf("Memoria liberada\n");
+	//printf("Memoria liberada\n");
 }

@@ -87,3 +87,34 @@ void print_header(void)
 	printf("\n");
 	return;
 }
+
+
+void	ft_putnbr (long long int nbr)
+{
+	char c;
+
+	if (nbr > 10)
+		ft_putnbr(nbr / 10);
+	c = nbr % 10 + '0';
+	write(1, &c, 1);
+}
+
+void	print_msg(t_list_philo *philos, char *str)
+{
+	int i;
+
+	while (pthread_mutex_lock(philos->mutex_prt))
+		write(1, "wait to lock", 12);
+	write(1, "Philosopher  ", 13);
+	ft_putnbr(philos->philo_nr);
+	write(1, "  ", 2);
+	ft_putnbr(get_time() - philos->die->t0);
+	write(1, "  ", 2);
+	ft_putnbr(get_time());
+	write(1, "  ", 2);
+	i = 0;
+	while(str[i])
+		write(1, &str[i++], 1);
+	write(1, "\n", 1);
+	pthread_mutex_unlock(philos->mutex_prt);
+}

@@ -40,10 +40,12 @@ typedef struct s_list_philo
 	t_control_proc	*eat;
 	t_control_proc	*sleep;
 	int				think;
+	unsigned int	lim_eats;
 	unsigned int	nr_eats;
 	int				max_philos;
 	int				fork_left;
 	int				fork_rght;
+	int				*start;
 	int				*arr_forks;
 	pthread_mutex_t	*mutex_forks;
 	pthread_mutex_t	*mutex_prt;
@@ -59,6 +61,7 @@ typedef struct s_philo
 	unsigned int	sleep;
 	unsigned int	nr_eats;
 	int				proc_finished;
+	int				start;
 	int				*arr_forks;
 	pthread_mutex_t *mutex_forks;
 	pthread_mutex_t *mutex_prt;
@@ -76,6 +79,7 @@ t_philo			*start_proc(t_philo *philo);
 void			join_thread(t_philo *philos);
 void			finish_control(t_philo *philos);
 long long		get_time(void);
+void			ft_usleep(int nbr, t_list_philo *philos);
 
 // ft_isdigit
 int				ft_isdigit(int c);
@@ -88,8 +92,9 @@ t_list_philo	*alloc_var(int nr_phil);
 //philo_init_mutex
 int init_mutex(t_philo *phi_head);
 // philo_print
-void print_status(t_list_philo *philos, char *origen);
+void			print_status(t_list_philo *philos, char *origen);
 void			print_header(void);
+void			print_msg(t_list_philo *philos, char *str);
 //philo_work_proc
 void			*work_proc(void *var);
 #endif
