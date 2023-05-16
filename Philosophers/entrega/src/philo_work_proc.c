@@ -64,6 +64,7 @@ int process_eating(t_list_philo *philos)
 	philos->eat->status = 0;
 	philos->sleep->status = 1;
 	philos->nr_eats++ ;
+	print_msg(philos, "is control eating");
 	if (dying_cntrol(philos))
 		return (0);
 	return (1);
@@ -76,6 +77,7 @@ int process_sleeping(t_list_philo *philos)
 	//print_status(philos, "sleep");
 	print_msg(philos, "is sleeping");
 	ft_usleep(philos->sleep->time, philos);
+	print_msg(philos, "is control sleeping");
 	philos->sleep->status = 0;
 	philos->think = 1;
 	//print_status(philos, "think");

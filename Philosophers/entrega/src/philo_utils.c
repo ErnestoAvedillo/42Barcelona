@@ -120,7 +120,6 @@ void finish_control(t_philo *philos)
 		finish &= (aux->lim_eats > 0  && aux->lim_eats == aux->nr_eats);
 		if (!aux->next)
 		{
-			//printf("\033[58;1H%i-- %i",aux->philo_nr,finish);
 			if (finish)
 			{
 				break;
@@ -162,6 +161,12 @@ void ft_usleep(int nbr,t_list_philo *philos )
 	long long int init;
 
 	init = get_time();
-	while (nbr > get_time() - init && !philos->die->status)
+	while (nbr > get_time() - init - 5 && !philos->die->status)
+	{
 		usleep(5);
+	}
+//	while(pthread_mutex_lock(philos->mutex_prt))
+		printf("Philosopher %i  ft_usleep %i > %llu?.--eat %lli-- sleep %lli \n",philos->philo_nr, nbr, get_time() - init, philos->eat->status, philos->sleep->status);
+//	pthread_mutex_unlock(philos->mutex_prt);
+	
 }
