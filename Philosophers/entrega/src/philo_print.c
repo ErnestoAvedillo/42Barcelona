@@ -25,7 +25,8 @@ void print_status(t_list_philo *philos, char *origen)
 //		k++;
 	col = philos->philo_nr / COL_LEN * NEXT_COL;
 	k = philos->philo_nr + 1 - (philos->philo_nr / COL_LEN) * COL_LEN;
-	pthread_mutex_lock(philos->mutex_prt);
+	while (pthread_mutex_lock(philos->mutex_prt))
+		usleep(10);
 //	printf("\033[%i;%iHOrigen print %s\n",k, 1, origen);
 //	k++;
 	printf("\033[%i;%iH%i", k, col + 1 , philos->philo_nr);
@@ -88,7 +89,7 @@ void print_header(void)
 	return;
 }
 
-
+/*
 void	ft_putnbr (long long int nbr)
 {
 	char c;
@@ -118,3 +119,4 @@ void	print_msg(t_list_philo *philos, char *str)
 	write(1, "\n", 1);
 	pthread_mutex_unlock(philos->mutex_prt);
 }
+*/
