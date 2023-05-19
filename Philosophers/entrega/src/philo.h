@@ -97,4 +97,6 @@ void			print_header(void);
 void			print_msg(t_list_philo *philos, char *str);
 //philo_work_proc
 void			*work_proc(void *var);
+void			ft_putnbr (long long int nbr);
+
 #endif

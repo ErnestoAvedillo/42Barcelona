@@ -16,10 +16,10 @@ int dying_cntrol(t_list_philo *philos)
 {
 	philos->die->t1 = get_time();
 
-	if (philos->die->t1 - philos->die->t0 >= philos->die->time)
+	if (philos->die->t1 - philos->die->t0 >= philos->die->time || philos->die->status)
 	{
 		philos->die->status = 1;
-		//print_msg(philos, "is dead");
+		print_msg(philos, "is dead");
 		return (1);
 	}
 	return (0);
@@ -37,25 +37,27 @@ int process_eating(t_list_philo *philos)
 		if (!pthread_mutex_lock(&philos->mutex_forks[philos->fork_left]))
 		{
 			philos->arr_forks[philos->fork_left] = 1;
-			//(philos, "has taken left fork");
+			print_msg(philos, "has taken left fork");
 			if (pthread_mutex_lock(&philos->mutex_forks[philos->fork_rght]))
 			{
 				pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
-				//print_msg(philos, "has leaved left fork");
+				print_msg(philos, "has leaved left fork");
 				philos->arr_forks[philos->fork_left] = 0;
 			}
 			else
 			{
 				philos->arr_forks[philos->fork_rght] = 1;
-				//print_msg(philos, "has taken right fork");
+				print_msg(philos, "has taken right fork");
 				philos->think = 0;
 				philos->eat->status = 1;
 			}
 		}
 		//print_status(philos, "wait");
 	}
-	print_status(philos, "eat");
-	//print_msg(philos, "is eating");
+	//print_status(philos, "eat");
+	if (dying_cntrol(philos))
+		return (0);
+	print_msg(philos, "is eating");
 	ft_usleep(philos->eat->time, philos);
 	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
 	philos->arr_forks[philos->fork_left] = 0;
@@ -64,9 +66,7 @@ int process_eating(t_list_philo *philos)
 	philos->eat->status = 0;
 	philos->sleep->status = 1;
 	philos->nr_eats++ ;
-	//print_msg(philos, "is control eating");
-	if (dying_cntrol(philos))
-		return (0);
+	print_msg(philos, "is control eating");
 	return (1);
 }
 
@@ -74,14 +74,16 @@ int process_sleeping(t_list_philo *philos)
 {
 	if (dying_cntrol(philos))
 		return (0);
-	print_status(philos, "sleep");
-	//print_msg(philos, "is sleeping");
+	//print_status(philos, "sleep");
+	print_msg(philos, "is sleeping");
 	ft_usleep(philos->sleep->time, philos);
-	//print_msg(philos, "is control sleeping");
+	print_msg(philos, "is control sleeping");
 	philos->sleep->status = 0;
 	philos->think = 1;
-	print_status(philos, "think");
-	//print_msg(philos, "is thinking");
+	//print_status(philos, "think");
+	if (dying_cntrol(philos))
+		return (0);
+	print_msg(philos, "is thinking");
 	return (1);
 }
 
