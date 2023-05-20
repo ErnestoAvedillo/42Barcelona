@@ -18,12 +18,18 @@ DSTS:= $(addprefix $(DIR_OBJ_DST),$(addsuffix .d,$(SRC)))
 CC:= gcc
 
 FLAGS:= -Werror -Wextra -Wall -O2 -fsanitize=address -g
+
+VISUAL = MANDAT
 #-fsanitize=datarace
 RM := rm -rfd
 
 all:  $(NAME)
 
-visual:  $(NAME)
+table: VISUAL = VISIO
+table:  $(NAME)
+
+control: VISUAL = CONTROL
+control:$(NAME)
 
 -include $(DSTS)
 
@@ -32,7 +38,7 @@ $(NAME): $(OBJS)
 
 $(DIR_OBJ_DST)%.o: $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
 	mkdir -p $(DIR_OBJ_DST)
-	$(CC) $(FLAGS) -D VISIO  -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o
+	$(CC) $(FLAGS) -D $(VISUAL)  -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o
 
 $(DIR_OBJ_DST)%.d: $(DIR_SRC)%.c $(INCLUDE)
 	mkdir -p $(DIR_OBJ_DST)
