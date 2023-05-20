@@ -14,7 +14,7 @@
 
 int dying_cntrol(t_list_philo *philos)
 {
-	if (philos->die->t1 - philos->die->t0 >= philos->die->time || philos->die->status)
+	if (get_time() - philos->die->t0 >= philos->die->time || philos->die->status)
 	{
 		philos->die->status = 1;
 		#ifdef MANDAT
@@ -28,17 +28,16 @@ int dying_cntrol(t_list_philo *philos)
 
 int process_eating(t_list_philo *philos)
 {
-	philos->die->t0 = get_time();
 	#ifdef CONTROL
 	printf("philo1 %i -- %p -- %i \n", philos->philo_nr, philos->start, *philos->start);
 	#endif
 	while (!philos->eat->status)
 	{
-		while ((philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght]) && !philos->eat->status)
-		{
 	#ifdef CONTROL
 	printf("philo2 %i -- %p -- %i \n", philos->philo_nr, philos->start, *philos->start);
 	#endif
+		while ((philos->arr_forks[philos->fork_left] || philos->arr_forks[philos->fork_rght]))
+		{
 		if (dying_cntrol(philos))
 				return (0);
 		}
@@ -88,10 +87,10 @@ int process_eating(t_list_philo *philos)
 	#ifdef VISIO
 	print_status(philos, "eat");
 	#endif
-	#ifdef MANDAT
-	philos->die->t1 = get_time();
+	philos->die->t0 = get_time();
 	if (dying_cntrol(philos))
 		return (0);
+	#ifdef MANDAT
 	print_msg(philos, "is eating");
 	#endif
 	ft_usleep(philos->eat->time, philos);
@@ -152,6 +151,10 @@ void *work_proc(void *var)
 	}
 	while (!philos->die->status)
 	{
+		#ifdef VISIO
+		print_status(philos, "start");
+		#endif
+
 		if (!process_eating(philos))
 			return (philos);
 		if (!process_sleeping(philos))

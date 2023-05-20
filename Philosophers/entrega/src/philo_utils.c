@@ -90,6 +90,7 @@ t_philo *start_proc(t_philo *philo)
 		philos->mutex_prt = philo->mutex_prt;
 		philos->dead = philo->dead;
 		philos->start = &philo->start;
+		philos->die->t0 = get_time();
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;
 		i++;
