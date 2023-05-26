@@ -85,17 +85,23 @@ t_philo *start_proc(t_philo *philo)
 		else
 			philos->fork_left = i;
 		philos->fork_rght = i - 1;
-		philos->arr_forks = philo->arr_forks;
 		philos->mutex_forks = philo->mutex_forks;
 		philos->mutex_prt = philo->mutex_prt;
 		philos->dead = philo->dead;
 		philos->start = &philo->start;
+		philos->istart = 0;
 		philos->die->t0 = get_time();
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;
 		i++;
 	}
 	usleep(10);
+	philos = philo->first_philo;
+	while (philos)
+	{
+		philos->istart = 1;
+		philos = philos->next;
+	}
 	philo->start = 1;
 	return (philo);
 }
@@ -142,8 +148,6 @@ void finish_control(t_philo *philos)
 		{
 			#ifdef MANDAT
 			pthread_mutex_lock(aux->mutex_prt);
-	//		while(pthread_mutex_lock(aux->mutex_prt))
-	//			usleep(10);
 				printf("Philosopher %i  has eaten %i meals.\n",aux->philo_nr, aux->nr_eats);
 			pthread_mutex_unlock(aux->mutex_prt);
 			aux = aux->next;

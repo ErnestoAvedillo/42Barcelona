@@ -46,7 +46,8 @@ typedef struct s_list_philo
 	int				fork_left;
 	int				fork_rght;
 	int				*start;
-	int				*arr_forks;
+	int				istart;
+//	int				*arr_forks;
 	pthread_mutex_t	*mutex_forks;
 	pthread_mutex_t	*mutex_prt;
 	pthread_mutex_t	*dead;
@@ -92,7 +93,7 @@ t_list_philo	*alloc_var(int nr_phil);
 //philo_init_mutex
 int init_mutex(t_philo *phi_head);
 // philo_print
-void			print_status(t_list_philo *philos, char *origen);
+void			print_status(t_list_philo *philos, char *origen, char *COLOR);
 void			print_header(void);
 int				print_msg(t_list_philo *philos, char *str);
 //philo_work_proc
