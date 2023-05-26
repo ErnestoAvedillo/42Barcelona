@@ -91,19 +91,23 @@ void print_header(void)
 }
 
 
-void	ft_putnbr (long long int nbr)
+int	ft_putnbr (long long int nbr)
 {
 	char c;
+	int i;
 
+	i = 0;
 	if (nbr > 10)
-		ft_putnbr(nbr / 10);
+		i += ft_putnbr(nbr / 10);
 	c = nbr % 10 + '0';
-	write(1, &c, 1);
+	i += write(1, &c, 1);
+	return (i);
 }
 
-void	print_msg(t_list_philo *philos, char *str)
+int	print_msg(t_list_philo *philos, char *str)
 {
 	int i;
+	int j;
 
 	//write(1, "wait prio mutex lock ", 21);
 	//ft_putnbr(philos->philo_nr);
@@ -114,16 +118,17 @@ void	print_msg(t_list_philo *philos, char *str)
 	//write(1, "wait after lock ", 16);
 	//ft_putnbr(philos->philo_nr);
 	//write(1, "\n", 1);
-	write(1, "Philosopher  ", 13);
+	i = write(1, "Philosopher  ", 13);
 	ft_putnbr(philos->philo_nr);
-	write(1, "  ", 2);
+	i += write(1, "  ", 2);
 	ft_putnbr(get_time() - philos->die->t0);
-	write(1, "  ", 2);
+	i += write(1, "  ", 2);
 	ft_putnbr(get_time());
-	write(1, "  ", 2);
-	i = 0;
-	while(str[i])
-		write(1, &str[i++], 1);
-	write(1, "\n", 1);
+	i += write(1, "  ", 2);
+	j = 0;
+	while(str[j])
+		i += write(1, &str[j++], 1);
+	i += write(1, "\n", 1);
 	pthread_mutex_unlock(philos->mutex_prt);
+	return (i);
 }

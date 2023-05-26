@@ -154,6 +154,7 @@ void finish_control(t_philo *philos)
 	while (aux)
 	{
 		if (!finish)
+		{
 			aux->die->status = 1;
 			#ifdef MANDAT
 			pthread_mutex_lock(aux->mutex_prt);
@@ -163,6 +164,7 @@ void finish_control(t_philo *philos)
 			pthread_mutex_unlock(aux->mutex_prt);
 			#endif
 //		print_status(aux, "exit");
+		}
 		aux = aux->next;
 	}
 //	printf("FINALIZADO\n");
@@ -172,7 +174,9 @@ void finish_control(t_philo *philos)
 void ft_usleep(int nbr,t_list_philo *philos )
 {
 	long long int init;
+	int i;
 
+	i = 0;
 	init = get_time();
 	while (nbr > get_time() - init - 5 )
 	{
@@ -182,16 +186,15 @@ void ft_usleep(int nbr,t_list_philo *philos )
 	pthread_mutex_lock(philos->mutex_prt);
 //	while(pthread_mutex_lock(philos->mutex_prt))
 //		sleep(10);
-	write (1, "Philosopher ", 12);
-	ft_putnbr(philos->philo_nr);
-	write (1, " sleep been ", 12);
-	ft_putnbr(nbr);
-	write (1, " > ", 3);
-	ft_putnbr(get_time() - init);
-	write (1, " \n", 2);
+	i += write (1, "Philosopher ", 12);
+	i += ft_putnbr(philos->philo_nr);
+	i += write(1, " sleep been ", 12);
+	i += ft_putnbr(nbr);
+	i += write(1, " > ", 3);
+	i += ft_putnbr(get_time() - init);
+	i += write(1, " \n", 2);
 
-
-//	printf("Philosopher %i  ft_usleep %i > %llu?.--eat %lli-- sleep %lli \n",philos->philo_nr, nbr, get_time() - init, philos->eat->status, philos->sleep->status);
+	//	printf("Philosopher %i  ft_usleep %i > %llu?.--eat %lli-- sleep %lli \n",philos->philo_nr, nbr, get_time() - init, philos->eat->status, philos->sleep->status);
 	pthread_mutex_unlock(philos->mutex_prt);
 	#else
 	(void) philos;

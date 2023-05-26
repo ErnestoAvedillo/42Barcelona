@@ -94,9 +94,9 @@ int init_mutex(t_philo *phi_head);
 // philo_print
 void			print_status(t_list_philo *philos, char *origen);
 void			print_header(void);
-void			print_msg(t_list_philo *philos, char *str);
+int				print_msg(t_list_philo *philos, char *str);
 //philo_work_proc
 void			*work_proc(void *var);
-void			ft_putnbr (long long int nbr);
+int				ft_putnbr (long long int nbr);
 
 #endif
