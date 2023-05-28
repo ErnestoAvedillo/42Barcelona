@@ -59,7 +59,9 @@ t_philo *start_proc(t_philo *philo)
 	int				i;
 	t_list_philo	*philos = NULL;
 
-	printf("\033[2J");
+	#ifdef VISIO
+		printf("\033[2J");
+	#endif
 	if (philo->nr_ph == 0)
 		return (NULL);
 	//print_header();
@@ -81,10 +83,10 @@ t_philo *start_proc(t_philo *philo)
 		philos->nr_eats = 0;
 		philos->max_philos = philo->nr_ph;
 		if (i == philo->nr_ph)
-			philos->fork_left = 0;
+			philos->fork_rght = 0;
 		else
-			philos->fork_left = i;
-		philos->fork_rght = i - 1;
+			philos->fork_rght = i;
+		philos->fork_left = i - 1;
 		philos->mutex_forks = philo->mutex_forks;
 		philos->mutex_prt = philo->mutex_prt;
 		philos->dead = philo->dead;
@@ -95,13 +97,21 @@ t_philo *start_proc(t_philo *philo)
 		philos = philos->next;
 		i++;
 	}
-	usleep(10);
+/*	philos = philo->first_philo;
+	while (philos)
+	{
+		if ((philos->philo_nr + 1) / 2)
+			philos->istart = 1;
+		philos = philos->next;
+	}
 	philos = philo->first_philo;
 	while (philos)
 	{
-		philos->istart = 1;
+		if (!(philos->philo_nr + 1) / 2)
+			philos->istart = 1;
 		philos = philos->next;
 	}
+*/	
 	philo->start = 1;
 	return (philo);
 }
@@ -115,7 +125,6 @@ void	join_thread(t_philo *philo)
 	{
 		pthread_cancel(philos->thrd);
 		pthread_join(philos->thrd, NULL);
-	//	print_status(philos,"join");
 		philos = philos->next;
 	}
 }
@@ -162,12 +171,9 @@ void finish_control(t_philo *philos)
 			aux->die->status = 1;
 			#ifdef MANDAT
 			pthread_mutex_lock(aux->mutex_prt);
-	//		while(pthread_mutex_lock(aux->mutex_prt))
-	//			usleep(10);
 			printf("Philosopher %i  dead %llu.\n",aux->philo_nr, get_time()- aux->die->t0);
 			pthread_mutex_unlock(aux->mutex_prt);
 			#endif
-//		print_status(aux, "exit");
 		}
 		aux = aux->next;
 	}
@@ -182,22 +188,22 @@ void ft_usleep(int nbr,t_list_philo *philos )
 
 	i = 0;
 	init = get_time();
-	while (nbr > get_time() - init - 5 )
+	while (nbr > get_time() - init )
 	{
-		usleep(nbr / 4);
+		usleep(50);
 	}
 	#ifdef MANDAT
 	pthread_mutex_lock(philos->mutex_prt);
 //	while(pthread_mutex_lock(philos->mutex_prt))
 //		sleep(10);
-	i += write (1, "Philosopher ", 12);
+/*	i += write (1, "Philosopher ", 12);
 	i += ft_putnbr(philos->philo_nr);
 	i += write(1, " sleep been ", 12);
 	i += ft_putnbr(nbr);
 	i += write(1, " > ", 3);
 	i += ft_putnbr(get_time() - init);
 	i += write(1, " \n", 2);
-
+*/
 	//	printf("Philosopher %i  ft_usleep %i > %llu?.--eat %lli-- sleep %lli \n",philos->philo_nr, nbr, get_time() - init, philos->eat->status, philos->sleep->status);
 	pthread_mutex_unlock(philos->mutex_prt);
 	#else

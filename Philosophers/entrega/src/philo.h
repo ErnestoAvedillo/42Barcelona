@@ -20,9 +20,10 @@
 #include "colors.h"
 
 //for print prouposes
-#define SPACING 8
-#define COL_LEN 50
+#define SPACING 6
+#define COL_LEN 51
 #define NEXT_COL SPACING * 9
+#define NEW_BLOCK 20
 
 typedef struct s_control_proc
 {
@@ -39,7 +40,7 @@ typedef struct s_list_philo
 	t_control_proc	*die;
 	t_control_proc	*eat;
 	t_control_proc	*sleep;
-	int				think;
+//	int				think;
 	unsigned int	lim_eats;
 	unsigned int	nr_eats;
 	int				max_philos;
@@ -93,9 +94,8 @@ t_list_philo	*alloc_var(int nr_phil);
 //philo_init_mutex
 int init_mutex(t_philo *phi_head);
 // philo_print
-void			print_status(t_list_philo *philos, char *origen, char *COLOR);
+int				print_status(t_list_philo *philos, char *origen, char *color);
 void			print_header(void);
-int				print_msg(t_list_philo *philos, char *str);
 //philo_work_proc
 void			*work_proc(void *var);
 int				ft_putnbr (long long int nbr);

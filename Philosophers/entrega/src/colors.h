@@ -12,25 +12,29 @@
 
 #ifndef COLORS_H
 # define COLORS_H
+#ifdef VISIO
+#elif MANDAT
+    #define TYPE
+#endif
 //Standard color
-# define BCK_STD	"\e[0m"
+# define BCK_STD	"\033[0;0m"
 //Background colors over black
-# define BCK_BLACK	"\e[40m"
-# define BCK_RED	"\e[41m"
-# define BCK_GREEN	"\e[42m"
-# define BCK_YELLOW	"\e[43m"
-# define BCK_BLUE	"\e[44m"
-# define BCK_MGENTA	"\e[45m"
-# define BCK_CYAN	"\e[46m"
-# define BCK_WHITE	"\e[47m"
+# define BCK_BLACK	"\033[0;40m"
+# define BCK_RED	"\033[0;41m"
+# define BCK_GREEN	"\033[0;42m"
+# define BCK_YELLOW	"\033[0;43m"
+# define BCK_BLUE	"\033[0;44m"
+# define BCK_MGENTA	"\033[0;45m"
+# define BCK_CYAN	"\033[0;46m"
+# define BCK_WHITE	"\033[0;47m"
 //Character colors over black
-# define CHR_BLACK	"\e[30m"
-# define CHR_RED	"\e[31m"
-# define CHR_GREEN	"\e[32m"
-# define CHR_YELLOW	"\e[33m"
-# define CHR_BLUE	"\e[34m"
-# define CHR_MGENTA	"\e[35m"
-# define CHR_CYAN	"\e[36m"
-# define CHR_WHITE	"\e[37m"
+# define CHR_BLACK	"\033[0;30m"
+# define CHR_RED	"\033[0;31m"
+# define CHR_GREEN	"\033[0;32m"
+# define CHR_YELLOW	"\033[0;33m"
+# define CHR_BLUE	"\033[0;34m"
+# define CHR_MGENTA	"\033[0;35m"
+# define CHR_CYAN	"\033[0;36m"
+# define CHR_WHITE	"\033[0;37m"
 
 #endif

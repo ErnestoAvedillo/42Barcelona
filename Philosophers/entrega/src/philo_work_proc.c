@@ -14,12 +14,10 @@
 
 int dying_cntrol(t_list_philo *philos)
 {
-	if (get_time() - philos->die->t0 >= philos->die->time || philos->die->status)
+	if (get_time() - philos->die->t1 >= philos->die->time || philos->die->status)
 	{
 		philos->die->status = 1;
-		#ifdef MANDAT
-		print_msg(philos, "is dead");
-		#endif
+		print_status(philos, "is dead", BCK_RED);
 		return (1);
 	}
 	return (0);
@@ -29,29 +27,20 @@ int dying_cntrol(t_list_philo *philos)
 int process_eating(t_list_philo *philos)
 {
 	pthread_mutex_lock(&philos->mutex_forks[philos->fork_left]);
-	#ifdef MANDAT
-	print_msg(philos, "has taken left fork");
-	#elif VISIO
-	print_status(philos, "LFT_F",BCK_GREEN);
-	#endif
+	print_status(philos, "has taken left fork ",BCK_GREEN);
 	pthread_mutex_lock(&philos->mutex_forks[philos->fork_rght]);
-	#ifdef MANDAT
-	print_msg(philos, "has taken right fork");
-	#endif
+	print_status(philos, "has taken right fork",BCK_GREEN);
 	if (dying_cntrol(philos))
 		return (0);
-	philos->die->t0 = get_time();
-	philos->think = 0;
-	philos->eat->status = 1;
-	#ifdef MANDAT
-	print_msg(philos, "is eating");
-	#elif VISIO
-	print_status(philos, "eat", BCK_RED);
-	#endif
+	philos->die->t1 = get_time();
+//	philos->think = 0;
+//	philos->eat->status = 1;
+	print_status(philos, "is eating", BCK_YELLOW);
 	ft_usleep(philos->eat->time, philos);
+	print_status(philos, "finish eating", BCK_STD);
 	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_left]);
 	pthread_mutex_unlock(&philos->mutex_forks[philos->fork_rght]);
-	philos->eat->status = 0;
+//	philos->eat->status = 0;
 	philos->nr_eats++ ;
 	return (1);
 }
@@ -60,14 +49,20 @@ int process_sleeping(t_list_philo *philos)
 {
 	if (dying_cntrol(philos))
 		return (0);
-	philos->sleep->status = 1;
-	#ifdef MANDAT
-	print_msg(philos, "is sleeping");
-	#elif VISIO
-	print_status(philos, "sleep", BCK_MGENTA);
-	#endif
+//	philos->sleep->status = 1;
+	print_status(philos, "is sleeping", BCK_CYAN);
 	ft_usleep(philos->sleep->time, philos);
 	philos->sleep->status = 0;
+	return (1);
+}
+
+int process_thinking(t_list_philo *philos)
+{
+	if (dying_cntrol(philos))
+		return (0);
+//	philos->think = 1;
+	print_status(philos, "is thinking",BCK_CYAN);
+//	philos->think = 0;
 	return (1);
 }
 
@@ -76,37 +71,24 @@ void *work_proc(void *var)
 	t_list_philo *philos;
 	
 	philos = (t_list_philo *)var;
-	#ifdef CONTROL
-	printf("philo0 %i -- %p -- %i \n", philos->philo_nr, philos->start, *philos->start);
-	#endif
-	while(!*philos->start)
+	while(!philos->start)
+		usleep(1);
+	usleep (((philos->philo_nr + 1) % 2) * philos->eat->time);
+	philos->die->t1 = get_time();
+	//while (!philos->die->status)
+	while(process_eating(philos) && process_sleeping(philos) && process_thinking(philos))
 	{
-		usleep (10);
-	#ifdef CONTROL
-	printf("philo00 %i -- %p -- %i \n", philos->philo_nr, philos->start, *philos->start);
-	#endif
-	}
-	while (!philos->die->status && philos->istart)
-	{
-		#ifdef VISIO
-		print_status(philos, "start", BCK_GREEN);
-		#endif
-
-		if (!process_eating(philos))
-			return (philos);
-		if (!process_sleeping(philos))
-			return (philos);
-		philos->think = 1;
-		#ifdef VISIO
-		print_status(philos, "think",BCK_BLACK);
-		#elif MANDAT
-		print_msg(philos, "is thinking");
-		#endif
-		if(philos->lim_eats && philos->lim_eats == philos->nr_eats )
-		{
+	/*	if (!process_eating(philos))
 			break;
-		}
+		if (!process_sleeping(philos))
+			break;
+		philos->think = 1;
+		print_status(philos, "is thinking",BCK_CYAN);
+	*/	if(philos->lim_eats && philos->lim_eats == philos->nr_eats )
+			break;
 	}
-	print_msg(philos, "is dead");
+	pthread_mutex_unlock (&philos->mutex_forks[philos->fork_left]);
+	pthread_mutex_unlock (&philos->mutex_forks[philos->fork_rght]);
+//	print_status(philos, "is dead        ", BCK_RED);
 	return (philos);
 }
