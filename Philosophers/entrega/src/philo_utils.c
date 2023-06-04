@@ -182,18 +182,19 @@ void finish_control(t_philo *philos)
 }
 
 void ft_usleep(int nbr,t_list_philo *philos )
+void ft_usleep(int nbr )
 {
 	long long int init;
-	int i;
+//	int i;
 
-	i = 0;
+//	i = 0;
 	init = get_time();
 	while (nbr > get_time() - init )
 	{
-		usleep(50);
+		usleep(nbr / 2);
 	}
-	#ifdef MANDAT
-	pthread_mutex_lock(philos->mutex_prt);
+//	#ifdef MANDAT
+//	pthread_mutex_lock(philos->mutex_prt);
 //	while(pthread_mutex_lock(philos->mutex_prt))
 //		sleep(10);
 /*	i += write (1, "Philosopher ", 12);
@@ -205,8 +206,8 @@ void ft_usleep(int nbr,t_list_philo *philos )
 	i += write(1, " \n", 2);
 */
 	//	printf("Philosopher %i  ft_usleep %i > %llu?.--eat %lli-- sleep %lli \n",philos->philo_nr, nbr, get_time() - init, philos->eat->status, philos->sleep->status);
-	pthread_mutex_unlock(philos->mutex_prt);
-	#else
-	(void) philos;
-	#endif
+//	pthread_mutex_unlock(philos->mutex_prt);
+//	#else
+//	(void) philos;
+//	#endif
 }
