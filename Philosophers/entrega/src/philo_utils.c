@@ -29,6 +29,7 @@ t_philo	*get_params(int av, char **ac)
 		philo->nr_eats = 0;
 	philo->proc_finished = 0;
 	philo->start = 0;
+	philo->t0 = get_time();
 	if (!init_mutex(philo))
 		return(NULL);
 	return (philo);
@@ -65,6 +66,7 @@ t_philo *start_proc(t_philo *philo)
 	if (philo->nr_ph == 0)
 		return (NULL);
 	//print_header();
+	//philo->t0 = get_time();
 	philo->first_philo = alloc_var(philo->nr_ph);
 	if (!philo->first_philo)
 	{
@@ -92,6 +94,7 @@ t_philo *start_proc(t_philo *philo)
 		philos->dead = philo->dead;
 		philos->start = &philo->start;
 		philos->istart = 0;
+		philos->t0 = &philo->t0;
 		philos->die->t0 = get_time();
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;
@@ -119,14 +122,14 @@ t_philo *start_proc(t_philo *philo)
 void	join_thread(t_philo *philo)
 {
 	t_list_philo	*philos;
-
+	
 	philos = philo->first_philo;
 	while (philos)
 	{
-		pthread_cancel(philos->thrd);
 		pthread_join(philos->thrd, NULL);
 		philos = philos->next;
 	}
+	return;
 }
 
 void finish_control(t_philo *philos)
@@ -184,16 +187,17 @@ void finish_control(t_philo *philos)
 void ft_usleep(int nbr,t_list_philo *philos )
 {
 	long long int init;
-	int i;
+//	int i;
 
-	i = 0;
+//	i = 0;
 	init = get_time();
-	while (nbr > get_time() - init )
+	nbr *= 1000;
+	while (nbr > get_time() - init)
 	{
 		usleep(50);
 	}
-	#ifdef MANDAT
-	pthread_mutex_lock(philos->mutex_prt);
+//	#ifdef MANDAT
+//	pthread_mutex_lock(philos->mutex_prt);
 //	while(pthread_mutex_lock(philos->mutex_prt))
 //		sleep(10);
 /*	i += write (1, "Philosopher ", 12);
@@ -205,8 +209,8 @@ void ft_usleep(int nbr,t_list_philo *philos )
 	i += write(1, " \n", 2);
 */
 	//	printf("Philosopher %i  ft_usleep %i > %llu?.--eat %lli-- sleep %lli \n",philos->philo_nr, nbr, get_time() - init, philos->eat->status, philos->sleep->status);
-	pthread_mutex_unlock(philos->mutex_prt);
-	#else
+//	pthread_mutex_unlock(philos->mutex_prt);
+//	#else
 	(void) philos;
-	#endif
+//	#endif
 }

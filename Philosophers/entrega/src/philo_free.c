@@ -32,8 +32,6 @@ void	free_vars(t_philo *header)
 	aux = NULL;
 	if (!header)
 		return ;
-	if (header->arr_forks)
-		free(header->arr_forks);
 	if (header->mutex_forks)
 		pthread_mutex_destroy(header->mutex_forks);
 	if (header->mutex_prt)

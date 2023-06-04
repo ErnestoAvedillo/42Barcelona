@@ -20,8 +20,8 @@
 #include "colors.h"
 
 //for print prouposes
-#define SPACING 6
-#define COL_LEN 51
+#define SPACING 8
+#define COL_LEN 71
 #define NEXT_COL SPACING * 9
 #define NEW_BLOCK 20
 
@@ -48,7 +48,8 @@ typedef struct s_list_philo
 	int				fork_rght;
 	int				*start;
 	int				istart;
-//	int				*arr_forks;
+	long long		*t0;
+	//	int				*arr_forks;
 	pthread_mutex_t	*mutex_forks;
 	pthread_mutex_t	*mutex_prt;
 	pthread_mutex_t	*dead;
@@ -64,7 +65,8 @@ typedef struct s_philo
 	unsigned int	nr_eats;
 	int				proc_finished;
 	int				start;
-	int				*arr_forks;
+	long long		t0;
+//	int 			*arr_forks;
 	pthread_mutex_t *mutex_forks;
 	pthread_mutex_t *mutex_prt;
 	pthread_mutex_t *dead;
