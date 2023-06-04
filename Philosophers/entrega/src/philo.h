@@ -29,9 +29,10 @@ typedef struct s_control_proc
 {
 	unsigned int	time;
 	long long		status;
-	long long		t0;
 	long long		t1;
 } t_control_proc;
+
+
 
 typedef struct s_list_philo
 {
@@ -40,7 +41,6 @@ typedef struct s_list_philo
 	t_control_proc	*die;
 	t_control_proc	*eat;
 	t_control_proc	*sleep;
-//	int				think;
 	unsigned int	lim_eats;
 	unsigned int	nr_eats;
 	int				max_philos;
@@ -48,8 +48,8 @@ typedef struct s_list_philo
 	int				fork_rght;
 	int				*start;
 	int				istart;
+	int				*isdead;
 	long long		*t0;
-	//	int				*arr_forks;
 	pthread_mutex_t	*mutex_forks;
 	pthread_mutex_t	*mutex_prt;
 	pthread_mutex_t	*dead;
@@ -65,13 +65,12 @@ typedef struct s_philo
 	unsigned int	nr_eats;
 	int				proc_finished;
 	int				start;
+	int				isdead;
 	long long		t0;
-//	int 			*arr_forks;
 	pthread_mutex_t *mutex_forks;
 	pthread_mutex_t *mutex_prt;
 	pthread_mutex_t *dead;
 	t_list_philo	*first_philo;
-
 } t_philo;
 
 //const char *prt_concepts[] = {"Address","thread","die","eat","sleep","sleep","nr_eats","max_phil","left_fork","rigt_fork"};
@@ -83,7 +82,8 @@ t_philo			*start_proc(t_philo *philo);
 void			join_thread(t_philo *philos);
 void			finish_control(t_philo *philos);
 long long		get_time(void);
-void			ft_usleep(int nbr, t_list_philo *philos);
+void			ft_usleep(int nbr);
+//void			ft_usleep(int nbr, t_list_philo *philos);
 
 // ft_isdigit
 int				ft_isdigit(int c);

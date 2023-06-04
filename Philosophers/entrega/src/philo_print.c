@@ -24,16 +24,11 @@ int print_status(t_list_philo *philos, char *origen, char *COLOR)
 	pthread_mutex_lock(philos->mutex_prt);
 	printf("\033[%i;%iH%i", k, col + 1 , philos->philo_nr);
 	j = 1;
-//	printf("\033[%i;%iH%d", k, col + j++ * SPACING, ((philos->philo_nr + 1) % 2) * philos->eat->time);
-//	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, *philos->t0);
 	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time() - *philos->t0);
-	//printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time() - philos->die->t1);
-	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time() - philos->die->t0);
-	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->eat->status);
-	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->sleep->status);
+	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time() - philos->die->t1);
 	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->die->status);
 	printf("\033[%i;%iH%u", k, col + j++ * SPACING, philos->nr_eats);
-	printf("%s\e[30m\033[%i;%iH%4s%s", COLOR, k, col + j++ * SPACING, origen, BCK_STD);
+	printf("%s\e[30m\033[%i;%iH%16s%s", COLOR, k, col + j++ * SPACING, origen, BCK_STD);
 	printf("\n");
 	pthread_mutex_unlock(philos->mutex_prt);
 	return (0);

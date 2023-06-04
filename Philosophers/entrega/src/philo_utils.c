@@ -29,6 +29,7 @@ t_philo	*get_params(int av, char **ac)
 		philo->nr_eats = 0;
 	philo->proc_finished = 0;
 	philo->start = 0;
+	philo->isdead = 0;
 	philo->t0 = get_time();
 	if (!init_mutex(philo))
 		return(NULL);
@@ -48,14 +49,14 @@ void fill_data_proc (t_control_proc *data, int val)
 {
 	data->status = 0;
 	data->time = val;
-	data->t0 = 0;
+//	data->t0 = 0;
 	data->t1 = 0;
 }
 
 /// @brief initialize the variables and start the threads
 /// @param philo 
 /// @return position memory of the head philosophers
-t_philo *start_proc(t_philo *philo)
+t_philo *start_proc(t_philo *head)
 {
 	int				i;
 	t_list_philo	*philos = NULL;
@@ -63,60 +64,44 @@ t_philo *start_proc(t_philo *philo)
 	#ifdef VISIO
 		printf("\033[2J");
 	#endif
-	if (philo->nr_ph == 0)
+	if (head->nr_ph == 0)
 		return (NULL);
-	//print_header();
-	//philo->t0 = get_time();
-	philo->first_philo = alloc_var(philo->nr_ph);
-	if (!philo->first_philo)
+	head->first_philo = alloc_var(head->nr_ph);
+	if (!head->first_philo)
 	{
-		free_vars(philo);
+		free_vars(head);
 		return (NULL);
 	}
-	philos = philo->first_philo;
+	philos = head->first_philo;
 	i = 1;
 	while (philos)
 	{
 		philos->philo_nr = i;
-		fill_data_proc(philos->die, philo->die);
-		fill_data_proc(philos->eat, philo->eat);
-		fill_data_proc(philos->sleep, philo->sleep);
-		philos->lim_eats = philo->nr_eats;
+		fill_data_proc(philos->die, head->die);
+		fill_data_proc(philos->eat, head->eat);
+		fill_data_proc(philos->sleep, head->sleep);
+		philos->lim_eats = head->nr_eats;
 		philos->nr_eats = 0;
-		philos->max_philos = philo->nr_ph;
-		if (i == philo->nr_ph)
+		philos->max_philos = head->nr_ph;
+		if (i == head->nr_ph)
 			philos->fork_rght = 0;
 		else
 			philos->fork_rght = i;
 		philos->fork_left = i - 1;
-		philos->mutex_forks = philo->mutex_forks;
-		philos->mutex_prt = philo->mutex_prt;
-		philos->dead = philo->dead;
-		philos->start = &philo->start;
+		philos->mutex_forks = head->mutex_forks;
+		philos->mutex_prt = head->mutex_prt;
+		philos->dead = head->dead;
+		philos->start = &head->start;
 		philos->istart = 0;
-		philos->t0 = &philo->t0;
-		philos->die->t0 = get_time();
+		philos->t0 = &head->t0;
+		philos->isdead = &head->isdead;
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;
 		i++;
 	}
-/*	philos = philo->first_philo;
-	while (philos)
-	{
-		if ((philos->philo_nr + 1) / 2)
-			philos->istart = 1;
-		philos = philos->next;
-	}
-	philos = philo->first_philo;
-	while (philos)
-	{
-		if (!(philos->philo_nr + 1) / 2)
-			philos->istart = 1;
-		philos = philos->next;
-	}
-*/	
-	philo->start = 1;
-	return (philo);
+
+	head->start = 1;
+	return (head);
 }
 
 void	join_thread(t_philo *philo)
@@ -132,86 +117,56 @@ void	join_thread(t_philo *philo)
 	return;
 }
 
-void finish_control(t_philo *philos)
+void print_meals_eaten(t_philo *header)
+{
+	t_list_philo	*aux;
+
+	if (header->nr_eats)
+	{
+		aux = header->first_philo;
+		while(aux)
+		{
+			#ifdef MANDAT
+			pthread_mutex_lock(aux->mutex_prt);
+			printf("Philosopher %i  has eaten %i meals.\n",aux->philo_nr, aux->nr_eats);
+			pthread_mutex_unlock(aux->mutex_prt);
+			#endif
+			aux = aux->next;
+		}
+	}
+}
+
+void finish_control(t_philo *header)
 {
 	t_list_philo	*aux;
 	int				finish;
 
-	aux = philos->first_philo;
-	while (!aux->die->status)
+	aux = header->first_philo;
+	while (!header->isdead)
 	{
 		finish &= (aux->lim_eats > 0  && aux->lim_eats == aux->nr_eats);
 		if (!aux->next)
 		{
 			if (finish)
-			{
 				break;
-			}
 			finish = 1;
-			aux = philos->first_philo;
+			aux = header->first_philo;
 		}
 		else 
 			aux = aux->next;
 	}
-	if (finish)
-	{
-		aux = philos->first_philo;
-		while(aux)
-		{
-			#ifdef MANDAT
-			pthread_mutex_lock(aux->mutex_prt);
-				printf("Philosopher %i  has eaten %i meals.\n",aux->philo_nr, aux->nr_eats);
-			pthread_mutex_unlock(aux->mutex_prt);
-			aux = aux->next;
-			#endif
-		}
-	}
-	aux = philos->first_philo;
-	while (aux)
-	{
-		if (!finish)
-		{
-			aux->die->status = 1;
-			#ifdef MANDAT
-			pthread_mutex_lock(aux->mutex_prt);
-			printf("Philosopher %i  dead %llu.\n",aux->philo_nr, get_time()- aux->die->t0);
-			pthread_mutex_unlock(aux->mutex_prt);
-			#endif
-		}
-		aux = aux->next;
-	}
-//	printf("FINALIZADO\n");
+	print_meals_eaten(header);
 	return;
 }
 
-void ft_usleep(int nbr,t_list_philo *philos )
+
 void ft_usleep(int nbr )
 {
 	long long int init;
-//	int i;
 
-//	i = 0;
 	init = get_time();
-	nbr *= 1000;
 	while (nbr > get_time() - init)
 	{
 		usleep(nbr / 2);
 	}
-//	#ifdef MANDAT
-//	pthread_mutex_lock(philos->mutex_prt);
-//	while(pthread_mutex_lock(philos->mutex_prt))
-//		sleep(10);
-/*	i += write (1, "Philosopher ", 12);
-	i += ft_putnbr(philos->philo_nr);
-	i += write(1, " sleep been ", 12);
-	i += ft_putnbr(nbr);
-	i += write(1, " > ", 3);
-	i += ft_putnbr(get_time() - init);
-	i += write(1, " \n", 2);
-*/
-	//	printf("Philosopher %i  ft_usleep %i > %llu?.--eat %lli-- sleep %lli \n",philos->philo_nr, nbr, get_time() - init, philos->eat->status, philos->sleep->status);
-//	pthread_mutex_unlock(philos->mutex_prt);
-//	#else
-//	(void) philos;
-//	#endif
 }
