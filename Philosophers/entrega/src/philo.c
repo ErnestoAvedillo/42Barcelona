@@ -34,7 +34,7 @@ int main(int av, char **ac)
 		return (0);
 		}
 		finish_control(philo);
-		join_thread(philo);
+	//	join_thread(philo);
 		free_vars(philo);
 		return (0);
 }

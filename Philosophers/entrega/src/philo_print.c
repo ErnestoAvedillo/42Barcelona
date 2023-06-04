@@ -24,13 +24,16 @@ int print_status(t_list_philo *philos, char *origen, char *COLOR)
 	pthread_mutex_lock(philos->mutex_prt);
 	printf("\033[%i;%iH%i", k, col + 1 , philos->philo_nr);
 	j = 1;
+//	printf("\033[%i;%iH%d", k, col + j++ * SPACING, ((philos->philo_nr + 1) % 2) * philos->eat->time);
+//	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, *philos->t0);
+	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time() - *philos->t0);
+	//printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time() - philos->die->t1);
 	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time() - philos->die->t0);
-	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, get_time() - philos->die->t1);
 	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->eat->status);
 	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->sleep->status);
 	printf("\033[%i;%iH%lld", k, col + j++ * SPACING, philos->die->status);
 	printf("\033[%i;%iH%u", k, col + j++ * SPACING, philos->nr_eats);
-	printf("%s\e[30m\033[%i;%iH%20s%s", COLOR, k, col + j++ * SPACING, origen, BCK_STD);
+	printf("%s\e[30m\033[%i;%iH%4s%s", COLOR, k, col + j++ * SPACING, origen, BCK_STD);
 	printf("\n");
 	pthread_mutex_unlock(philos->mutex_prt);
 	return (0);
@@ -74,19 +77,21 @@ int	print_status(t_list_philo *philos, char *origen, char *color)
 //	int j;
 
 	pthread_mutex_lock(philos->mutex_prt);
-	printf ("Philosopher %i at %lld %s %s %s forks %p -- %p\n", philos->philo_nr, get_time() - philos->die->t0, color, origen, BCK_STD, &philos->mutex_forks[philos->fork_left], &philos->mutex_forks[philos->fork_rght]);
-/*	i = write (1, color, 7);
-	i = write(1, , 13);
-	ft_putnbr(philos->philo_nr);
-	i += write(1, "  ", 2);
-	ft_putnbr(get_time() - philos->die->t0);
-	i += write(1, "  ", 2);
-	j = 0;
-	while(origen[j])
-		i += write(1, &origen[j++], 1);
-	i += write(1, BCK_STD, 4);
-	i += write(1, "\n", 1);
-*/	pthread_mutex_unlock(philos->mutex_prt);
+//	printf ("Philosopher %i at %lld %s %s %s forks %p -- %p\n", philos->philo_nr, get_time() - philos->die->t0, color, origen, BCK_STD, &philos->mutex_forks[philos->fork_left], &philos->mutex_forks[philos->fork_rght]);
+	printf("Philosopher %i at t0:%lld - t1:%lld %s %s %s \n", philos->philo_nr, get_time() - *philos->t0, get_time() - philos->die->t1, color, origen, BCK_STD);
+	/*	i = write (1, color, 7);
+		i = write(1, "Philosopher -", 13);
+		ft_putnbr(philos->philo_nr);
+		i += write(1, "  ", 2);
+		ft_putnbr(get_time() - philos->die->t0);
+		i += write(1, "  ", 2);
+		j = 0;
+		while(origen[j])
+			i += write(1, &origen[j++], 1);
+		i += write(1, BCK_STD, 4);
+		i += write(1, "\n", 1);
+*/		pthread_mutex_unlock(philos->mutex_prt);
+
 	return (0);
 }
 #endif

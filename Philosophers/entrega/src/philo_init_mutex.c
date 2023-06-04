@@ -42,7 +42,6 @@ int *get_arr_forks(int nr)
 
 int init_mutex(t_philo *phi_head)
 {
-	phi_head->arr_forks = get_arr_forks(phi_head->nr_ph);
 	phi_head->mutex_forks = fork_mutex_arr(phi_head->nr_ph);
 	phi_head->mutex_prt = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(phi_head->mutex_prt, NULL);
