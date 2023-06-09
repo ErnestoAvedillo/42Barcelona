@@ -20,16 +20,33 @@ long long	get_time(void)
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
-int	ft_usleep(int nbr, int *isdead)
+/*
+* i = 1 eating
+* i = 0 sleeping
+*/
+int	ft_usleep(int i, t_list_philo *philos)
 {
 	long long int	init;
-	
+	int				nbr;
+
+	if (philos->header->isdead)
+		return (1);
+	if (i)
+	{
+		nbr = philos->header->eat;
+		print_status(philos, "is eating", BCK_YELLOW);
+	}
+	else
+	{
+		nbr = philos->header->sleep;
+		print_status(philos, "is sleeping", BCK_CYAN);
+	}
 	init = get_time();
 	while (nbr > get_time() - init)
 	{
-		if (*isdead)
+		if (philos->header->isdead)
 			return (1);
-		usleep(10);
+		usleep(1000);
 	}
 	return (0);
 }

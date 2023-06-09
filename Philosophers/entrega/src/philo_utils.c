@@ -93,6 +93,7 @@ void	join_thread(t_list_philo *first_philo)
 			usleep(1);
 		philos = philos->next;
 	}
+	pthread_join(first_philo->header->thrd_ctrl, NULL);
 	return ;
 }
 

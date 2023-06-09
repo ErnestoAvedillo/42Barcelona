@@ -93,5 +93,5 @@ void			*work_proc(void *var);
 
 // philo_time_tool
 long long		get_time(void);
-int				ft_usleep(int nbr, int *isdead);
+int				ft_usleep(int i, t_list_philo *philos);
 #endif
