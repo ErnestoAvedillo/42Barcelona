@@ -43,6 +43,7 @@ typedef struct s_philo
 	int				start;
 	int				isdead;
 	long long		t0;
+	pthread_t		thrd_ctrl;
 	pthread_mutex_t	*mutex_forks;
 	pthread_mutex_t	*mutex_prt;
 	pthread_mutex_t	*dead;
@@ -68,7 +69,8 @@ int				ft_putnbr(long long int nbr);
 t_list_philo	*start_proc(t_philo *philo);
 void			join_thread(t_list_philo *first_philo);
 void			finish_control(t_list_philo *first_philo);
-int				dying_cntrol(t_list_philo *philos);
+//int				dying_cntrol(t_list_philo *philos);
+void			*dying_cntrol(void *var);
 
 // ft_isdigit
 int				ft_isdigit(int c);
@@ -91,5 +93,5 @@ void			*work_proc(void *var);
 
 // philo_time_tool
 long long		get_time(void);
-void			ft_usleep(int nbr);
+int				ft_usleep(int nbr, int *isdead);
 #endif

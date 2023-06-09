@@ -20,13 +20,16 @@ long long	get_time(void)
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
-void	ft_usleep(int nbr)
+int	ft_usleep(int nbr, int *isdead)
 {
 	long long int	init;
-
+	
 	init = get_time();
 	while (nbr > get_time() - init)
 	{
-		usleep(nbr / 2);
+		if (*isdead)
+			return (1);
+		usleep(10);
 	}
+	return (0);
 }

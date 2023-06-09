@@ -12,23 +12,29 @@
 
 #include"philo.h"
 
-int	dying_cntrol(t_list_philo *philos)
+void	*dying_cntrol(void *var)
 {
-	if (get_time() - philos->die_t1 >= philos->header->die)
+	t_list_philo	*first_philo;
+	t_list_philo	*aux;
+
+	first_philo = (t_list_philo *)var;
+	aux = first_philo;
+	while (!aux->header->isdead)
 	{
-		pthread_mutex_lock(philos->header->dead);
-		if (!philos->header->isdead)
-			philos->header->isdead = 1;
+		if (get_time() - aux->die_t1 >= aux->header->die)
+		{
+			aux->header->isdead = 1;
+			pthread_mutex_lock(aux->header->dead);
+			print_status(aux, "is dead", BCK_RED);
+		}
+		if (aux->header->lim_eats && aux->header->lim_eats == aux->nr_eats)
+			print_status(aux, "meals eaten", BCK_RED);
+		if (!aux->next)
+			aux = first_philo;
 		else
-			return (1);
-		print_status(philos, "is dead", BCK_RED);
-		return (1);
+			aux = aux->next;
 	}
-	else if (philos->header->isdead)
-		return (1);
-	if (philos->header->lim_eats && philos->header->lim_eats == philos->nr_eats)
-		print_status(philos, "meals eaten", BCK_RED);
-	return (0);
+	return (first_philo);
 }
 
 void	fill_data_proc(t_list_philo *first_philo, t_philo *head)
@@ -71,6 +77,7 @@ t_list_philo	*start_proc(t_philo *head)
 		return (NULL);
 	}
 	fill_data_proc(first_philo, head);
+	pthread_create(&head->thrd_ctrl, NULL, &dying_cntrol, first_philo);
 	head->start = 1;
 	return (first_philo);
 }
