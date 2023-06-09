@@ -44,7 +44,8 @@ void	free_vars(t_list_philo *first_philo)
 	if (!first_philo)
 		return ;
 	if (first_philo->header->mutex_forks)
-		free_mutex_forks(first_philo->header->mutex_forks, first_philo->header->nr_ph);
+		free_mutex_forks(first_philo->header->mutex_forks, \
+				first_philo->header->nr_ph);
 	if (first_philo->header->mutex_prt)
 		pthread_mutex_destroy(first_philo->header->mutex_prt);
 	if (first_philo->header->dead)

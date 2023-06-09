@@ -34,28 +34,25 @@ typedef struct s_control_proc
 
 typedef struct s_philo
 {
-	int nr_ph;
-	unsigned int die;
-	unsigned int eat;
-	unsigned int sleep;
-	unsigned int lim_eats;
-	int proc_finished;
-	int start;
-	int isdead;
-	long long t0;
-	pthread_mutex_t *mutex_forks;
-	pthread_mutex_t *mutex_prt;
-	pthread_mutex_t *dead;
-} t_philo;
+	int				nr_ph;
+	unsigned int	die;
+	unsigned int	eat;
+	unsigned int	sleep;
+	unsigned int	lim_eats;
+	int				proc_finished;
+	int				start;
+	int				isdead;
+	long long		t0;
+	pthread_mutex_t	*mutex_forks;
+	pthread_mutex_t	*mutex_prt;
+	pthread_mutex_t	*dead;
+}	t_philo;
 
 typedef struct s_list_philo
 {
 	int				philo_nr;
 	pthread_t		thrd;
 	long long		die_t1;
-//	t_control_proc *die;
-//	t_control_proc	*eat;
-//	t_control_proc	*sleep;
 	unsigned int	nr_eats;
 	int				max_philos;
 	int				fork_left;
@@ -63,21 +60,15 @@ typedef struct s_list_philo
 	int				*start;
 	int				istart;
 	t_philo			*header;
-/*	int 			*isdead;
-	long long		*t0;
-	pthread_mutex_t	*mutex_forks;
-	pthread_mutex_t	*mutex_prt;
-	pthread_mutex_t	*dead;
-*/	void			*next;
+	void			*next;
 }	t_list_philo;
-
 
 //philo_utils
 int				ft_putnbr(long long int nbr);
 t_list_philo	*start_proc(t_philo *philo);
 void			join_thread(t_list_philo *first_philo);
 void			finish_control(t_list_philo *first_philo);
-//void			ft_usleep(int nbr, t_list_philo *philos);
+int				dying_cntrol(t_list_philo *philos);
 
 // ft_isdigit
 int				ft_isdigit(int c);

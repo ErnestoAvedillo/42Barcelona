@@ -31,8 +31,12 @@ t_philo	*get_params(int av, char **ac)
 	philo->start = 0;
 	philo->isdead = 0;
 	philo->t0 = get_time();
-	if (!init_mutex(philo))
+	if (philo->nr_ph == 0 || philo->die == 0 || philo->eat == 0 || \
+		philo->sleep == 0 || !init_mutex(philo))
+	{
+		free(philo);
 		return (NULL);
+	}
 	return (philo);
 }
 

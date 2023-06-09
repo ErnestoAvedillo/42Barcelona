@@ -14,21 +14,12 @@
 
 int	check_mem(t_list_philo *ph)
 {
-	if (!ph->header->mutex_forks || !ph->header->die || !ph->header->eat || !ph->header->sleep)
+	if (!ph->header->mutex_forks || !ph->header->die || !ph->header->eat || \
+			!ph->header->sleep)
 		return (0);
 	return (1);
 }
-/*
-int	set_mem(t_list_philo *philos)
-{
-	philos->die = (t_control_proc *)malloc(sizeof(t_control_proc));
-	philos->eat = (t_control_proc *)malloc(sizeof(t_control_proc));
-	philos->sleep = (t_control_proc *)malloc(sizeof(t_control_proc));
-	if (!check_mem(philos))
-		return (0);
-	return (1);
-}
-*/
+
 t_list_philo	*create_lst_philos(int nr_phil)
 {
 	t_list_philo	*philos;
@@ -44,7 +35,7 @@ t_list_philo	*create_lst_philos(int nr_phil)
 	{
 		if (i != 1)
 			philos = (t_list_philo *)malloc(sizeof(t_list_philo));
-		if (!philos) //|| !set_mem(philos)
+		if (!philos)
 			return (NULL);
 		if (i != 1)
 			aux->next = philos;

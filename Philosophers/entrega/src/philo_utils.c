@@ -12,6 +12,25 @@
 
 #include"philo.h"
 
+int	dying_cntrol(t_list_philo *philos)
+{
+	if (get_time() - philos->die_t1 >= philos->header->die)
+	{
+		pthread_mutex_lock(philos->header->dead);
+		if (!philos->header->isdead)
+			philos->header->isdead = 1;
+		else
+			return (1);
+		print_status(philos, "is dead", BCK_RED);
+		return (1);
+	}
+	else if (philos->header->isdead)
+		return (1);
+	if (philos->header->lim_eats && philos->header->lim_eats == philos->nr_eats)
+		print_status(philos, "meals eaten", BCK_RED);
+	return (0);
+}
+
 void	fill_data_proc(t_list_philo *first_philo, t_philo *head)
 {
 	int				i;
@@ -22,25 +41,13 @@ void	fill_data_proc(t_list_philo *first_philo, t_philo *head)
 	while (philos)
 	{
 		philos->philo_nr = i;
-//		philos->die->status = 0;
-//		philos->die->time = head->die;
-//		philos->eat->time = head->eat;
-//		philos->sleep->time = head->sleep;
-//		philos->lim_eats = head->nr_eats;
 		philos->nr_eats = 0;
-//		philos->max_philos = head->nr_ph;
 		philos->fork_rght = i;
 		if (i == head->nr_ph)
 			philos->fork_rght = 0;
 		philos->fork_left = i - 1;
 		philos->header = head;
-//		philos->mutex_forks = head->mutex_forks;
-//		philos->mutex_prt = head->mutex_prt;
-//		philos->dead = head->dead;
-//		philos->start = &head->start;
 		philos->istart = 0;
-//		philos->t0 = &head->t0;
-//		philos->isdead = &head->isdead;
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;
 		i++;
@@ -50,9 +57,9 @@ void	fill_data_proc(t_list_philo *first_philo, t_philo *head)
 /// @brief initialize the variables and start the threads
 /// @param philo 
 /// @return position memory of the head philosophers
-t_list_philo *start_proc(t_philo *head)
+t_list_philo	*start_proc(t_philo *head)
 {
-	t_list_philo *first_philo;
+	t_list_philo	*first_philo;
 
 	printf("\033[2J");
 	if (head->nr_ph == 0)
@@ -70,12 +77,13 @@ t_list_philo *start_proc(t_philo *head)
 
 void	join_thread(t_list_philo *first_philo)
 {
-	t_list_philo *philos;
+	t_list_philo	*philos;
 
 	philos = first_philo;
 	while (philos)
 	{
-		pthread_join(philos->thrd, NULL);
+		while (pthread_join(philos->thrd, NULL) != 0)
+			usleep(1);
 		philos = philos->next;
 	}
 	return ;
@@ -86,20 +94,24 @@ void	finish_control(t_list_philo *first_philo)
 	t_list_philo	*aux;
 	int				finish;
 
+	finish = 1;
 	aux = first_philo;
 	while (!aux->header->isdead)
 	{
-		finish &= (aux->header->lim_eats > 0 && aux->header->lim_eats == aux->nr_eats);
+		finish &= (aux->header->lim_eats > 0 && \
+			aux->header->lim_eats == aux->nr_eats);
 		if (!aux->next)
 		{
 			if (finish)
+			{
+				aux->header->isdead = 1;
 				break ;
+			}
 			finish = 1;
 			aux = first_philo;
 		}
 		else
 			aux = aux->next;
 	}
-	print_meals_eaten(first_philo);
 	return ;
 }

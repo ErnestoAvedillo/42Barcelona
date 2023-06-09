@@ -12,24 +12,6 @@
 
 #include"philo.h"
 
-int	dying_cntrol(t_list_philo *philos)
-{
-	if (philos->header->isdead)
-		return (1);
-	if (get_time() - philos->die_t1 >= philos->header->die)
-	{
-		philos->header->isdead = 1;
-		print_status(philos, "is dead", BCK_RED);
-		return (1);
-	}
-	if (philos->header->lim_eats && philos->header->lim_eats == philos->nr_eats)
-	{
-		print_status(philos, "meals eaten", BCK_RED);
-		return (1);
-	}
-	return (0);
-}
-
 int	process_eating(t_list_philo *philos)
 {
 	pthread_mutex_lock(&philos->header->mutex_forks[philos->fork_left]);
@@ -97,6 +79,6 @@ void	*work_proc(void *var)
 	pthread_mutex_unlock (&philos->header->mutex_forks[philos->fork_left]);
 	pthread_mutex_unlock(&philos->header->mutex_forks[philos->fork_rght]);
 	pthread_mutex_unlock(philos->header->mutex_prt);
-	pthread_join(philos->thrd, NULL);
+	pthread_mutex_unlock(philos->header->dead);
 	return (philos);
 }

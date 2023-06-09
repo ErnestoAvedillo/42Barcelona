@@ -67,8 +67,8 @@ void	print_meals_eaten(t_list_philo *first_philo)
 int	print_status(t_list_philo *philos, char *origen, char *color)
 {
 	pthread_mutex_lock(philos->header->mutex_prt);
-	printf("Philosopher %i at t0:%lld %s %s %s \n", philos->philo_nr,
-		   get_time() - philos->header->t0, color, origen, BCK_STD);
+	printf("Philosopher %3i at %lld %s %16s %s \n", philos->philo_nr, \
+		get_time() - philos->header->t0, color, origen, BCK_STD);
 	pthread_mutex_unlock(philos->header->mutex_prt);
 	return (0);
 }
@@ -83,8 +83,8 @@ void	print_meals_eaten(t_list_philo *first_philo)
 		while (aux)
 		{
 			pthread_mutex_lock(aux->header->mutex_prt);
-			printf("Philosopher %i  has eaten %i meals.\n", aux->philo_nr, \
-				aux->nr_eats);
+			printf("Philosopher %3i at %lld has eaten %i meals.\n", \
+				aux->philo_nr, get_time() - aux->header->t0, aux->nr_eats);
 			pthread_mutex_unlock(aux->header->mutex_prt);
 			aux = aux->next;
 		}
