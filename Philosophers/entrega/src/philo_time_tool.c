@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_time_tool.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 21:52:06 by eavedill          #+#    #+#             */
-/*   Updated: 2023/04/10 21:52:09 by eavedill         ###   ########.fr       */
+/*   Created: 2023/06/07 07:15:19 by eavedill          #+#    #+#             */
+/*   Updated: 2023/06/07 07:15:23 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int av, char **ac)
+long long	get_time(void)
 {
-	t_philo	*header;
-	t_list_philo *first_philo;
+	struct timeval	t;
 
-	if (av < 5)
+	gettimeofday(&t, NULL);
+	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+}
+
+void	ft_usleep(int nbr)
+{
+	long long int	init;
+
+	init = get_time();
+	while (nbr > get_time() - init)
 	{
-		printf("\n");
-		return (0);
+		usleep(nbr / 2);
 	}
-	header = get_params(av, ac);
-	if (!header)
-	{
-		printf("ERROR TO ALLOCATE MEMORY1\n");
-		return (0);
-	}
-	first_philo = start_proc(header);
-	if (!first_philo)
-	{
-		printf("ERROR TO ALLOCATE MEMORY2\n");
-		return (0);
-	}
-	finish_control(first_philo);
-	join_thread(first_philo);
-	free_vars(first_philo);
-	return (0);
 }

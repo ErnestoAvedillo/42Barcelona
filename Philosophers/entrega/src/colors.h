@@ -12,10 +12,10 @@
 
 #ifndef COLORS_H
 # define COLORS_H
-#ifdef VISIO
-#elif MANDAT
-    #define TYPE
-#endif
+# ifdef VISIO
+# elif MANDAT
+#  define TYPE
+# endif
 //Standard color
 # define BCK_STD	"\033[0;0m"
 //Background colors over black

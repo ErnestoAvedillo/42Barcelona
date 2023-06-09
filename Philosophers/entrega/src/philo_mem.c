@@ -12,16 +12,13 @@
 
 #include"philo.h"
 
-
-
 int	check_mem(t_list_philo *ph)
 {
-	if (!ph->mutex_forks || !ph->die || !ph->eat \
-		|| !ph->sleep )
+	if (!ph->header->mutex_forks || !ph->header->die || !ph->header->eat || !ph->header->sleep)
 		return (0);
 	return (1);
 }
-
+/*
 int	set_mem(t_list_philo *philos)
 {
 	philos->die = (t_control_proc *)malloc(sizeof(t_control_proc));
@@ -31,7 +28,7 @@ int	set_mem(t_list_philo *philos)
 		return (0);
 	return (1);
 }
-
+*/
 t_list_philo	*create_lst_philos(int nr_phil)
 {
 	t_list_philo	*philos;
@@ -47,7 +44,7 @@ t_list_philo	*create_lst_philos(int nr_phil)
 	{
 		if (i != 1)
 			philos = (t_list_philo *)malloc(sizeof(t_list_philo));
-		if (!philos || !set_mem(philos))
+		if (!philos) //|| !set_mem(philos)
 			return (NULL);
 		if (i != 1)
 			aux->next = philos;
@@ -57,8 +54,6 @@ t_list_philo	*create_lst_philos(int nr_phil)
 	}
 	return (frst_phil);
 }
-
-
 
 t_list_philo	*alloc_var(int nr_phil)
 {

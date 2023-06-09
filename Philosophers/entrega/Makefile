@@ -1,7 +1,7 @@
 NAME := philo
 
 SRC := $(NAME) philo_utils ft_isdigit ft_atoi philo_mem philo_print philo_free \
-	philo_init_mutex philo_work_proc
+	philo_init philo_work_proc philo_time_tool
 
 DIR_SRC := ./src/
 
@@ -34,7 +34,7 @@ control:$(NAME)
 -include $(DSTS)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) -static-libsan  $(OBJS) -o $(NAME) 
+	$(CC) $(FLAGS) -static-libasan  $(OBJS) -o $(NAME) 
 
 $(DIR_OBJ_DST)%.o: $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
 	mkdir -p $(DIR_OBJ_DST)
