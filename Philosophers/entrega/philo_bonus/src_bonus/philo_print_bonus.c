@@ -24,7 +24,7 @@ int	print_status(t_list_philo *philos, char *origen, char *COLOR)
 	col = philos->philo_nr / COL_LEN * NEXT_COL + philos->philo_nr / \
 	COL_LEN * NEW_BLOCK;
 	k = philos->philo_nr + 1 - (philos->philo_nr / COL_LEN) * COL_LEN;
-	pthread_mutex_lock(philos->header->mutex_prt);
+	sem_wait(philos->header->sem_prt);
 	printf("\033[%i;%iH%i", k, col + 1, philos->philo_nr);
 	j = 1;
 	printf("\033[%i;%iH%lld", k, col + SPACING * j++, get_time() - \
@@ -35,7 +35,7 @@ int	print_status(t_list_philo *philos, char *origen, char *COLOR)
 	printf("%s\e[30m\033[%i;%iH%16s%s", COLOR, k, col + SPACING * j++, \
 	origen, BCK_STD);
 	printf("\n");
-	pthread_mutex_unlock(philos->header->mutex_prt);
+	sem_post(philos->header->sem_prt);
 	return (0);
 }
 
@@ -66,10 +66,10 @@ void	print_meals_eaten(t_list_philo *first_philo)
 
 int	print_status(t_list_philo *philos, char *origen, char *color)
 {
-	pthread_mutex_lock(philos->header->mutex_prt);
-	printf("Philosopher %3i at %lld %s %16s %s \n", philos->philo_nr, \
-		get_time() - philos->header->t0, color, origen, BCK_STD);
-	pthread_mutex_unlock(philos->header->mutex_prt);
+	sem_wait(philos->header->sem_prt);
+	printf("Philosopher %3i at %lld %lld %u %s %16s %s \n", philos->philo_nr, \
+		get_time() - philos->header->t0, get_time() - philos->die_t1 ,philos->header->die, color, origen, BCK_STD);
+	sem_post(philos->header->sem_prt);
 	return (0);
 }
 
@@ -82,10 +82,10 @@ void	print_meals_eaten(t_list_philo *first_philo)
 		aux = first_philo;
 		while (aux)
 		{
-			pthread_mutex_lock(aux->header->mutex_prt);
+			sem_wait(aux->header->sem_prt);
 			printf("Philosopher %3i at %lld has eaten %i meals.\n", \
 				aux->philo_nr, get_time() - aux->header->t0, aux->nr_eats);
-			pthread_mutex_unlock(aux->header->mutex_prt);
+			sem_post(aux->header->sem_prt);
 			aux = aux->next;
 		}
 	}

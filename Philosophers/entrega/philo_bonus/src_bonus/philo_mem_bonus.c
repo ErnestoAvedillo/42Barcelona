@@ -12,14 +12,6 @@
 
 #include"philo_bonus.h"
 
-int	check_mem(t_list_philo *ph)
-{
-	if (!ph->header->mutex_forks || !ph->header->die || !ph->header->eat || \
-			!ph->header->sleep)
-		return (0);
-	return (1);
-}
-
 t_list_philo	*create_lst_philos(int nr_phil)
 {
 	t_list_philo	*philos;

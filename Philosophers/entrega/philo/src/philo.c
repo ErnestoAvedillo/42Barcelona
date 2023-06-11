@@ -12,16 +12,34 @@
 
 #include "philo.h"
 
+int	checkerrors(int av, char **ac)
+{
+	if (av < 5)
+	{
+		printf("Incorrect number of arguments.\n");
+		printf("****usage ./philo Nr T_die T_eat T_sleep [Max_eats]***\n");
+		printf("\tNr: Number of philosofers\n");
+		printf("\tT_die: time to die in miliseconds\n");
+		printf("\tT_eat: time eating in miliseconds\n");
+		printf("\tT_sleep: time sleeping in miliseconds\n");
+		printf("\tMax_eats: Minimum number of eats must eat all philosophers\n");
+		return (0);
+	}
+	if (!check_is_number(av, ac))
+	{
+		printf("Arguments must contain only numbers\n");
+		return (0);
+	}
+	return (1);
+}
+
 int	main(int av, char **ac)
 {
 	t_philo			*header;
 	t_list_philo	*first_philo;
 
-	if (av < 5)
-	{
-		printf("\n");
+	if (!checkerrors(av, ac))
 		return (0);
-	}
 	header = get_params(av, ac);
 	if (!header)
 	{

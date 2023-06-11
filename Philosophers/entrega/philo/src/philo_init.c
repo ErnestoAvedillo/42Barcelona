@@ -12,6 +12,22 @@
 
 #include"philo.h"
 
+int	check_is_number(int av, char **ac)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (++i < av)
+	{
+		j = -1;
+		while (ac[i][++j])
+			if (ac[i][j] < 48 || ac[i][j] > 57)
+				return (0);
+	}
+	return (1);
+}
+
 t_philo	*get_params(int av, char **ac)
 {
 	t_philo	*philo;

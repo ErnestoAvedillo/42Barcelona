@@ -83,6 +83,7 @@ t_list_philo	*alloc_var(int nr_phil);
 //philo_init
 t_philo			*get_params(int av, char **ac);
 int				init_mutex(t_philo *phi_head);
+int				check_is_number(int av, char **ac);
 // philo_print
 int				print_status(t_list_philo *philos, char *origen, char *color);
 void			print_header(void);

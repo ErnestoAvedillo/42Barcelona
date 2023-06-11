@@ -12,6 +12,23 @@
 
 #include"philo_bonus.h"
 
+int	check_is_number(int av, char **ac)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < av)
+	{
+		j = -1;
+		while (ac[i][++j])
+			if (ac[i][j] < 48 || ac[i][j] > 57)
+				return (0);
+		i++;
+	}
+	return (1);
+}
+
 t_philo	*get_params(int av, char **ac)
 {
 	t_philo	*philo;
@@ -40,42 +57,23 @@ t_philo	*get_params(int av, char **ac)
 	return (philo);
 }
 
-pthread_mutex_t	*fork_mutex_arr(int nr)
-{
-	pthread_mutex_t		*i;
-	int					j;
-
-	i = (pthread_mutex_t *)malloc(nr * sizeof(pthread_mutex_t));
-	if (!i)
-		return (NULL);
-	j = 0;
-	while (j < nr)
-		pthread_mutex_init(&i[j++], NULL);
-	return (i);
-}
-
-int	*get_arr_forks(int nr)
-{
-	int	*i;
-	int	j;
-
-	i = (int *)malloc(nr * sizeof(int));
-	if (!i)
-		return (NULL);
-	j = 0;
-	while (j < nr)
-		i[j++] = 0;
-	return (i);
-}
-
 int	init_sem(t_philo *phi_head)
 {
-	phi_head->mutex_forks = fork_mutex_arr(phi_head->nr_ph);
-	phi_head->mutex_prt = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(phi_head->mutex_prt, NULL);
-	phi_head->dead = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(phi_head->dead, NULL);
-	if (!phi_head->mutex_forks || !phi_head->mutex_prt || !phi_head->dead)
+	sem_unlink("sem_print");
+	sem_unlink("sem_dead");
+	sem_unlink("sem_forks");
+	phi_head->sem_prt = sem_open("sem_print",O_CREAT | O_EXCL, 0644, 1);
+	phi_head->dead = sem_open("sem_dead",O_CREAT | O_EXCL, 0644, 1);
+	phi_head->sem_forks = sem_open("sem_forks",O_CREAT | O_EXCL, 0644, \
+		phi_head->nr_ph);
+	if (phi_head->sem_prt == SEM_FAILED || phi_head->dead == SEM_FAILED || \
+		phi_head->sem_forks == SEM_FAILED)
+	{
+		printf("Error on creating semaphoresn\n");
+		sem_close(phi_head->sem_prt);
+		sem_close(phi_head->dead);
+		sem_close(phi_head->sem_forks);
 		return (0);
+	}
 	return (1);
 }

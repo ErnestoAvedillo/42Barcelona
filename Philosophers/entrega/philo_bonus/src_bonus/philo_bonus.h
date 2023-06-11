@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <semaphore.h>
 # include <sys/time.h>
 # include "colors_bonus.h"
 
@@ -44,6 +45,7 @@ typedef struct s_philo
 	int				isdead;
 	long long		t0;
 	pthread_t		thrd_ctrl;
+	pid_t			pid_nbr;
 	sem_t			*sem_forks;
 	sem_t			*sem_prt;
 	sem_t			*dead;
@@ -55,11 +57,6 @@ typedef struct s_list_philo
 	pthread_t		thrd;
 	long long		die_t1;
 	unsigned int	nr_eats;
-	int				max_philos;
-	int				fork_left;
-	int				fork_rght;
-	int				*start;
-	int				istart;
 	t_philo			*header;
 	void			*next;
 }	t_list_philo;
@@ -82,7 +79,8 @@ void			free_vars(t_list_philo *first_philo);
 t_list_philo	*alloc_var(int nr_phil);
 //philo_init
 t_philo			*get_params(int av, char **ac);
-int				init_mutex(t_philo *phi_head);
+int				init_sem(t_philo *phi_head);
+int				check_is_number(int av, char **ac);
 // philo_print
 int				print_status(t_list_philo *philos, char *origen, char *color);
 void			print_header(void);

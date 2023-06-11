@@ -24,10 +24,10 @@ void	*dying_cntrol(void *var)
 		if (get_time() - aux->die_t1 >= aux->header->die)
 		{
 			aux->header->isdead = 1;
-			pthread_mutex_lock(aux->header->dead);
+			sem_wait(aux->header->dead);
 			print_status(aux, "is dead", BCK_RED);
 		}
-		if (aux->header->lim_eats && aux->header->lim_eats == aux->nr_eats)
+		if (aux->header->lim_eats && aux->header->lim_eats <= aux->nr_eats)
 			print_status(aux, "meals eaten", BCK_RED);
 		if (!aux->next)
 			aux = first_philo;
@@ -48,12 +48,7 @@ void	fill_data_proc(t_list_philo *first_philo, t_philo *head)
 	{
 		philos->philo_nr = i;
 		philos->nr_eats = 0;
-		philos->fork_rght = i;
-		if (i == head->nr_ph)
-			philos->fork_rght = 0;
-		philos->fork_left = i - 1;
 		philos->header = head;
-		philos->istart = 0;
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;
 		i++;
@@ -68,6 +63,7 @@ t_list_philo	*start_proc(t_philo *head)
 	t_list_philo	*first_philo;
 
 	printf("\033[2J");
+	printf("\033[1;1H\n");
 	if (head->nr_ph == 0)
 		return (NULL);
 	first_philo = alloc_var(head->nr_ph);
@@ -77,8 +73,8 @@ t_list_philo	*start_proc(t_philo *head)
 		return (NULL);
 	}
 	fill_data_proc(first_philo, head);
-	pthread_create(&head->thrd_ctrl, NULL, &dying_cntrol, first_philo);
 	head->start = 1;
+	pthread_create(&head->thrd_ctrl, NULL, &dying_cntrol, first_philo);
 	return (first_philo);
 }
 
@@ -107,7 +103,7 @@ void	finish_control(t_list_philo *first_philo)
 	while (!aux->header->isdead)
 	{
 		finish &= (aux->header->lim_eats > 0 && \
-			aux->header->lim_eats == aux->nr_eats);
+			aux->header->lim_eats <= aux->nr_eats);
 		if (!aux->next)
 		{
 			if (finish)
