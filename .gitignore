@@ -3,7 +3,7 @@
 .mylibft
 .vscode
 *.a
-*o
+*.o
 *.d
 *.bonus
 *.exe

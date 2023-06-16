@@ -34,15 +34,17 @@ control:$(NAME)
 -include $(DSTS)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS)  $(OBJS) -o $(NAME) 
+	$(CC) $(FLAGS)  $(OBJS) -o $(NAME)
+
 #-static-libsan 
 $(DIR_OBJ_DST)%.o: $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
-	mkdir -p $(DIR_OBJ_DST)
-	$(CC) $(FLAGS) -D $(VISUAL)  -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o
+	@mkdir -p $(DIR_OBJ_DST)
+	@echo -n "compiling" $(DIR_SRC)$*.c '\r'
+	@$(CC) $(FLAGS) -D $(VISUAL)  -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o
 
 $(DIR_OBJ_DST)%.d: $(DIR_SRC)%.c $(INCLUDE)
-	mkdir -p $(DIR_OBJ_DST)
-	$(CC) $(FLAGS) -MM -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.d 
+	@mkdir -p $(DIR_OBJ_DST)
+	@$(CC) $(FLAGS) -MM -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.d 
 
 clean:
 	$(RM) $(DIR_OBJ_DST)
@@ -53,11 +55,11 @@ fclean: clean
 re: fclean all
 
 print:
-	#echo INCLUDE: $(INCLUDE)
-	#echo NAME: $(NAME)
-	#echo SRC: $(SRCS)
-	#echo OBJS: $(OBJS)
-	#echo DSTS: $(DSTS)
-	#echo DIR_OBJ_DST: $(DIR_OBJ_DST)
+	@echo INCLUDE: $(INCLUDE)
+	@echo NAME: $(NAME)
+	@echo SRC: $(SRCS)
+	@echo OBJS: $(OBJS)
+	@echo DSTS: $(DSTS)
+	@echo DIR_OBJ_DST: $(DIR_OBJ_DST)
 
 PHONY: all re clean fclean print

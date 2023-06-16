@@ -18,10 +18,10 @@ DSTS:= $(addprefix $(DIR_OBJ_DST),$(addsuffix .d,$(SRC)))
 
 CC:= gcc
 
-FLAGS:= -Werror -Wextra -Wall -O2 -fsanitize=address -g
+FLAGS:= -Werror -Wextra -Wall -O2  -g
 
 VISUAL = MANDAT
-#-fsanitize=datarace
+#-fsanitize=datarace-fsanitize=address
 RM := rm -rfd
 
 all:  $(NAME)

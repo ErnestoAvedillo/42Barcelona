@@ -60,7 +60,7 @@ void	*work_proc(void *var)
 
 	philos = (t_list_philo *)var;
 	while (!philos->header->start)
-		usleep(10);
+		usleep(1);
 	philos->die_t1 = get_time();
 	one_philo(philos);
 	usleep(((philos->philo_nr + 1) % 3) * philos->header->eat*100);

@@ -18,11 +18,11 @@ void	*dying_cntrol(void *var)
 	t_list_philo	*aux;
 
 	first_philo = (t_list_philo *)var;
-	while(!first_philo->header->start)
+	while (!first_philo->header->start)
 		usleep(1);
 	print_status(first_philo, "init dying", BCK_RED);
 	aux = first_philo;
-	while (!aux->header->isdead )
+	while (!aux->header->isdead)
 	{
 		if (get_time() - aux->die_t1 >= aux->header->die)
 		{

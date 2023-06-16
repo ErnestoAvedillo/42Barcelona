@@ -59,7 +59,7 @@ void	*work_proc(void *var)
 	t_list_philo	*philos;
 
 	philos = (t_list_philo *)var;
-	while (!philos->start)
+	while (!philos->header->start)
 		usleep(1);
 	print_status(philos, "creo el tread", BCK_GREEN);
 	philos->die_t1 = get_time();
