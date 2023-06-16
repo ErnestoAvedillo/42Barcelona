@@ -70,20 +70,6 @@ pthread_mutex_t	*fork_mutex_arr(int nr)
 	return (i);
 }
 
-int	*get_arr_forks(int nr)
-{
-	int	*i;
-	int	j;
-
-	i = (int *)malloc(nr * sizeof(int));
-	if (!i)
-		return (NULL);
-	j = 0;
-	while (j < nr)
-		i[j++] = 0;
-	return (i);
-}
-
 int	init_mutex(t_philo *phi_head)
 {
 	phi_head->mutex_forks = fork_mutex_arr(phi_head->nr_ph);

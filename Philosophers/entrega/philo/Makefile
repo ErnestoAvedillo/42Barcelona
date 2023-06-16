@@ -17,10 +17,10 @@ DSTS:= $(addprefix $(DIR_OBJ_DST),$(addsuffix .d,$(SRC)))
 
 CC:= gcc
 
-FLAGS:= -Werror -Wextra -Wall -O2 -fsanitize=address -g
+FLAGS:= -Werror -Wextra -Wall -O2  -g
 
 VISUAL = MANDAT
-#-fsanitize=datarace
+#-fsanitize=datarace -fsanitize=address
 RM := rm -rfd
 
 all:  $(NAME)
@@ -34,8 +34,8 @@ control:$(NAME)
 -include $(DSTS)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) -static-libsan  $(OBJS) -o $(NAME) 
-
+	$(CC) $(FLAGS)  $(OBJS) -o $(NAME) 
+#-static-libsan 
 $(DIR_OBJ_DST)%.o: $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
 	mkdir -p $(DIR_OBJ_DST)
 	$(CC) $(FLAGS) -D $(VISUAL)  -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o

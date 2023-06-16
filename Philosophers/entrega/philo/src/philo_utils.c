@@ -18,8 +18,11 @@ void	*dying_cntrol(void *var)
 	t_list_philo	*aux;
 
 	first_philo = (t_list_philo *)var;
+	while(!first_philo->header->start)
+		usleep(1);
+	print_status(first_philo, "init dying", BCK_RED);
 	aux = first_philo;
-	while (!aux->header->isdead)
+	while (!aux->header->isdead )
 	{
 		if (get_time() - aux->die_t1 >= aux->header->die)
 		{
@@ -54,6 +57,7 @@ void	fill_data_proc(t_list_philo *first_philo, t_philo *head)
 		philos->fork_left = i - 1;
 		philos->header = head;
 		philos->istart = 0;
+		philos->die_t1 = get_time();
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;
 		i++;

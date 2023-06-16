@@ -61,6 +61,7 @@ void	*work_proc(void *var)
 	philos = (t_list_philo *)var;
 	while (!philos->start)
 		usleep(1);
+	print_status(philos, "creo el tread", BCK_GREEN);
 	philos->die_t1 = get_time();
 	usleep(((philos->philo_nr + 1) % 2) * philos->header->eat * 1000);
 	one_philo(philos);
