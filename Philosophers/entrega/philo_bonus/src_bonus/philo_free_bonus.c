@@ -10,61 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"philo.h"
+#include"philo_bonus.h"
 
 void	free_mutex_forks(pthread_mutex_t *mutex, int nr)
 {
 	int	i;
 
-	i = 0;
-	while(++i <= nr)
+	i = -1;
+	while (++i <= nr - 1)
 		pthread_mutex_destroy(&mutex[i]);
-	return;
+	return ;
 }
 
-void	free_vars(t_philo *header)
+void	free_philos(t_list_philo *philos)
 {
 	t_list_philo	*aux;
-	t_list_philo	*philos;
 
-	//printf("Liberando memoria\n");
-
-	aux = NULL;
-	if (!header)
-		return ;
-	if (header->arr_forks)
-		free(header->arr_forks);
-	if (header->mutex_forks)
-		pthread_mutex_destroy(header->mutex_forks);
-	if (header->mutex_prt)
-		pthread_mutex_destroy(header->mutex_prt);
-	if (header->dead)
-		pthread_mutex_destroy(header->dead);
-	if (header->first_philo)
-		philos = header->first_philo;
-	else 
-		philos = NULL;
-	free(header);
 	while (philos)
 	{
-		if (!philos)
+		if (philos->next)
 		{
-			if (philos->die)
-				free(philos->die);
-			if (philos->eat)
-				free(philos->eat);
-			if (philos->sleep)
-				free(philos->sleep);
-			if (philos->next)
-			{
-				aux = philos->next;
-				free(philos->next);
-			}
+			aux = philos->next;
 			free(philos);
 			philos = aux;
 		}
 		else
 			return ;
 	}
-	//printf("Memoria liberada\n");
+}
+
+void	free_vars(t_list_philo *first_philo)
+{
+	if (!first_philo)
+		return ;
+	sem_close(first_philo->header->sem_forks);
+	sem_close(first_philo->header->sem_prt);
+	sem_close(first_philo->header->dead);
+	if (first_philo->header)
+		free(first_philo->header);
+	free_philos(first_philo);
 }

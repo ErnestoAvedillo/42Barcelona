@@ -12,29 +12,49 @@
 
 #include "philo.h"
 
-int main(int av, char **ac)
+int	checkerrors(int av, char **ac)
 {
-	t_philo *philo;
-
 	if (av < 5)
 	{
-		printf("\n");
+		printf("Incorrect number of arguments.\n");
+		printf("****usage ./philo Nr T_die T_eat T_sleep [Max_eats]***\n");
+		printf("\tNr: Number of philosofers\n");
+		printf("\tT_die: time to die in miliseconds\n");
+		printf("\tT_eat: time eating in miliseconds\n");
+		printf("\tT_sleep: time sleeping in miliseconds\n");
+		printf("\tMax_eats: Minimum number of eats must eat all philosophers\n");
 		return (0);
 	}
-	philo = get_params(av, ac);
-	if (!philo)
-		{
-		printf("ERROR TO ALLOCATE MEMORY1\n");
+	if (!check_is_number(av, ac))
+	{
+		printf("Arguments must contain only numbers\n");
 		return (0);
-		}
-	philo = start_proc(philo);
-	if (!philo)
-		{
-		printf("ERROR TO ALLOCATE MEMORY2\n");
+	}
+	return (1);
+}
+
+int	main(int av, char **ac)
+{
+	t_philo			*header;
+	t_list_philo	*first_philo;
+
+	if (!checkerrors(av, ac))
 		return (0);
-		}
-		finish_control(philo);
-		join_thread(philo);
-		free_vars(philo);
+	header = get_params(av, ac);
+	if (!header)
+	{
+		printf("DATA ERROR OR ERROR TO ALLOCATE MEMORY\n");
 		return (0);
+	}
+	first_philo = start_proc(header);
+	if (!first_philo)
+	{
+		printf("ERROR TO ALLOCATE MEMORY\n");
+		return (0);
+	}
+	finish_control(first_philo);
+	join_thread(first_philo);
+	print_meals_eaten(first_philo);
+	free_vars(first_philo);
+	return (0);
 }
