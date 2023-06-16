@@ -107,7 +107,7 @@ void	finish_control(t_list_philo *first_philo)
 	while (!aux->header->isdead)
 	{
 		finish &= (aux->header->lim_eats > 0 && \
-			aux->header->lim_eats == aux->nr_eats);
+			aux->header->lim_eats <= aux->nr_eats);
 		if (!aux->next)
 		{
 			if (finish)
