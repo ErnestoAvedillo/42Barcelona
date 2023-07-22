@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_work_proc.c                                  :+:      :+:    :+:   */
+/*   philo_work_proc_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -46,7 +46,7 @@ int	one_philo(t_list_philo *philos)
 	{
 		sem_wait(philos->header->sem_forks);
 		print_status(philos, "taken 1st fork ", BCK_GREEN);
-		ft_usleep(1, philos);
+		usleep(philos->header->die * 1000);
 		philos->header->isdead = 1;
 		sem_post(philos->header->sem_forks);
 		return (1);
@@ -63,12 +63,13 @@ void	*work_proc(void *var)
 		usleep(1);
 	philos->die_t1 = get_time();
 	one_philo(philos);
-	usleep(((philos->philo_nr + 1) % 3) * philos->header->eat*100);
+	usleep(((philos->philo_nr + 1) % 3) * philos->header->eat);
 	while (!philos->header->isdead && process_eating(philos) && \
 		process_sleeping(philos))
 		process_thinking(philos);
 	sem_post(philos->header->sem_forks);
 	sem_post(philos->header->sem_forks);
 	sem_post(philos->header->sem_prt);
+	sem_post(philos->header->dead);
 	return (philos);
 }

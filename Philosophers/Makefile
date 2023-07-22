@@ -1,14 +1,13 @@
-NAME := philo_bonus
+NAME := philo
 
-SRC := $(NAME) philo_utils_bonus philo_utils_2_bonus ft_isdigit_bonus \
-	ft_atoi_bonus philo_mem_bonus philo_print_bonus philo_free_bonus \
-	philo_init_bonus philo_work_proc_bonus philo_time_tool_bonus
+SRC := $(NAME) philo_utils ft_isdigit ft_atoi philo_mem philo_print philo_free \
+	philo_init philo_work_proc philo_time_tool
 
-DIR_SRC := ./src_bonus/
+DIR_SRC := ./src/
 
-DIR_OBJ_DST := ./obj_dst_bonus/
+DIR_OBJ_DST := ./obj_dst/
 
-INC = $(NAME) colors_bonus
+INC = $(NAME) colors
 
 INCLUDE:= $(addprefix $(DIR_SRC),$(addsuffix .h, $(INC)))
 
@@ -21,7 +20,7 @@ CC:= gcc
 FLAGS:= -Werror -Wextra -Wall -O2  -g
 
 VISUAL = MANDAT
-#-fsanitize=datarace-fsanitize=address
+#-fsanitize=datarace -fsanitize=address
 RM := rm -rfd
 
 all:  $(NAME)
@@ -37,7 +36,7 @@ control:$(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS)  $(OBJS) -o $(NAME)
 
-# -static-libsan 
+#-static-libsan 
 $(DIR_OBJ_DST)%.o: $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
 	@mkdir -p $(DIR_OBJ_DST)
 	@echo "compiling" $(DIR_SRC)$*.c '\r'

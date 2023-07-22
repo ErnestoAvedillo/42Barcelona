@@ -62,9 +62,9 @@ int	init_sem(t_philo *phi_head)
 	sem_unlink("sem_print");
 	sem_unlink("sem_dead");
 	sem_unlink("sem_forks");
-	phi_head->sem_prt = sem_open("sem_print",O_CREAT | O_EXCL, 0644, 1);
-	phi_head->dead = sem_open("sem_dead",O_CREAT | O_EXCL, 0644, 1);
-	phi_head->sem_forks = sem_open("sem_forks",O_CREAT | O_EXCL, 0644, \
+	phi_head->sem_prt = sem_open("sem_print", O_CREAT | O_EXCL, 0644, 1);
+	phi_head->dead = sem_open("sem_dead", O_CREAT | O_EXCL, 0644, 1);
+	phi_head->sem_forks = sem_open("sem_forks", O_CREAT | O_EXCL, 0644, \
 		phi_head->nr_ph);
 	if (phi_head->sem_prt == SEM_FAILED || phi_head->dead == SEM_FAILED || \
 		phi_head->sem_forks == SEM_FAILED)

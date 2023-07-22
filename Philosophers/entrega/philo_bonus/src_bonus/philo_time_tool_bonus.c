@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_time_tool.c                                  :+:      :+:    :+:   */
+/*   philo_time_tool_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -29,6 +29,8 @@ int	ft_usleep(int i, t_list_philo *philos)
 	long long int	init;
 	int				nbr;
 
+	sem_wait(philos->header->dead);
+	sem_post(philos->header->dead);
 	if (philos->header->isdead)
 		return (1);
 	if (i)

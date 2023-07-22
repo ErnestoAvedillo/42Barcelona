@@ -29,6 +29,8 @@ int	ft_usleep(int i, t_list_philo *philos)
 	long long int	init;
 	int				nbr;
 
+	pthread_mutex_lock(philos->header->dead);
+	pthread_mutex_unlock(philos->header->dead);
 	if (philos->header->isdead)
 		return (1);
 	if (i)

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_print.c                                      :+:      :+:    :+:   */
+/*   philo_print_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -66,9 +66,11 @@ void	print_meals_eaten(t_list_philo *first_philo)
 
 int	print_status(t_list_philo *philos, char *origen, char *color)
 {
+	if (philos->header->isdead)
+		return (0);
 	sem_wait(philos->header->sem_prt);
-	printf("Philosopher %3i at %lld %lld %u %s %16s %s \n", philos->philo_nr, \
-		get_time() - philos->header->t0, get_time() - philos->die_t1 ,philos->header->die, color, origen, BCK_STD);
+	printf("Philosopher %3i at %lld %s %16s %s \n", philos->philo_nr, \
+		get_time() - philos->header->t0, color, origen, BCK_STD);
 	sem_post(philos->header->sem_prt);
 	return (0);
 }

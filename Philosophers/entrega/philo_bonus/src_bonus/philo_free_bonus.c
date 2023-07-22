@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_free.c                                       :+:      :+:    :+:   */
+/*   philo_free_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,17 +26,14 @@ void	free_philos(t_list_philo *philos)
 {
 	t_list_philo	*aux;
 
-	while (philos)
+	while (philos->next)
 	{
-		if (philos->next)
-		{
-			aux = philos->next;
-			free(philos);
-			philos = aux;
-		}
-		else
-			return ;
+		aux = philos->next;
+		free(philos);
+		philos = aux;
 	}
+	free(philos);
+	return ;
 }
 
 void	free_vars(t_list_philo *first_philo)

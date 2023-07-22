@@ -60,6 +60,7 @@ typedef struct s_list_philo
 	int				fork_rght;
 	int				*start;
 	int				istart;
+	int				prt_meals_eated;
 	t_philo			*header;
 	void			*next;
 }	t_list_philo;

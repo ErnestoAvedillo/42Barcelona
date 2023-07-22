@@ -12,34 +12,6 @@
 
 #include"philo.h"
 
-void	*dying_cntrol(void *var)
-{
-	t_list_philo	*first_philo;
-	t_list_philo	*aux;
-
-	first_philo = (t_list_philo *)var;
-	while (!first_philo->header->start)
-		usleep(1);
-	print_status(first_philo, "init dying", BCK_RED);
-	aux = first_philo;
-	while (!aux->header->isdead)
-	{
-		if (get_time() - aux->die_t1 >= aux->header->die)
-		{
-			aux->header->isdead = 1;
-			pthread_mutex_lock(aux->header->dead);
-			print_status(aux, "is dead", BCK_RED);
-		}
-		if (aux->header->lim_eats && aux->header->lim_eats == aux->nr_eats)
-			print_status(aux, "meals eaten", BCK_RED);
-		if (!aux->next)
-			aux = first_philo;
-		else
-			aux = aux->next;
-	}
-	return (first_philo);
-}
-
 void	fill_data_proc(t_list_philo *first_philo, t_philo *head)
 {
 	int				i;
@@ -57,6 +29,7 @@ void	fill_data_proc(t_list_philo *first_philo, t_philo *head)
 		philos->fork_left = i - 1;
 		philos->header = head;
 		philos->istart = 0;
+		philos->prt_meals_eated = 0;
 		philos->die_t1 = get_time();
 		pthread_create(&philos->thrd, NULL, &work_proc, philos);
 		philos = philos->next;

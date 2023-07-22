@@ -1,7 +1,7 @@
 NAME := philo
 
-SRC := $(NAME) philo_utils ft_isdigit ft_atoi philo_mem philo_print philo_free \
-	philo_init philo_work_proc philo_time_tool
+SRC := $(NAME) philo_utils philo_utils_2 ft_isdigit ft_atoi philo_mem \
+	philo_print philo_free philo_init philo_work_proc philo_time_tool
 
 DIR_SRC := ./src/
 
@@ -39,7 +39,7 @@ $(NAME): $(OBJS)
 #-static-libsan 
 $(DIR_OBJ_DST)%.o: $(DIR_SRC)%.c $(DIR_OBJ_DST)%.d
 	@mkdir -p $(DIR_OBJ_DST)
-	@echo -n "compiling" $(DIR_SRC)$*.c '\r'
+	@echo "compiling" $(DIR_SRC)$*.c '\r'
 	@$(CC) $(FLAGS) -D $(VISUAL)  -c $(DIR_SRC)$*.c -o $(DIR_OBJ_DST)$*.o
 
 $(DIR_OBJ_DST)%.d: $(DIR_SRC)%.c $(INCLUDE)
@@ -62,4 +62,4 @@ print:
 	@echo DSTS: $(DSTS)
 	@echo DIR_OBJ_DST: $(DIR_OBJ_DST)
 
-PHONY: all re clean fclean print
+.PHONY: all re clean fclean print

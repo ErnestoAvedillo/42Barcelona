@@ -46,7 +46,7 @@ int	one_philo(t_list_philo *philos)
 	{
 		pthread_mutex_lock(&philos->header->mutex_forks[philos->fork_left]);
 		print_status(philos, "taken left fork ", BCK_GREEN);
-		ft_usleep(1, philos);
+		usleep(philos->header->die * 1000);
 		philos->header->isdead = 1;
 		pthread_mutex_unlock (&philos->header->mutex_forks[philos->fork_left]);
 		return (1);
@@ -61,7 +61,6 @@ void	*work_proc(void *var)
 	philos = (t_list_philo *)var;
 	while (!philos->header->start)
 		usleep(1);
-	print_status(philos, "creo el tread", BCK_GREEN);
 	philos->die_t1 = get_time();
 	usleep(((philos->philo_nr + 1) % 2) * philos->header->eat * 1000);
 	one_philo(philos);

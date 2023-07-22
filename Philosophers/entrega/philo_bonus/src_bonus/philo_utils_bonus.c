@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*   philo_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,31 +11,6 @@
 /* ************************************************************************** */
 
 #include"philo_bonus.h"
-
-void	*dying_cntrol(void *var)
-{
-	t_list_philo	*first_philo;
-	t_list_philo	*aux;
-
-	first_philo = (t_list_philo *)var;
-	aux = first_philo;
-	while (!aux->header->isdead)
-	{
-		if (get_time() - aux->die_t1 >= aux->header->die)
-		{
-			aux->header->isdead = 1;
-			sem_wait(aux->header->dead);
-			print_status(aux, "is dead", BCK_RED);
-		}
-		if (aux->header->lim_eats && aux->header->lim_eats <= aux->nr_eats)
-			print_status(aux, "meals eaten", BCK_RED);
-		if (!aux->next)
-			aux = first_philo;
-		else
-			aux = aux->next;
-	}
-	return (first_philo);
-}
 
 void	fill_data_proc(t_list_philo *first_philo, t_philo *head)
 {
