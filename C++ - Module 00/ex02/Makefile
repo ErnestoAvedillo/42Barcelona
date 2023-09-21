@@ -4,7 +4,7 @@ SRC := $(NAME) Account
 
 CLAS := Account
 
-INC := $(NAME)
+INC := $(NAME) colors
 
 DIRSRC := ./src/
 
