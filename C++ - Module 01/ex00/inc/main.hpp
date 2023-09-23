@@ -12,4 +12,8 @@
 
 #ifndef __MAIN_HPP
  #define __MAIN_HPP
+#include"../inc/Zombie.hpp"
+#include <iostream>
+Zombie* newZombie( std::string name );
+void    randomChump( std::string name );
 #endif

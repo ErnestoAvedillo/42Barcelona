@@ -9,3 +9,11 @@
 /*   Updated: 2023/09/21 22:23:12 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/Zombie.hpp"
+
+ Zombie* newZombie( std::string name )
+ {
+    Zombie  mi_zombie(name);
+    return &mi_zombie;
+ }

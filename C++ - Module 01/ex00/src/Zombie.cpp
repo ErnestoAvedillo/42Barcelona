@@ -9,3 +9,18 @@
 /*   Updated: 2023/09/21 22:23:12 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/Zombie.hpp"
+#include <iostream>
+
+Zombie::Zombie (std::string name):_myname(name){};
+
+void Zombie::announce (void)
+{
+    std::cout << _myname << ":BraiiiiiiinnnzzzZ...";
+};
+
+std::string Zombie::getname()
+{
+    return _myname;
+}

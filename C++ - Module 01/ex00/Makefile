@@ -1,19 +1,22 @@
-NAME := megaphone
+NAME := zombie
 
-SRC := $(NAME)
+SRC := main Zombie newZombie randomChump
+
+CLAS := Zombie 
 
 INC := 
 
-DIRSRC := ./
+DIRSRC := ./src/
 
-DIRINC := ./
+DIRINC := inc/
 
 OBJDST_DIR := ./objdst_dir/
 
 SRCS := $(addprefix $(DIRSRC), $(addsuffix .cpp,$(SRC)))
 OBJS := $(addprefix $(OBJDST_DIR), $(addsuffix .o,$(SRC)))
 DSTS := $(addprefix $(OBJDST_DIR), $(addsuffix .d,$(SRC)))
-INCS := $(addprefix $(DIRINC), $(addsuffix .hpp,$(INC)))
+INCS := $(addprefix $(DIRINC), $(addsuffix .h,$(INC)))
+CLASS := $(addprefix $(DIRINC), $(addsuffix .hpp,$(CLAS)))
 
 RM := rm -rfd
 
@@ -25,12 +28,12 @@ all: $(NAME) Makefile
 
 -include:$(sources:.c=.d)
 
-$(NAME): $(OBJS) 
+$(NAME): $(DSTS) $(OBJS) 
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
-$(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(OBJDST_DIR)%.d
+$(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(INCS) $(CLASS)
 	mkdir -p $(OBJDST_DIR)
-	$(CC) $(FLAGS) $(INCS) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
+	$(CC) $(FLAGS) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
 
 $(OBJDST_DIR)%.d: $(DIRSRC)%.cpp
 	mkdir -p $(OBJDST_DIR)

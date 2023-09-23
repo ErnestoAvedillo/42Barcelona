@@ -14,5 +14,10 @@
 
 int main (void)
 {
-	
+
+	void *mizombie;
+
+    mizombie = newZombie("Pepito");
+    std::cout << "Recibida la variable mizombie" << mizombie->getname() << std::endl;
+    randomChump("Juanito");
 }
