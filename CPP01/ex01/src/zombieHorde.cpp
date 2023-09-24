@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/main.hpp"
+#include "../inc/Zombie.hpp"
+#include <iostream>
 
-int main (void)
+Zombie*	zombieHorde( int N, std::string name )
 {
-	Zombie *mizombie = newZombie("Pepito");;
-
-    std::cout << mizombie->getname() << std::endl;
-    delete mizombie;
-    randomChump("Juanito");
+	int i;
+	Zombie *mizombie;
+	mizombie = new Zombie[N];
+	for(i = 0, i <= N, ++i)
+		mizombie[i].putnme(name);
+	return mizombie;
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/main.hpp"
-
-int main (void)
-{
-	Zombie *mizombie = newZombie("Pepito");;
-
-    std::cout << mizombie->getname() << std::endl;
-    delete mizombie;
-    randomChump("Juanito");
-}
+#ifndef __MAIN_HPP
+ #define __MAIN_HPP
+#include"../inc/Zombie.hpp"
+#include <iostream>
+Zombie*	newZombie( std::string name );
+Zombie*	zombieHorde( int N, std::string name );
+#endif

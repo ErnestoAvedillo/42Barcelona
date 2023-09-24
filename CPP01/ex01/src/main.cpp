@@ -11,12 +11,22 @@
 /* ************************************************************************** */
 
 # include "../inc/main.hpp"
-
-int main (void)
+# include <stdlib.h>
+int main (int av, char **ac)
 {
-	Zombie *mizombie = newZombie("Pepito");;
+	int N;
+	int j;
 
-    std::cout << mizombie->getname() << std::endl;
-    delete mizombie;
-    randomChump("Juanito");
+	if (av < 2)
+		return 0;
+	
+	N = atoi (ac[1]);
+	Zombie *hordeZon = zombieHorde(N, "Pepito");
+	j = -1;
+	while(++j<N)
+	{
+		std::cout << "Recibida la variable mizombie llamado: " << hordeZon[j].getname() << std::endl;
+	}
+	delete []hordeZon;
+	return 0;
 }

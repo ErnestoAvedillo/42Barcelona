@@ -22,18 +22,22 @@ RM := rm -rfd
 
 CC:= g++
 
-FLAGS := -Wall -Werror -Wextra -std=c++98
+FLAGS := -Wall -Werror -Wextra -std=c++98 
 
 all: $(NAME) Makefile
+
+all_lk:SANIT1 = -fsanitize=address
+all_lk:SANIT2 = -static-libsan
+all_lk: all
 
 -include:$(sources:.c=.d)
 
 $(NAME): $(DSTS) $(OBJS) 
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(SANIT1) $(OBJS) -o $(NAME)
 
 $(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(INCS) $(CLASS)
 	mkdir -p $(OBJDST_DIR)
-	$(CC) $(FLAGS) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
+	$(CC) $(FLAGS) $(SANIT2) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
 
 $(OBJDST_DIR)%.d: $(DIRSRC)%.cpp
 	mkdir -p $(OBJDST_DIR)

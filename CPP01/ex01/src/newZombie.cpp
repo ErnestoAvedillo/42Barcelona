@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/main.hpp"
+#include "../inc/Zombie.hpp"
 
-int main (void)
-{
-	Zombie *mizombie = newZombie("Pepito");;
-
-    std::cout << mizombie->getname() << std::endl;
-    delete mizombie;
-    randomChump("Juanito");
-}
+ Zombie* newZombie( std::string name )
+ {
+    return new Zombie(name);
+ }
