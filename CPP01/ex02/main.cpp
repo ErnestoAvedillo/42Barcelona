@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Zombie.hpp"
+# include <iostream>
+# include <string>
 
- Zombie* newZombie( std::string name )
- {
-    return new Zombie(name);
- }
+int main (void)
+{
+    char const  *stringPtr = "HI THIS IS BRAIN";
+    std::string stringRef ("HI THIS IS BRAIN");
+
+    std::cout << stringPtr << std::endl;
+    std::cout << stringRef << std::endl;
+
+}

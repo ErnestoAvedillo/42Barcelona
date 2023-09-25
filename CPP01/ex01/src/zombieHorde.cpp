@@ -16,9 +16,8 @@
 Zombie*	zombieHorde( int N, std::string name )
 {
 	int i;
-	Zombie *mizombie;
-	mizombie = new Zombie[N];
-	for(i = 0, i <= N, ++i)
-		mizombie[i].putnme(name);
+	Zombie *mizombie = new  Zombie[N];
+	for(i = 0; i < N; ++i)
+		mizombie[i].putname(name);
 	return mizombie;
 }

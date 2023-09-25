@@ -1,6 +1,6 @@
 NAME := zombie
 
-SRC := main Zombie newZombie zombieHorde
+SRC := main Zombie zombieHorde
 
 CLAS := Zombie 
 

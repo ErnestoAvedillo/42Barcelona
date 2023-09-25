@@ -16,7 +16,7 @@ int main (void)
 {
 	Zombie *mizombie = newZombie("Pepito");;
 
-    std::cout << mizombie->getname() << std::endl;
+    mizombie->announce();
     delete mizombie;
     randomChump("Juanito");
 }

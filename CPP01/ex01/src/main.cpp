@@ -15,17 +15,18 @@
 int main (int av, char **ac)
 {
 	int N;
-	int j;
+	int i;
 
 	if (av < 2)
 		return 0;
 	
 	N = atoi (ac[1]);
 	Zombie *hordeZon = zombieHorde(N, "Pepito");
-	j = -1;
-	while(++j<N)
+	for(i=0; i < N; ++i)
 	{
-		std::cout << "Recibida la variable mizombie llamado: " << hordeZon[j].getname() << std::endl;
+		std::cout << "Recibida la variable mizombie llamado: Nr-"<< i << "  " << hordeZon[i].getname() << std::endl;
+		hordeZon[i].announce();
+
 	}
 	delete []hordeZon;
 	return 0;
