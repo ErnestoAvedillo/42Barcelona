@@ -15,10 +15,14 @@
 
 int main (void)
 {
-    char const  *stringPtr = "HI THIS IS BRAIN";
-    std::string stringRef ("HI THIS IS BRAIN");
+	std::string str = "HI THIS IS BRAIN";
+	std::string *stringPtr = &str;
+	std::string	&stringRef = str;
 
-    std::cout << stringPtr << std::endl;
-    std::cout << stringRef << std::endl;
-
+	std::cout << "str Pointer value: " << &str << std::endl;
+	std::cout << "str String value: " << str << std::endl;
+	std::cout << "stringPtr Pointer value: " << stringPtr << std::endl;
+	std::cout << "stringPtr String value: " << *stringPtr << std::endl;
+	std::cout << "stringRef Pointer value : " << &stringRef << std::endl;
+	std::cout << "stringRef String value : " << stringRef << std::endl;
 }
