@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/HumanA.hpp"	
+#ifndef __MAIN_H
+  #define __MAIN_H
+#include "../inc/HumanA.hpp"
+#include "../inc/HumanB.hpp"
+#include "../inc/Weapon.hpp"
 
-HumanA::HumanA(std::string name, Weapon weapon)
-{
-	my_name = name;
-	my_weapon = &weapon;
-}
-
-void HumanA::attack()
-{
-	std::cout << my_name << " attacks with their " << &my_weapon->get_type() << std::endl;
-}
+#endif
