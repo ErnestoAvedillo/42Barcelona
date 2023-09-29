@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,19 +9,12 @@
 /*   Updated: 2023/09/26 21:27:07 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
-# include <iostream>
-# include "../inc/Weapon.hpp"
 
+#ifndef __MAIN_H
+  #define __MAIN_H
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <cstdlib>
 
-class HumanA
-{
-    private:
-        Weapon      *my_weapon;
-        std::string my_name;
-    public:
-        HumanA(std::string name, Weapon weapon);
-        void attack();
-};
 #endif

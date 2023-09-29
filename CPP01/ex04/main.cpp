@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,19 +9,33 @@
 /*   Updated: 2023/09/26 21:27:07 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
-# include <iostream>
-# include "../inc/Weapon.hpp"
+
+#include  "main.h"
 
 
-class HumanA
+void print_info (void)
 {
-    private:
-        Weapon      *my_weapon;
-        std::string my_name;
-    public:
-        HumanA(std::string name, Weapon weapon);
-        void attack();
-};
-#endif
+	std::cout << "Entrada incorrecta." << std::endl;
+	std::cout << "Introduzca 3 parámetros." << std::endl;
+	std::cout << "1- Nombre del fichero." << std::endl;
+	std::cout << "2- String a reemplazar."<< std::endl;
+	std::cout << "2- String de reemplazo."<< std::endl;
+}
+
+int main(int av, char **ac)
+{
+	if (av < 4)
+	{
+		print_info();
+		return 0;
+	}
+	std::ofstream file_to_copy(ac[1]);
+	if(!file_to_copy)
+	{
+		std::cout << "File " << ac[1] << " does not exist." << std::endl;
+		return ( EXIT_FAILURE );
+	}
+	
+
+	return 0;
+}

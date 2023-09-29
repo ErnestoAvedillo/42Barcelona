@@ -14,11 +14,13 @@
 #include <string>
 #include <iostream>
 
-	std::string Weapon::get_type()
+	Weapon::Weapon (std::string name) : type(name) {};
+
+	std::string Weapon::getType()
 	{
 		return type;
 	};
-	void Weapon::set_Type(std::string name)
+	void Weapon::setType(std::string name)
 	{
 		type = name;
 	};

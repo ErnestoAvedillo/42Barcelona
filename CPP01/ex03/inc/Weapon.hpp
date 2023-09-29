@@ -9,14 +9,15 @@
 /*   Updated: 2023/09/26 21:27:07 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <iostream>
-
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 class Weapon
 {
     private:
         std::string type;
     public:
-        std::string get_type();
-        void set_Type(std::string name);
+        Weapon(std::string name);
+        std::string getType();
+        void setType(std::string name);
 };
+#endif

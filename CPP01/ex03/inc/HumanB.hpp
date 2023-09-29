@@ -9,18 +9,20 @@
 /*   Updated: 2023/09/26 21:27:07 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <iostream>
-#include "../inc/Weapon.hpp"
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
+# include <iostream>
+# include "../inc/Weapon.hpp"
 
 
 class HumanB
 {
     private:
-        Weapon      &my_weapon;
+        Weapon      *my_weapon;
         std::string my_name;
     public:
         HumanB(std::string name);
         void attack();
-        setWeapon(Weapon weapon);
+        void setWeapon(Weapon weapon);
 };
+#endif

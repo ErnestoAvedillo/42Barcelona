@@ -1,41 +1,48 @@
-NAME := megaphone
+NAME := warrior
 
-SRC := $(NAME)
+SRC := main HumanA HumanB Weapon
 
-INC := 
+CLAS := HumanA HumanB Weapon
 
-DIRSRC := ./
+INC := main
 
-DIRINC := ./
+DIRSRC := ./src/
+
+DIRINC := inc/
 
 OBJDST_DIR := ./objdst_dir/
 
 SRCS := $(addprefix $(DIRSRC), $(addsuffix .cpp,$(SRC)))
 OBJS := $(addprefix $(OBJDST_DIR), $(addsuffix .o,$(SRC)))
 DSTS := $(addprefix $(OBJDST_DIR), $(addsuffix .d,$(SRC)))
-INCS := $(addprefix $(DIRINC), $(addsuffix .hpp,$(INC)))
+INCS := $(addprefix $(DIRINC), $(addsuffix .h,$(INC)))
+CLASS := $(addprefix $(DIRINC), $(addsuffix .hpp,$(CLAS)))
 
 RM := rm -rfd
 
 CC:= g++
 
-FLAGS := -Wall -Werror -Wextra -std=c++98
+FLAGS := -Wall -Werror -Wextra -std=c++98 
 
 all: $(NAME) Makefile
 
+all_lk:SANIT1 = -fsanitize=address
+all_lk:SANIT2 = -static-libsan
+all_lk: all
+
 -include:$(sources:.c=.d)
 
-$(NAME): $(OBJS) 
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(DSTS) $(OBJS) 
+	$(CC) $(FLAGS) $(SANIT1) $(OBJS) -o $(NAME)
 
-$(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(OBJDST_DIR)%.d
-	mkdir -p $(OBJDST_DIR)
-	$(CC) $(FLAGS) $(INCS) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
+$(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(INCS) $(CLASS)
+	@mkdir -p $(OBJDST_DIR)
+	@$(CC) $(FLAGS) $(SANIT2) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
 
 $(OBJDST_DIR)%.d: $(DIRSRC)%.cpp
-	mkdir -p $(OBJDST_DIR)
-	@set -e; rm -f $@; \
-	$(CC) -M $(FLAGS) $< > $@.$$$$; \
+	@mkdir -p $(OBJDST_DIR)
+	set -e; rm -f $@; \
+	@$(CC) -M $(FLAGS) $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
 

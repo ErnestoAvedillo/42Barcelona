@@ -14,10 +14,16 @@
 
 HumanB::HumanB(std::string name)
 {
-	my_name = name;
+	my_name = name; 
+	my_weapon = NULL;
 }
 
 void HumanB::attack()
 {
-	std::cout << my_name << " attacks with their " << my_weapon.get_type() << std::endl;
+	std::cout << my_name << " attacks with their " << &my_weapon->getType() << std::endl;
+}
+
+void HumanB::setWeapon(Weapon weapon)
+{
+	my_weapon = &weapon;
 }
