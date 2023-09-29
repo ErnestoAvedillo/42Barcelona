@@ -20,7 +20,7 @@ HumanB::HumanB(std::string name)
 
 void HumanB::attack()
 {
-	std::cout << my_name << " attacks with their " << &my_weapon->getType() << std::endl;
+	std::cout << my_name << " attacks with their " << my_weapon->getType() << std::endl;
 }
 
 void HumanB::setWeapon(Weapon weapon)

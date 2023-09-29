@@ -20,9 +20,9 @@ CLASS := $(addprefix $(DIRINC), $(addsuffix .hpp,$(CLAS)))
 
 RM := rm -rfd
 
-CC:= gcc
+CC:= g++
 
-FLAGS := -Wall -Werror -Wextra -std=c++98 
+FLAGS := -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME) Makefile
 

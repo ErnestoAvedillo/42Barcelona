@@ -1,6 +1,6 @@
 NAME := warrior
 
-SRC := main HumanA HumanB Weapon
+SRC := main  HumanB HumanA Weapon
 
 CLAS := HumanA HumanB Weapon
 
@@ -41,8 +41,8 @@ $(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(INCS) $(CLASS)
 
 $(OBJDST_DIR)%.d: $(DIRSRC)%.cpp
 	@mkdir -p $(OBJDST_DIR)
-	set -e; rm -f $@; \
-	@$(CC) -M $(FLAGS) $< > $@.$$$$; \
+	@set -e; rm -f $@; \
+	$(CC) -M $(FLAGS) $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
 
