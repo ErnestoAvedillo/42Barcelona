@@ -59,13 +59,17 @@ int main(int av, char **ac)
 		return ( EXIT_FAILURE );
 	}
 	newfilename = replace(ac);
-	file_copied.open(newfilename, std::ios::out);
-	while (std::getline(file_to_copy, line))
-		file_copied << line << std::endl;
-	file_copied.close();
-	file_to_copy.close();
-	std::cout << "El contenido de " << ac[1];
-	std::cout << " ha sido copiado en " << newfilename << std::endl;
-
+	if (newfilename == ac[1])
+		std::cout << "String no encontrada, nuevo fichero no generado" << std::endl;
+	else
+	{
+		file_copied.open(newfilename, std::ios::out);
+		while (std::getline(file_to_copy, line))
+			file_copied << line << std::endl;
+		file_copied.close();
+		file_to_copy.close();
+		std::cout << "El contenido de " << ac[1];
+		std::cout << " ha sido copiado en " << newfilename << std::endl;
+	}
 	return 0;
 }

@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
-/*   Updated: 2023/09/21 22:23:12 by eavedill         ###   ########.fr       */
+/*   Created: 2023/09/26 21:27:03 by eavedill          #+#    #+#             */
+/*   Updated: 2023/09/26 21:27:07 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/main.h"
-
-int main (void)
-{
-	Zombie *mizombie = newZombie("Pepito");;
-
-    mizombie->announce();
-    delete mizombie;
-    randomChump("Juanito");
-}
+#ifndef __MAIN_H
+  #define __MAIN_H
+#include "../inc/Harl.hpp"
+#include "../inc/colors.h"
+#include <iostream>
+#endif

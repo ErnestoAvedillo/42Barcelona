@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/main.hpp"
+# include "../inc/main.h"
 # include <stdlib.h>
 int main (int av, char **ac)
 {

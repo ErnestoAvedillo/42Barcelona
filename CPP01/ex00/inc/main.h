@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/main.h"
+#ifndef MAIN_H
+ #define MAIN_H
+# include"../inc/Zombie.hpp"
+# include <iostream>
 
-int main (void)
-{
-	Zombie *mizombie = newZombie("Pepito");;
-
-    mizombie->announce();
-    delete mizombie;
-    randomChump("Juanito");
-}
+Zombie* newZombie( std::string name );
+void    randomChump( std::string name );
+#endif

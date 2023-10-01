@@ -5,18 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
-/*   Updated: 2023/09/21 22:23:12 by eavedill         ###   ########.fr       */
+/*   Created: 2023/09/26 21:27:03 by eavedill          #+#    #+#             */
+/*   Updated: 2023/09/26 21:27:07 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/main.h"
+#include  "../inc/main.h"
 
-int main (void)
+int main(int av, char **ac)
 {
-	Zombie *mizombie = newZombie("Pepito");;
-
-    mizombie->announce();
-    delete mizombie;
-    randomChump("Juanito");
+	Harl			my_harl;
+	if (av < 2)
+	{
+		std::cout << "No message" << std::endl;
+		return 0;
+	}
+	my_harl.complain(ac[1]);
+	return 0;
 }
