@@ -36,7 +36,7 @@ void PhoneBook::search_contact()
 			break;
 	}
 	if (elcontacto == max_contacts)
-		std::cout << "contacto noencontrado\n";
+		std::cout << "contacto no encontrado\n";
 	else
 		my_contact[elcontacto].print_contact();
 }

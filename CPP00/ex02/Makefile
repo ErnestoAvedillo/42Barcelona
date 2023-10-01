@@ -1,14 +1,35 @@
-NAME := tests
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
+#    Updated: 2023/10/01 15:03:32 by eavedill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC := $(NAME) Account
+RESET		:=	\033[1;97m
+RED			:=	\033[1;91m
+GREEN		:=	\033[1;92m
+YELLOW		:=	\033[1;93m
+BLUE		:=	\033[1;94m
+PINK		:=	\033[1;95m
+CIAN		:=	\033[1;96m
+BLANC		:= '-%.0s' {1..100}
+
+NAME := account
+
+SRC := main Account
 
 CLAS := Account
 
-INC := $(NAME) colors
+INC := main colors
 
 DIRSRC := ./src/
 
-DIRINC := inc/
+DIRINC := ./inc/
 
 OBJDST_DIR := ./objdst_dir/
 
@@ -26,22 +47,25 @@ FLAGS := -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME) Makefile
 
--include:$(sources:.c=.d)
-
 $(NAME): $(DSTS) $(OBJS) 
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	@printf "\rLinking: $(NAME)                                                  \n"
+	@sleep 0.3
+	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
-$(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(INCS) $(CLASS)
-	mkdir -p $(OBJDST_DIR)
-	$(CC) $(FLAGS) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
+$(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(OBJDST_DIR)%.d
+	@mkdir -p $(OBJDST_DIR)
+	@printf "$(GREEN)\rCompiling $*.o: $(notdir $<).                             $(RESET)"
+	@sleep 0.3
+	@$(CC) $(FLAGS) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
 
 $(OBJDST_DIR)%.d: $(DIRSRC)%.cpp
-	mkdir -p $(OBJDST_DIR)
+	@mkdir -p $(OBJDST_DIR)
+	@printf "$(RED)\rCreating Dependencies $*.d: $(notdir $<).                   $(RESET)"
+	@sleep 0.5
 	@set -e; rm -f $@; \
 	$(CC) -M $(FLAGS) $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
-
 print:
 	@echo NAME: $(NAME)
 	@echo SRCS: $(SRCS)
@@ -62,3 +86,6 @@ fclean: clean
 re: fclean all
 
 PHONY: all clean fclean re print
+
+.SILENT:
+-include $(DSTS)

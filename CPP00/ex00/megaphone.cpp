@@ -10,41 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <iostream>
-
-char	chr_to_up(char c)
-{
-	if(c >= 97 && c <= 123)
-		return (c - 32);
-	return (c);
-}
-
-void	str_to_up(char *str)
-{
-	int i;
-
-	i = -1;
-	while (str[++i])
-		str[i] = chr_to_up(str[i]);
-}
+#include <string>
 
 int main (int av, char **ac)
 {
-	int i;
-
 	if (av < 2)
 	{
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
 		return (0);
 	}
-	i = 0;
-	while (ac[++i])
+	for (int i = 1; i < av; i++)
 	{
-		str_to_up(ac[i]);
-		std::cout <<ac[i];
-		if (!ac[i + 1])
-			std::cout <<"\n";
-		else
-			std::cout << " ";
+		std::string str (ac[i]);
+		for (size_t j = 0; j < str.length(); j++)
+			std::cout << (char) std::toupper(str[j]);
 	}
+	std::cout <<"\n";
 	return (0);
 }

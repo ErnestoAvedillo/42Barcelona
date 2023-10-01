@@ -27,11 +27,11 @@ enum Contact_data
 class Contact
 {
 	private:
-		const size_t max_print_len;
-		std::string contact[max_data_contact];
+		const size_t __max_print_len;
+		std::string __contact[max_data_contact];
 
 	public:
-		Contact () :max_print_len(10){}
+		Contact () :__max_print_len(10){}
 		void fill_first_name();
 		void fill_last_name();
 		void fill_nickname();

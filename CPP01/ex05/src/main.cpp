@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __MAIN_H
-  #define __MAIN_H
-#include <fstream>
-#include <iostream>
-#include <string>
+#include  "../inc/main.h"
 
-#endif
+int main(void)
+{
+	Harl			my_harl;
+	std::cout << BLUE << "Mensaje para Debug:" << RESET << std::endl;
+	my_harl.complain("debug");
+	std::cout << BLUE << "Mensaje para info:" << RESET << std::endl;
+	my_harl.complain("info");
+	std::cout << BLUE << "Mensaje para warning:" << RESET << std::endl;
+	my_harl.complain("warning");
+	std::cout << BLUE << "Mensaje para error:" << RESET << std::endl;
+	my_harl.complain("error");
+	return 0;
+}

@@ -12,8 +12,7 @@
 
 #ifndef __MAIN_H
   #define __MAIN_H
-#include <fstream>
+#include "../inc/Harl.hpp"
+#include "../inc/colors.h"
 #include <iostream>
-#include <string>
-
 #endif
