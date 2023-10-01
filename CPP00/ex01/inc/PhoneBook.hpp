@@ -12,8 +12,8 @@
 
 #ifndef __PHONEBOOOK_H
  #define __PHONEBOOOK_H
-#include "../inc/Contact.hpp"
-#define max_contacts 8
+# include "../inc/Contact.hpp"
+# define max_contacts 8
 
 class PhoneBook
 {

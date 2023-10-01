@@ -7,10 +7,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include <vector>
-#include <algorithm>
-#include <functional>
-#include "../inc/Account.hpp"
+#include "../inc/main.h"
 
 
 int		main( void ) {

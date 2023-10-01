@@ -11,8 +11,9 @@
 /* ************************************************************************** */ 
 #ifndef __CONTACT_H
  #define __CONTACT_H
-#include <string>
-#include <iostream>
+# include <iostream>
+# include <iomanip>
+# include <string>
 
 enum Contact_data
 {

@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/Contact.hpp"
-#include <iostream>
-#include <iomanip>
-#include <string>
 
 void Contact::fill_first_name()
 {

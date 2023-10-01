@@ -17,7 +17,6 @@ YELLOW		:=	\033[1;93m
 BLUE		:=	\033[1;94m
 PINK		:=	\033[1;95m
 CIAN		:=	\033[1;96m
-BLANC		:= '-%.0s' {1..100}
 
 NAME := account
 
@@ -88,4 +87,8 @@ re: fclean all
 PHONY: all clean fclean re print
 
 .SILENT:
+ifeq (,$(findstring clean,$(MAKECMDGOALS)))
+ifeq (,$(findstring re,$(MAKECMDGOALS)))
 -include $(DSTS)
+endif
+endif
