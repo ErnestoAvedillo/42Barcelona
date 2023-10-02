@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,38 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Fixed.hpp"
+# include "../inc/main.h"
 
-Fixed::Fixed() : _value(0) 
-{
-	std::cout << "Default constructor called" << std::endl;
-};
-
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-
-}
-
-Fixed::Fixed(const Fixed& f)
-{
-	std::cout << "Copy constructor called" << std::endl;
-	this->_value = f.getRawBits();
-}
-
-void Fixed::operator = (Fixed &f)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_value = f.getRawBits();
-}
-int	Fixed::getRawBits( void ) const
-{
-	std::cout << "getRawBits member function called" << std::endl;
-	return _value;
-}
-
-void Fixed::setRawBits ( int const raw )
-{
-	_value = raw;
-	std::cout << "setRawBits member function called" << std::endl;
+int main( void ) {
+Fixed a;
+Fixed const b( 10 );
+Fixed const c( 42.42f );
+Fixed const d( b );
+a = Fixed( 1234.4321f );
+std::cout << "a is " << a << std::endl;
+std::cout << "b is " << b << std::endl;
+std::cout << "c is " << c << std::endl;
+std::cout << "d is " << d << std::endl;
+std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+return 0;
 }

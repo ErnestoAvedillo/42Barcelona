@@ -48,19 +48,19 @@ all: $(NAME) Makefile
 	
 $(NAME): $(DSTS) $(OBJS) 
 	@printf "\rLinking: $(NAME)                                                  \n"
-	@sleep 0.3
+	@sleep 0.1
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 $(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(OBJDST_DIR)%.d
 	@mkdir -p $(OBJDST_DIR)
 	@printf "$(GREEN)\rCompiling $*.o: $(notdir $<).                             $(RESET)"
-	@sleep 0.3
+	@sleep 0.2
 	@$(CC) $(FLAGS) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
 
 $(OBJDST_DIR)%.d: $(DIRSRC)%.cpp
 	@mkdir -p $(OBJDST_DIR)
-	@printf "$(RED)\rCreating Dependencies $*.d: $(notdir $<).                   $(RESET)"
-	@sleep 0.5
+	@printf "$(BLUE)\rCreating Dependencies $*.d: $(notdir $<).                   $(RESET)"
+	@sleep 0.3
 	@set -e; rm -f $@; \
 	$(CC) -M $(FLAGS) $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
@@ -77,9 +77,11 @@ print:
 	@echo DIRINC: $(DIRINC)
 
 clean:
+	@printf "$(RED)Removing objects folder $(OBJDST_DIR).$(RESET)\n"
 	$(RM) $(OBJDST_DIR)
 
 fclean: clean
+	@printf "$(RED)\rRemoving executable object $(NAME).$(RESET)\n"
 	$(RM) $(NAME)
 
 re: fclean all
