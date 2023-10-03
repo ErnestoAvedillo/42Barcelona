@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FIXED_HPP
- #define __FIXED_HPP
-#include <iostream>
+#ifndef  MAIN_H
+#define MAIN_H
+#include "../inc/Fixed.hpp"
+#include "../inc/colors.h"
+# include <iostream>
 
-class Fixed
-{
-	private:
-		static const int	_bits_dec = 8;
-		int					_value;
-	public:
-		Fixed();
-		Fixed(int);
-		Fixed(float);
-		Fixed(const Fixed&);
-		~Fixed();
-		Fixed &operator=(const Fixed &);
-		int getRawBits(void) const;
-		void setRawBits ( int const raw );
-		float toFloat( void ) const;
-		int toInt( void ) const;
-};
-
-std::ostream &operator<<(std::ostream &, Fixed const &);
-
+void test_inc_dec();
+void test_comp();
+void test_aritm();
+void test_min_max();
 #endif

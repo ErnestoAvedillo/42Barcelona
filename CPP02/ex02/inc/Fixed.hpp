@@ -30,8 +30,26 @@ class Fixed
 		void setRawBits ( int const raw );
 		float toFloat( void ) const;
 		int toInt( void ) const;
+		//-----operadores de incremento decremento-----
+		Fixed &operator++(void);
+		Fixed operator++(int);
+		Fixed &operator--(void);
+		Fixed operator--(int);
+		//------operadores de comparación.
+		bool operator<(const Fixed &);
+		bool operator<=(const Fixed &);
+		bool operator>(const Fixed &);
+		bool operator>=(const Fixed &);
+		bool operator==(const Fixed &);
+		bool operator!=(const Fixed &);
+		//------operadores de aritméticos.
+		Fixed operator+(const Fixed &);
+		Fixed operator-(const Fixed &);
+		Fixed operator*(const Fixed &);
+		Fixed operator/(const Fixed &);
 };
 
 std::ostream &operator<<(std::ostream &, Fixed const &);
+
 
 #endif
