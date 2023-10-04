@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/main.h"
+# include "../inc/Point.hpp"
 
-int main( void ) {
-Fixed a;
-Fixed const b( 10 );
-Fixed const c( 42.42f );
-Fixed const d( b );
+Point::Point()
+{
+    Fixed _x(0);
+    Fixed _y(0);
+}
 
-a = Fixed( 1234.4321f );
-std::cout << "a is " << a << std::endl;
-std::cout << "b is " << b << std::endl;
-std::cout << "c is " << c << std::endl;
-std::cout << "d is " << d << std::endl;
-std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-return 0;
+Point::Point (int valx, int valy): _x(valx),_y(valy){}
+
+Point::Point (float valx, float valy): _x(valx),_y(valy){}
+
+Point::Point(const Point &p)
+{
+	*this = p;
+}
+
+Point::~Point(){}
+
+Fixed Point::GetXCoord(void) const
+{
+	return this->_x;
+}
+Fixed Point::GetYCoord( void ) const
+{
+	return this->_y;
+}
+Point &Point::operator=(const Point &p) const
+{
+	*this->_x = p.GetXCoord();
+	*this->_y = p.GetYCoord();
+	return *this;
+}
+
+std::ostream &operator<<(std::ostream &ost, Point const &p)
+{
+	ost << "(" << p.GetXCoord() << "," << p.GetYCoord() << ")";
+	return ost;
 }

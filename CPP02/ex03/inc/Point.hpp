@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/main.h"
+#ifndef __POINT_HPP
+ #define __POINT_HPP
+ #include"../inc/Fixed.hpp"
+#include <iostream>
+class Point
+{
+    private:
+        Fixed _x;
+        Fixed _y;
+    public:
+        Point();
+        Point (int valx, int valy);
+        Point (float valx, float valy);
+        Point (const Point&);
+		~Point();
+		Fixed GetXCoord( void ) const;
+		Fixed GetYCoord( void ) const;
+		Point &operator=(const Point&);
+        
+};
+std::ostream &operator<<(std::ostream &, Point const &);
 
-int main( void ) {
-Fixed a;
-Fixed const b( 10 );
-Fixed const c( 42.42f );
-Fixed const d( b );
-
-a = Fixed( 1234.4321f );
-std::cout << "a is " << a << std::endl;
-std::cout << "b is " << b << std::endl;
-std::cout << "c is " << c << std::endl;
-std::cout << "d is " << d << std::endl;
-std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-return 0;
-}
+#endif

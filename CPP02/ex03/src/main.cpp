@@ -12,20 +12,38 @@
 
 # include "../inc/main.h"
 
-int main( void ) {
-Fixed a;
-Fixed const b( 10 );
-Fixed const c( 42.42f );
-Fixed const d( b );
+void print_help()
+{
+	std::cout << "options for testing" << std::endl;
+	std::cout << "'comp'- to test the compare operartors" << std::endl;
+	std::cout << "'inc_dec'- to test the increment decrement operators" << std::endl;
+	std::cout << "'aritm'- to test the arithmetic operators" << std::endl;
+	std::cout << "'min_max'- to test the min max functions" << std::endl;
+}
 
-a = Fixed( 1234.4321f );
-std::cout << "a is " << a << std::endl;
-std::cout << "b is " << b << std::endl;
-std::cout << "c is " << c << std::endl;
-std::cout << "d is " << d << std::endl;
-std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+int main( int av, char **ac ) 
+{
+	std::string tests[] = {"comp", "inc_dec", "aritm", "min_max"};
+	void (*test_func[])() = {&test_comp, &test_inc_dec, &test_aritm, &test_min_max};
+
+	if (av < 2)
+		for (int i = 0; i < 4; i++)
+			(*test_func[i])();
+	else
+	{
+		std::string arg = ac[1];
+		if (arg == "-h")
+			print_help();
+		for (int j = 1; j < av; j++)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				if (tests[i] == ac[j])
+					(*test_func[i])();
+			}
+		}	
+	}
+// std::cout << b << std::endl;
+// std::cout << Fixed::max(a, b) << std::endl;
 return 0;
 }
