@@ -27,9 +27,9 @@ class Point
 		~Point();
 		Fixed GetXCoord( void ) const;
 		Fixed GetYCoord( void ) const;
-		Point &operator=(const Point&);
-        
+        Point &operator=(const Point &);
 };
+
 std::ostream &operator<<(std::ostream &, Point const &);
 
 #endif

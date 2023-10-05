@@ -37,10 +37,10 @@ Fixed Point::GetYCoord( void ) const
 {
 	return this->_y;
 }
-Point &Point::operator=(const Point &p) const
+Point &Point::operator=(const Point &p)
 {
-	*this->_x = p.GetXCoord();
-	*this->_y = p.GetYCoord();
+	this->_x = p.GetXCoord();
+	this->_y = p.GetYCoord();
 	return *this;
 }
 

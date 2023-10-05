@@ -20,9 +20,9 @@ CIAN		:=	\033[1;96m
 
 NAME := fixed
 
-SRC := main Fixed
+SRC := main Fixed Point
 
-CLAS := Fixed
+CLAS := Fixed Point
 
 INC := main colors
 
