@@ -31,6 +31,11 @@ Fixed &Fixed::operator=(const Fixed &f)
 		this->_value = f.getRawBits();
 	return *this;
 }
+int Fixed::getBitsDec(void) const
+{
+	return _bits_dec;
+}
+
 int	Fixed::getRawBits( void ) const
 {
 	return _value;
@@ -166,5 +171,15 @@ Fixed min(const Fixed &a, const Fixed &b)
 {
 	if(a.getRawBits() < b.getRawBits())
 		return a;
+	return b;
+}
+
+Fixed sqrt(const Fixed &a)
+{
+	Fixed b = a;
+	float tmp;
+
+	tmp = sqrt(a.getRawBits() << b.getBitsDec());
+	b.setRawBits(tmp);
 	return b;
 }

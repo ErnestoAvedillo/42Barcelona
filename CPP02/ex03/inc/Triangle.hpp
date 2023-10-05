@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   Triangle.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  MAIN_H
-#define MAIN_H
-#include "../inc/Fixed.hpp"
-#include "../inc/Point.hpp"
-#include "../inc/colors.h"
-# include <iostream>
-Fixed   prod_escalar(Point a, Point b);
-Fixed   modulo(Point a);
-#endif
+#ifndef __TRIANGLE_HPP
+ #define __TRIANGLE_HPP
+ #include"../inc/Point.hpp"
+ #include"../inc/Fixed.hpp"
+
+ class Triangle
+ {
+	private:
+		Point _a;
+		Point _b;
+		Point _c;
+
+	public:
+		Triangle():_a(0,0),_b(0,0),_c(0,0);
+		Triangle(Point p1, Point p2, Point p3): _a(p1),_b(p2),_c(p3);
+		Fixed &GetArea();
+ }
+ #endif

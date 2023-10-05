@@ -13,6 +13,8 @@
 #ifndef __FIXED_HPP
  #define __FIXED_HPP
 #include <iostream>
+#include <cmath>
+
 
 class Fixed
 {
@@ -26,6 +28,7 @@ class Fixed
 		Fixed(const Fixed&);
 		~Fixed();
 		Fixed &operator=(const Fixed &);
+		int getBitsDec(void) const;
 		int getRawBits(void) const;
 		void setRawBits ( int const raw );
 		float toFloat( void ) const;
@@ -52,5 +55,5 @@ class Fixed
 std::ostream &operator<<(std::ostream &, Fixed const &);
 Fixed max(const Fixed&, const Fixed&);
 Fixed min(const Fixed&, const Fixed&);
-
+Fixed sqrt(const Fixed&);
 #endif

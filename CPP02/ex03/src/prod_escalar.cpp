@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   prod_escalar.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  MAIN_H
-#define MAIN_H
-#include "../inc/Fixed.hpp"
-#include "../inc/Point.hpp"
-#include "../inc/colors.h"
-# include <iostream>
-Fixed   prod_escalar(Point a, Point b);
-Fixed   modulo(Point a);
-#endif
+# include "../inc/main.h"
+
+Fixed prod_escalar(Point a, Point b)
+{
+    Fixed out;
+    out = a.GetXCoord() * b.GetXCoord() + a.GetYCoord() * b.GetYCoord();
+    return out;
+}

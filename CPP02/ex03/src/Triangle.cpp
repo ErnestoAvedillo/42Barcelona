@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   Triangle.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,13 +9,12 @@
 /*   Updated: 2023/09/21 22:23:12 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+ #include"../inc/Triangle.hpp"
+ #include"../inc/main.h"
 
-#ifndef  MAIN_H
-#define MAIN_H
-#include "../inc/Fixed.hpp"
-#include "../inc/Point.hpp"
-#include "../inc/colors.h"
-# include <iostream>
-Fixed   prod_escalar(Point a, Point b);
-Fixed   modulo(Point a);
-#endif
+ Fixed &Triangle::GetArea()
+ {
+    Fixed high = modulo(this->_a,this->_b);
+    Fixed base = modulo(this->_a, this->_c);
+    Fixed alfa = prod_escalar
+ }

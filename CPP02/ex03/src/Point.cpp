@@ -37,6 +37,14 @@ Fixed Point::GetYCoord( void ) const
 {
 	return this->_y;
 }
+void Point::SetXCoord( const Fixed &p) 
+{
+	this->_x = p;
+}
+void Point::SetYCoord( const Fixed &p)
+{
+	this->_y = p;
+}
 Point &Point::operator=(const Point &p)
 {
 	this->_x = p.GetXCoord();
@@ -44,8 +52,25 @@ Point &Point::operator=(const Point &p)
 	return *this;
 }
 
+Point Point::operator+(const Point &p)
+{
+	Point tmp = *this;
+	tmp.SetXCoord(this->GetXCoord() + p.GetXCoord());
+	tmp.SetYCoord(this->GetYCoord() + p.GetYCoord());
+	return tmp;
+}
+
+Point Point::operator-(const Point &p)
+{
+	Point tmp = *this;
+	tmp.SetXCoord(this->GetXCoord() - p.GetXCoord());
+	tmp.SetYCoord(this->GetYCoord() - p.GetYCoord());
+	return tmp;
+}
+
 std::ostream &operator<<(std::ostream &ost, Point const &p)
 {
 	ost << "(" << p.GetXCoord() << "," << p.GetYCoord() << ")";
 	return ost;
 }
+

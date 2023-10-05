@@ -14,12 +14,18 @@
 
 int main( void ) 
 {
-	Point a;
+	Point a(0, 1);
 	Point b(1, 0);
-	Point c(0, 1);
+	Point c = a + b;
+	Fixed d = prod_escalar(a,b);
+	Fixed e (49);
 
-	std::cout << "Punto a" << a << std::endl;
-	std::cout << "Punto b" << b << std::endl;
-	std::cout << "Punto c" << c << std::endl;
+	std::cout << "Punto a " << a << std::endl;
+	std::cout << "Punto b " << b << std::endl;
+	std::cout << "Punto c " << c << std::endl;
+	std::cout << "Valor d= " << d << std::endl;
+	std::cout << "Modulo a= " << modulo(a) << std::endl;
+	std::cout << "Modulo = " << modulo(c) << std::endl;
+	std::cout << "Raiz de e= " << e << " = " << sqrt(e) << std::endl;
 	return 0;
 }

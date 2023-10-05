@@ -20,9 +20,9 @@ CIAN		:=	\033[1;96m
 
 NAME := fixed
 
-SRC := main Fixed Point
+SRC := main Fixed Point prod_escalar modulo Triangle
 
-CLAS := Fixed Point
+CLAS := Fixed Point Triangle
 
 INC := main colors
 
