@@ -12,9 +12,17 @@
  #include"../inc/Triangle.hpp"
  #include"../inc/main.h"
 
- Fixed &Triangle::GetArea()
- {
-    Fixed high = modulo(this->_a,this->_b);
-    Fixed base = modulo(this->_a, this->_c);
-    Fixed alfa = prod_escalar
- }
+Triangle::Triangle() : _a(0, 0), _b(0, 0), _c(0, 0) {};
+Triangle::Triangle(Point p1, Point p2, Point p3) : _a(p1), _b(p2), _c(p3) {};
+
+Fixed Triangle::GetArea()
+{
+   Point v1 = this->_b - this->_a;
+   Point v2 = this->_c - this->_a;
+   Fixed high = modulo(v1);
+   Fixed base = modulo(v2);
+   Fixed alfa = prod_escalar(v1,v2);
+   alfa = sqrt( (Fixed) 1 - alfa * alfa);
+   Fixed area = high * alfa * base / (Fixed)2;
+   return (area);
+}

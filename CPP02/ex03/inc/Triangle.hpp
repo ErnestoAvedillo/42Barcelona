@@ -23,8 +23,8 @@
 		Point _c;
 
 	public:
-		Triangle():_a(0,0),_b(0,0),_c(0,0);
-		Triangle(Point p1, Point p2, Point p3): _a(p1),_b(p2),_c(p3);
-		Fixed &GetArea();
- }
- #endif
+		Triangle();
+		Triangle(Point p1, Point p2, Point p3);
+		Fixed GetArea();
+ };
+#endif

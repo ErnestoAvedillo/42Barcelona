@@ -16,9 +16,10 @@ int main( void )
 {
 	Point a(0, 1);
 	Point b(1, 0);
-	Point c = a + b;
+	Point c(0, 0);
 	Fixed d = prod_escalar(a,b);
 	Fixed e (49);
+	Triangle t1(a, b, c);
 
 	std::cout << "Punto a " << a << std::endl;
 	std::cout << "Punto b " << b << std::endl;
@@ -27,5 +28,8 @@ int main( void )
 	std::cout << "Modulo a= " << modulo(a) << std::endl;
 	std::cout << "Modulo = " << modulo(c) << std::endl;
 	std::cout << "Raiz de e= " << e << " = " << sqrt(e) << std::endl;
+	std::cout << "Prod escalar a·b = " << sqrt(Fixed(1)-prod_escalar(a,b)) << std::endl;
+	std::cout << "Area del trángulo = " << t1.GetArea() << std::endl;
+
 	return 0;
 }
