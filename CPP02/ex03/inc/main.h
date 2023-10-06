@@ -14,9 +14,7 @@
 #define MAIN_H
 #include "../inc/Fixed.hpp"
 #include "../inc/Point.hpp"
-#include "../inc/Triangle.hpp"
 #include "../inc/colors.h"
 # include <iostream>
-Fixed   prod_escalar(Point a, Point b);
-Fixed   modulo(Point a);
+bool	p_in_tr(Point a, Point b, Point c, Point d);
 #endif

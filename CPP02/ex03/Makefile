@@ -20,7 +20,7 @@ CIAN		:=	\033[1;96m
 
 NAME := fixed
 
-SRC := main Fixed Point prod_escalar modulo Triangle
+SRC := main Fixed Point p_in_tr
 
 CLAS := Fixed Point Triangle
 
