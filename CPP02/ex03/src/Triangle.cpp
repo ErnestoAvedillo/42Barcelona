@@ -21,8 +21,9 @@ Fixed Triangle::GetArea()
    Point v2 = this->_c - this->_a;
    Fixed high = modulo(v1);
    Fixed base = modulo(v2);
-   Fixed alfa = prod_escalar(v1,v2);
-   alfa = sqrt( (Fixed) 1 - alfa * alfa);
-   Fixed area = high * alfa * base / (Fixed)2;
+   Fixed cos = prod_escalar(v1,v2) / base / high;
+   Fixed sen = sqrt( (Fixed) 1 - cos * cos);
+   //std::cout << "valores " << sen << "-" << cos << "-" << high << "-" << base << std::endl;
+   Fixed area = high * sen * base / (Fixed)2;
    return (area);
 }
