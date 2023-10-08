@@ -14,6 +14,16 @@
 
 int main( void ) 
 {
+	ClapTrap pepito("Pepito");
+	ClapTrap manolito("Manolito");
+	ClapTrap anonimo;
 
+	pepito.attack("manolito");
+	manolito.takeDamage(1);
+	manolito.beRepaired(1);
+	pepito.attack("manolito");
+	manolito.takeDamage(12);
+	pepito.attack("manolito");
+	manolito.takeDamage(2);
 	return 0;
 }

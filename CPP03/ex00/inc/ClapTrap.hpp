@@ -20,16 +20,19 @@ class ClapTrap
 	private:
 		std::string	_Name;
 		int			_hit_points;
-		int			_energy;
-		int			_damage;
+		int 		_energy;
+		int 		_damage;
 
 	public:
-		Fixed();
-		Fixed(std::string);
-		~Fixed();
+		ClapTrap();
+		ClapTrap(std::string);
+		~ClapTrap();
 		void attack(const std::string &target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
+		int GetHitPoints();
+		int GetEnergy();
+		int GetDamage();
 };
 
 #endif
