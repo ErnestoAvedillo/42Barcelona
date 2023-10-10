@@ -30,7 +30,7 @@ ClapTrap::ClapTrap(std::string my_name) : _Name(my_name)
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destroy " << _Name << " warrior." << std::endl;
+	std::cout << "ClapTrap Destroy " << _Name << " warrior." << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target) 
@@ -113,3 +113,7 @@ void ClapTrap::SetDamage(int val)
 	_damage = val;
 }
 
+void ClapTrap::SetName(std::string val)
+{
+	_Name = val;
+}

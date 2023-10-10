@@ -14,9 +14,9 @@
 
 int main( void ) 
 {
-	ClapTrap pepito("Pepito");
-	ClapTrap manolito("Manolito");
-	ClapTrap anonimo;
+	ScavTrap pepito("Pepito");
+	ScavTrap manolito("Manolito");
+	ScavTrap anonimo;
 
 	pepito.attack("manolito");
 	manolito.takeDamage(1);
@@ -25,5 +25,8 @@ int main( void )
 	manolito.takeDamage(12);
 	pepito.attack("manolito");
 	manolito.takeDamage(2);
+	anonimo.guardGate();
+	anonimo.guardGate();
+
 	return 0;
 }

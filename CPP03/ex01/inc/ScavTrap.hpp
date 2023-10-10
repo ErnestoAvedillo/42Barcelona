@@ -17,11 +17,12 @@
 class ScavTrap:public ClapTrap
 {
     private:
+        bool _guard_gate;
 
     public:
         ScavTrap();
         ScavTrap(std::string my_nam);
         ~ScavTrap();
-
+        void guardGate();
 };
 #endif

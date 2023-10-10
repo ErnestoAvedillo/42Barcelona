@@ -12,7 +12,7 @@
 
 #ifndef  MAIN_H
 #define MAIN_H
-#include "../inc/ClapTrap.hpp"
+#include "../inc/ScavTrap.hpp"
 #include "../inc/colors.h"
 # include <iostream>
 #endif
