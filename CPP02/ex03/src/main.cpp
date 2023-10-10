@@ -16,9 +16,9 @@
 
 int main( void ) 
 {
-	Point a(8, 8);
-	Point b(2, 1);
-	Point c(1, 2);
+	Point b(8, 8);
+	Point c(2, 0);
+	Point a(0, 2);
 	Point d(2, 2);
 
 	std::cout << "Punto a " << a << std::endl;
