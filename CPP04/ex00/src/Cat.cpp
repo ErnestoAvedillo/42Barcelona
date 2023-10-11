@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,32 +12,32 @@
 
 #include "../inc/Cat.hpp"
 
-Cat::Cat() : _type("Anonimous")
+Cat::Cat() : _type("Gato Callejero")
 {
-	std::cout << "Creating " << _type << " animal."<< std::endl;
+	std::cout << "Creating " << _type << " cat."<< std::endl;
 }
 
 Cat::Cat(std::string my_name) : _type(my_name)
 {
-	std::cout << "Creating " << _type << " animal." << std::endl;
+	std::cout << "Creating " << _type << " cat." << std::endl;
 }
 
 Cat::~Cat()
 {
-	std::cout << "Destroy " << _type << " warrior." << std::endl;
+	std::cout << "Destroy " << _type << " cat." << std::endl;
 }
 
-std::string Cat::GetType()
+std::string Cat::getType() const
 {
 	return _type;
 }
 
-void Cat::SetType(std::string &my_type)
+void Cat::setType(std::string &my_type)
 {
 	_type = my_type;
 }
 
-void Cat::makeSound()
+void Cat::makeSound() const
 {
 	std::cout << "Miau requete Miau" << std::endl;
 }

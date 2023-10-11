@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -27,12 +27,17 @@ Animal::~Animal()
 	std::cout << "Destroy " << _type << " warrior." << std::endl;
 }
 
-std::string Animal::GetType()
+std::string Animal::getType() const
 {
 	return _type;
 }
 
-void Animal::SetType(std::string &my_type)
+void Animal::setType(std::string &my_type)
 {
 	_type = my_type;
+}
+
+void Animal::makeSound() const
+{
+	std::cout << "Mi animal que hace Brrrrbrrrrr" << std::endl;
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                          :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ANIMAL_HPP
-#define __ANIMAL_HPP
+#ifndef __WRONGCAT_HPP
+#define __CAT_HPP
+#include "../inc/Animal.hpp"
 #include <iostream>
 
-class Animal
+class WrongCat: public Animal
 {
 	private:
 		std::string	_type;
 
 	public:
-		Animal();
-		Animal(std::string);
-		virtual ~Animal();
-		virtual std::string getType() const;
+		WrongCat();
+		WrongCat(std::string);
+		~WrongCat();
+		std::string getType() const;
 		void setType(std::string&);
-		virtual void makeSound() const;
+		void makeSound() const;
 };
 
 #endif

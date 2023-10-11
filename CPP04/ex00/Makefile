@@ -18,11 +18,11 @@ BLUE		:=	\033[1;94m
 PINK		:=	\033[1;95m
 CIAN		:=	\033[1;96m
 
-NAME := claptrap
+NAME := animal
 
-SRC := main ClapTrap 
+SRC := main Animal Cat Dog WrongAnimal WrongCat WrongDog 
 
-CLAS := ClapTrap
+CLAS := Animal Cat Dog WrongAnimal WrongCat WrongDog 
 
 INC := main colors
 

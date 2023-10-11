@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongDog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Animal.hpp"
+#include "../inc/WrongDog.hpp"
 
-Animal::Animal() : _type("Anonimous")
+WrongDog::WrongDog() : _type("Perro Callejero")
 {
-	std::cout << "Creating " << _type << " animal."<< std::endl;
+	std::cout << "Creating " << _type << " dog."<< std::endl;
 }
 
-Animal::Animal(std::string my_name) : _type(my_name)
+WrongDog::WrongDog(std::string my_name) : _type(my_name)
 {
-	std::cout << "Creating " << _type << " animal." << std::endl;
+	std::cout << "Creating " << _type << " dog." << std::endl;
 }
 
-Animal::~Animal()
+WrongDog::~WrongDog()
 {
-	std::cout << "Destroy " << _type << " warrior." << std::endl;
+	std::cout << "Destroy " << _type << " dog." << std::endl;
 }
 
-std::string Animal::GetType()
+std::string WrongDog::getType() const
 {
 	return _type;
 }
 
-void Animal::SetType(std::string &my_type)
+void WrongDog::setType(std::string &my_type)
 {
 	_type = my_type;
+}
+
+void WrongDog::makeSound() const
+{
+	std::cout << "Guau Guau Guau" << std::endl;
 }

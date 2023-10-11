@@ -23,10 +23,10 @@ class Dog: public Animal
 	public:
 		Dog();
 		Dog(std::string);
-		~Dog();
-		std::string GetType();
-		void SetType(std::string&);
-		void makeSound();
+		virtual ~Dog();
+		std::string getType() const;
+		virtual void setType(std::string&);
+		virtual void makeSound() const;
 };
 
 #endif

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                          :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ANIMAL_HPP
-#define __ANIMAL_HPP
-#include <iostream>
+#include "../inc/WrongAnimal.hpp"
 
-class Animal
+WrongAnimal::WrongAnimal() : _type("Anonimous")
 {
-	private:
-		std::string	_type;
+	std::cout << "Creating " << _type << " animal."<< std::endl;
+}
 
-	public:
-		Animal();
-		Animal(std::string);
-		virtual ~Animal();
-		virtual std::string getType() const;
-		void setType(std::string&);
-		virtual void makeSound() const;
-};
+WrongAnimal::WrongAnimal(std::string my_name) : _type(my_name)
+{
+	std::cout << "Creating " << _type << " animal." << std::endl;
+}
 
-#endif
+WrongAnimal::~WrongAnimal()
+{
+	std::cout << "Destroy " << _type << " warrior." << std::endl;
+}
+
+std::string WrongAnimal::getType() const
+{
+	return _type;
+}
+
+void WrongAnimal::setType(std::string &my_type)
+{
+	_type = my_type;
+}
+
+void WrongAnimal::makeSound() const
+{
+	std::cout << "Mi animal que hace Brrrrbrrrrr" << std::endl;
+}

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                          :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ANIMAL_HPP
-#define __ANIMAL_HPP
-#include <iostream>
+#include "../inc/Dog.hpp"
 
-class Animal
+Dog::Dog() : _type("Perro Callejero")
 {
-	private:
-		std::string	_type;
+	std::cout << "Creating " << _type << " dog."<< std::endl;
+}
 
-	public:
-		Animal();
-		Animal(std::string);
-		virtual ~Animal();
-		virtual std::string getType() const;
-		void setType(std::string&);
-		virtual void makeSound() const;
-};
+Dog::Dog(std::string my_name) : _type(my_name)
+{
+	std::cout << "Creating " << _type << " dog." << std::endl;
+}
 
-#endif
+Dog::~Dog()
+{
+	std::cout << "Destroy " << _type << " dog." << std::endl;
+}
+
+std::string Dog::getType() const
+{
+	return _type;
+}
+
+void Dog::setType(std::string &my_type)
+{
+	_type = my_type;
+}
+
+void Dog::makeSound() const
+{
+	std::cout << "Guau Guau Guau" << std::endl;
+}

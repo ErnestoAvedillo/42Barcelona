@@ -23,10 +23,10 @@ class Cat: public Animal
 	public:
 		Cat();
 		Cat(std::string);
-		~Cat();
-		std::string GetType();
-		void SetType(std::string&);
-		void makeSound();
+		virtual ~Cat();
+		virtual std::string getType() const;
+		void setType(std::string&);
+		virtual void makeSound() const;
 };
 
 #endif

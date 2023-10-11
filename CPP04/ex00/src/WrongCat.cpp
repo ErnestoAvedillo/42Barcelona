@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                          :+:      :+:    :+:   */
+/*   WrongCat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ANIMAL_HPP
-#define __ANIMAL_HPP
-#include <iostream>
+#include "../inc/WrongCat.hpp"
 
-class Animal
+WrongCat::WrongCat() : _type("Gato Callejero")
 {
-	private:
-		std::string	_type;
+	std::cout << "Creating " << _type << " cat."<< std::endl;
+}
 
-	public:
-		Animal();
-		Animal(std::string);
-		virtual ~Animal();
-		virtual std::string getType() const;
-		void setType(std::string&);
-		virtual void makeSound() const;
-};
+WrongCat::WrongCat(std::string my_name) : _type(my_name)
+{
+	std::cout << "Creating " << _type << " cat." << std::endl;
+}
 
-#endif
+WrongCat::~WrongCat()
+{
+	std::cout << "Destroy " << _type << " cat." << std::endl;
+}
+
+std::string WrongCat::getType() const
+{
+	return _type;
+}
+
+void WrongCat::setType(std::string &my_type)
+{
+	_type = my_type;
+}
+
+void WrongCat::makeSound() const
+{
+	std::cout << "Miau requete Miau" << std::endl;
+}
