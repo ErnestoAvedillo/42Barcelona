@@ -22,24 +22,32 @@ void print_info (void)
 	std::cout << "2- String de reemplazo."<< std::endl;
 }
 
-std::string	replace(char **ac)
+std::string	replace(char *ac)
 {
-	std::string filename(ac[1]);
-	std::string str1(ac[2]);
-	std::string str2(ac[3]);
-	std::size_t found = filename.find(str1);
-	std::size_t length = str1.length();
-	
-	while (found != std::string::npos)
-	{
-		filename.erase(found, length);
-		filename.insert(found, str2);
-		found = filename.find(str1, found + str2.length());
-	}
+	std::string filename(ac);
+	std::size_t	str_len = filename.length();
+
+	filename.insert(str_len, ".replace");
 	return filename;
 }
 
-bool cp_content (std::ifstream *file_to_copy, std::string newfilename)
+std::string replace_cont(std::string str, char **ac)
+{
+	std::string str1(ac[2]);
+	std::string str2(ac[3]);
+	std::size_t found = str.find(str1);
+	std::size_t length = str1.length();
+		
+	while (found != std::string::npos)
+	{
+		str.erase(found, length);
+		str.insert(found, str2);
+		found = str.find(str1, found + str2.length());
+	}
+	return str;
+}
+
+bool cp_content (std::ifstream *file_to_copy, std::string newfilename,char **ac)
 {
 	std::string		line;
 	std::ofstream	file_copied;
@@ -51,7 +59,10 @@ bool cp_content (std::ifstream *file_to_copy, std::string newfilename)
 		return false;
 	}
 	while (std::getline(*file_to_copy, line))
+	{
+		line = replace_cont(line, ac);
 		file_copied << line << std::endl;
+	}
 	return true;
 }
 
@@ -73,27 +84,13 @@ int main(int av, char **ac)
 		std::cout << "File " << ac[1] << " does not exist or no access." << std::endl;
 		return ( EXIT_FAILURE );
 	}
-	str1 = ac[2];
-	str2 = ac[3];
-	if (str1 == str2)
+	newfilename = replace(ac[1]);
+	if(cp_content(&file_to_copy, newfilename, ac))
 	{
-		std::cout << "String to be replaced and replacement are identical." << std::endl;
-		return 0;
+		std::cout << "El contenido de " << ac[1];
+		std::cout << " ha sido copiado en " << newfilename;
+		std::cout << "sustituyendo" << ac[2] << " por " << ac[3] << std::endl;
 	}
-	newfilename = replace(ac);
-	if (newfilename == ac[1])
-	{
-		std::cout << "String "<< str1 << " not found in " << ac[1];
-		std::cout << ", no file generated." << std::endl;
-	}
-	else
-	{
-		if (cp_content(&file_to_copy, newfilename))
-		{
-			std::cout << "El contenido de " << ac[1];
-			std::cout << " ha sido copiado en " << newfilename << std::endl;
-		}
-		file_to_copy.close();
-	}
+	file_to_copy.close();
 	return 0;
 }
