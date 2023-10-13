@@ -70,13 +70,23 @@ void Harl::complain(std::string level )
 	switch (i)
 	{
 		case 0:
+		{
+			std::cout << BLUE << "DEBUG" << RESET << std::endl;
 			(this->*my_table_fun[0])();
+		}
 		case 1:
+		{
+			std::cout << BLUE << "INFO" << RESET << std::endl;
 			(this->*my_table_fun[1])();
+		}
 		case 2:
+		{
+			std::cout << BLUE << "WARNING" << RESET << std::endl;
 			(this->*my_table_fun[2])();
+		}
 		case 3:
 		{
+			std::cout << BLUE << "ERROR" << RESET << std::endl;
 			(this->*my_table_fun[3])();
 			break;
 		}
