@@ -31,11 +31,19 @@ int main (int av, char **ac)
 	Zombie *hordeZon;
 
 	if (av < 3)
+	{
+		std::cout << "at least 2 parameters needed" << std::endl;
+		std::cout << "1 - number of Zombies." << std::endl;
+		std::cout << "2 - name of all zombies." << std::endl;
 		return 0;
+	}
 	if (is_integer(ac[1])) 
         N = std::stoi(ac[1]);
 	else
+	{
+		std::cout << "first parameter must be an integer(no sign is permited)" << std::endl;
 		return 0;
+	}
 	hordeZon = zombieHorde(N, ac[2]);
 	for(i=0; i < N; ++i)
 	{

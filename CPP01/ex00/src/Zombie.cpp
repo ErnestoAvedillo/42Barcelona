@@ -13,7 +13,7 @@
 #include "../inc/Zombie.hpp"
 #include <iostream>
 
-Zombie::Zombie (std::string name):_myname(name){};
+Zombie::Zombie (std::string name):_myname(name){}
 Zombie::~Zombie ()
 {
     std::cout << "Zombie " << _myname << " destroyed." << std::endl;
@@ -21,7 +21,7 @@ Zombie::~Zombie ()
 void Zombie::announce (void)
 {
     std::cout << _myname << ":BraiiiiiiinnnzzzZ..." << std::endl;
-};
+}
 
 std::string Zombie::getname()
 {
