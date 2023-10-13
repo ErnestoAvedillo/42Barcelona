@@ -23,8 +23,8 @@ void print_help()
 
 int main( int av, char **ac ) 
 {
-	std::string tests[] = {"comp", "inc_dec", "aritm", "min_max"};
-	void (*test_func[])() = {&test_comp, &test_inc_dec, &test_aritm, &test_min_max};
+	std::string tests[] = {"comp", "inc_dec", "min_max", "aritm"};
+	void (*test_func[])() = {&test_comp, &test_inc_dec, &test_min_max, &test_aritm};
 
 	if (av < 2)
 		for (int i = 0; i < 4; i++)
