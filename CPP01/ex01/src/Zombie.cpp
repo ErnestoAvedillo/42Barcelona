@@ -15,6 +15,7 @@
 
 Zombie::Zombie ()
 {
+    _myname = "Anonim";
     std::cout << "Zombie created" << std::endl;
 }
 
