@@ -41,8 +41,11 @@ int main(void)
 		else
 		{
 			std::cout << "\nIncorrect option." << std::endl;
+			if(std::cin.eof())
+				break;
 			print_instructions();
 		}
+
 	}
 	return 0;
 }
