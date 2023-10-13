@@ -21,7 +21,7 @@ bool p_in_tr(Point a, Point b, Point c, Point d)
 	Fixed W2 = (VP[0] * V1[1] - VP[1] * V1[0]) / (V1[1] * V2[0] - V1[0] * V2[1]);
 	std::cout << "Los valores W1 y W2 son respectivamente= " << W1 << " - " << W2 << std::endl;
 
-	if (W1 >= 0 && W2 >= 0 && (W1 + W2 <= 1))
+	if (W1 > 0 && W2 > 0 && (W1 + W2 < 1))
 		return true;
 	return false; 
 

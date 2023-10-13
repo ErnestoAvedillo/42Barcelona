@@ -73,4 +73,3 @@ std::ostream &operator<<(std::ostream &ost, Point const &p)
 	ost << "(" << p.GetXCoord() << "," << p.GetYCoord() << ")";
 	return ost;
 }
-

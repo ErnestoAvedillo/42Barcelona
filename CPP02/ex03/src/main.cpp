@@ -12,13 +12,11 @@
 
 # include "../inc/main.h"
 
-
-
 int main( void ) 
 {
-	Point b(8, 8);
-	Point c(2, 0);
-	Point a(0, 2);
+	Point b(0, 0);
+	Point c(1, 1);
+	Point a(2, 2);
 	Point d(2, 2);
 
 	std::cout << "Punto a " << a << std::endl;
