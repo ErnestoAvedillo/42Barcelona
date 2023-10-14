@@ -37,7 +37,7 @@ int main( int av, char **ac )
 			print_help();
 		for (int j = 1; j < av; j++)
 		{
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 5; i++)
 			{
 				if (tests[i] == ac[j])
 					(*test_func[i])();

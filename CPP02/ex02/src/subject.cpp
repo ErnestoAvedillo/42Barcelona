@@ -16,7 +16,7 @@ void test_subject(void)
 {
 	Fixed a;
 	
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Fixed const b( Fixed( 5.051f ) * Fixed( 2 ) );
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;
 	std::cout << a << std::endl;
@@ -24,4 +24,8 @@ void test_subject(void)
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
 	std::cout << max( a, b ) << std::endl;
+	std::cout << Fixed( 5.051f ) << std::endl;
+	std::cout << Fixed( 2 ) << std::endl;
+	std::cout << Fixed( 0.001f ) << std::endl;
+
 }

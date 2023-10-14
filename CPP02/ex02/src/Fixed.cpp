@@ -167,6 +167,32 @@ Fixed Fixed::operator/(const Fixed &a)
 	tmp.setRawBits(j);
 	return (tmp);	
 }
+// -------------------Sobrecarga de los operadores aritméticos coon igualdad------------
+Fixed Fixed::operator+=(const Fixed &a)
+{
+	this->setRawBits(this->getRawBits() + a.getRawBits());
+	return (*this);
+}
+
+Fixed Fixed::operator-=(const Fixed &a)
+{
+	this->setRawBits(this->getRawBits() - a.getRawBits());
+	return *this;
+}
+
+Fixed Fixed::operator*=(const Fixed &a)
+{
+	int	j = this->getRawBits() * a.getRawBits();
+	this->setRawBits(j >> _bits_dec);
+	return (*this);
+}
+
+Fixed Fixed::operator/=(const Fixed &a)
+{
+	int j = (this->getRawBits() << _bits_dec) / (a.getRawBits());
+	this->setRawBits(j);
+	return (*this);	
+}
 
 //--------------------Sobrecarga de las funciones max y min----------------
 
