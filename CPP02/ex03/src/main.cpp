@@ -25,8 +25,8 @@ int main( void )
 	std::cout << "Punto b " << b << std::endl;
 	std::cout << "Punto c " << c << std::endl;
 	std::cout << "Punto d= " << d << std::endl;
-	std::cout << "Punto e= " << d << std::endl;
-	std::cout << "Punto f= " << d << std::endl;
+	std::cout << "Punto e= " << e << std::endl;
+	std::cout << "Punto f= " << f << std::endl;
 	if (p_in_tr(a,b,c,d))
 		std::cout << "El punto d se encuentra dentro del triángulo " << std::endl;
 	else
