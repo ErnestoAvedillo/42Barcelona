@@ -15,7 +15,7 @@
 int main( void ) 
 {
 	ClapTrap pepito("Pepito");
-	ClapTrap manolito("Manolito");
+	ClapTrap manolito("Zutanito");
 	ClapTrap anonimo;
 
 	pepito.attack("manolito");

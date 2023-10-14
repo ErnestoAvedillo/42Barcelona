@@ -15,17 +15,17 @@
 ClapTrap::ClapTrap() : _Name("Anonimous")
 {
 	std::cout << "ClapTrap Creating " << _Name << " warrior."<< std::endl;
-	_hit_points = 10;
-	_energy = 10;
-	_damage = 0;
+	_hit_points = INIT_HIT_POINTS;
+	_energy = INIT_ENERGY;
+	_damage = INIT_ATACK_DAMAGE;
 }
 
 ClapTrap::ClapTrap(std::string my_name) : _Name(my_name)
 {
 	std::cout << "ClapTrap Creating " << _Name << " warrior." << std::endl;
-	_hit_points = 10;
-	_energy = 10;
-	_damage = 0;
+	_hit_points = INIT_HIT_POINTS;
+	_energy = INIT_ENERGY;
+	_damage = INIT_ATACK_DAMAGE;
 }
 
 ClapTrap::~ClapTrap()

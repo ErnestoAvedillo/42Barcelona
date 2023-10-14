@@ -14,7 +14,9 @@
 #define __CLAPTRAP_HPP
 #include <iostream>
 #include <cmath>
-
+# define INIT_HIT_POINTS 10
+# define INIT_ENERGY 10
+# define INIT_ATACK_DAMAGE 0
 class ClapTrap
 {
 	private:

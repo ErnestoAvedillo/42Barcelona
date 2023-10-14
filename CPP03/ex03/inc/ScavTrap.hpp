@@ -14,6 +14,9 @@
 #define __SCAVTRAP_HPP
 #include "../inc/ClapTrap.hpp"
 #include <iostream>
+# define INIT_SCAV_HIT_POINTS 100
+# define INIT_SCAV_ENERGY 50
+# define INIT_SCAV_ATACK_DAMAGE 20
 class ScavTrap : virtual public ClapTrap
 {
     private:

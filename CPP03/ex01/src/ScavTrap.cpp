@@ -15,18 +15,18 @@
 ScavTrap::ScavTrap()
 {
 	std::cout << "ScavTrap Creating " << this->GetName() << " warrior."<< std::endl;
-	this->SetHitPoints(100);
-	this->SetEnergy(50);
-	this->SetDamage(20);
+	this->SetHitPoints(INIT_SCAV_HIT_POINTS);
+	this->SetEnergy(INIT_SCAV_ENERGY);
+	this->SetDamage(INIT_SCAV_ATACK_DAMAGE);
 	_guard_gate = false;
 }
 
 ScavTrap::ScavTrap(std::string my_name) : ClapTrap(my_name)
 {
 	std::cout << "ScavTrap Creating " << this->GetName() << " warrior." << std::endl;
-	this->SetHitPoints(100);
-	this->SetEnergy(50);
-	this->SetDamage(20);
+	this->SetHitPoints(INIT_SCAV_HIT_POINTS);
+	this->SetEnergy(INIT_SCAV_ENERGY);
+	this->SetDamage(INIT_SCAV_ATACK_DAMAGE);
 	_guard_gate = false;
 }
 
