@@ -17,6 +17,11 @@ bool p_in_tr(Point a, Point b, Point c, Point d)
 	Fixed V1[] = {b.GetXCoord()- a.GetXCoord(), b.GetYCoord() - a.GetYCoord()};
 	Fixed V2[] = {c.GetXCoord()- a.GetXCoord(), c.GetYCoord() - a.GetYCoord()};
 	Fixed VP[] = {d.GetXCoord()- a.GetXCoord(), d.GetYCoord() - a.GetYCoord()};
+	if (V1[0] * V2[1] - V1[1] * V2[0] == (Fixed)0)
+	{
+		std::cout << "Los tres puntos caen en una linea." << std::endl;
+		return false;
+	}
 	Fixed W1 = (VP[0] * V2[1] - VP[1] * V2[0]) / (V1[0] * V2[1] - V1[1] * V2[0]);
 	Fixed W2 = (VP[0] * V1[1] - VP[1] * V1[0]) / (V1[1] * V2[0] - V1[0] * V2[1]);
 	std::cout << "Los valores W1 y W2 son respectivamente= " << W1 << " - " << W2 << std::endl;

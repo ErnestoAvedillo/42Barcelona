@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FIXED_HPP
- #define __FIXED_HPP
-#include <iostream>
+#include "../inc/main.h"
 
-class Fixed
+void test_subject(void)
 {
-	private:
-		static const int	_bits_dec = 8;
-		int					_value;
-	public:
-		Fixed();
-		Fixed(const int);
-		Fixed(const float);
-		Fixed(const Fixed&);
-		~Fixed();
-		Fixed &operator=(const Fixed &);
-		int getRawBits(void) const;
-		void setRawBits ( int const raw );
-		float toFloat( void ) const;
-		int toInt( void ) const;
-};
-
-std::ostream &operator<<(std::ostream &, Fixed const &);
-
-#endif
+	Fixed a;
+	
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << max( a, b ) << std::endl;
+}

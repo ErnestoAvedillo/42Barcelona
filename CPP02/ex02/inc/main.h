@@ -16,6 +16,7 @@
 #include "../inc/colors.h"
 # include <iostream>
 
+void test_subject(void);
 void test_inc_dec();
 void test_comp();
 void test_aritm();

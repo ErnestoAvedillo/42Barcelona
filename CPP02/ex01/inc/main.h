@@ -13,5 +13,6 @@
 #ifndef  MAIN_H
 #define MAIN_H
 # include "../inc/Fixed.hpp"
+# include "../inc/colors.h"
 # include <iostream>
 #endif

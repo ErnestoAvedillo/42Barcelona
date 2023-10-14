@@ -17,11 +17,11 @@ Fixed::Fixed() : _value(0)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(int val) : _value(val << _bits_dec) 
+Fixed::Fixed(const int val) : _value(val << _bits_dec) 
 {
 	std::cout << "Int constructor called" << std::endl;
 }
-Fixed::Fixed(float val) : _value(val * (1 << _bits_dec)) 
+Fixed::Fixed(const float val) : _value(val * (1 << _bits_dec)) 
 {
 	std::cout << "Float constructor called" << std::endl;
 }
@@ -47,14 +47,12 @@ Fixed &Fixed::operator=(const Fixed &f)
 }
 int	Fixed::getRawBits( void ) const
 {
-	//std::cout << "getRawBits member function called" << std::endl;
 	return _value;
 }
 
 void Fixed::setRawBits ( int raw )
 {
 	_value = raw;
-	//std::cout << "setRawBits member function called" << std::endl;
 }
 
 float Fixed::toFloat( void ) const
@@ -64,7 +62,14 @@ float Fixed::toFloat( void ) const
 
 int Fixed::toInt( void ) const
 {
-	return (_value >> _bits_dec);
+	int val;
+	int dec_filter = 1 * (1 << (_bits_dec - 1));
+	if ((dec_filter & _value) == dec_filter)
+		val = (_value >> _bits_dec) + 1;
+	else
+		val = (_value >> _bits_dec);
+
+	return (val);
 }
 
 std::ostream &operator<<(std::ostream &ost, Fixed const &f)

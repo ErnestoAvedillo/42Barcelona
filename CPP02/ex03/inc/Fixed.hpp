@@ -23,8 +23,8 @@ class Fixed
 		int					_value;
 	public:
 		Fixed();
-		Fixed(int);
-		Fixed(float);
+		Fixed(const int);
+		Fixed(const float);
 		Fixed(const Fixed&);
 		~Fixed();
 		Fixed &operator=(const Fixed &);

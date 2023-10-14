@@ -20,7 +20,7 @@ CIAN		:=	\033[1;96m
 
 NAME := fixed
 
-SRC := main Fixed test_inc_dec test_aritm test_comp test_min_max
+SRC := main Fixed test_inc_dec test_aritm test_comp test_min_max subject 
 
 CLAS := Fixed
 

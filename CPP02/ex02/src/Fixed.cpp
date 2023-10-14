@@ -12,13 +12,21 @@
 
 #include "../inc/Fixed.hpp"
 
-Fixed::Fixed() : _value(0) {}
+Fixed::Fixed() : _value(0) 
+{
+}
 
-Fixed::Fixed(int val) : _value(val << _bits_dec){}
+Fixed::Fixed(const int val) : _value(val << _bits_dec)
+{
+}
 
-Fixed::Fixed(float val) : _value(val * (1 << _bits_dec)){}
+Fixed::Fixed(const float val) : _value(val * (1 << _bits_dec))
+{
+}
 
-Fixed::~Fixed(){}
+Fixed::~Fixed()
+{
+}
 
 Fixed::Fixed(const Fixed &f)
 {
@@ -48,7 +56,14 @@ float Fixed::toFloat( void ) const
 
 int Fixed::toInt( void ) const
 {
-	return (_value >> _bits_dec);
+	int val;
+	int dec_filter = 1 * (1 << (_bits_dec - 1));
+	if ((dec_filter & _value) == dec_filter)
+		val = (_value >> _bits_dec) + 1;
+	else
+		val = (_value >> _bits_dec);
+
+	return (val);
 }
 
 std::ostream &operator<<(std::ostream &ost, Fixed const &f)
@@ -147,10 +162,10 @@ Fixed Fixed::operator*(const Fixed &a)
 Fixed Fixed::operator/(const Fixed &a)
 {
 	Fixed tmp = *this;
+	
 	int j = (this->getRawBits() << _bits_dec) / (a.getRawBits());
-	//std::cout << "result " << j << std::endl;
 	tmp.setRawBits(j);
-	return (tmp);
+	return (tmp);	
 }
 
 //--------------------Sobrecarga de las funciones max y min----------------
