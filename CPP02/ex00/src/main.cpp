@@ -14,13 +14,21 @@
 
 int	main( void ) 
 {
-	Fixed a;
-	//a.setRawBits(4);
-	Fixed b( a );
-	Fixed c;
-	c = b;
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	return 0;
+	{
+		Fixed a;
+		Fixed b( a );
+		Fixed c;
+		c = b;
+		std::cout << a.getRawBits() << std::endl;
+		std::cout << b.getRawBits() << std::endl;
+		std::cout << c.getRawBits() << std::endl;
+	}
+	{
+		std::cout << "-----------estas son mis pruebas----------" << std::endl;
+		Fixed c;
+		std::cout << c.getRawBits() << std::endl;
+		c.setRawBits(54);
+		std::cout << c.getRawBits() << std::endl;
+	}
+return 0;
 }
