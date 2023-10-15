@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongDog.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,34 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Dog.hpp"
+#include "../inc/WrongDog.hpp"
 
-Dog::Dog() : _type("Perro Callejero")
+WrongDog::WrongDog() : _type("Perro Callejero")
 {
 	std::cout << "Creating " << _type << " dog."<< std::endl;
 }
 
-Dog::Dog(std::string my_name) : _type(my_name)
+WrongDog::WrongDog(std::string my_name) : _type(my_name)
 {
 	std::cout << "Creating " << _type << " dog." << std::endl;
 }
 
-Dog::~Dog()
+WrongDog::~WrongDog()
 {
 	std::cout << "Destroy " << _type << " dog." << std::endl;
 }
 
-std::string Dog::getType() const
+std::string WrongDog::getType() const
 {
 	return _type;
 }
 
-void Dog::setType(std::string &my_type)
+void WrongDog::setType(std::string &my_type)
 {
 	_type = my_type;
 }
 
-void Dog::makeSound() const
+void WrongDog::makeSound() const
 {
 	std::cout << "Guau Guau Guau" << std::endl;
 }

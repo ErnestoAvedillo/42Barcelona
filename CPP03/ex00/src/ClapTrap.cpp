@@ -75,3 +75,43 @@ void ClapTrap::beRepaired(unsigned int amount)
 	else if (_energy == 0)
 		std::cout << "ClapTrap " << _Name << " has not enough energy to beRepaired.!" << std::endl;
 }
+
+std::string ClapTrap::GetName()
+{
+	return _Name;
+}
+
+int ClapTrap::GetHitPoints()
+{
+	return _hit_points;
+}
+
+int ClapTrap::GetEnergy()
+{
+	return _energy;
+}
+
+int ClapTrap::GetDamage()
+{
+	return _damage;
+}
+
+void ClapTrap::SetName(std::string my_name)
+{
+	_Name = my_name;
+}
+
+void ClapTrap::SetHitPoints(int val)
+{
+	_hit_points = val;
+}
+
+void ClapTrap::SetEnergy(int val)
+{
+	_energy = val;
+}
+
+void ClapTrap::SetDamage(int val)
+{
+	_damage = val;
+}

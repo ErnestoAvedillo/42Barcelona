@@ -15,7 +15,9 @@
 #include "../inc/ScavTrap.hpp"
 #include <iostream>
 #include <cmath>
-
+#define INIT_FRAG_HIT_POINTS 100
+#define INIT_FRAG_ENERGY 100
+#define INIT_FRAG_ATACK_DAMAGE 30
 class FragTrap : public ClapTrap
 {
 	private:

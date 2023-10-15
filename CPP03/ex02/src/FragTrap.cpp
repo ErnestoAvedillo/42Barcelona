@@ -15,17 +15,17 @@
 FragTrap::FragTrap()
 {
 	std::cout << "FragTrap Creating " << this->GetName() << " warrior." << std::endl;
-	this->SetHitPoints(100);
-	this->SetEnergy(100);
-	this->SetDamage(30);
+	this->SetHitPoints(INIT_FRAG_HIT_POINTS);
+	this->SetEnergy(INIT_FRAG_ENERGY);
+	this->SetDamage(INIT_FRAG_ATACK_DAMAGE);
 }
 
 FragTrap::FragTrap(std::string my_name) : ClapTrap(my_name)
 {
 	std::cout << "FragTrap Creating " << this->GetName() << " warrior." << std::endl;
-	this->SetHitPoints(100);
-	this->SetEnergy(100);
-	this->SetDamage(30);
+	this->SetHitPoints(INIT_FRAG_HIT_POINTS);
+	this->SetEnergy(INIT_FRAG_ENERGY);
+	this->SetDamage(INIT_FRAG_ATACK_DAMAGE);
 }
 
 FragTrap::~FragTrap()

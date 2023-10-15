@@ -16,15 +16,18 @@ DiamondTrap::DiamondTrap() : ClapTrap("_clap_name_DiamondAnonimous"), _Name("Dia
 {
 	
 	std::cout << "DiamondTrap Creating " << _Name << " warrior." << std::endl;
-	this->SetHitPoints(100);
-	this->SetEnergy(50);
-	this->SetDamage(30);
+	this->SetHitPoints(INIT_FRAG_HIT_POINTS);
+	this->SetEnergy(INIT_SCAV_ENERGY);
+	this->SetDamage(INIT_FRAG_ATACK_DAMAGE);
 	//this->attack();
 }
 
 DiamondTrap::DiamondTrap(std::string my_name) : ClapTrap("_clap_name_" + my_name), _Name(my_name)
 {
 	std::cout << "DiamondTrap Creating " << _Name << " warrior." << std::endl;
+	this->SetHitPoints(INIT_FRAG_HIT_POINTS);
+	this->SetEnergy(INIT_SCAV_ENERGY);
+	this->SetDamage(INIT_FRAG_ATACK_DAMAGE);
 }
 
 DiamondTrap::~DiamondTrap()

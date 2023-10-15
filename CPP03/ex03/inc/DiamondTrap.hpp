@@ -16,7 +16,6 @@
 #include "../inc/FragTrap.hpp"
 #include <iostream>
 #include <cmath>
-
 class DiamondTrap : public ScavTrap, public FragTrap
 {
 private:
