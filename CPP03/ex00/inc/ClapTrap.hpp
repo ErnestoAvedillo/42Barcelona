@@ -14,6 +14,7 @@
 #define __CLAPTRAP_HPP
 #include <iostream>
 #include <cmath>
+#include "../inc/colors.h"
 # define INIT_HIT_POINTS 10
 # define INIT_ENERGY 10
 # define INIT_ATACK_DAMAGE 0
@@ -32,6 +33,7 @@ class ClapTrap
 		void attack(const std::string &target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
+		bool CanActuate();
 		std::string GetName();
 		int GetHitPoints();
 		int GetEnergy();
@@ -40,5 +42,6 @@ class ClapTrap
 		void SetHitPoints(int);
 		void SetEnergy(int);
 		void SetDamage(int);
+		void VewStatus();
 };
 #endif

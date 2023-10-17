@@ -14,68 +14,81 @@
 
 ClapTrap::ClapTrap() : _Name("Anonimous")
 {
-	std::cout << "ClapTrap Creating " << _Name << " warrior."<< std::endl;
 	_hit_points = INIT_HIT_POINTS;
 	_energy = INIT_ENERGY;
 	_damage = INIT_ATACK_DAMAGE;
+	std::cout << "Creating " << BLUE << _Name << RESET << " warrior. " << std::endl;
+	this->VewStatus();
 }
 
 ClapTrap::ClapTrap(std::string my_name) : _Name(my_name)
 {
-	std::cout << "ClapTrap Creating " << _Name << " warrior." << std::endl;
 	_hit_points = INIT_HIT_POINTS;
 	_energy = INIT_ENERGY;
 	_damage = INIT_ATACK_DAMAGE;
+	std::cout << "Creating " << BLUE << _Name << RESET << " warrior." << std::endl;
+	this->VewStatus();
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap Destroy " << _Name << " warrior." << std::endl;
+	std::cout << "Destroy " << BLUE << _Name << RESET << " warrior." << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target) 
 {
 	if(_energy > 0 && _hit_points > 0)
 	{
-		std::cout << "ClapTrap " << _Name << " attacks " << target << " causing " << _damage << " points of damage !" << std::endl;
+		std::cout << "ClapTrap " << BLUE << _Name << RESET << " attacks " << target << " causing " << _damage << " points of damage ! ";
 		_energy--;
-
+		this->VewStatus();
 	}
 	else if (_hit_points == 0)
-		std::cout << "ClapTrap " << _Name << " has not hit_points enough to attack.!" << std::endl;
+		std::cout << "ClapTrap " << BLUE << _Name << RESET << " has not enough hit_points to attack.!" << std::endl;
 	else if (_energy == 0)
-		std::cout << "ClapTrap " << _Name << " has not energy enough to attack.!" << std::endl;
+		std::cout << "ClapTrap " << BLUE << _Name << RESET << " has not enough energy to attack.!" << std::endl;
 }
 void ClapTrap::takeDamage(unsigned int amount) 
 {
 	if (_energy > 0 && _hit_points > 0)
 	{
-		std::cout << "ClapTrap " << _Name << " attacked had " << _hit_points << " points.";
+		std::cout << "ClapTrap " << BLUE << _Name << RESET << " attacked had " << _hit_points << " points.";
 		this->_hit_points -= amount;
-		if (this->_hit_points < 0)
-			this->_hit_points = 0;
-		std::cout << " Points lost " << amount << " .Now has " << _hit_points << "points." << std::endl;
+		std::cout << " Points lost " << amount << " .";
 		this->_energy--;
+		this->VewStatus();
 	}
 	else if (_hit_points == 0)
-		std::cout << "ClapTrap " << _Name << " has not hit_points enough to attack.!" << std::endl;
+		std::cout << "ClapTrap " << BLUE << _Name << RESET << " has not enough hit_points to attack.!" << std::endl;
 	else if (_energy == 0)
-		std::cout << "ClapTrap " << _Name << " has not energy enough to attack.!" << std::endl;
-
+		std::cout << "ClapTrap " << BLUE << _Name << RESET << " has not enough energy to attack.!" << std::endl;
 }
 void ClapTrap::beRepaired(unsigned int amount) 
 {
 	if (_energy > 0 && _hit_points > 0)
 	{
-		std::cout << "ClapTrap " << _Name << " repared had " << _hit_points << " points.";
+		std::cout << "ClapTrap " << BLUE << _Name << RESET << " repared had " << _hit_points << " points.";
 		this->_hit_points += amount;
-		std::cout << " Points won " << amount << " .Now has " << _hit_points << "points." << std::endl;
+		std::cout << " Points won " << amount << " .";
 		this->_energy--;
+		this->VewStatus();
 	}
 	else if (_hit_points == 0)
-		std::cout << "ClapTrap " << _Name << " has not hit_points enough to beRepaired.!" << std::endl;
+		std::cout << "ClapTrap " << BLUE << _Name << RESET << " has not enough hit_points to beRepaired.!" << std::endl;
 	else if (_energy == 0)
-		std::cout << "ClapTrap " << _Name << " has not energy enough to beRepaired.!" << std::endl;
+		std::cout << "ClapTrap " << BLUE << _Name << RESET << " has not enough energy to beRepaired.!" << std::endl;
+}
+
+bool ClapTrap::CanActuate()
+{
+	if (this->_energy <= 0 || this->_hit_points <= 0)
+		return false;
+	return true;
+}
+
+std::string ClapTrap::GetName()
+{
+	return _Name;
 }
 
 int ClapTrap::GetHitPoints()
@@ -93,9 +106,9 @@ int ClapTrap::GetDamage()
 	return _damage;
 }
 
-std::string ClapTrap::GetName()
+void ClapTrap::SetName(std::string my_name)
 {
-	return _Name;
+	_Name = my_name;
 }
 
 void ClapTrap::SetHitPoints(int val)
@@ -113,7 +126,9 @@ void ClapTrap::SetDamage(int val)
 	_damage = val;
 }
 
-void ClapTrap::SetName(std::string val)
+void ClapTrap::VewStatus()
 {
-	_Name = val;
+	std::cout << YELLOW << " HPTS = " << _hit_points << RESET << ". ";
+	std::cout << CYAN << " ENERG = " << _energy << RESET << ". ";
+	std::cout << GREEN << " DAMAGE = " << _damage << RESET << ". " << std::endl;
 }

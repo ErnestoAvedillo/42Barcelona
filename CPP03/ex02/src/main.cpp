@@ -3,163 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eralonso <eralonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 12:37:03 by eralonso          #+#    #+#             */
-/*   Updated: 2023/07/09 13:01:10 by eralonso         ###   ########.fr       */
+/*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
+/*   Updated: 2023/09/21 22:23:12 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/main.h"
-#include <iostream>
-#include <iomanip>
-#include "../inc/ClapTrap.hpp"
-#include "../inc/FragTrap.hpp"
-#include "../inc/DiamondTrap.hpp"
-#include "../inc/ScavTrap.hpp"
 
-#define FILL 40
-
-void attacking(ClapTrap &clap1, ClapTrap &clap2)
+bool test_ataque(ClapTrap &clap1, ClapTrap &clap2)
 {
-	bool canAttack;
-
-	canAttack = clap1.getEPts() < 1 ? false : true;
-	clap1.attack(clap2.getName());
-	if (canAttack == true)
-		clap2.takeDamage(clap1.getADmg());
+	bool yes_he_can = clap1.CanActuate();
+	clap1.attack(clap2.GetName());
+	if(yes_he_can)
+		clap2.takeDamage(clap1.GetDamage());
+	return yes_he_can;
 }
 
-void war(ClapTrap &one, ClapTrap &two, int times)
+bool test_repare(ClapTrap &clap1, int amount)
 {
-	for (int i = 0; i < times; i++)
+	bool yes_he_can = clap1.CanActuate();
+	clap1.beRepaired(amount);
+	return yes_he_can;
+}
+
+void test_war (ClapTrap &clap1, ClapTrap &clap2, int nr_atacks)
+{
+	for (int i = 0; i < nr_atacks; i++)
 	{
-		attacking(one, two);
-		attacking(two, one);
+		test_ataque(clap1, clap2);
+		test_ataque(clap2, clap1);
 	}
-}
-
-void test(ClapTrap &one, ClapTrap &two, bool change_dmg)
-{
-	war(one, two, 1);
-	if (change_dmg == true)
-		one.setADmg(1);
-	attacking(one, two);
-	if (change_dmg == true)
-		two.setADmg(1);
-	attacking(two, one);
-	if (change_dmg == true)
-		one.setADmg(8);
-	attacking(one, two);
-	if (change_dmg == true)
-		two.setADmg(6);
-	std::cout << std::endl;
-	one.beRepaired(one.getADmg() * 10);
-	two.beRepaired(one.getADmg() * 10);
-	std::cout << std::endl;
-	attacking(two, one);
-	war(one, two, 1);
-	if (change_dmg == true)
-	{
-		one.setADmg(1);
-		two.setADmg(1);
-	}
-	war(one, two, 6);
-	std::cout << "\none -> " << one << std::endl;
-	std::cout << "two -> " << two << std::endl;
-}
-
-void print_next_test(std::string msg)
-{
-	int fill;
-	int odd;
-
-	fill = (FILL - msg.length()) / 2;
-	odd = msg.length() % 2;
-	std::cout << "\n " << std::setfill('_') << std::setw(FILL - 1) << "" << std::endl;
-	std::cout << "|" << std::setfill(' ') << std::setw(FILL) << "|" << std::endl;
-	std::cout << "|" << std::setfill(' ') << std::setw(FILL) << "|" << std::endl;
-	std::cout << "|" << std::setfill(' ') << std::setw(fill + odd) << "" << msg << std::setw(fill) << "|" << std::endl;
-	std::cout << "|" << std::setfill(' ') << std::setw(FILL) << "|" << std::endl;
-	std::cout << "|" << std::setfill('_') << std::setw(FILL + 1) << "|\n"
-			  << std::endl;
-}
-
-void test_clap(void)
-{
-	ClapTrap clap1("clap1");
-	ClapTrap clap2(clap1);
-
-	clap2.setName("clap2");
-	std::cout << "\none -> " << clap1 << std::endl;
-	std::cout << "two -> " << clap2 << "\n"
-			  << std::endl;
-	test(clap1, clap2, true);
-	std::cout << std::endl;
-}
-
-void test_scav(void)
-{
-	ScavTrap scav1;
-	ScavTrap scav2("scav2");
-
-	scav1 = scav2;
-	scav1.setName("scav1");
-	std::cout << "\none -> " << scav1 << std::endl;
-	std::cout << "two -> " << scav2 << "\n"
-			  << std::endl;
-	test(scav1, scav2, false);
-	std::cout << std::endl;
-	scav1.guardGate();
-	scav2.guardGate();
-	std::cout << std::endl;
-}
-
-void test_frag(void)
-{
-	FragTrap frag1("frag1");
-	FragTrap frag2;
-
-	frag2 = frag1;
-	frag2.setName("frag2");
-	std::cout << "\none -> " << frag1 << std::endl;
-	std::cout << "two -> " << frag2 << "\n"
-			  << std::endl;
-	test(frag1, frag2, false);
-	std::cout << std::endl;
-	frag1.highFivesGuys();
-	frag2.highFivesGuys();
-	std::cout << std::endl;
-}
-
-void test_diamond(void)
-{
-	DiamondTrap diamond1("diamond1");
-	DiamondTrap diamond2("diamond2");
-
-	std::cout << "\none -> " << diamond1 << std::endl;
-	std::cout << "two -> " << diamond2 << "\n"
-			  << std::endl;
-	test(diamond1, diamond2, false);
-	std::cout << std::endl;
-	diamond1.whoAmI();
-	diamond2.whoAmI();
-	std::cout << std::endl;
 }
 
 int main(void)
 {
-	print_next_test("ClapTrap test");
-	test_clap();
+	ClapTrap pepito("Pepito");
+	ScavTrap zutanito("Scav_Zutanito");
+	FragTrap menganito("Frag_menganito");
+	ScavTrap anonimo;
+	zutanito.SetDamage(2);
+	pepito.SetDamage(3);
 
-	print_next_test("ScravTrap test");
-	test_scav();
+	test_war(pepito, zutanito, 5);
+	test_war(anonimo, zutanito, 10);
+	test_war(anonimo, menganito, 10);
+	test_repare(zutanito, 10);
 
-	print_next_test("FragTrap test");
-	test_frag();
-
-	print_next_test("DiamondTrap test");
-	test_diamond();
-
-	return (0);
+	test_ataque(pepito, zutanito);
+	test_ataque(zutanito, anonimo);
+	zutanito.SetDamage(12);
+	test_ataque(anonimo, zutanito);
+	test_ataque(zutanito, pepito);
+	test_ataque(pepito,anonimo);
+	zutanito.beRepaired(5);
+	pepito.beRepaired(10);
+	anonimo.beRepaired(20);
+	zutanito.VewStatus();
+	pepito.VewStatus();
+	anonimo.VewStatus();
+	menganito.highFivesGuys();
+	return 0;
 }

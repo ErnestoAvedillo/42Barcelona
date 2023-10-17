@@ -12,21 +12,55 @@
 
 # include "../inc/main.h"
 
-int main( void ) 
+bool test_ataque(ClapTrap &clap1, ClapTrap &clap2)
 {
-	ScavTrap pepito("Pepito");
-	ScavTrap manolito("Manolito");
+	bool yes_he_can = clap1.CanActuate();
+	clap1.attack(clap2.GetName());
+	if(yes_he_can)
+		clap2.takeDamage(clap1.GetDamage());
+	return yes_he_can;
+}
+
+bool test_repare(ClapTrap &clap1, int amount)
+{
+	bool yes_he_can = clap1.CanActuate();
+	clap1.beRepaired(amount);
+	return yes_he_can;
+}
+
+void test_war (ClapTrap &clap1, ClapTrap &clap2, int nr_atacks)
+{
+	for (int i = 0; i < nr_atacks; i++)
+	{
+		test_ataque(clap1, clap2);
+		test_ataque(clap2, clap1);
+	}
+}
+
+int main(void)
+{
+	ClapTrap pepito("Pepito");
+	ScavTrap zutanito("Scav_Zutanito");
 	ScavTrap anonimo;
+	zutanito.SetDamage(2);
+	pepito.SetDamage(3);
 
-	pepito.attack("manolito");
-	manolito.takeDamage(1);
-	manolito.beRepaired(1);
-	pepito.attack("manolito");
-	manolito.takeDamage(12);
-	pepito.attack("manolito");
-	manolito.takeDamage(2);
-	anonimo.guardGate();
-	anonimo.guardGate();
+	test_war(pepito, zutanito, 5);
+	test_war(anonimo, zutanito, 10);
+	test_repare(zutanito, 10);
 
+	test_ataque(pepito, zutanito);
+	test_ataque(zutanito, anonimo);
+	zutanito.SetDamage(12);
+	test_ataque(anonimo, zutanito);
+	test_ataque(zutanito, pepito);
+	test_ataque(pepito,anonimo);
+	zutanito.beRepaired(5);
+	pepito.beRepaired(10);
+	anonimo.beRepaired(20);
+	zutanito.VewStatus();
+	pepito.VewStatus();
+	anonimo.VewStatus();
+	zutanito.guardGate();
 	return 0;
 }

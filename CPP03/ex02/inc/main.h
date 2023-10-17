@@ -12,6 +12,7 @@
 
 #ifndef  MAIN_H
 #define MAIN_H
+#include "../inc/ScavTrap.hpp"
 #include "../inc/FragTrap.hpp"
 #include "../inc/colors.h"
 # include <iostream>

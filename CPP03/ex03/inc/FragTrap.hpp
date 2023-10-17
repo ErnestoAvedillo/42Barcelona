@@ -12,7 +12,7 @@
 
 #ifndef __FRAGTRAP_HPP
 #define __FRAGTRAP_HPP
-#include "../inc/ClapTrap.hpp"
+#include "../inc/ScavTrap.hpp"
 #include <iostream>
 #include <cmath>
 #define INIT_FRAG_HIT_POINTS 100

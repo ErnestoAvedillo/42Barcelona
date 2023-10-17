@@ -39,7 +39,7 @@ void ScavTrap::guardGate()
 {
 	_guard_gate = !_guard_gate;
 	if (!_guard_gate)
-		std::cout << "ScavTrap Guard Gate deactivated" << std::endl;
+		std::cout << "Guard Gate deactivated" << std::endl;
 	else
-		std::cout << "ScavTrap Guard Gate activated" << std::endl;
+		std::cout << "Guard Gate activated" << std::endl;
 }
