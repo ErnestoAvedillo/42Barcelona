@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CAT_HPP
-#define __CAT_HPP
-#include "../inc/Animal.hpp"
+#ifndef __BRAIN_HPP
+#define __BRAIN_HPP
 #include "../inc/colors.h"
 #include <iostream>
-
-class Cat: public Animal
+#define NR_IDEAS 100
+class Brain
 {
 	private:
-		std::string	_type;
+		std::string	_ideas[NR_IDEAS];
 
 	public:
-		Cat();
-		//Cat(std::string);
-		~Cat();
-		void makeSound() const;
+		Brain();
+		Brain(std::string);
+		~Brain();
+		void SetNIdea(int, std::string);
+		std::string &GetNIdea(int);
 };
 
 #endif

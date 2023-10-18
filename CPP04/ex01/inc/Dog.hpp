@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,21 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CAT_HPP
-#define __CAT_HPP
+#ifndef __DOG_HPP
+#define __DOG_HPP
 #include "../inc/Animal.hpp"
+#include "../inc/Brain.hpp"
 #include "../inc/colors.h"
 #include <iostream>
 
-class Cat: public Animal
+class Dog: public Animal
 {
 	private:
 		std::string	_type;
+		Brain *_my_brain;
 
 	public:
-		Cat();
-		//Cat(std::string);
-		~Cat();
+		Dog();
+		//Dog(std::string);
+		~Dog();
 		void makeSound() const;
 };
 

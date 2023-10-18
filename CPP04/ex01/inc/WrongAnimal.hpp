@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,21 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CAT_HPP
-#define __CAT_HPP
-#include "../inc/Animal.hpp"
+#ifndef __WRONGANIMAL_HPP
+#define __WRONGANIMAL_HPP
 #include "../inc/colors.h"
 #include <iostream>
 
-class Cat: public Animal
+class WrongAnimal
 {
 	private:
 		std::string	_type;
 
 	public:
-		Cat();
-		//Cat(std::string);
-		~Cat();
+		WrongAnimal();
+		WrongAnimal(std::string);
+		virtual ~WrongAnimal();
+		WrongAnimal &operator=(const WrongAnimal& rhs);
+		std::string getType() const;
+		void setType(std::string&);
 		void makeSound() const;
 };
 

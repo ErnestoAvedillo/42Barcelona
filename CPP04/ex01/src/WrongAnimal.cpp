@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Cat.hpp"
+#include "../inc/WrongAnimal.hpp"
 
-Cat::Cat() : _type("Gato Callejero")
+WrongAnimal::WrongAnimal() : _type("Anonimous")
 {
-	std::cout << "Creating " << _type << " cat."<< std::endl;
+	std::cout << "Creating " << _type << " animal."<< std::endl;
 }
 
-/*Cat::Cat(std::string my_name) : _type(my_name)
+WrongAnimal::WrongAnimal(std::string my_name) : _type(my_name)
 {
-	std::cout << "Creating " << _type << " cat." << std::endl;
-}
-*/
-Cat::~Cat()
-{
-	std::cout << "Destroy " << _type << " cat." << std::endl;
+	std::cout << "Creating " << _type << " animal." << std::endl;
 }
 
-void Cat::makeSound() const
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal& rhs)
 {
-	std::cout  << BLUE << "Miau requete Miau" << RESET << std::endl;
+	this->_type = rhs.getType();
+	return *this;
+}
+
+WrongAnimal::~WrongAnimal()
+{
+	std::cout << "Destroy " << _type << " Animal." << std::endl;
+}
+
+std::string WrongAnimal::getType() const
+{
+	return _type;
+}
+
+void WrongAnimal::setType(std::string &my_type)
+{
+	_type = my_type;
+}
+
+void WrongAnimal::makeSound() const
+{
+	std::cout  << GREEN << "Mi animal que hace Brrrrbrrrrr" << RESET << std::endl;
 }

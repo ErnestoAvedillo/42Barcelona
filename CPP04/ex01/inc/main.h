@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CAT_HPP
-#define __CAT_HPP
+#ifndef  MAIN_H
+#define MAIN_H
 #include "../inc/Animal.hpp"
+#include "../inc/Dog.hpp"
+#include "../inc/Cat.hpp"
+#include "../inc/WrongAnimal.hpp"
+#include "../inc/WrongDog.hpp"
+#include "../inc/WrongCat.hpp"
 #include "../inc/colors.h"
-#include <iostream>
-
-class Cat: public Animal
-{
-	private:
-		std::string	_type;
-
-	public:
-		Cat();
-		//Cat(std::string);
-		~Cat();
-		void makeSound() const;
-};
-
+# include <iostream>
 #endif

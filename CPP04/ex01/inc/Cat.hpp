@@ -13,6 +13,7 @@
 #ifndef __CAT_HPP
 #define __CAT_HPP
 #include "../inc/Animal.hpp"
+#include "../inc/Brain.hpp"
 #include "../inc/colors.h"
 #include <iostream>
 
@@ -20,6 +21,7 @@ class Cat: public Animal
 {
 	private:
 		std::string	_type;
+		Brain *_my_brain;
 
 	public:
 		Cat();

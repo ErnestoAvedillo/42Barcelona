@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongDog.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CAT_HPP
-#define __CAT_HPP
-#include "../inc/Animal.hpp"
-#include "../inc/colors.h"
-#include <iostream>
+#include "../inc/WrongDog.hpp"
 
-class Cat: public Animal
+WrongDog::WrongDog() : _type("Perro Callejero")
 {
-	private:
-		std::string	_type;
+	std::cout << "Creating " << _type << " dog."<< std::endl;
+}
 
-	public:
-		Cat();
-		//Cat(std::string);
-		~Cat();
-		void makeSound() const;
-};
+/*WrongDog::WrongDog(std::string my_name) : _type(my_name)
+{
+	std::cout << "Creating " << _type << " dog." << std::endl;
+}
+*/
+WrongDog::~WrongDog()
+{
+	std::cout << "Destroy " << _type << " dog." << std::endl;
+}
 
-#endif
+void WrongDog::makeSound() const
+{
+	std::cout << BLUE << "Guau Guau Guau" << RESET << std::endl;
+}
