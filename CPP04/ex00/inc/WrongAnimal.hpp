@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #ifndef __WRONGANIMAL_HPP
-#define __ANIMAL_HPP
+#define __WRONGANIMAL_HPP
+#include "../inc/colors.h"
 #include <iostream>
 
 class WrongAnimal
@@ -22,7 +23,8 @@ class WrongAnimal
 	public:
 		WrongAnimal();
 		WrongAnimal(std::string);
-		~WrongAnimal();
+		virtual ~WrongAnimal();
+		WrongAnimal &operator=(const WrongAnimal& rhs);
 		std::string getType() const;
 		void setType(std::string&);
 		void makeSound() const;

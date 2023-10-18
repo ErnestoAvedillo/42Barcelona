@@ -13,6 +13,7 @@
 #ifndef __DOG_HPP
 #define __DOG_HPP
 #include "../inc/Animal.hpp"
+#include "../inc/colors.h"
 #include <iostream>
 
 class Dog: public Animal
@@ -22,11 +23,9 @@ class Dog: public Animal
 
 	public:
 		Dog();
-		Dog(std::string);
-		virtual ~Dog();
-		std::string getType() const;
-		virtual void setType(std::string&);
-		virtual void makeSound() const;
+		//Dog(std::string);
+		~Dog();
+		void makeSound() const;
 };
 
 #endif

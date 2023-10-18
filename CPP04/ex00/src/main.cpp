@@ -13,25 +13,32 @@
 # include "../inc/main.h"
 int main(void)
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-	delete meta;
-	delete j;
-	delete i;
-	
-	const WrongAnimal* meta = new WrongAnimal();
-	const WrongAnimal* j = new WrongDog();
-	const WrongAnimal* i = new WrongCat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-	return 0;
+	{
+		const Animal* meta = new Animal();
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will output the cat sound!
+		j->makeSound();
+		meta->makeSound();
+		delete meta;
+		delete j;
+		delete i;
+	}
+	{
+		std::cout << RED << "*************Prueba Wrong ***********" << RESET << std::endl;
+		const WrongAnimal* meta = new WrongAnimal();
+		const WrongAnimal* j = new WrongDog();
+		const WrongAnimal* i = new WrongCat();
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will output the cat sound!
+		j->makeSound();
+		meta->makeSound();
+		delete meta;
+		delete j;
+		delete i;
+		return 0;
+	}
 }

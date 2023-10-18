@@ -22,9 +22,15 @@ Animal::Animal(std::string my_name) : _type(my_name)
 	std::cout << "Creating " << _type << " animal." << std::endl;
 }
 
+Animal &Animal::operator=(const Animal& rhs)
+{
+	this->_type = rhs.getType();
+	return *this;
+}
+
 Animal::~Animal()
 {
-	std::cout << "Destroy " << _type << " warrior." << std::endl;
+	std::cout << "Destroy " << _type << " Animal." << std::endl;
 }
 
 std::string Animal::getType() const
@@ -39,5 +45,5 @@ void Animal::setType(std::string &my_type)
 
 void Animal::makeSound() const
 {
-	std::cout << "Mi animal que hace Brrrrbrrrrr" << std::endl;
+	std::cout << YELLOW << "Mi animal que hace Brrrrbrrrrr" << RESET << std::endl;
 }

@@ -27,17 +27,7 @@ Cat::~Cat()
 	std::cout << "Destroy " << _type << " cat." << std::endl;
 }
 
-std::string Cat::getType() const
-{
-	return _type;
-}
-
-void Cat::setType(std::string &my_type)
-{
-	_type = my_type;
-}
-
 void Cat::makeSound() const
 {
-	std::cout << "Miau requete Miau" << std::endl;
+	std::cout  << BLUE << "Miau requete Miau" << RESET << std::endl;
 }

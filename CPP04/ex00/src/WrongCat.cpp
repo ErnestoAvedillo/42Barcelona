@@ -12,32 +12,23 @@
 
 #include "../inc/WrongCat.hpp"
 
-WrongCat::WrongCat() : _type("Gato Callejero")
+WrongCat::WrongCat()
 {
+ 	_type = "Gato Callejero";
 	std::cout << "Creating " << _type << " cat."<< std::endl;
 }
-
+/*
 WrongCat::WrongCat(std::string my_name) : _type(my_name)
 {
 	std::cout << "Creating " << _type << " cat." << std::endl;
 }
-
+*/
 WrongCat::~WrongCat()
 {
 	std::cout << "Destroy " << _type << " cat." << std::endl;
 }
 
-std::string WrongCat::getType() const
-{
-	return _type;
-}
-
-void WrongCat::setType(std::string &my_type)
-{
-	_type = my_type;
-}
-
 void WrongCat::makeSound() const
 {
-	std::cout << "Miau requete Miau" << std::endl;
+	std::cout  << BLUE << "Miau requete Miau"  << RESET << std::endl;
 }

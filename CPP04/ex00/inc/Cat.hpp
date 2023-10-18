@@ -13,6 +13,7 @@
 #ifndef __CAT_HPP
 #define __CAT_HPP
 #include "../inc/Animal.hpp"
+#include "../inc/colors.h"
 #include <iostream>
 
 class Cat: public Animal
@@ -23,10 +24,8 @@ class Cat: public Animal
 	public:
 		Cat();
 		Cat(std::string);
-		virtual ~Cat();
-		virtual std::string getType() const;
-		void setType(std::string&);
-		virtual void makeSound() const;
+		~Cat();
+		void makeSound() const;
 };
 
 #endif

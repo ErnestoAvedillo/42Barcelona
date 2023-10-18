@@ -16,28 +16,18 @@ Dog::Dog() : _type("Perro Callejero")
 {
 	std::cout << "Creating " << _type << " dog."<< std::endl;
 }
-
+/*
 Dog::Dog(std::string my_name) : _type(my_name)
 {
 	std::cout << "Creating " << _type << " dog." << std::endl;
 }
-
+*/
 Dog::~Dog()
 {
 	std::cout << "Destroy " << _type << " dog." << std::endl;
 }
 
-std::string Dog::getType() const
-{
-	return _type;
-}
-
-void Dog::setType(std::string &my_type)
-{
-	_type = my_type;
-}
-
 void Dog::makeSound() const
 {
-	std::cout << "Guau Guau Guau" << std::endl;
+	std::cout  << BLUE << "Guau Guau Guau" << RESET << std::endl;
 }

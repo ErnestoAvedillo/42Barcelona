@@ -22,9 +22,15 @@ WrongAnimal::WrongAnimal(std::string my_name) : _type(my_name)
 	std::cout << "Creating " << _type << " animal." << std::endl;
 }
 
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal& rhs)
+{
+	this->_type = rhs.getType();
+	return *this;
+}
+
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Destroy " << _type << " warrior." << std::endl;
+	std::cout << "Destroy " << _type << " Animal." << std::endl;
 }
 
 std::string WrongAnimal::getType() const
@@ -39,5 +45,5 @@ void WrongAnimal::setType(std::string &my_type)
 
 void WrongAnimal::makeSound() const
 {
-	std::cout << "Mi animal que hace Brrrrbrrrrr" << std::endl;
+	std::cout  << GREEN << "Mi animal que hace Brrrrbrrrrr" << RESET << std::endl;
 }

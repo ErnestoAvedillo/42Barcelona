@@ -13,7 +13,7 @@
 #ifndef __ANIMAL_HPP
 #define __ANIMAL_HPP
 #include <iostream>
-
+#include "../inc/colors.h"
 class Animal
 {
 	private:
@@ -23,7 +23,8 @@ class Animal
 		Animal();
 		Animal(std::string);
 		virtual ~Animal();
-		virtual std::string getType() const;
+		Animal &operator=(const Animal& rhs);
+		std::string getType() const;
 		void setType(std::string&);
 		virtual void makeSound() const;
 };

@@ -17,27 +17,17 @@ WrongDog::WrongDog() : _type("Perro Callejero")
 	std::cout << "Creating " << _type << " dog."<< std::endl;
 }
 
-WrongDog::WrongDog(std::string my_name) : _type(my_name)
+/*WrongDog::WrongDog(std::string my_name) : _type(my_name)
 {
 	std::cout << "Creating " << _type << " dog." << std::endl;
 }
-
+*/
 WrongDog::~WrongDog()
 {
 	std::cout << "Destroy " << _type << " dog." << std::endl;
 }
 
-std::string WrongDog::getType() const
-{
-	return _type;
-}
-
-void WrongDog::setType(std::string &my_type)
-{
-	_type = my_type;
-}
-
 void WrongDog::makeSound() const
 {
-	std::cout << "Guau Guau Guau" << std::endl;
+	std::cout << BLUE << "Guau Guau Guau" << RESET << std::endl;
 }

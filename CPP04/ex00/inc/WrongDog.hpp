@@ -11,21 +11,20 @@
 /* ************************************************************************** */
 
 #ifndef __WRONGDOG_HPP
-#define __DOG_HPP
-#include "../inc/Animal.hpp"
+#define __WRONGDOG_HPP
+#include "../inc/WrongAnimal.hpp"
+#include "../inc/colors.h"
 #include <iostream>
 
-class WrongDog: public Animal
+class WrongDog: public WrongAnimal
 {
 	private:
 		std::string	_type;
 
 	public:
 		WrongDog();
-		WrongDog(std::string);
+		//WrongDog(std::string);
 		~WrongDog();
-		std::string getType() const;
-		void setType(std::string&);
 		void makeSound() const;
 };
 
