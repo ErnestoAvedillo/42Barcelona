@@ -18,6 +18,10 @@
 #include "../inc/WrongAnimal.hpp"
 #include "../inc/WrongDog.hpp"
 #include "../inc/WrongCat.hpp"
+#include "../inc/Brain.hpp"
 #include "../inc/colors.h"
-# include <iostream>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#define FILL 40
 #endif

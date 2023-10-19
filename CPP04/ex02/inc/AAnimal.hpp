@@ -18,9 +18,10 @@ class AAnimal
 {
 	private:
 		std::string	_type;
+		AAnimal();
 
 	public:
-		AAnimal();
+		static AAnimal* createInstance();
 		AAnimal(std::string);
 		virtual ~AAnimal();
 		AAnimal &operator=(const AAnimal& rhs);

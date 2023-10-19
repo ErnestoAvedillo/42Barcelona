@@ -43,5 +43,6 @@
 # define MGENTA	"\033[35m"
 # define CYAN	"\033[36m"
 # define WHITE	"\033[37m"
+# define PURPLE "\033[1;38;2;150;25;250m"
 
 #endif

@@ -24,8 +24,8 @@ class Brain
 		Brain();
 		Brain(std::string);
 		~Brain();
-		void SetNIdea(int, std::string);
-		std::string &GetNIdea(int);
+		void setIdea(int, std::string);
+		std::string &getIdea(int);
 };
 
 #endif

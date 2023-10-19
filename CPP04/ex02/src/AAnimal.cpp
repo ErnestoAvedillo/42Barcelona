@@ -17,6 +17,11 @@ AAnimal::AAnimal() : _type("Anonimous")
 	std::cout << "Creating " << _type << " animal."<< std::endl;
 }
 
+AAnimal *AAnimal::createInstance()
+{
+	return new AAnimal();
+}
+
 AAnimal::AAnimal(std::string my_name) : _type(my_name)
 {
 	std::cout << "Creating " << _type << " animal." << std::endl;
