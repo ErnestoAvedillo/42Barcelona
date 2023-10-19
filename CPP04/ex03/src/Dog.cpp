@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongDog.hpp                                          :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __WRONGDOG_HPP
-#define __WRONGDOG_HPP
-#include "../inc/WrongAnimal.hpp"
-#include "../inc/colors.h"
-#include <iostream>
+#include "../inc/Dog.hpp"
 
-class WrongDog: public WrongAnimal
+Dog::Dog() : _type("Perro Callejero")
 {
-	private:
-		std::string	_type;
+	_my_brain = new Brain("Dog Ideas");
+	std::cout << "Creating " << _type << " dog." << std::endl;
+}
+/*
+Dog::Dog(std::string my_name) : _type(my_name)
+{
+	_my_brain = new Brain;
+	std::cout << "Creating " << _type << " dog." << std::endl;
+}
+*/
+Dog::~Dog()
+{
+	delete _my_brain;
+	std::cout << "Destroy " << _type << " dog." << std::endl;
+}
 
-	public:
-		WrongDog();
-		//WrongDog(std::string);
-		~WrongDog();
-		void makeSound() const;
-};
-
-#endif
+void Dog::makeSound() const
+{
+	std::cout  << BLUE << "Guau Guau Guau" << RESET << std::endl;
+}

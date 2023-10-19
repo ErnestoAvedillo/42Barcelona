@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongDog.hpp                                          :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __WRONGDOG_HPP
-#define __WRONGDOG_HPP
-#include "../inc/WrongAnimal.hpp"
+#ifndef __BRAIN_HPP
+#define __BRAIN_HPP
 #include "../inc/colors.h"
 #include <iostream>
-
-class WrongDog: public WrongAnimal
+#define NR_IDEAS 100
+class Brain
 {
 	private:
-		std::string	_type;
+		std::string	_ideas[NR_IDEAS];
 
 	public:
-		WrongDog();
-		//WrongDog(std::string);
-		~WrongDog();
-		void makeSound() const;
+		Brain();
+		Brain(std::string);
+		~Brain();
+		void SetNIdea(int, std::string);
+		std::string &GetNIdea(int);
 };
 
 #endif

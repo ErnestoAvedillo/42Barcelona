@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongDog.hpp                                          :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __WRONGDOG_HPP
-#define __WRONGDOG_HPP
-#include "../inc/WrongAnimal.hpp"
-#include "../inc/colors.h"
-#include <iostream>
+#include "../inc/Brain.hpp"
 
-class WrongDog: public WrongAnimal
+Brain::Brain() 
 {
-	private:
-		std::string	_type;
+	for (int i = 0; i < NR_IDEAS; i++)
+		this->SetNIdea(i, "empty");
 
-	public:
-		WrongDog();
-		//WrongDog(std::string);
-		~WrongDog();
-		void makeSound() const;
-};
+	std::cout << "Creating " << NR_IDEAS << " empty ideas.." << std::endl;
+}
 
-#endif
+Brain::Brain(std::string my_idea)
+{
+	for (int i = 0; i < NR_IDEAS; i++)
+		this->SetNIdea(i, "empty");
+	std::cout << "Creating " << NR_IDEAS << " ideas named" << my_idea << std::endl;
+}
+
+Brain::~Brain()
+{
+	std::cout << "Destroyed the " << NR_IDEAS << " ideas." << std::endl;
+}
+
+void Brain::SetNIdea(int n, std::string s)
+{
+	if (n < 0 || n >= NR_IDEAS)
+		this->_ideas[n] = s;
+}
+std::string &Brain::GetNIdea(int n)
+{
+	if (n < 0)
+		return _ideas[0];
+	else if (n >= NR_IDEAS)
+		return _ideas[NR_IDEAS -1];
+	return _ideas[n];
+}

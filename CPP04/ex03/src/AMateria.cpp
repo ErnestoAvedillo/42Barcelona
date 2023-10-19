@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongDog.hpp                                          :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __WRONGDOG_HPP
-#define __WRONGDOG_HPP
-#include "../inc/WrongAnimal.hpp"
-#include "../inc/colors.h"
-#include <iostream>
+#include "../inc/AMateria.hpp"
 
-class WrongDog: public WrongAnimal
+AMateria::AMateria(): _type("void"){}
+AMateria::AMateria(std::string const & my_material) : _type(my_material)
 {
-	private:
-		std::string	_type;
+	std::cout << "Creating " << _type << " AMateria." << std::endl;
+}
 
-	public:
-		WrongDog();
-		//WrongDog(std::string);
-		~WrongDog();
-		void makeSound() const;
-};
-
-#endif
+std::string const & getType() const
+{
+    return _type;
+}

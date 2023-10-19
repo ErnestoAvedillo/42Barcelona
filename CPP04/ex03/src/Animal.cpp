@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongDog.hpp                                          :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __WRONGDOG_HPP
-#define __WRONGDOG_HPP
-#include "../inc/WrongAnimal.hpp"
-#include "../inc/colors.h"
-#include <iostream>
+#include "../inc/AAnimal.hpp"
 
-class WrongDog: public WrongAnimal
+AAnimal::AAnimal() : _type("Anonimous")
 {
-	private:
-		std::string	_type;
+	std::cout << "Creating " << _type << " animal."<< std::endl;
+}
 
-	public:
-		WrongDog();
-		//WrongDog(std::string);
-		~WrongDog();
-		void makeSound() const;
-};
+AAnimal::AAnimal(std::string my_name) : _type(my_name)
+{
+	std::cout << "Creating " << _type << " animal." << std::endl;
+}
 
-#endif
+AAnimal &AAnimal::operator=(const AAnimal& rhs)
+{
+	this->_type = rhs.getType();
+	return *this;
+}
+
+AAnimal::~AAnimal()
+{
+	std::cout << "Destroy " << _type << " AAnimal." << std::endl;
+}
+
+std::string AAnimal::getType() const
+{
+	return _type;
+}
+
+void AAnimal::setType(std::string &my_type)
+{
+	_type = my_type;
+}
+
+void AAnimal::makeSound() const
+{
+	std::cout << YELLOW << "Mi animal que hace Brrrrbrrrrr" << RESET << std::endl;
+}

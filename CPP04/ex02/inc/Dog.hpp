@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongDog.hpp                                          :+:      :+:    :+:   */
+/*   Dog.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,21 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __WRONGDOG_HPP
-#define __WRONGDOG_HPP
-#include "../inc/WrongAnimal.hpp"
+#ifndef __DOG_HPP
+#define __DOG_HPP
+#include "../inc/AAnimal.hpp"
+#include "../inc/Brain.hpp"
 #include "../inc/colors.h"
 #include <iostream>
 
-class WrongDog: public WrongAnimal
+class Dog: public AAnimal
 {
 	private:
 		std::string	_type;
+		Brain *_my_brain;
 
 	public:
-		WrongDog();
-		//WrongDog(std::string);
-		~WrongDog();
+		Dog();
+		//Dog(std::string);
+		~Dog();
 		void makeSound() const;
 };
 

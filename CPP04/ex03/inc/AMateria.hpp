@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongDog.hpp                                          :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __WRONGDOG_HPP
-#define __WRONGDOG_HPP
-#include "../inc/WrongAnimal.hpp"
-#include "../inc/colors.h"
+#ifndef __AMATERIA_HPP
+#define __AMATERIA_HPP
 #include <iostream>
+#include "../inc/colors.h"
 
-class WrongDog: public WrongAnimal
+class AMateria
 {
-	private:
-		std::string	_type;
-
-	public:
-		WrongDog();
-		//WrongDog(std::string);
-		~WrongDog();
-		void makeSound() const;
+protected:
+    std::string const _type;
+public:
+AMateria();
+AMateria(std::string const & type);
+~AMateria();
+std::string const & getType() const; //Returns the materia type
+virtual AMateria* clone() const = 0;
+virtual void use(ICharacter& target);
 };
-
 #endif
