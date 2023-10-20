@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../inc/AAnimal.hpp"
-
+/*
 AAnimal::AAnimal() : _type("Anonimous")
 {
 	std::cout << "Creating " << _type << " animal."<< std::endl;
@@ -26,7 +26,7 @@ AAnimal::AAnimal(std::string my_name) : _type(my_name)
 {
 	std::cout << "Creating " << _type << " animal." << std::endl;
 }
-
+*/
 AAnimal &AAnimal::operator=(const AAnimal& rhs)
 {
 	this->_type = rhs.getType();

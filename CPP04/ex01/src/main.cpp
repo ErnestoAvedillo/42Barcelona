@@ -14,17 +14,26 @@
 int main(void)
 {
 	{
-		const Animal* meta = new Animal();
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
-		i->makeSound(); //will output the cat sound!
-		j->makeSound();
-		meta->makeSound();
-		delete meta;
-		delete j;
-		delete i;
+		const Animal* meta [MAX_ANIMALS];
+		for (int i = 0; i < MAX_ANIMALS / 2 - 1; i++)
+		{
+			meta[i] = new Dog();
+		}
+		for (int i = MAX_ANIMALS / 2; i < MAX_ANIMALS - 1; i++)
+		{
+			meta[i] = new Cat();
+		}
+		
+		for (int i = 0; i < MAX_ANIMALS; i++)
+		{
+			std::cout << meta[i]->getType() << "." << std::endl;
+			meta[i]->makeSound();
+		}
+		for (int i = 0; i < MAX_ANIMALS; i++)
+		{
+			delete meta[i];
+		}
+		std::cout << "*********test finalyzed************" << std::endl;
 	}
 	{
 		std::cout << RED << "*************Prueba Wrong ***********" << RESET << std::endl;

@@ -25,8 +25,11 @@ class Dog: public AAnimal
 
 	public:
 		Dog();
-		//Dog(std::string);
+		Dog(std::string);
 		~Dog();
+		std::string Dog::getIdea(int n);
+		void addIdea(std::string);
+		int getCurIdea();
 		void makeSound() const;
 };
 

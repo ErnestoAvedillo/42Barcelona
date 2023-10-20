@@ -12,22 +12,41 @@
 
 #include "../inc/Cat.hpp"
 
-Cat::Cat() : _type("Gato Callejero")
+Cat::Cat()
 {
-	_my_brain = new Brain ("Cat ideas");
+	_type = "Gato Callejero";
+	Brain *_my_brain = new Brain ("Cat ideas");
 	std::cout << "Creating " << _type << " cat." << std::endl;
 }
 
-/*Cat::Cat(std::string my_name) : _type(my_name)
+Cat::Cat(std::string my_name)
 {
-	_my_brain = new Brain;
+	_type = my_name;
+	Brain *_my_brain = new Brain;
 	std::cout << "Creating " << _type << " cat." << std::endl;
 }
-*/
+
 Cat::~Cat()
 {
 	delete _my_brain;
 	std::cout << "Destroy " << _type << " cat." << std::endl;
+}
+
+std::string Cat::getIdea(int n)
+{
+	std::cout << "Getting the idea nr. " << n << " of the cat." << std::endl;
+	return _my_brain->getIdea(n);
+}
+
+void Cat::addIdea(std::string s)
+{
+	std::cout << "Adding the idea " << s << " into the cat." << std::endl;
+	return;
+}
+
+int Cat::getCurIdea ()
+{
+	return _my_brain->getCurIdea();
 }
 
 void Cat::makeSound() const

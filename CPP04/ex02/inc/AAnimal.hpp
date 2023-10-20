@@ -18,11 +18,11 @@ class AAnimal
 {
 	private:
 		std::string	_type;
-		AAnimal();
+//		AAnimal();
 
 	public:
-		static AAnimal* createInstance();
-		AAnimal(std::string);
+//		static AAnimal* createInstance();
+//		AAnimal(std::string);
 		virtual ~AAnimal();
 		AAnimal &operator=(const AAnimal& rhs);
 		std::string getType() const;

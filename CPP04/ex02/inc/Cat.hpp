@@ -25,9 +25,12 @@ class Cat: public AAnimal
 
 	public:
 		Cat();
-		//Cat(std::string);
+		Cat(std::string);
 		~Cat();
+		std::string getIdea(int);
+		void addIdea(std::string);
 		void makeSound() const;
+		int getCurIdea();
 };
 
 #endif

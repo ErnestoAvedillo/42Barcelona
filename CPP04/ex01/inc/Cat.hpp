@@ -25,8 +25,11 @@ class Cat: public Animal
 
 	public:
 		Cat();
-		//Cat(std::string);
+		Cat(std::string);
 		~Cat();
+		std::string getIdea(int);
+		void addIdea(std::string);
+		int getCurIdea();
 		void makeSound() const;
 };
 

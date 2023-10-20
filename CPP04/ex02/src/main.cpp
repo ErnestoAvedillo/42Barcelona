@@ -93,7 +93,7 @@ void test_Animal_v1(void)
 	const Dog *dog = new Dog();
 	std::cout << std::endl;
 	std::cout << GREEN "const Cat* cat" RESET << std::endl;
-	const Cat *cat = new Cat();
+	AAnimal *cat = new Cat();
 
 	print_title("Methods: getType", PURPLE, YELLOW);
 	// std::cout << "animal -> " << animal->getType() << " " << std::endl;

@@ -19,13 +19,14 @@ class Brain
 {
 	private:
 		std::string	_ideas[NR_IDEAS];
-
+		int _cur_idea;
 	public:
 		Brain();
 		Brain(std::string);
 		~Brain();
-		void SetNIdea(int, std::string);
-		std::string &GetNIdea(int);
+		std::string &getIdea(int);
+		void addIdea(std::string);
+		int getCurIdea();
 };
 
 #endif
