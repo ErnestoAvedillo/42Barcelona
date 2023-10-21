@@ -12,24 +12,22 @@
 
 #include "../inc/Cat.hpp"
 
-Cat::Cat()
+Cat::Cat() : Animal ("Gato Callejero")
 {
-	_type = "Gato Callejero";
 	_my_brain = new Brain ();
-	std::cout << "Creating " << _type << " cat." << std::endl;
+	std::cout << BLUE "Creating " << _type << " cat." RESET << std::endl;
 }
 
-Cat::Cat(std::string my_name)
+Cat::Cat(std::string my_name): Animal(my_name)
 {
-	_type = my_name;
 	_my_brain = new Brain ("Cat ideas");
-	std::cout << "Creating " << _type << " cat." << std::endl;
+	std::cout << BLUE "Creating " << _type << " cat." RESET << std::endl;
 }
 
 Cat::~Cat()
 {
 	delete _my_brain;
-	std::cout << "Destroy " << _type << " cat." << std::endl;
+	std::cout << RED "Destroy " << _type << " cat." RESET << std::endl;
 }
 
 std::string Cat::getIdea(int n)

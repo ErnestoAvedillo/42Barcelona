@@ -19,6 +19,7 @@
 #include "../inc/WrongDog.hpp"
 #include "../inc/WrongCat.hpp"
 #include "../inc/colors.h"
-# include <iostream>
-#define MAX_ANIMALS 20
+#include <iostream>
+#include <string>
+#define MAX_ANIMALS 6
 #endif

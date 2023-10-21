@@ -12,27 +12,27 @@
 
 #include "../inc/Dog.hpp"
 
-Dog::Dog() : _type("Perro Callejero")
+Dog::Dog() : Animal("Perro Callejero")
 {
 	_my_brain = new Brain();
-	std::cout << "Creating " << _type << " dog." << std::endl;
+	std::cout << YELLOW "Creating " << _type << " dog." RESET  << std::endl;
 }
 
-Dog::Dog(std::string my_name) : _type(my_name)
+Dog::Dog(std::string my_name) : Animal(my_name)
 {
 	_my_brain = new Brain ("Dog Ideas");
-	std::cout << "Creating " << _type << " dog." << std::endl;
+	std::cout << YELLOW "Creating " << _type << " dog." RESET  << std::endl;
 }
 
 Dog::~Dog()
 {
 	delete _my_brain;
-	std::cout << "Destroy " << _type << " dog." << std::endl;
+	std::cout << RED "Destroy " << _type << " dog." RESET  << std::endl;
 }
 
 std::string Dog::getIdea(int n)
 {
-	std::cout << "Getting the idea nr. " << n << " of the cat." << std::endl;
+	std::cout << PURPLE "Getting the idea nr. " << n << " of the cat." RESET << std::endl;
 	return _my_brain->getIdea(n);
 }
 

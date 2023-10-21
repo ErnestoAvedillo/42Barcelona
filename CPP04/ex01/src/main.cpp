@@ -15,21 +15,21 @@ int main(void)
 {
 	{
 		const Animal* meta [MAX_ANIMALS];
-		for (int i = 0; i < MAX_ANIMALS / 2 - 1; i++)
+		for (int i = 0; i <= MAX_ANIMALS / 2 - 1; i++)
 		{
-			meta[i] = new Dog();
+			meta[i] = new Dog("Dog");
 		}
-		for (int i = MAX_ANIMALS / 2; i < MAX_ANIMALS - 1; i++)
+		for (int i = MAX_ANIMALS / 2; i <= MAX_ANIMALS - 1; i++)
 		{
-			meta[i] = new Cat();
+			meta[i] = new Cat("Cat");
 		}
 		
-		for (int i = 0; i < MAX_ANIMALS; i++)
+		for (int i = 0; i <= MAX_ANIMALS - 1; i++)
 		{
 			std::cout << meta[i]->getType() << "." << std::endl;
 			meta[i]->makeSound();
 		}
-		for (int i = 0; i < MAX_ANIMALS; i++)
+		for (int i = 0; i <= MAX_ANIMALS - 1; i++)
 		{
 			delete meta[i];
 		}

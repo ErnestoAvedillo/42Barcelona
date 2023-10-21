@@ -15,22 +15,29 @@
 Brain::Brain() 
 {
 	for (int i = 0; i < NR_IDEAS; i++)
+	{
 		this->addIdea("empty");
+		std::cout << " created idea " << i << this->getIdea(i);
+	}
 	_cur_idea = 0;
-	std::cout << "Creating " << NR_IDEAS << " empty ideas.." << std::endl;
+	std::cout << GREEN "Creating " << NR_IDEAS << " empty ideas.." RESET << std::endl;
 }
 
 Brain::Brain(std::string my_idea)
 {
 	for (int i = 0; i < NR_IDEAS; i++)
-		this->addIdea("empty");
+	{
+		this->addIdea(my_idea);
+		std::cout << " created idea " << i << this->getIdea(i);
+	}
 	_cur_idea = 0;
-	std::cout << "Creating " << NR_IDEAS << " ideas named" << my_idea << std::endl;
+	std::cout << std::endl;
+	std::cout << GREEN "Created " << NR_IDEAS << " ideas named" << my_idea << RESET << std::endl;
 }
 
 Brain::~Brain()
 {
-	std::cout << "Destroyed the " << NR_IDEAS << " ideas." << std::endl;
+	std::cout << RED "Destroyed the " << NR_IDEAS << " ideas." RESET << std::endl;
 }
 
 void Brain::addIdea(std::string s)
