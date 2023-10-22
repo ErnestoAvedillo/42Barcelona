@@ -23,7 +23,7 @@ class WrongDog: public WrongAnimal
 
 	public:
 		WrongDog();
-		//WrongDog(std::string);
+		WrongDog(std::string);
 		~WrongDog();
 		void makeSound() const;
 };

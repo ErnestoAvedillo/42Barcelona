@@ -12,16 +12,28 @@
 
 #include "../inc/Cat.hpp"
 
-Cat::Cat() : _type("Gato Callejero")
+Cat::Cat() : Animal("Gato Callejero")
 {
 	std::cout << "Creating " << _type << " cat."<< std::endl;
 }
 
-/*Cat::Cat(std::string my_name) : _type(my_name)
+Cat::Cat(std::string my_name) : Animal(my_name)
 {
 	std::cout << "Creating " << _type << " cat." << std::endl;
 }
-*/
+
+Cat::Cat(const Cat &rhs)
+{
+	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
+	*this = rhs;
+}
+Cat & Cat::operator = (const Cat &rhs)
+{
+	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
+	this->_type = rhs.getType();
+	return *this;
+}
+
 Cat::~Cat()
 {
 	std::cout << "Destroy " << _type << " cat." << std::endl;

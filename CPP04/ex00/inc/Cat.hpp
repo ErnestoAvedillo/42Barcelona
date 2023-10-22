@@ -19,11 +19,13 @@
 class Cat: public Animal
 {
 	private:
-		std::string	_type;
+		//std::string	_type;
 
 	public:
 		Cat();
-		//Cat(std::string);
+		Cat(std::string);
+		Cat(const Cat &rhs);
+		Cat & operator = (const Cat &a);
 		~Cat();
 		void makeSound() const;
 };

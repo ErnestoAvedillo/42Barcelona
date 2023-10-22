@@ -42,6 +42,6 @@ class ClapTrap
 		void SetHitPoints(int);
 		void SetEnergy(int);
 		void SetDamage(int);
-		void VewStatus();
+		void ViewStatus();
 };
 #endif

@@ -12,16 +12,28 @@
 
 #include "../inc/Dog.hpp"
 
-Dog::Dog() : _type("Perro Callejero")
+Dog::Dog() : Animal("Perro Callejero")
 {
 	std::cout << "Creating " << _type << " dog."<< std::endl;
 }
-/*
-Dog::Dog(std::string my_name) : _type(my_name)
+
+Dog::Dog(std::string my_name) : Animal(my_name)
 {
 	std::cout << "Creating " << _type << " dog." << std::endl;
 }
-*/
+
+Dog::Dog(const Dog &rhs)
+{
+	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
+	*this = rhs;
+}
+Dog &Dog::operator=(const Dog &rhs)
+{
+	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
+	this->_type = rhs.getType();
+	return *this;
+}
+
 Dog::~Dog()
 {
 	std::cout << "Destroy " << _type << " dog." << std::endl;

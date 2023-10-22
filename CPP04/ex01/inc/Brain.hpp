@@ -23,6 +23,8 @@ class Brain
 	public:
 		Brain();
 		Brain(std::string);
+		Brain(const Brain&);
+		Brain &operator=(const Brain&);
 		~Brain();
 		std::string &getIdea(int);
 		void addIdea(std::string);

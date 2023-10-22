@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,22 +12,21 @@
 
 #include "../inc/DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap("_clap_name_DiamondAnonimous"), _Name("DiamondAnonimous")
+DiamondTrap::DiamondTrap() : ClapTrap("DiamondAnonimous_clap_name_"),ScavTrap("DiamondAnonimous") , FragTrap("DiamondAnonimous") ,_Name("DiamondAnonimous")
 {
 	
 	std::cout << "DiamondTrap Creating " << _Name << " warrior." << std::endl;
-	this->SetHitPoints(INIT_FRAG_HIT_POINTS);
-	this->SetEnergy(INIT_SCAV_ENERGY);
-	this->SetDamage(INIT_FRAG_ATACK_DAMAGE);
-	//this->attack();
+	this->FragTrap::SetHitPoints(INIT_FRAG_HIT_POINTS);
+	this->ScavTrap::SetEnergy(INIT_SCAV_ENERGY);
+	this->FragTrap::SetDamage(INIT_FRAG_ATACK_DAMAGE);
 }
 
-DiamondTrap::DiamondTrap(std::string my_name) : ClapTrap("_clap_name_" + my_name), _Name(my_name)
+DiamondTrap::DiamondTrap(std::string my_name) : ClapTrap( my_name + "_clap_name_"), ScavTrap( my_name + "_clap_name_"), FragTrap( my_name + "_clap_name_"), _Name(my_name)
 {
 	std::cout << "DiamondTrap Creating " << _Name << " warrior." << std::endl;
-	this->SetHitPoints(INIT_FRAG_HIT_POINTS);
-	this->SetEnergy(INIT_SCAV_ENERGY);
-	this->SetDamage(INIT_FRAG_ATACK_DAMAGE);
+	this->FragTrap::SetHitPoints(INIT_FRAG_HIT_POINTS);
+	this->ScavTrap::SetEnergy(INIT_SCAV_ENERGY);
+	this->FragTrap::SetDamage(INIT_FRAG_ATACK_DAMAGE);
 }
 
 DiamondTrap::~DiamondTrap()
@@ -37,10 +36,5 @@ DiamondTrap::~DiamondTrap()
 
 void DiamondTrap::whoAmI(void)
 {
-	std::cout << "DiamondTrap :I am " << _Name << " a ClapTrap " << this->GetName() << "- Hey guys, I am the terror of the warriors." << std::endl;
-}
-
-void DiamondTrap::attack (const std::string &target)
-{
-	this->ScavTrap::attack(target);
+	std::cout << "DiamondTrap :I am " << _Name << " a ClapTrap " << this->_Name << "- Hey guys, I am the terror of the warriors." << std::endl;
 }

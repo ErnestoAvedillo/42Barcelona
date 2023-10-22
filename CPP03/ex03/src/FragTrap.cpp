@@ -18,6 +18,7 @@ FragTrap::FragTrap()
 	this->SetHitPoints(INIT_FRAG_HIT_POINTS);
 	this->SetEnergy(INIT_FRAG_ENERGY);
 	this->SetDamage(INIT_FRAG_ATACK_DAMAGE);
+	this->ViewStatus();
 }
 
 FragTrap::FragTrap(std::string my_name) : ClapTrap(my_name)
@@ -26,12 +27,14 @@ FragTrap::FragTrap(std::string my_name) : ClapTrap(my_name)
 	this->SetHitPoints(INIT_FRAG_HIT_POINTS);
 	this->SetEnergy(INIT_FRAG_ENERGY);
 	this->SetDamage(INIT_FRAG_ATACK_DAMAGE);
+	this->ViewStatus();
 }
 
 FragTrap::~FragTrap()
 {
 	std::cout << "FragTrap destroyed" << std::endl;
 }
+
 
 void FragTrap::highFivesGuys(void)
 {

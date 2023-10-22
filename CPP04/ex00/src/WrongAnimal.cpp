@@ -24,6 +24,7 @@ WrongAnimal::WrongAnimal(std::string my_name) : _type(my_name)
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal& rhs)
 {
+	std::cout << "Asignation method  " << _type << " Animal from " << rhs.getType() << std::endl;
 	this->_type = rhs.getType();
 	return *this;
 }

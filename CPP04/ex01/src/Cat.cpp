@@ -24,6 +24,19 @@ Cat::Cat(std::string my_name): Animal(my_name)
 	std::cout << BLUE "Creating " << _type << " cat." RESET << std::endl;
 }
 
+
+Cat::Cat(const Cat &rhs)
+{
+	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
+	*this = rhs;
+}
+Cat & Cat::operator = (const Cat &rhs)
+{
+	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
+	this->_type = rhs.getType();
+	return *this;
+}
+
 Cat::~Cat()
 {
 	delete _my_brain;

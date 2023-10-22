@@ -12,16 +12,16 @@
 
 #include "../inc/WrongDog.hpp"
 
-WrongDog::WrongDog() : _type("Perro Callejero")
+WrongDog::WrongDog() : WrongAnimal("Perro Callejero")
 {
 	std::cout << "Creating " << _type << " dog."<< std::endl;
 }
 
-/*WrongDog::WrongDog(std::string my_name) : _type(my_name)
+WrongDog::WrongDog(std::string my_name) : WrongAnimal(my_name)
 {
 	std::cout << "Creating " << _type << " dog." << std::endl;
 }
-*/
+
 WrongDog::~WrongDog()
 {
 	std::cout << "Destroy " << _type << " dog." << std::endl;

@@ -24,6 +24,19 @@ Dog::Dog(std::string my_name) : Animal(my_name)
 	std::cout << YELLOW "Creating " << _type << " dog." RESET  << std::endl;
 }
 
+
+Dog::Dog(const Dog &rhs)
+{
+	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
+	*this = rhs;
+}
+Dog &Dog::operator=(const Dog &rhs)
+{
+	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
+	this->_type = rhs.getType();
+	return *this;
+}
+
 Dog::~Dog()
 {
 	delete _my_brain;

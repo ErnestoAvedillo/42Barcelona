@@ -58,9 +58,16 @@ int main(void)
 	zutanito.beRepaired(5);
 	pepito.beRepaired(10);
 	anonimo.beRepaired(20);
-	zutanito.VewStatus();
-	pepito.VewStatus();
-	anonimo.VewStatus();
 	zutanito.guardGate();
+	zutanito.guardGate();
+	zutanito.ViewStatus();
+	pepito.ViewStatus();
+	anonimo.ViewStatus();
+	zutanito.SetName("menganito");
+	zutanito.SetHitPoints(20);
+	zutanito.SetEnergy(10);
+	zutanito.ViewStatus();
+	pepito.ViewStatus();
+	anonimo.ViewStatus();
 	return 0;
 }

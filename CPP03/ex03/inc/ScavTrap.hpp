@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                          :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,7 +17,7 @@
 # define INIT_SCAV_HIT_POINTS 100
 # define INIT_SCAV_ENERGY 50
 # define INIT_SCAV_ATACK_DAMAGE 20
-class ScavTrap:virtual public ClapTrap
+class ScavTrap: virtual public ClapTrap
 {
     private:
         bool _guard_gate;
@@ -26,6 +26,8 @@ class ScavTrap:virtual public ClapTrap
         ScavTrap();
         ScavTrap(std::string my_nam);
         ~ScavTrap();
+        void attack(const std::string &target);
         void guardGate();
+        void ViewStatus();
 };
 #endif

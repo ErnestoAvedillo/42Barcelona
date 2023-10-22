@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                          :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -22,6 +22,7 @@ class ClapTrap
 {
 	private:
 		std::string	_Name;
+	protected:
 		int			_hit_points;
 		int 		_energy;
 		int 		_damage;
@@ -30,7 +31,7 @@ class ClapTrap
 		ClapTrap();
 		ClapTrap(std::string);
 		~ClapTrap();
-		void attack(const std::string &target);
+		virtual void attack(const std::string &target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 		bool CanActuate();
@@ -42,6 +43,6 @@ class ClapTrap
 		void SetHitPoints(int);
 		void SetEnergy(int);
 		void SetDamage(int);
-		void VewStatus();
+		virtual void ViewStatus();
 };
 #endif

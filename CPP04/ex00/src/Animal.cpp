@@ -22,8 +22,15 @@ Animal::Animal(std::string my_name) : _type(my_name)
 	std::cout << "Creating " << _type << " animal." << std::endl;
 }
 
-Animal &Animal::operator=(const Animal& rhs)
+Animal::Animal(const Animal &rhs)
 {
+	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
+	*this = rhs;
+}
+
+Animal &Animal::operator=(const Animal &rhs)
+{
+	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
 	this->_type = rhs.getType();
 	return *this;
 }
@@ -38,9 +45,9 @@ std::string Animal::getType() const
 	return _type;
 }
 
-void Animal::setType(std::string &my_type)
+void Animal::setType(std::string const my_type)
 {
-	_type = my_type;
+	this->_type = my_type;
 }
 
 void Animal::makeSound() const

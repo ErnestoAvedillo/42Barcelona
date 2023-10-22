@@ -27,6 +27,8 @@ class Cat: public Animal
 		Cat();
 		Cat(std::string);
 		~Cat();
+		Cat(const Cat &rhs);
+		Cat & operator = (const Cat &a);
 		std::string getIdea(int);
 		void addIdea(std::string);
 		int getCurIdea();

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                          :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,6 +26,8 @@ class ScavTrap:public ClapTrap
         ScavTrap();
         ScavTrap(std::string my_nam);
         ~ScavTrap();
+        void attack(const std::string &target);
         void guardGate();
+        void ViewStatus();
 };
 #endif

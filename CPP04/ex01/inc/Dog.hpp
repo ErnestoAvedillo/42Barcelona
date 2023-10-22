@@ -26,6 +26,8 @@ class Dog: public Animal
 	public:
 		Dog();
 		Dog(std::string);
+		Dog(const Dog&);
+		Dog &operator=(const Dog&);
 		~Dog();
 		std::string getIdea(int);
 		void addIdea(std::string);

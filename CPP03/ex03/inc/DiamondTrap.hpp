@@ -26,7 +26,6 @@ public:
 	DiamondTrap(std::string);
 	~DiamondTrap();
 	void whoAmI();
-	void attack(const std::string &);
 };
 
 #endif

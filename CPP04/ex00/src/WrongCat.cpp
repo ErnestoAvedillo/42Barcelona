@@ -12,17 +12,17 @@
 
 #include "../inc/WrongCat.hpp"
 
-WrongCat::WrongCat()
+WrongCat::WrongCat(): WrongAnimal("Gato Callejero")
 {
- 	_type = "Gato Callejero";
+ 	
 	std::cout << "Creating " << _type << " cat."<< std::endl;
 }
-/*
-WrongCat::WrongCat(std::string my_name) : _type(my_name)
+
+WrongCat::WrongCat(std::string my_name) : WrongAnimal(my_name)
 {
 	std::cout << "Creating " << _type << " cat." << std::endl;
 }
-*/
+
 WrongCat::~WrongCat()
 {
 	std::cout << "Destroy " << _type << " cat." << std::endl;

@@ -42,7 +42,7 @@ int main(void)
 	ClapTrap pepito("Pepito");
 	ScavTrap zutanito("Scav_Zutanito");
 	FragTrap menganito("Frag_menganito");
-	ScavTrap anonimo;
+	FragTrap anonimo;
 	zutanito.SetDamage(2);
 	pepito.SetDamage(3);
 
@@ -60,9 +60,23 @@ int main(void)
 	zutanito.beRepaired(5);
 	pepito.beRepaired(10);
 	anonimo.beRepaired(20);
-	zutanito.VewStatus();
-	pepito.VewStatus();
-	anonimo.VewStatus();
+	pepito.ViewStatus();
+	zutanito.ViewStatus();
+	menganito.ViewStatus();
+	anonimo.ViewStatus();
 	menganito.highFivesGuys();
+	zutanito.guardGate();
+	zutanito.guardGate();
+	pepito.ViewStatus();
+	zutanito.ViewStatus();
+	menganito.ViewStatus();
+	anonimo.ViewStatus();
+	menganito.SetName("Frag_pobrecito");
+	menganito.SetHitPoints(20);
+	menganito.SetEnergy(10);
+	pepito.ViewStatus();
+	zutanito.ViewStatus();
+	menganito.ViewStatus();
+	anonimo.ViewStatus();
 	return 0;
 }

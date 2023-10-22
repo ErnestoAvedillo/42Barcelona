@@ -19,11 +19,13 @@
 class Dog: public Animal
 {
 	private:
-		std::string	_type;
+		//std::string	_type;
 
 	public:
 		Dog();
-		//Dog(std::string);
+		Dog(std::string);
+		Dog(const Dog&);
+		Dog &operator=(const Dog&);
 		~Dog();
 		void makeSound() const;
 };
