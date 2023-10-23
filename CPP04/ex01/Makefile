@@ -20,9 +20,9 @@ CIAN		:=	\033[1;96m
 
 NAME := animal
 
-SRC := main Animal Cat Dog WrongAnimal WrongCat WrongDog Brain
+SRC := main Animal Cat Dog Brain
 
-CLAS := Animal Cat Dog WrongAnimal WrongCat WrongDog Brain
+CLAS := Animal Cat Dog Brain
 
 INC := main colors
 

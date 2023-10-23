@@ -14,24 +14,30 @@
 
 WrongAnimal::WrongAnimal() : _type("Anonimous")
 {
-	std::cout << "Creating " << _type << " animal."<< std::endl;
+	std::cout << "Creating " << _type << " Animal."<< std::endl;
 }
 
 WrongAnimal::WrongAnimal(std::string my_name) : _type(my_name)
 {
-	std::cout << "Creating " << _type << " animal." << std::endl;
+	std::cout << "Creating " << _type << " Animal." << std::endl;
+}
+
+WrongAnimal::WrongAnimal(const WrongAnimal &rhs)
+{
+	std::cout << "Copy method  " << _type << " WrongAnimal from " << rhs.getType() << std::endl;
+	*this = rhs;
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal& rhs)
 {
-	std::cout << "Asignation method  " << _type << " Animal from " << rhs.getType() << std::endl;
+	std::cout << "Asignation method  " << _type << " WrongAnimal from " << rhs.getType() << std::endl;
 	this->_type = rhs.getType();
 	return *this;
 }
 
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Destroy " << _type << " Animal." << std::endl;
+	std::cout << "Destroy " << _type << " WrongAnimal." << std::endl;
 }
 
 std::string WrongAnimal::getType() const

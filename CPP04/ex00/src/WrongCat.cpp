@@ -15,17 +15,29 @@
 WrongCat::WrongCat(): WrongAnimal("Gato Callejero")
 {
  	
-	std::cout << "Creating " << _type << " cat."<< std::endl;
+	std::cout << "Creating " << _type << " WrongCat."<< std::endl;
 }
 
 WrongCat::WrongCat(std::string my_name) : WrongAnimal(my_name)
 {
-	std::cout << "Creating " << _type << " cat." << std::endl;
+	std::cout << "Creating " << _type << " WrongCat." << std::endl;
+}
+
+WrongCat::WrongCat(const WrongCat &rhs):WrongAnimal(rhs)
+{
+	std::cout << "Copy constructor " << _type << " WrongCat." << std::endl;
+}
+
+WrongCat &WrongCat::operator=(const WrongCat &rhs)
+{
+	std::cout << "Assignement operator " << _type << " WrongCat." << std::endl;
+	this->_type = rhs.getType();
+	return *this;
 }
 
 WrongCat::~WrongCat()
 {
-	std::cout << "Destroy " << _type << " cat." << std::endl;
+	std::cout << "Destroy " << _type << " WrongCat." << std::endl;
 }
 
 void WrongCat::makeSound() const

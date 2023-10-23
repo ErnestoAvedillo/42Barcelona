@@ -23,7 +23,12 @@ int main(void)
 		{
 			meta[i] = new Cat("Cat");
 		}
-		
+
+		for (int i = 0; i <= MAX_ANIMALS - 1; i++)
+		{
+			std::cout << meta[i]->_my_Brain.prtAllIdeas() << "." << std::endl;
+		}
+
 		for (int i = 0; i <= MAX_ANIMALS - 1; i++)
 		{
 			std::cout << meta[i]->getType() << "." << std::endl;
@@ -34,20 +39,5 @@ int main(void)
 			delete meta[i];
 		}
 		std::cout << "*********test finalyzed************" << std::endl;
-	}
-	{
-		std::cout << RED << "*************Prueba Wrong ***********" << RESET << std::endl;
-		const WrongAnimal* meta = new WrongAnimal();
-		const WrongAnimal* j = new WrongDog();
-		const WrongAnimal* i = new WrongCat();
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
-		i->makeSound(); //will output the cat sound!
-		j->makeSound();
-		meta->makeSound();
-		delete meta;
-		delete j;
-		delete i;
-		return 0;
 	}
 }

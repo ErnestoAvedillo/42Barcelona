@@ -24,6 +24,8 @@ class WrongDog: public WrongAnimal
 	public:
 		WrongDog();
 		WrongDog(std::string);
+		WrongDog(const WrongAnimal&);
+		WrongDog &operator=(const WrongAnimal&);
 		~WrongDog();
 		void makeSound() const;
 };

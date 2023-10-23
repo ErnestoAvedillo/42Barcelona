@@ -22,10 +22,10 @@ Cat::Cat(std::string my_name) : Animal(my_name)
 	std::cout << "Creating " << _type << " cat." << std::endl;
 }
 
-Cat::Cat(const Cat &rhs)
+Cat::Cat(const Cat &rhs): Animal(rhs)
 {
-	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
-	*this = rhs;
+	std::cout << "Copy method  " << _type << " cat from " << rhs.getType() << std::endl;
+	//*this = rhs;
 }
 Cat & Cat::operator = (const Cat &rhs)
 {

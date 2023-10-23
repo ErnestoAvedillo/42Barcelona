@@ -25,7 +25,7 @@ Dog::Dog(std::string my_name) : Animal(my_name)
 }
 
 
-Dog::Dog(const Dog &rhs)
+Dog::Dog(const Dog &rhs) : Animal(rhs)
 {
 	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
 	*this = rhs;

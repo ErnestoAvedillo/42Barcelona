@@ -15,9 +15,6 @@
 #include "../inc/Animal.hpp"
 #include "../inc/Dog.hpp"
 #include "../inc/Cat.hpp"
-#include "../inc/WrongAnimal.hpp"
-#include "../inc/WrongDog.hpp"
-#include "../inc/WrongCat.hpp"
 #include "../inc/colors.h"
 #include <iostream>
 #include <string>

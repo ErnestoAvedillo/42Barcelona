@@ -24,13 +24,13 @@ Animal::Animal(std::string my_name) : _type(my_name)
 
 Animal::Animal(const Animal &rhs)
 {
-	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
+	std::cout << "Copy method  " << _type << " Animal from " << rhs.getType() << std::endl;
 	*this = rhs;
 }
 
 Animal &Animal::operator=(const Animal &rhs)
 {
-	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
+	std::cout << "Asignation method  " << _type << " Animal from " << rhs.getType() << std::endl;
 	this->_type = rhs.getType();
 	return *this;
 }

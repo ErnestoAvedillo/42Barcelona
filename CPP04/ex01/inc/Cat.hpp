@@ -33,6 +33,7 @@ class Cat: public Animal
 		void addIdea(std::string);
 		int getCurIdea();
 		void makeSound() const;
+		void prtIdeas();
 };
 
 #endif

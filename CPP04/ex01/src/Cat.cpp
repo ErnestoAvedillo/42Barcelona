@@ -24,11 +24,9 @@ Cat::Cat(std::string my_name): Animal(my_name)
 	std::cout << BLUE "Creating " << _type << " cat." RESET << std::endl;
 }
 
-
-Cat::Cat(const Cat &rhs)
+Cat::Cat(const Cat &rhs): Animal(rhs)
 {
 	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
-	*this = rhs;
 }
 Cat & Cat::operator = (const Cat &rhs)
 {
@@ -64,4 +62,9 @@ int Cat::getCurIdea ()
 void Cat::makeSound() const
 {
 	std::cout  << BLUE << "Miau requete Miau" << RESET << std::endl;
+}
+
+void Cat::prtIdeas()
+{
+	this->_my_brain.prtIdeas();
 }

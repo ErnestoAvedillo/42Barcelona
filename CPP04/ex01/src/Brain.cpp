@@ -39,17 +39,18 @@ Brain::Brain(const Brain& rhs)
 {
 	*this = rhs;
 }
-
-Brain &Brain::operator=(const Brain&rhs)
+/*
+Brain &Brain::operator=(const Brain &rhs)
 {
 	for (int i = 0; i < NR_IDEAS; i++)
 	{
-		this->addIdea(rhs.getIdea(i));
+		this->_ideas[i] = rhs.getIdea(i);
 		std::cout << " created idea " << i << this->getIdea(i);
 	}
-	return this;
+	std::cout << std::endl;
+	return *this;
 }
-
+*/
 Brain::~Brain()
 {
 	std::cout << RED "Destroyed the " << NR_IDEAS << " ideas." RESET << std::endl;
@@ -62,7 +63,8 @@ void Brain::addIdea(std::string s)
 	if (_cur_idea >= NR_IDEAS)
 		_cur_idea =  0;
 }
-std::string &Brain::getIdea(int n)
+
+std::string Brain::getIdea(int n)
 {
 	if (n < 0)
 		return _ideas[0];
@@ -76,3 +78,11 @@ int Brain::getCurIdea()
 	return _cur_idea;
 }
 
+void Brain::prtAllIdeas()
+{
+	for (int i = 0; i < NR_IDEAS; i++)
+	{
+		std::cout << "Idea Nr:" << i << " " << this->getIdea(i);
+	}
+	std::cout << std::endl;
+}

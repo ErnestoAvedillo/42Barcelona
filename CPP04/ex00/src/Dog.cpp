@@ -22,11 +22,11 @@ Dog::Dog(std::string my_name) : Animal(my_name)
 	std::cout << "Creating " << _type << " dog." << std::endl;
 }
 
-Dog::Dog(const Dog &rhs)
+Dog::Dog(const Dog &rhs) : Animal(rhs)
 {
 	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
-	*this = rhs;
 }
+
 Dog &Dog::operator=(const Dog &rhs)
 {
 	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
