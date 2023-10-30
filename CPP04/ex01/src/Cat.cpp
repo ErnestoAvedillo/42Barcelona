@@ -66,5 +66,5 @@ void Cat::makeSound() const
 
 void Cat::prtIdeas()
 {
-	this->_my_brain.prtIdeas();
+	_my_brain->prtAllIdeas();
 }

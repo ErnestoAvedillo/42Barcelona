@@ -14,7 +14,7 @@
 int main(void)
 {
 	{
-		const Animal* meta [MAX_ANIMALS];
+		Animal *meta[MAX_ANIMALS];
 		for (int i = 0; i <= MAX_ANIMALS / 2 - 1; i++)
 		{
 			meta[i] = new Dog("Dog");
@@ -26,7 +26,7 @@ int main(void)
 
 		for (int i = 0; i <= MAX_ANIMALS - 1; i++)
 		{
-			std::cout << meta[i]->_my_Brain.prtAllIdeas() << "." << std::endl;
+			meta[i]->prtIdeas();
 		}
 
 		for (int i = 0; i <= MAX_ANIMALS - 1; i++)
