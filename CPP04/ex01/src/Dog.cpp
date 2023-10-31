@@ -65,3 +65,8 @@ void Dog::makeSound() const
 {
 	std::cout  << BLUE << "Guau Guau Guau" << RESET << std::endl;
 }
+
+void Dog::prtIdeas()
+{
+	_my_brain->prtAllIdeas();
+}

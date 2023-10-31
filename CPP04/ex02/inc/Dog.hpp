@@ -26,11 +26,14 @@ class Dog: public AAnimal
 	public:
 		Dog();
 		Dog(std::string);
+		Dog(const Dog&);
+		Dog &operator=(const Dog&);
 		~Dog();
-		std::string Dog::getIdea(int n);
+		std::string getIdea(int);
 		void addIdea(std::string);
 		int getCurIdea();
 		void makeSound() const;
+		void prtIdeas();
 };
 
 #endif

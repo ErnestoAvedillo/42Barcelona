@@ -27,10 +27,13 @@ class Cat: public AAnimal
 		Cat();
 		Cat(std::string);
 		~Cat();
+		Cat(const Cat &rhs);
+		Cat & operator = (const Cat &a);
 		std::string getIdea(int);
 		void addIdea(std::string);
-		void makeSound() const;
 		int getCurIdea();
+		void makeSound() const;
+		void prtIdeas();
 };
 
 #endif

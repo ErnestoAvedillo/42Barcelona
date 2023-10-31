@@ -12,24 +12,34 @@
 
 #include "../inc/Cat.hpp"
 
-Cat::Cat()
+Cat::Cat():AAnimal("Gato Callejero")
 {
-	_type = "Gato Callejero";
-	Brain *_my_brain = new Brain ("Cat ideas");
-	std::cout << "Creating " << _type << " cat." << std::endl;
+	_my_brain = new Brain ();
+	std::cout << BLUE "Creating " << _type << " cat." RESET << std::endl;
 }
 
-Cat::Cat(std::string my_name)
+Cat::Cat(std::string my_name): AAnimal(my_name)
 {
-	_type = my_name;
-	Brain *_my_brain = new Brain;
-	std::cout << "Creating " << _type << " cat." << std::endl;
+	_my_brain = new Brain ("Cat ideas");
+	std::cout << BLUE "Creating " << _type << " cat." RESET << std::endl;
+}
+
+Cat::Cat(const Cat &rhs): AAnimal(rhs)
+{
+	*this = rhs;
+	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
+}
+Cat & Cat::operator = (const Cat &rhs)
+{
+	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
+	this->_type = rhs.getType();
+	return *this;
 }
 
 Cat::~Cat()
 {
 	delete _my_brain;
-	std::cout << "Destroy " << _type << " cat." << std::endl;
+	std::cout << RED "Destroy " << _type << " cat." RESET << std::endl;
 }
 
 std::string Cat::getIdea(int n)
@@ -41,6 +51,7 @@ std::string Cat::getIdea(int n)
 void Cat::addIdea(std::string s)
 {
 	std::cout << "Adding the idea " << s << " into the cat." << std::endl;
+	_my_brain->addIdea(s);
 	return;
 }
 
@@ -52,4 +63,9 @@ int Cat::getCurIdea ()
 void Cat::makeSound() const
 {
 	std::cout  << BLUE << "Miau requete Miau" << RESET << std::endl;
+}
+
+void Cat::prtIdeas()
+{
+	_my_brain->prtAllIdeas();
 }

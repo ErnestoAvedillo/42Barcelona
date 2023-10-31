@@ -15,13 +15,8 @@
 #include "../inc/AAnimal.hpp"
 #include "../inc/Dog.hpp"
 #include "../inc/Cat.hpp"
-#include "../inc/WrongAnimal.hpp"
-#include "../inc/WrongDog.hpp"
-#include "../inc/WrongCat.hpp"
-#include "../inc/Brain.hpp"
 #include "../inc/colors.h"
 #include <iostream>
-#include <iomanip>
-#include <sstream>
-#define FILL 40
+#include <string>
+#define MAX_ANIMALS 6
 #endif

@@ -11,24 +11,26 @@
 /* ************************************************************************** */
 
 #include "../inc/AAnimal.hpp"
-/*
+
 AAnimal::AAnimal() : _type("Anonimous")
 {
 	std::cout << "Creating " << _type << " animal."<< std::endl;
-}
-
-AAnimal *AAnimal::createInstance()
-{
-	return new AAnimal();
 }
 
 AAnimal::AAnimal(std::string my_name) : _type(my_name)
 {
 	std::cout << "Creating " << _type << " animal." << std::endl;
 }
-*/
+
+AAnimal::AAnimal(const AAnimal &rhs)
+{
+	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
+	*this = rhs;
+}
+
 AAnimal &AAnimal::operator=(const AAnimal& rhs)
 {
+	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
 	this->_type = rhs.getType();
 	return *this;
 }
@@ -47,8 +49,9 @@ void AAnimal::setType(std::string &my_type)
 {
 	_type = my_type;
 }
-
+/*
 void AAnimal::makeSound() const
 {
 	std::cout << YELLOW << "Mi animal que hace Brrrrbrrrrr" << RESET << std::endl;
 }
+*/
