@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __WRONGCAT_HPP
-#define __WRONGCAT_HPP
-#include "../inc/WrongAnimal.hpp"
-#include "../inc/colors.h"
+#ifndef __CURE_HPP
+#define __CURE_HPP
 #include <iostream>
-
-class WrongCat: public WrongAnimal
+#include "../inc/colors.h"
+#include "../inc/AMateria.hpp"
+class Cure: public AMateria
 {
-	private:
-		std::string	_type;
-
-	public:
-		WrongCat();
-		//WrongCat(std::string);
-		~WrongCat();
-		void makeSound() const;
+private:
+	/* data */
+public:
+	Cure();
+	~Cure();
+	AMateria *clone() const;
+	void use(ICharacter &);
 };
-
 #endif

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AAnimal.cpp                                        :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,40 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/AAnimal.hpp"
-
-AAnimal::AAnimal() : _type("Anonimous")
+#ifndef __ICE_HPP
+#define __ICE_HPP
+#include <iostream>
+#include "../inc/colors.h"
+#include "../inc/AMateria.hpp"
+class Ice: public AMateria
 {
-	std::cout << "Creating " << _type << " animal."<< std::endl;
-}
-
-AAnimal::AAnimal(std::string my_name) : _type(my_name)
-{
-	std::cout << "Creating " << _type << " animal." << std::endl;
-}
-
-AAnimal &AAnimal::operator=(const AAnimal& rhs)
-{
-	this->_type = rhs.getType();
-	return *this;
-}
-
-AAnimal::~AAnimal()
-{
-	std::cout << "Destroy " << _type << " AAnimal." << std::endl;
-}
-
-std::string AAnimal::getType() const
-{
-	return _type;
-}
-
-void AAnimal::setType(std::string &my_type)
-{
-	_type = my_type;
-}
-
-void AAnimal::makeSound() const
-{
-	std::cout << YELLOW << "Mi animal que hace Brrrrbrrrrr" << RESET << std::endl;
-}
+private:
+	/* data */
+public:
+	Ice();
+	~Ice();
+	AMateria * clone() const;
+	void use(ICharacter &);
+};
+#endif

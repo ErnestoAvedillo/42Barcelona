@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,38 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Brain.hpp"
+#ifndef __CHARACTER_HPP
+#define __CHARACTER_HPP
+#include "../inc/ICharacter.hpp"
+#define MAX_MAT 4
 
-Brain::Brain() 
+class Character: public ICharacter
 {
-	for (int i = 0; i < NR_IDEAS; i++)
-		this->SetNIdea(i, "empty");
+	private:
+		std::string _name;
+		AMateria *_materia[MAX_MAT];
+		int _idx;
 
-	std::cout << "Creating " << NR_IDEAS << " empty ideas.." << std::endl;
-}
-
-Brain::Brain(std::string my_idea)
-{
-	for (int i = 0; i < NR_IDEAS; i++)
-		this->SetNIdea(i, "empty");
-	std::cout << "Creating " << NR_IDEAS << " ideas named" << my_idea << std::endl;
-}
-
-Brain::~Brain()
-{
-	std::cout << "Destroyed the " << NR_IDEAS << " ideas." << std::endl;
-}
-
-void Brain::SetNIdea(int n, std::string s)
-{
-	if (n < 0 || n >= NR_IDEAS)
-		this->_ideas[n] = s;
-}
-std::string &Brain::GetNIdea(int n)
-{
-	if (n < 0)
-		return _ideas[0];
-	else if (n >= NR_IDEAS)
-		return _ideas[NR_IDEAS -1];
-	return _ideas[n];
-}
+	public:
+		Character();
+		Character(std::string &);
+		Character(Character &);
+		~Character();
+		Character &operator=(Character &);
+		std::string const &getName() const {}
+		void equip(AMateria *m) {}
+		void unequip(int idx) {}
+		void use(int idx, ICharacter &target) {}
+		AMateria *getMateria(int idx);
+};
+#endif

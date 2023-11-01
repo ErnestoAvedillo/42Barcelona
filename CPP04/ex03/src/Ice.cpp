@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CAT_HPP
-#define __CAT_HPP
-#include "../inc/AAnimal.hpp"
-#include "../inc/Brain.hpp"
-#include "../inc/colors.h"
-#include <iostream>
+#include"../inc/Ice.hpp"
 
-class Cat: public AAnimal
+Ice::Ice():AMateria("ice"){}
+
+Ice::~Ice()
 {
-	private:
-		std::string	_type;
-		Brain *_my_brain;
+}
 
-	public:
-		Cat();
-		//Cat(std::string);
-		~Cat();
-		void makeSound() const;
-};
-
-#endif
+AMateria *Ice::clone() const
+{
+	return new Ice (*this);
+}
+void Ice::use(ICharacter &rhs)
+{
+	std::cout << " * shoots an ice bolt at " << rhs.getName() << " *" << std::endl;
+}

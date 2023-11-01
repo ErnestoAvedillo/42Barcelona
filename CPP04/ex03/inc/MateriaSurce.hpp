@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __BRAIN_HPP
-#define __BRAIN_HPP
-#include "../inc/colors.h"
+#ifndef __MATERIASOURCE_HPP
+#define __MATERIASOURCE_HPP
 #include <iostream>
-#define NR_IDEAS 100
-class Brain
+#include "../inc/colors.h"
+#include "../inc/IMateriaSurce.hpp"
+class MateriaSource : public IMateriaSource
 {
-	private:
-		std::string	_ideas[NR_IDEAS];
+private:
+	std::string _type;
 
-	public:
-		Brain();
-		Brain(std::string);
-		~Brain();
-		void SetNIdea(int, std::string);
-		std::string &GetNIdea(int);
+public:
+	MateriaSource();
+	MateriaSource(std::string&);
+	~MateriaSource();
+	void learnMateria(AMateria const &);
+	AMateria *createMateria(const std::string &);
 };
-
 #endif

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Cat.hpp"
+#ifndef __IMATERIASOURCE_HPP
+#define __IMATERIASOURCE_HPP
+#include <iostream>
+#include "../inc/colors.h"
+#include "../inc/ICharacter.hpp"
+#include "../inc/AMateria.hpp"
 
-Cat::Cat() : _type("Gato Callejero")
+class IMateriaSource
 {
-	_my_brain = new Brain ("Cat ideas");
-	std::cout << "Creating " << _type << " cat." << std::endl;
-}
-
-/*Cat::Cat(std::string my_name) : _type(my_name)
-{
-	_my_brain = new Brain;
-	std::cout << "Creating " << _type << " cat." << std::endl;
-}
-*/
-Cat::~Cat()
-{
-	delete _my_brain;
-	std::cout << "Destroy " << _type << " cat." << std::endl;
-}
-
-void Cat::makeSound() const
-{
-	std::cout  << BLUE << "Miau requete Miau" << RESET << std::endl;
-}
+public:
+	virtual ~IMateriaSource() {}
+	virtual void learnMateria(AMateria *) = 0;
+	virtual AMateria *createMateria(std::string const &type) = 0;
+};
+#endif

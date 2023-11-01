@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.cpp                                            :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,25 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/WrongCat.hpp"
+#include "../inc/Cure.hpp"
 
-WrongCat::WrongCat()
+Cure::Cure() : AMateria("cure") {}
+
+Cure::~Cure()
 {
- 	_type = "Gato Callejero";
-	std::cout << "Creating " << _type << " cat."<< std::endl;
-}
-/*
-WrongCat::WrongCat(std::string my_name) : _type(my_name)
-{
-	std::cout << "Creating " << _type << " cat." << std::endl;
-}
-*/
-WrongCat::~WrongCat()
-{
-	std::cout << "Destroy " << _type << " cat." << std::endl;
 }
 
-void WrongCat::makeSound() const
+AMateria *Cure::clone() const
 {
-	std::cout  << BLUE << "Miau requete Miau"  << RESET << std::endl;
+	return new Cure(*this);
 }
+void Cure::use(ICharacter &rhs)
+{
+	std::cout << " * heals "<< rhs.getName() << "'s wounds *" << std::endl;
+}
+
