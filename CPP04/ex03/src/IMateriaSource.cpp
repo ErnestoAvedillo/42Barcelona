@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   IMateriaSource.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,22 +9,9 @@
 /*   Updated: 2023/09/21 22:23:12 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+	
+#include "../inc/IMateriaSource.hpp"
 
-#ifndef __MATERIASOURCE_HPP
-#define __MATERIASOURCE_HPP
-#include <iostream>
-#include "../inc/colors.h"
-#include "../inc/IMateriaSurce.hpp"
-class MateriaSource : public IMateriaSource
-{
-private:
-	std::string _type;
 
-public:
-	MateriaSource();
-	MateriaSource(std::string&);
-	~MateriaSource();
-	void learnMateria(AMateria const &);
-	AMateria *createMateria(const std::string &);
-};
-#endif
+IMateriaSource::IMateriaSource(){}
+IMateriaSource::~IMateriaSource(){}

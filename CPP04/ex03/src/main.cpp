@@ -11,17 +11,6 @@
 /* ************************************************************************** */
 
 # include "../inc/main.h"
-#include "../inc/ICharacter.hpp"
-#include "../inc/AMateria.hpp"
-#include "../inc/IMateriaSurce.hpp"
-#include <iostream>
-#include <iomanip>
-#include "../inc/MateriaSurce.hpp"
-#include "../inc/Character.hpp"
-#include "../inc/Ice.hpp"
-#include "../inc/Cure.hpp"
-
-#define FILL 40
 
 void print_title(std::string msg, std::string clr_text, std::string clr_border)
 {

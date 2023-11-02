@@ -20,6 +20,13 @@ Character::Character(): _name("void")
 		_materia[i] = NULL;
 	}
 	_idx = 0;
+}Character::Character(std::string name): _name(name)
+{
+	for (int i = 0; i < MAX_MAT; i++)
+	{
+		_materia[i] = NULL;
+	}
+	_idx = 0;
 }
 Character::Character(std::string &name) : _name(name)
 {
@@ -76,3 +83,13 @@ AMateria *Character::getMateria(int idx)
 {
 	return _materia[idx];
 }
+
+void Character::printMaterias()
+{
+	for (int i = 0; i < MAX_MAT; i++)
+	{
+		std::cout << "Materia Nº" << i << " de nombre " << _materia[i] << std::endl;
+	}
+}
+
+void Character::printTrash(){};

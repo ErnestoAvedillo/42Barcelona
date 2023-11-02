@@ -20,9 +20,9 @@ CIAN		:=	\033[1;96m
 
 NAME := animal
 
-SRC := main Animal Cat Dog WrongAnimal WrongCat WrongDog Brain
+SRC := main Character MateriaSource Cure Ice AMateria
 
-CLAS := Animal Cat Dog WrongAnimal WrongCat WrongDog Brain
+CLAS := ICharacter Character IMaterialSource MateriaSource Cure Ice AMateria
 
 INC := main colors
 

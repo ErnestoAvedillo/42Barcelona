@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,32 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CHARACTER_HPP
-#define __CHARACTER_HPP
-#include "../inc/ICharacter.hpp"
-#include "../inc/AMateria.hpp"
-#define MAX_MAT 4
-
-class Character: public ICharacter
+#ifndef __MATERIASOURCE_HPP
+#define __MATERIASOURCE_HPP
+#include <iostream>
+#include "../inc/colors.h"
+#include "../inc/IMateriaSource.hpp"
+class MateriaSource : public IMateriaSource
 {
-	private:
-		std::string _name;
-		AMateria *_materia[MAX_MAT];
-		int _idx;
+private:
+	std::string _type;
 
-	public:
-		Character();
-		Character(std::string);
-		Character(std::string &);
-		Character(Character &);
-		~Character();
-		Character &operator=(Character &);
-		std::string const &getName() const {}
-		void equip(AMateria *m) {}
-		void unequip(int idx) {}
-		void use(int idx, ICharacter &target) {}
-		AMateria *getMateria(int idx);
-		void printMaterias();
-		void printTrash();
+public:
+	MateriaSource();
+	MateriaSource(std::string&);
+	~MateriaSource();
+	void learnMateria(AMateria*);
+	AMateria *createMateria(const std::string &);
 };
 #endif

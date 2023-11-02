@@ -12,12 +12,17 @@
 
 #ifndef  MAIN_H
 #define MAIN_H
-#include "../inc/AAnimal.hpp"
-#include "../inc/Dog.hpp"
-#include "../inc/Cat.hpp"
-#include "../inc/WrongAnimal.hpp"
-#include "../inc/WrongDog.hpp"
-#include "../inc/WrongCat.hpp"
+#include "../inc/AMateria.hpp"
+#include "../inc/Character.hpp"
+#include "../inc/Cure.hpp"
+#include "../inc/Ice.hpp"
+#include "../inc/ICharacter.hpp"
+#include "../inc/IMateriaSource.hpp"
+#include "../inc/MateriaSource.hpp"
 #include "../inc/colors.h"
 # include <iostream>
+#include <iomanip>
+
+#define FILL 40
+
 #endif
