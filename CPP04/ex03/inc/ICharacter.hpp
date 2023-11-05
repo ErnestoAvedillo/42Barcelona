@@ -13,11 +13,15 @@
 #ifndef __ICHARACTER_HPP
 #define __ICHARACTER_HPP
 #include <iostream>
-#include "../inc/AMateria.hpp"
 #include "../inc/colors.h"
+
+class ICharacter;
+#include "../inc/AMateria.hpp"
 
 class ICharacter
 {
+	private:
+
 	public:
 		virtual ~ICharacter() {}
 		virtual std::string const &getName() const = 0;

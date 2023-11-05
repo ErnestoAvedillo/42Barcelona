@@ -14,17 +14,19 @@
 #define __AMATERIA_HPP
 #include <iostream>
 #include "../inc/colors.h"
-#include "../inc/ICharacter.hpp"
 
+class AMateria;
+#include "../inc/ICharacter.hpp"
 class AMateria
 {
     protected:
         std::string _type;
+
     public:
         AMateria();
         AMateria(std::string const &);
         AMateria(AMateria const &);
-        ~AMateria();
+        virtual ~AMateria();
         AMateria &operator=(AMateria const &);
         std::string const &getType() const; // Returns the materia type
         virtual AMateria* clone() const = 0;

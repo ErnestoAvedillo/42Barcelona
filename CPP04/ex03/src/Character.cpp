@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ICharacter.hpp"
 #include "../inc/Character.hpp"
 
 Character::Character(): _name("void")
@@ -45,7 +44,7 @@ Character::~Character()
 {
 	for (int i = 0; i < MAX_MAT; i++)
 	{
-		delete _materia;
+		delete _materia[i];
 	}
 }
 
@@ -76,7 +75,8 @@ void Character::unequip(int idx)
 }
 void Character::use(int idx, ICharacter &target) 
 {
-	_materia[idx]->use(target);
+	if (idx < MAX_MAT && _materia[idx])
+		_materia[idx]->use(target);
 }
 
 AMateria *Character::getMateria(int idx)
@@ -92,4 +92,5 @@ void Character::printMaterias()
 	}
 }
 
-void Character::printTrash(){};
+void Character::printTrash(){}
+

@@ -30,10 +30,10 @@ class Character: public ICharacter
 		Character(Character &);
 		~Character();
 		Character &operator=(Character &);
-		std::string const &getName() const {}
-		void equip(AMateria *m) {}
-		void unequip(int idx) {}
-		void use(int idx, ICharacter &target) {}
+		std::string const &getName() const;
+		void equip(AMateria *m);
+		void unequip(int idx);
+		void use(int idx, ICharacter &target);
 		AMateria *getMateria(int idx);
 		void printMaterias();
 		void printTrash();

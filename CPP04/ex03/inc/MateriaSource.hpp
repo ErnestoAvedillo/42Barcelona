@@ -15,14 +15,17 @@
 #include <iostream>
 #include "../inc/colors.h"
 #include "../inc/IMateriaSource.hpp"
+#define MAX_MAT 4
 class MateriaSource : public IMateriaSource
 {
 private:
-	std::string _type;
+	std::string	_type;
+	AMateria	*_list_mat[4];
+	int _cur_mat;
 
 public:
 	MateriaSource();
-	MateriaSource(std::string&);
+	MateriaSource(const std::string&);
 	~MateriaSource();
 	void learnMateria(AMateria*);
 	AMateria *createMateria(const std::string &);

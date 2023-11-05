@@ -20,6 +20,12 @@ AMateria::AMateria(std::string const & my_material) : _type(my_material)
 {
 	std::cout << "Creating " << _type << " AMateria." << std::endl;
 }
+
+AMateria::~AMateria()
+{
+
+}
+
 AMateria::AMateria(AMateria const &rhs)
 {
 	*this = rhs;

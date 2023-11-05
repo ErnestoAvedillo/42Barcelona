@@ -49,7 +49,6 @@ int main()
 		delete bob;
 		delete me;
 		delete src;
-		return 0;
 	}
 	{
 		print_title("1. Creating MateriaSource", 

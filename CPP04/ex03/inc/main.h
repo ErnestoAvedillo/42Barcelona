@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  MAIN_H
+#ifndef MAIN_H
 #define MAIN_H
+#include "../inc/ICharacter.hpp"
+#include "../inc/IMateriaSource.hpp"
 #include "../inc/AMateria.hpp"
 #include "../inc/Character.hpp"
 #include "../inc/Cure.hpp"
 #include "../inc/Ice.hpp"
-#include "../inc/ICharacter.hpp"
-#include "../inc/IMateriaSource.hpp"
 #include "../inc/MateriaSource.hpp"
 #include "../inc/colors.h"
 # include <iostream>

@@ -20,9 +20,9 @@ CIAN		:=	\033[1;96m
 
 NAME := animal
 
-SRC := main Character MateriaSource Cure Ice AMateria
+SRC := main AMateria Character Cure Ice MateriaSource 
 
-CLAS := ICharacter Character IMaterialSource MateriaSource Cure Ice AMateria
+CLAS := AMateria Character Cure Ice MateriaSource 
 
 INC := main colors
 

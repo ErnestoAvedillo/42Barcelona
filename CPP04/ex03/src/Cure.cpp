@@ -26,4 +26,3 @@ void Cure::use(ICharacter &rhs)
 {
 	std::cout << " * heals "<< rhs.getName() << "'s wounds *" << std::endl;
 }
-
