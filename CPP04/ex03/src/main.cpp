@@ -33,7 +33,7 @@ void print_title(std::string msg, std::string clr_text, std::string clr_border)
 }
 int main()
 {
-	{
+	/*{
 		IMateriaSource *src = new MateriaSource();
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
@@ -49,11 +49,11 @@ int main()
 		delete bob;
 		delete me;
 		delete src;
-	}
+	}*/
 	{
 		print_title("1. Creating MateriaSource", 
 	GREEN, YELLOW);
-		IMateriaSource *src = new MateriaSource();
+		std::unique_ptr <IMateriaSource> src (new MateriaSource());
 		std::cout << std::endl;
 		std::cout << std::endl;
 
@@ -199,7 +199,8 @@ int main()
 		tmp = src->createMateria("ice");
 		test->equip(tmp);
 		test->unequip(0);
-
+		std::cout << "Material " << tmp->getType() << " is stll in memory " << tmp << std::endl;
+		delete tmp;
 		std::cout << std::endl;
 
 		// ------------------------------------------------------------------------------------ //
@@ -207,10 +208,12 @@ int main()
 		print_title("11. Deleting \"vilma\", \"oktorok\", \"stardust\" and \"lucifer\"", RED, YELLOW);
 
 		print_title("11 -> TEST", RED, YELLOW);
+		test->printMaterias();
 		delete test;
 		std::cout << std::endl;
 
 		print_title("11 -> LUCIFER", RED, YELLOW);
+		lucifer->printMaterias();
 		delete lucifer;
 		std::cout << std::endl;
 
@@ -226,14 +229,14 @@ int main()
 		delete oktorok;
 		std::cout << std::endl;
 
-		print_title("11 -> VILMA", RED, YELLOW);
+		print_title("12 -> VILMA", RED, YELLOW);
 		vilma->printMaterias();
 		vilma->printTrash();
 		delete vilma;
 		std::cout << std::endl;
 
-		print_title("11 -> SRC", RED, YELLOW);
-		delete src;
+		print_title("13 -> SRC", RED, YELLOW);
+//		delete src;
 
 		return (0);
 	}
