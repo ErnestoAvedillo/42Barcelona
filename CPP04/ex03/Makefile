@@ -18,7 +18,7 @@ BLUE		:=	\033[1;94m
 PINK		:=	\033[1;95m
 CIAN		:=	\033[1;96m
 
-NAME := animal
+NAME := materia
 
 SRC := main AMateria Character Cure Ice MateriaSource 
 

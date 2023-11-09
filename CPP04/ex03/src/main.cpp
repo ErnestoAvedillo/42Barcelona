@@ -22,14 +22,14 @@ void print_title(std::string msg, std::string clr_text, std::string clr_border)
 	fill = (size - msg.length()) / 2;
 	odd = msg.length() < FILL ? msg.length() % 2 : 0;
 	std::cout << clr_border;
-	std::cout << "\n " << std::setfill('_') << std::setw(size) << "" << std::endl;
-	std::cout << "|" << std::setfill(' ') << std::setw(size + 1) << "|" << std::endl;
-	std::cout << "|" << std::setfill(' ') << std::setw(size + 1) << "|" << std::endl;
-	std::cout << "|" << std::setfill(' ') << std::setw(fill + odd) << "" << clr_text << msg << clr_border << std::setw(fill + 1) << "|" << std::endl;
-	std::cout << "|" << std::setfill(' ') << std::setw(size + 1) << "|" << std::endl;
-	std::cout << "|" << std::setfill('_') << std::setw(size + 2) << "|\n"
-				<< std::endl;
-	std::cout << RESET;
+//	std::cout << "\n " << std::setfill('_') << std::setw(size) << "" << std::endl;
+//	std::cout << "|" << std::setfill(' ') << std::setw(size + 1) << "|" << std::endl;
+//	std::cout << "|" << std::setfill(' ') << std::setw(size + 1) << "|" << std::endl;
+	std::cout << "|" << std::setfill('*') << std::setw(fill + odd) << "" << clr_text << msg << clr_border << std::setw(fill + 1) << "|";
+//	std::cout << std::endl;
+//	std::cout << "|" << std::setfill(' ') << std::setw(size + 1) << "|" << std::endl;
+//	std::cout << "|" << std::setfill('_') << std::setw(size + 2) << "|\n"<< std::endl;
+	std::cout << RESET << std::endl;
 }
 int main()
 {
@@ -53,7 +53,12 @@ int main()
 	{
 		print_title("1. Creating MateriaSource", 
 	GREEN, YELLOW);
+<<<<<<< HEAD
 		IMateriaSource *src=  new MateriaSource();
+=======
+		// std::unique_ptr <IMateriaSource> src (new MateriaSource());
+		IMateriaSource *src  = new MateriaSource();
+>>>>>>> 5e963e7 (intermediate backup)
 		std::cout << std::endl;
 		std::cout << std::endl;
 
