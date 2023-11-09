@@ -44,9 +44,13 @@ Character::~Character()
 {
 	for (int i = 0; i < MAX_MAT; i++)
 	{
-		if (_materia[i])
-			delete _materia[i];
-			_materia[i] = NULL;
+		if (_materia[i] != NULL)
+		{
+			if (_materia[i]->get_use() == 0)
+				delete _materia[i];
+			else
+				_materia[i]->dec_use();
+		}
 	}
 }
 
@@ -67,6 +71,8 @@ std::string const &Character::getName() const
 void Character::equip(AMateria *m) 
 {
 	_materia[_idx] = m;
+	if (m)
+		_materia[_idx]->inc_use();
 	_idx++;
 	if (_idx == 4)
 		_idx = 0;
@@ -74,6 +80,8 @@ void Character::equip(AMateria *m)
 void Character::unequip(int idx) 
 {
 	_materia[idx] = NULL;
+	if (_materia[idx] !=NULL)
+		_materia[idx]->dec_use();
 }
 void Character::use(int idx, ICharacter &target) 
 {
@@ -91,7 +99,7 @@ void Character::printMaterias()
 	for (int i = 0; i < MAX_MAT; i++)
 	{
 		std::cout << "Materia Nº" << i << " in memory pointer " << _materia[i];
-		if (_materia[i])
+		if (_materia[i] !=  NULL)
 			std::cout << " with name " << _materia[i]->getType();
 		std::cout << "." << std::endl;
 	}

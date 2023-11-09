@@ -14,13 +14,17 @@ MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < MAX_MAT; i++)
 	{
-		delete _list_mat[i];
+		if(_list_mat[i]->get_use() == 0)
+			delete _list_mat[i];
+		else
+			_list_mat[i]->dec_use();
 	}
 }
 
 void MateriaSource::learnMateria(AMateria *rhs)
 {
 	_list_mat[_cur_mat] = rhs;
+	_list_mat[_cur_mat]->inc_use();
 	_cur_mat++;
 	if (_cur_mat == 4)
 	{

@@ -21,7 +21,7 @@ class AMateria
 {
     protected:
         std::string _type;
-
+        int         _usage;
     public:
         AMateria();
         AMateria(std::string const &);
@@ -31,5 +31,10 @@ class AMateria
         std::string const &getType() const; // Returns the materia type
         virtual AMateria* clone() const = 0;
         virtual void use(ICharacter& );
+        void inc_use();
+        void dec_use();
+        int get_use();
+
+
 };
 #endif

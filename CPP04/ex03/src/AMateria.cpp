@@ -15,10 +15,12 @@
 AMateria::AMateria() : _type("void") 
 {
 	std::cout << "Creating " << _type << " AMateria." << std::endl;
+	_usage = 0;
 }
 AMateria::AMateria(std::string const & my_material) : _type(my_material)
 {
 	std::cout << "Creating " << _type << " AMateria." << std::endl;
+	_usage = 0;
 }
 
 AMateria::~AMateria()
@@ -34,6 +36,7 @@ AMateria::AMateria(AMateria const &rhs)
 AMateria &AMateria::operator=(AMateria const &rhs)
 {
 	this->_type = rhs.getType();
+	this->_usage = 0; 
 	std::cout << "Asigning " << _type << " AMateria." << std::endl;
 	return *this;
 }
@@ -45,4 +48,18 @@ std::string const &AMateria::getType() const
 void AMateria::use(ICharacter &)
 {
 	std::cout << "*Orininal message from AMateria " << _type << "*" << std::endl;
+}
+
+void AMateria::inc_use()
+{
+	_usage++;
+}
+
+void AMateria::dec_use()
+{
+	_usage--;
+}
+int AMateria::get_use()
+{
+	return _usage;
 }
