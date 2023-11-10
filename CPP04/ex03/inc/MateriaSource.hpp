@@ -27,7 +27,12 @@ public:
 	MateriaSource();
 	MateriaSource(const std::string&);
 	~MateriaSource();
+	MateriaSource(MateriaSource &);
+	MateriaSource & operator=(MateriaSource &);
 	void learnMateria(AMateria*);
 	AMateria *createMateria(const std::string &);
+	int get_Curmat();
+	AMateria *get_Materia(int);
+	std::string get_Type();
 };
 #endif

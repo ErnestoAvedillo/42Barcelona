@@ -52,12 +52,16 @@ void AMateria::use(ICharacter &)
 
 void AMateria::inc_use()
 {
+	std::cout << "*incremento uso AMateria " << _type << " * " << _usage << "->";
 	_usage++;
+	std::cout << _usage << std::endl;
 }
 
 void AMateria::dec_use()
 {
+	std::cout << "*decremento uso AMateria " << _type << " * " << _usage << "->";
 	_usage--;
+	std::cout << _usage << std::endl;
 }
 int AMateria::get_use()
 {

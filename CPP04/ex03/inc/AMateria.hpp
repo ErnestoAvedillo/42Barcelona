@@ -20,8 +20,8 @@ class AMateria;
 class AMateria
 {
     protected:
-        std::string _type;
-        int         _usage;
+        std::string     _type;
+        unsigned int    _usage;
     public:
         AMateria();
         AMateria(std::string const &);
