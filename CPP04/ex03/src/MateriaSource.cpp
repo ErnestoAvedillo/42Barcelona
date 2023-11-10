@@ -45,12 +45,15 @@ void MateriaSource::learnMateria(AMateria *rhs)
 {
 	for (int i = 0; i < MAX_MAT; i++)
 	{
-		if(_list_mat[i] == NULL)
-		{
-			_list_mat[i] = rhs;
-			_list_mat[i]->inc_use();
-			return;
-		}
+		_list_mat[_cur_mat]->dec_use();
+		_list_mat[_cur_mat] = rhs;
+	}
+	if (rhs)
+		_list_mat[_cur_mat]->inc_use();
+	_cur_mat++;
+	if (_cur_mat == 4)
+	{
+		_cur_mat = 0;
 	}
 }
 
@@ -62,6 +65,31 @@ AMateria *MateriaSource::createMateria(const std::string &str)
 			return _list_mat[i]->clone();
 	}
 	return (0);
+}
+
+AMateria *MateriaSource::get_Materia(int i)
+{
+	return _list_mat[i];
+}
+
+std::string MateriaSource::get_Type()
+{
+	return  _type;
+}
+
+AMateria *MateriaSource::get_Materia(int i)
+{
+	return _list_mat[i];
+}
+
+std::string MateriaSource::get_Type()
+{
+	return  _type;
+}
+
+int MateriaSource::get_Curmat()
+{
+	return _cur_mat;
 }
 
 AMateria *MateriaSource::get_Materia(int i)

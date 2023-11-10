@@ -28,6 +28,8 @@ public:
 	~MateriaSource();
 	MateriaSource(MateriaSource &);
 	MateriaSource & operator=(MateriaSource &);
+	MateriaSource(MateriaSource &);
+	MateriaSource & operator=(MateriaSource &);
 	void learnMateria(AMateria*);
 	AMateria *createMateria(const std::string &);
 	AMateria *get_Materia(int);
