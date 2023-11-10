@@ -23,8 +23,13 @@ MateriaSource::~MateriaSource()
 
 void MateriaSource::learnMateria(AMateria *rhs)
 {
-	_list_mat[_cur_mat] = rhs;
-	_list_mat[_cur_mat]->inc_use();
+	if(_list_mat[_cur_mat])
+	{
+		_list_mat[_cur_mat]->dec_use();
+		_list_mat[_cur_mat] = rhs;
+	}
+	if (rhs)
+		_list_mat[_cur_mat]->inc_use();
 	_cur_mat++;
 	if (_cur_mat == 4)
 	{

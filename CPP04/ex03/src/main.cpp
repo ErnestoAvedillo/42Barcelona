@@ -53,12 +53,7 @@ int main()
 	{
 		print_title("1. Creating MateriaSource", 
 	GREEN, YELLOW);
-<<<<<<< HEAD
 		IMateriaSource *src=  new MateriaSource();
-=======
-		// std::unique_ptr <IMateriaSource> src (new MateriaSource());
-		IMateriaSource *src  = new MateriaSource();
->>>>>>> 5e963e7 (intermediate backup)
 		std::cout << std::endl;
 		std::cout << std::endl;
 
