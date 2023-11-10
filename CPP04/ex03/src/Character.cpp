@@ -38,6 +38,8 @@ Character::Character(std::string &name) : _name(name)
 
 Character::Character(Character &rhs)
 {
+	for (int i = 0; i < MAX_MAT; i++)
+		_materia[i] = NULL;
 	*this = rhs;
 }
 Character::~Character()
@@ -46,10 +48,11 @@ Character::~Character()
 	{
 		if (_materia[i] != NULL)
 		{
-			if (_materia[i]->get_use() == 0)
-				delete _materia[i];
-			else
+			if (_materia[i]->get_use() == 1)
+			{
 				_materia[i]->dec_use();
+				delete _materia[i];
+			}
 		}
 	}
 }
@@ -60,6 +63,15 @@ Character &Character::operator=(Character &rhs)
 	for (int i = 0; i < MAX_MAT; i++)
 	{
 		_materia[i] = rhs.getMateria(i);
+		if (_materia[i] != NULL)
+		{
+			if(_materia[i]->get_use() == 1)
+				_materia[i]->dec_use();
+			else
+				delete _materia[i];
+		}
+		if (_materia[i] != NULL)
+			_materia[i]->inc_use();
 	}
 	_idx = 0;
 	return *this;
@@ -70,18 +82,28 @@ std::string const &Character::getName() const
 }
 void Character::equip(AMateria *m) 
 {
-	_materia[_idx] = m;
-	if (m)
-		_materia[_idx]->inc_use();
-	_idx++;
-	if (_idx == 4)
-		_idx = 0;
+	if (m == NULL)
+		return;
+	for (int i = 0; i < MAX_MAT; i++)
+	{
+		if (_materia[i]== NULL)
+		{
+			_materia[i] = m;
+			_materia[i]->inc_use();
+		}
+	}
 }
 void Character::unequip(int idx) 
 {
-	_materia[idx] = NULL;
 	if (_materia[idx] !=NULL)
+	{
+		_materia[idx] = NULL;
 		_materia[idx]->dec_use();
+		if (_materia[idx]->get_use() == 0)
+			std::cout << "materia " << _materia[idx]->getType() << " con untero ";
+			std::cout  << _materia[idx] << " tiene uso 0 y deberia liberarse." << std::endl ;
+	}
+
 }
 void Character::use(int idx, ICharacter &target) 
 {

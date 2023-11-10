@@ -14,30 +14,30 @@
 
 AMateria::AMateria() : _type("void") 
 {
-	std::cout << "Creating " << _type << " AMateria." << std::endl;
+	std::cout << "Creating " << _type << " AMateria in pointer " << this << std::endl;
 	_usage = 0;
 }
 AMateria::AMateria(std::string const & my_material) : _type(my_material)
 {
-	std::cout << "Creating " << _type << " AMateria." << std::endl;
+	std::cout << "Creating " << _type << " AMateria in pointer " << this << std::endl;
 	_usage = 0;
 }
 
 AMateria::~AMateria()
 {
-
+	std::cout << "deleting AMateria with ptr " << this << std::endl;
 }
 
 AMateria::AMateria(AMateria const &rhs)
 {
 	*this = rhs;
-	std::cout << "Creating " << _type << " AMateria." << std::endl;
+	std::cout << "Creating " << _type << " AMateria in pointer " << this <<std::endl;
 }
 AMateria &AMateria::operator=(AMateria const &rhs)
 {
 	this->_type = rhs.getType();
 	this->_usage = 0; 
-	std::cout << "Asigning " << _type << " AMateria." << std::endl;
+	std::cout << "Asigning " << _type << " AMateria in pointer " << this <<std::endl;
 	return *this;
 }
 std::string const &AMateria::getType() const
@@ -52,12 +52,16 @@ void AMateria::use(ICharacter &)
 
 void AMateria::inc_use()
 {
+	std::cout << "*incremento uso AMateria " << _type << " * pointer " << this << " * " << _usage << "->";
 	_usage++;
+	std::cout << _usage << std::endl;
 }
 
 void AMateria::dec_use()
 {
+	std::cout << "*decremento uso AMateria " << _type << " * " << this << " * " << _usage << "->";
 	_usage--;
+	std::cout << _usage << std::endl;
 }
 int AMateria::get_use()
 {

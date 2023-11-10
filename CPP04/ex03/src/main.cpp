@@ -108,6 +108,7 @@ int main()
 		tmp = src->createMateria("ice");
 		oktorok->equip(tmp);
 		std::cout << std::endl;
+		oktorok->printMaterias();
 
 		// ------------------------------------------------------------------------------------ //
 
@@ -236,7 +237,7 @@ int main()
 		std::cout << std::endl;
 
 		print_title("13 -> SRC", RED, YELLOW);
-//		delete src;
+		delete src;
 
 		return (0);
 	}

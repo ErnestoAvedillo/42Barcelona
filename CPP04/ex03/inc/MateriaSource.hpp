@@ -21,13 +21,16 @@ class MateriaSource : public IMateriaSource
 private:
 	std::string	_type;
 	AMateria	*_list_mat[4];
-	int _cur_mat;
 
 public:
 	MateriaSource();
 	MateriaSource(const std::string&);
 	~MateriaSource();
+	MateriaSource(MateriaSource &);
+	MateriaSource & operator=(MateriaSource &);
 	void learnMateria(AMateria*);
 	AMateria *createMateria(const std::string &);
+	AMateria *get_Materia(int);
+	std::string get_Type();
 };
 #endif
