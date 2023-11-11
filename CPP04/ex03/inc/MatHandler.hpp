@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   MatHandler.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,35 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CHARACTER_HPP
-#define __CHARACTER_HPP
-#include "../inc/ICharacter.hpp"
+#ifndef __MATHANDLER_HPP
+#define __MATHANDLER_HPP
+#include <iostream>
+#include "../inc/colors.h"
 #include "../inc/AMateria.hpp"
-#include "../inc/MatHandler.hpp"
 
-#define MAX_MAT 4
-
-class Character: public ICharacter
+class MatHandler
 {
 	private:
-		std::string _name;
-		AMateria *_materia[MAX_MAT];
-		int _idx;
-		MatHandler *_handler;
-
+		MatHandler	*_prev;
+		MatHandler	*_next;
+		AMateria	*_mat_point;
 	public:
-		Character();
-		Character(std::string);
-		Character(std::string &);
-		Character(Character &);
-		~Character();
-		Character &operator=(Character &);
-		std::string const &getName() const;
-		void equip(AMateria *m);
-		void unequip(int idx);
-		void use(int idx, ICharacter &target);
-		AMateria *getMateria(int idx);
-		void printMaterias();
-		void printTrash();
+	MatHandler();
+	MatHandler(MatHandler&);
+	MatHandler &operator=(MatHandler&);
+	~MatHandler();
+	void Add_Mat(AMateria *rsh);
+	MatHandler *get_handler(AMateria*);
+	MatHandler *get_next();
+	void set_next(MatHandler *rhs);
+	MatHandler *get_prev();
+	void set_prev(MatHandler *rhs);
+	AMateria *get_mat();
+	void set_mat(AMateria * rhs);
 };
+
 #endif

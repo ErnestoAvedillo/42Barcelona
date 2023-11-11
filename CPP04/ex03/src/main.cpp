@@ -21,14 +21,9 @@ void print_title(std::string msg, std::string clr_text, std::string clr_border)
 	size = msg.length() >= FILL ? msg.length() + 10 : FILL;
 	fill = (size - msg.length()) / 2;
 	odd = msg.length() < FILL ? msg.length() % 2 : 0;
-	std::cout << clr_border;
-//	std::cout << "\n " << std::setfill('_') << std::setw(size) << "" << std::endl;
-//	std::cout << "|" << std::setfill(' ') << std::setw(size + 1) << "|" << std::endl;
-//	std::cout << "|" << std::setfill(' ') << std::setw(size + 1) << "|" << std::endl;
-	std::cout << "|" << std::setfill('*') << std::setw(fill + odd) << "" << clr_text << msg << clr_border << std::setw(fill + 1) << "|";
-//	std::cout << std::endl;
-//	std::cout << "|" << std::setfill(' ') << std::setw(size + 1) << "|" << std::endl;
-//	std::cout << "|" << std::setfill('_') << std::setw(size + 2) << "|\n"<< std::endl;
+	std::cout << clr_border << "|" ;
+	std::cout << std::setfill('*') << std::setw(fill + odd) << "";
+	std::cout << clr_text << msg << clr_border << std::setw(fill + 1) << "|";
 	std::cout << RESET << std::endl;
 }
 int main()
@@ -59,22 +54,21 @@ int main()
 
 		// ------------------------------------------------------------------------------------ //
 
-		print_title("2. \"src\" learning 5 materias", 
-	GREEN, YELLOW);
+		print_title("2. \"src\" learning 5 materias", GREEN, YELLOW);
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
 
 		std::cout << std::endl;
-		Ice *mat = new Ice();
-		src->learnMateria(mat);
+		Ice *mater = new Ice();
+		src->learnMateria(mater);
 		std::cout << std::endl;
+		dynamic_cast<MateriaSource*>(src)->printMaterias();
 
 		// ------------------------------------------------------------------------------------ //
 
-		print_title("3. Creating Character \"vilma\" and \"oktorok\"", 
-	GREEN, YELLOW);
+		print_title("3. Creating Character \"vilma\" and \"oktorok\"", GREEN, YELLOW);
 		Character *vilma = new Character("vilma");
 		vilma->printMaterias();
 		std::cout << std::endl;
@@ -85,8 +79,7 @@ int main()
 
 		// ------------------------------------------------------------------------------------ //
 
-		print_title("4. \"vilma\" trying to equip 5 materias and \"oktorok\" one materia", 
-	GREEN, YELLOW);
+		print_title("4. \"vilma\" trying to equip 5 materias and \"oktorok\" one materia", GREEN, YELLOW);
 		vilma->equip(NULL);
 
 		AMateria *tmp;
@@ -110,7 +103,7 @@ int main()
 		std::cout << std::endl;
 		oktorok->printMaterias();
 
-		// ------------------------------------------------------------------------------------ //
+/*		// ------------------------------------------------------------------------------------ //
 
 		print_title("5. Testing Character Assignation overload \"vilma = oktorok\" for deep copy and changed vilma afterwards", 
 	GREEN, YELLOW);
@@ -223,7 +216,7 @@ int main()
 		stardust->printTrash();
 		delete stardust;
 		std::cout << std::endl;
-
+*/
 		print_title("11 -> OKTOROK", RED, YELLOW);
 		oktorok->printMaterias();
 		oktorok->printTrash();

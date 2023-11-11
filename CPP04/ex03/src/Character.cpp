@@ -19,14 +19,19 @@ Character::Character(): _name("void")
 		_materia[i] = NULL;
 	}
 	_idx = 0;
-}Character::Character(std::string name): _name(name)
+	_handler = new MatHandler ();
+}
+
+Character::Character(std::string name): _name(name)
 {
 	for (int i = 0; i < MAX_MAT; i++)
 	{
 		_materia[i] = NULL;
 	}
 	_idx = 0;
+	_handler = new MatHandler ();
 }
+
 Character::Character(std::string &name) : _name(name)
 {
 	for (int i = 0; i < MAX_MAT; i++)
@@ -34,6 +39,7 @@ Character::Character(std::string &name) : _name(name)
 		_materia[i] = NULL;
 	}
 	_idx = 0;
+	_handler = new MatHandler ();
 }
 
 Character::Character(Character &rhs)
@@ -48,13 +54,10 @@ Character::~Character()
 	{
 		if (_materia[i] != NULL)
 		{
-			if (_materia[i]->get_use() == 1)
-			{
-				_materia[i]->dec_use();
-				delete _materia[i];
-			}
+			_materia[i]->dec_use();
 		}
 	}
+	delete _handler;
 }
 
 Character &Character::operator=(Character &rhs)
@@ -65,10 +68,8 @@ Character &Character::operator=(Character &rhs)
 		_materia[i] = rhs.getMateria(i);
 		if (_materia[i] != NULL)
 		{
-			if(_materia[i]->get_use() == 1)
+			if(_materia[i]->get_use() > 0)
 				_materia[i]->dec_use();
-			else
-				delete _materia[i];
 		}
 		if (_materia[i] != NULL)
 			_materia[i]->inc_use();
@@ -84,12 +85,14 @@ void Character::equip(AMateria *m)
 {
 	if (m == NULL)
 		return;
+	_handler->Add_Mat(m);
 	for (int i = 0; i < MAX_MAT; i++)
 	{
 		if (_materia[i]== NULL)
 		{
 			_materia[i] = m;
 			_materia[i]->inc_use();
+			return;
 		}
 	}
 }
@@ -99,9 +102,6 @@ void Character::unequip(int idx)
 	{
 		_materia[idx] = NULL;
 		_materia[idx]->dec_use();
-		if (_materia[idx]->get_use() == 0)
-			std::cout << "materia " << _materia[idx]->getType() << " con untero ";
-			std::cout  << _materia[idx] << " tiene uso 0 y deberia liberarse." << std::endl ;
 	}
 
 }

@@ -13,3 +13,4 @@ checker_linux
 fract_ol/entrega/mlx/*
 fract_ol/entrega/mlx1/*
 fract_ol/entrega/mlx2/*
+*.dSYM

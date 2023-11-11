@@ -20,9 +20,9 @@ CIAN		:=	\033[1;96m
 
 NAME := materia
 
-SRC := main AMateria Character Cure Ice MateriaSource 
+SRC := main AMateria Character Cure Ice MateriaSource MatHandler
 
-CLAS := AMateria Character Cure Ice MateriaSource 
+CLAS := AMateria Character Cure Ice MateriaSource MatHandler
 
 INC := main colors
 

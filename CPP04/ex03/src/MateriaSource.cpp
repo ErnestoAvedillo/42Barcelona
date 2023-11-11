@@ -20,7 +20,7 @@ MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < MAX_MAT; i++)
 	{
-		if(_list_mat[i]->get_use() == 0)
+		if(_list_mat[i]->get_use() == 1)
 			delete _list_mat[i];
 		else
 			_list_mat[i]->dec_use();
@@ -43,18 +43,19 @@ MateriaSource &MateriaSource::operator=(MateriaSource &rhs)
 
 void MateriaSource::learnMateria(AMateria *rhs)
 {
+	if (rhs == NULL)
+		return;
 	for (int i = 0; i < MAX_MAT; i++)
 	{
-		_list_mat[_cur_mat]->dec_use();
-		_list_mat[_cur_mat] = rhs;
+		if(_list_mat[i] == NULL)
+		{
+			_list_mat[i] = rhs;
+			_list_mat[i]->inc_use();
+			return;
+		}
 	}
-	if (rhs)
-		_list_mat[_cur_mat]->inc_use();
-	_cur_mat++;
-	if (_cur_mat == 4)
-	{
-		_cur_mat = 0;
-	}
+	if (rhs->get_use() <= 1)
+		delete rhs;
 }
 
 AMateria *MateriaSource::createMateria(const std::string &str)
@@ -77,27 +78,12 @@ std::string MateriaSource::get_Type()
 	return  _type;
 }
 
-AMateria *MateriaSource::get_Materia(int i)
+void MateriaSource::printMaterias()
 {
-	return _list_mat[i];
-}
-
-std::string MateriaSource::get_Type()
-{
-	return  _type;
-}
-
-int MateriaSource::get_Curmat()
-{
-	return _cur_mat;
-}
-
-AMateria *MateriaSource::get_Materia(int i)
-{
-	return _list_mat[i];
-}
-
-std::string MateriaSource::get_Type()
-{
-	return  _type;
+	std::cout << "List of materials in " << _type << std::endl;
+	for (int i = 0; i < MAX_MAT; i++)
+	{
+		if (_list_mat[i] != NULL)
+			std::cout << "Material name " << _list_mat[i]->getType() << " in pointer " <<  _list_mat[i] << std::endl;
+	}
 }
