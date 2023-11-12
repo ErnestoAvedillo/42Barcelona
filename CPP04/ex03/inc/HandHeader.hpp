@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*   HandHEeader.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,25 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ICHARACTER_HPP
-#define __ICHARACTER_HPP
+#ifndef __HANDHEADER_HPP
+#define __HANDHEADER_HPP
 #include <iostream>
 #include "../inc/colors.h"
-
-class ICharacter;
+#include "../inc/MatHandler.hpp"
 #include "../inc/AMateria.hpp"
 
-class ICharacter
+class HandHeader
 {
 	private:
-
+		MatHandler *_first;
+		MatHandler *_last;
 	public:
-		virtual ~ICharacter() {}
-		virtual std::string const &getName() const = 0;
-		virtual void equip(AMateria *m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter &target) = 0;
-		virtual void printMaterias() = 0;
-		virtual void printHandler() = 0;
+		HandHeader();
+		HandHeader(HandHeader&);
+		~HandHeader();
+		HandHeader &operator=(HandHeader&);
+		MatHandler *get_first();
+		MatHandler *get_last();
+		void set_first(AMateria *);
+		void set_last(AMateria *);
+		void rm_mat(AMateria *rhs);
 };
 #endif

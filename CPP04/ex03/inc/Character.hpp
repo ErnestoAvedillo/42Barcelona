@@ -14,7 +14,7 @@
 #define __CHARACTER_HPP
 #include "../inc/ICharacter.hpp"
 #include "../inc/AMateria.hpp"
-#include "../inc/MatHandler.hpp"
+#include "../inc/HandHeader.hpp"
 
 #define MAX_MAT 4
 
@@ -23,8 +23,7 @@ class Character: public ICharacter
 	private:
 		std::string _name;
 		AMateria *_materia[MAX_MAT];
-		int _idx;
-		MatHandler *_handler;
+		HandHeader *_handler;
 
 	public:
 		Character();
@@ -34,11 +33,14 @@ class Character: public ICharacter
 		~Character();
 		Character &operator=(Character &);
 		std::string const &getName() const;
+		void setName(std::string const &); 
 		void equip(AMateria *m);
 		void unequip(int idx);
 		void use(int idx, ICharacter &target);
 		AMateria *getMateria(int idx);
+		HandHeader *getHandler();
 		void printMaterias();
-		void printTrash();
+		void printHandler();
+
 };
 #endif

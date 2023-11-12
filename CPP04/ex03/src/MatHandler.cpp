@@ -35,28 +35,10 @@ MatHandler &MatHandler::operator=(MatHandler &rhs)
 }
 MatHandler::~MatHandler()
 {
-	_prev = NULL;
-	MatHandler *tmp = this->get_next();
-	AMateria *MatTmp = tmp->get_mat();
-	if (MatTmp->get_use() == 0)
-		delete MatTmp;
-	delete tmp;
+	std::cout << "Delete handler " << this << "With material " << _mat_point->getType();
+	std::cout << " and Pointer " _mat_point << std::endl;
 }
-void MatHandler::Add_Mat(AMateria *rsh)
-{
-	MatHandler *tmp = this;
-	if (_mat_point == NULL)
-		_mat_point = rsh;
-	else
-	{
-		while (tmp->get_next())
-			tmp = tmp->get_next();
-		MatHandler *tmp2 = new MatHandler;
-		tmp->set_next(tmp2);
-		tmp2->set_prev(tmp);
-		tmp2->set_mat(rsh);
-	}
-}
+
 MatHandler *MatHandler::get_handler(AMateria *rsh)
 {
 	MatHandler *tmp = this;

@@ -27,7 +27,6 @@ class MatHandler
 	MatHandler(MatHandler&);
 	MatHandler &operator=(MatHandler&);
 	~MatHandler();
-	void Add_Mat(AMateria *rsh);
 	MatHandler *get_handler(AMateria*);
 	MatHandler *get_next();
 	void set_next(MatHandler *rhs);
@@ -35,6 +34,7 @@ class MatHandler
 	void set_prev(MatHandler *rhs);
 	AMateria *get_mat();
 	void set_mat(AMateria * rhs);
+	void rm_mat(AMateria * rhs);
 };
 
 #endif

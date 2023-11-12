@@ -18,8 +18,7 @@ Character::Character(): _name("void")
 	{
 		_materia[i] = NULL;
 	}
-	_idx = 0;
-	_handler = new MatHandler ();
+	_handler = new HandHeader();
 }
 
 Character::Character(std::string name): _name(name)
@@ -28,8 +27,7 @@ Character::Character(std::string name): _name(name)
 	{
 		_materia[i] = NULL;
 	}
-	_idx = 0;
-	_handler = new MatHandler ();
+	_handler = new HandHeader ();
 }
 
 Character::Character(std::string &name) : _name(name)
@@ -38,14 +36,15 @@ Character::Character(std::string &name) : _name(name)
 	{
 		_materia[i] = NULL;
 	}
-	_idx = 0;
-	_handler = new MatHandler ();
+	_handler = new HandHeader ();
 }
 
 Character::Character(Character &rhs)
 {
+	_name = rhs.getName();
 	for (int i = 0; i < MAX_MAT; i++)
 		_materia[i] = NULL;
+	_handler = new HandHeader ();
 	*this = rhs;
 }
 Character::~Character()
@@ -62,30 +61,38 @@ Character::~Character()
 
 Character &Character::operator=(Character &rhs)
 {
-	this->_name = rhs.getName();
 	for (int i = 0; i < MAX_MAT; i++)
 	{
-		_materia[i] = rhs.getMateria(i);
 		if (_materia[i] != NULL)
 		{
 			if(_materia[i]->get_use() > 0)
 				_materia[i]->dec_use();
 		}
+		_materia[i] = rhs.getMateria(i);
 		if (_materia[i] != NULL)
+		{
 			_materia[i]->inc_use();
+			_handler->set_last(_materia[i]);
+		}
 	}
-	_idx = 0;
 	return *this;
 }
+
 std::string const &Character::getName() const 
 {
 	return _name;
 }
+
+void Character::setName(std::string const &MyName) 
+{
+	_name = MyName;
+}
+
 void Character::equip(AMateria *m) 
 {
 	if (m == NULL)
 		return;
-	_handler->Add_Mat(m);
+	_handler->set_last(m);
 	for (int i = 0; i < MAX_MAT; i++)
 	{
 		if (_materia[i]== NULL)
@@ -100,8 +107,10 @@ void Character::unequip(int idx)
 {
 	if (_materia[idx] !=NULL)
 	{
-		_materia[idx] = NULL;
 		_materia[idx]->dec_use();
+		if (_materia[idx]->get_use() > 0)
+			_handler.rm_mat(_materia[idx]);
+		_materia[idx] = NULL;
 	}
 
 }
@@ -118,14 +127,31 @@ AMateria *Character::getMateria(int idx)
 
 void Character::printMaterias()
 {
+	std::cout << BLUE "Materials in " << _name << RESET << std::endl;
+
 	for (int i = 0; i < MAX_MAT; i++)
 	{
 		std::cout << "Materia Nº" << i << " in memory pointer " << _materia[i];
 		if (_materia[i] !=  NULL)
-			std::cout << " with name " << _materia[i]->getType();
+			std::cout << " with name " << _materia[i]->getType() << " used " << _materia[i]->get_use() ;
 		std::cout << "." << std::endl;
 	}
 }
 
-void Character::printTrash(){}
+void Character::printHandler()
+{
+	std::cout << BLUE "Materials in handler " << _name << " pointer " << _handler << RESET << std::endl;
+	MatHandler *tmp;
+	AMateria *MatTemp;
+	tmp = _handler->get_first();
+	while (tmp != NULL)
+	{
+		MatTemp = tmp->get_mat();
+		std::cout << " En handler " << tmp <<" Material " <<  MatTemp->getType(); 
+		std::cout << " puntero " << MatTemp << " used " << MatTemp->get_use();
+		std::cout << std::endl;
+		tmp = tmp->get_next();
+	}
+	
+}
 

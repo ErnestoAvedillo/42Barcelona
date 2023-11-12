@@ -14,16 +14,9 @@
 
 void print_title(std::string msg, std::string clr_text, std::string clr_border)
 {
-	int fill;
-	int odd;
-	int size;
-
-	size = msg.length() >= FILL ? msg.length() + 10 : FILL;
-	fill = (size - msg.length()) / 2;
-	odd = msg.length() < FILL ? msg.length() % 2 : 0;
 	std::cout << clr_border << "|" ;
-	std::cout << std::setfill('*') << std::setw(fill + odd) << "";
-	std::cout << clr_text << msg << clr_border << std::setw(fill + 1) << "|";
+	std::cout << std::setfill('*') << std::setw(5) << "";
+	std::cout << clr_text << msg << clr_border << std::setw(5) << "|";
 	std::cout << RESET << std::endl;
 }
 int main()
@@ -46,8 +39,7 @@ int main()
 		delete src;
 	}*/
 	{
-		print_title("1. Creating MateriaSource", 
-	GREEN, YELLOW);
+		print_title("1. Creating MateriaSource", GREEN, YELLOW);
 		IMateriaSource *src=  new MateriaSource();
 		std::cout << std::endl;
 		std::cout << std::endl;
@@ -103,7 +95,7 @@ int main()
 		std::cout << std::endl;
 		oktorok->printMaterias();
 
-/*		// ------------------------------------------------------------------------------------ //
+		// ------------------------------------------------------------------------------------ //
 
 		print_title("5. Testing Character Assignation overload \"vilma = oktorok\" for deep copy and changed vilma afterwards", 
 	GREEN, YELLOW);
@@ -125,6 +117,7 @@ int main()
 
 		vilma->printMaterias();
 		Character *stardust = new Character(*vilma);
+		stardust->setName("stardust");
 		stardust->printMaterias();
 
 		tmp = src->createMateria("ice");
@@ -138,7 +131,7 @@ int main()
 
 		std::cout << std::endl;
 
-		// ------------------------------------------------------------------------------------ //
+/*		// ------------------------------------------------------------------------------------ //
 
 		print_title("7. \"vilma\" using all equiped materias on \"oktorok\" ", 
 	GREEN, YELLOW);
@@ -179,7 +172,7 @@ int main()
 		lucifer->equip(ice);
 
 		lucifer->printMaterias();
-		lucifer->printTrash();
+		lucifer->printHandler();
 
 		std::cout << std::endl;
 
@@ -210,22 +203,22 @@ int main()
 		lucifer->printMaterias();
 		delete lucifer;
 		std::cout << std::endl;
-
+*/
 		print_title("11 -> STARDUST", RED, YELLOW);
 		stardust->printMaterias();
-		stardust->printTrash();
+		stardust->printHandler();
 		delete stardust;
 		std::cout << std::endl;
-*/
+
 		print_title("11 -> OKTOROK", RED, YELLOW);
 		oktorok->printMaterias();
-		oktorok->printTrash();
+		oktorok->printHandler();
 		delete oktorok;
 		std::cout << std::endl;
 
 		print_title("12 -> VILMA", RED, YELLOW);
 		vilma->printMaterias();
-		vilma->printTrash();
+		vilma->printHandler();
 		delete vilma;
 		std::cout << std::endl;
 
