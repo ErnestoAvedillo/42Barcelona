@@ -29,12 +29,12 @@ HandHeader::~HandHeader()
 	MatHandler *tmp2;
 	while (tmp != NULL)
 	{
-		tmp->set_prev(_prev) = NULL;
+		tmp->set_prev(NULL);
 		AMateria *MatTmp = tmp->get_mat();
-		if (MatTmp->get_use() == 0)
-			delete MatTmp;
 		tmp2 = tmp->get_next();
 		delete tmp;
+		if (MatTmp->get_use() == 0)
+			delete MatTmp;
 		tmp = tmp2;
 	}
 }
@@ -86,24 +86,19 @@ void HandHeader::rm_mat(AMateria *rhs)
 	MatHandler *tmp1;
 	MatHandler *tmp2;
 	tmp = _first;
-	while (tmp->get_mat() != rhs)
+	while (tmp != NULL && tmp->get_mat() != rhs)
 		tmp = tmp->get_next();
-	if (tmp = NULL)
+	if (tmp == NULL)
 		return;
 	tmp1 = tmp->get_prev();
 	tmp2= tmp->get_next();
-	tmp1->set_next(tmp2);
-	tmp2->set_prev(tmp1);
+	if (tmp1 != NULL)
+		tmp1->set_next(tmp2);
+	else
+		_first = tmp2;
+	if (tmp2 != NULL)
+		tmp2->set_prev(tmp1);
+	else
+		_last = tmp1;
 	delete tmp;
 }
-void rm_mat(AMateria * rhs)
-{
-	MatHandler *tmp;
-	MatHandler *tmp2;
-	tmp = _prev;
-	tmp2= -next;
-	tmp->set_next(tmp2);
-	tmp2->set_prev(tmp);
-	
-}
-

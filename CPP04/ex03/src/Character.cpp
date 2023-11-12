@@ -67,6 +67,8 @@ Character &Character::operator=(Character &rhs)
 		{
 			if(_materia[i]->get_use() > 0)
 				_materia[i]->dec_use();
+			if (_materia[i]->get_use() > 0)
+				_handler->rm_mat(_materia[i]);
 		}
 		_materia[i] = rhs.getMateria(i);
 		if (_materia[i] != NULL)
@@ -109,7 +111,7 @@ void Character::unequip(int idx)
 	{
 		_materia[idx]->dec_use();
 		if (_materia[idx]->get_use() > 0)
-			_handler.rm_mat(_materia[idx]);
+			_handler->rm_mat(_materia[idx]);
 		_materia[idx] = NULL;
 	}
 

@@ -88,12 +88,14 @@ int main()
 
 		std::cout << std::endl;
 		vilma->printMaterias();
+		vilma->printHandler();
 
 		std::cout << std::endl;
 		tmp = src->createMateria("ice");
 		oktorok->equip(tmp);
 		std::cout << std::endl;
 		oktorok->printMaterias();
+		oktorok->printHandler();
 
 		// ------------------------------------------------------------------------------------ //
 
@@ -104,10 +106,12 @@ int main()
 		vilma->unequip(0);
 		std::cout << "VILMA" << std::endl;
 		vilma->printMaterias();
+		vilma->printHandler();
 		std::cout << std::endl;
 
 		std::cout << "OKTOROK" << std::endl;
 		oktorok->printMaterias();
+		oktorok->printHandler();
 		std::cout << std::endl;
 
 		// ------------------------------------------------------------------------------------ //
@@ -116,22 +120,26 @@ int main()
 	GREEN, YELLOW);
 
 		vilma->printMaterias();
+		vilma->printHandler();
+
 		Character *stardust = new Character(*vilma);
 		stardust->setName("stardust");
 		stardust->printMaterias();
+		stardust->printHandler();
 
 		tmp = src->createMateria("ice");
 		vilma->equip(tmp);
 		std::cout << "VILMA" << std::endl;
 		vilma->printMaterias();
+		vilma->printHandler();
 		std::cout << std::endl;
 
 		std::cout << "STARDUST" << std::endl;
 		stardust->printMaterias();
-
+		stardust->printHandler();
 		std::cout << std::endl;
 
-/*		// ------------------------------------------------------------------------------------ //
+		// ------------------------------------------------------------------------------------ //
 
 		print_title("7. \"vilma\" using all equiped materias on \"oktorok\" ", 
 	GREEN, YELLOW);
@@ -157,6 +165,8 @@ int main()
 		print_title("9. New character \"lucifer\" equipping and unequipping materias", 
 	GREEN, YELLOW);
 		ICharacter *lucifer = new Character("lucifer");
+		lucifer->printMaterias();
+		lucifer->printHandler();
 		AMateria *cure = new Cure;
 		AMateria *ice = new Ice;
 
@@ -175,7 +185,7 @@ int main()
 		lucifer->printHandler();
 
 		std::cout << std::endl;
-
+/*
 		// ------------------------------------------------------------------------------------ //
 
 		print_title("10. Testing if unequiped materia is freed", 
@@ -198,12 +208,12 @@ int main()
 		test->printMaterias();
 		delete test;
 		std::cout << std::endl;
-
+*/
 		print_title("11 -> LUCIFER", RED, YELLOW);
 		lucifer->printMaterias();
 		delete lucifer;
 		std::cout << std::endl;
-*/
+
 		print_title("11 -> STARDUST", RED, YELLOW);
 		stardust->printMaterias();
 		stardust->printHandler();
