@@ -32,6 +32,8 @@ HandHeader::~HandHeader()
 		tmp->set_prev(NULL);
 		AMateria *MatTmp = tmp->get_mat();
 		tmp2 = tmp->get_next();
+		if (tmp2 == tmp)
+			tmp2 = NULL;
 		delete tmp;
 		if (MatTmp->get_use() == 0)
 			delete MatTmp;
@@ -101,4 +103,17 @@ void HandHeader::rm_mat(AMateria *rhs)
 	else
 		_last = tmp1;
 	delete tmp;
+}
+
+void HandHeader::add_mat(AMateria *rhs)
+{
+	MatHandler *tmp;
+	tmp = _first;
+	while (tmp != NULL)
+	{
+		if (tmp->get_mat() == rhs)
+			return;
+		tmp = tmp->get_next();
+	}	
+	this->set_last(rhs);
 }

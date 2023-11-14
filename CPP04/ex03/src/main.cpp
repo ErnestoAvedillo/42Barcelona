@@ -185,7 +185,7 @@ int main()
 		lucifer->printHandler();
 
 		std::cout << std::endl;
-/*
+
 		// ------------------------------------------------------------------------------------ //
 
 		print_title("10. Testing if unequiped materia is freed", 
@@ -208,9 +208,10 @@ int main()
 		test->printMaterias();
 		delete test;
 		std::cout << std::endl;
-*/
+
 		print_title("11 -> LUCIFER", RED, YELLOW);
 		lucifer->printMaterias();
+		lucifer->printHandler();
 		delete lucifer;
 		std::cout << std::endl;
 

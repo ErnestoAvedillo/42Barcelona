@@ -74,7 +74,7 @@ Character &Character::operator=(Character &rhs)
 		if (_materia[i] != NULL)
 		{
 			_materia[i]->inc_use();
-			_handler->set_last(_materia[i]);
+			_handler->add_mat(_materia[i]);
 		}
 	}
 	return *this;
@@ -94,16 +94,24 @@ void Character::equip(AMateria *m)
 {
 	if (m == NULL)
 		return;
-	_handler->set_last(m);
+	for (int i = 0; i < MAX_MAT; i++)
+		if (_materia[i]== m)
+		{
+			std::cout << "Materia " << m << " not added. Is already in Character." << std::endl;
+			return;
+		}
+	_handler->add_mat(m);
 	for (int i = 0; i < MAX_MAT; i++)
 	{
 		if (_materia[i]== NULL)
 		{
 			_materia[i] = m;
 			_materia[i]->inc_use();
+			std::cout << "Materia " << m << " added in Character." << std::endl;
 			return;
 		}
 	}
+	std::cout << "Character full no Materia added." << std::endl;
 }
 void Character::unequip(int idx) 
 {

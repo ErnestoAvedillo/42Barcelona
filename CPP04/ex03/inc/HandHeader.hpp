@@ -31,6 +31,7 @@ class HandHeader
 		MatHandler *get_last();
 		void set_first(AMateria *);
 		void set_last(AMateria *);
-		void rm_mat(AMateria *rhs);
+		void rm_mat(AMateria *);
+		void add_mat(AMateria *rhs);
 };
 #endif
