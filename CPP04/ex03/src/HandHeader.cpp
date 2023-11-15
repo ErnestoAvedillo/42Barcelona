@@ -35,7 +35,7 @@ HandHeader::~HandHeader()
 		if (tmp2 == tmp)
 			tmp2 = NULL;
 		delete tmp;
-		if (MatTmp->get_use() == 0)
+		if (MatTmp->get_use() == 0 && MatTmp->get_owner() == this)
 			delete MatTmp;
 		tmp = tmp2;
 	}

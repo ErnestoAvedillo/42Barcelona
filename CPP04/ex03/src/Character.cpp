@@ -69,6 +69,9 @@ Character &Character::operator=(Character &rhs)
 				_materia[i]->dec_use();
 			if (_materia[i]->get_use() > 0)
 				_handler->rm_mat(_materia[i]);
+			else
+				if (_materia[i]->get_owner() == NULL)
+					_materia[i]->set_owner(_handler);
 		}
 		_materia[i] = rhs.getMateria(i);
 		if (_materia[i] != NULL)

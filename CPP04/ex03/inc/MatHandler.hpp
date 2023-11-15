@@ -14,8 +14,9 @@
 #define __MATHANDLER_HPP
 #include <iostream>
 #include "../inc/colors.h"
-#include "../inc/AMateria.hpp"
 
+class MatHandler;
+#include "../inc/AMateria.hpp"
 class MatHandler
 {
 	private:

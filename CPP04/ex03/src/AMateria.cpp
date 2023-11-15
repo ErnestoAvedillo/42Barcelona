@@ -16,11 +16,13 @@ AMateria::AMateria() : _type("void")
 {
 	std::cout << "Creating " << _type << " AMateria in pointer " << this << std::endl;
 	_usage = 0;
+	_owner = NULL;
 }
 AMateria::AMateria(std::string const & my_material) : _type(my_material)
 {
 	std::cout << "Creating " << _type << " AMateria in pointer " << this << std::endl;
 	_usage = 0;
+	_owner = NULL;
 }
 
 AMateria::~AMateria()
@@ -37,6 +39,7 @@ AMateria &AMateria::operator=(AMateria const &rhs)
 {
 	this->_type = rhs.getType();
 	this->_usage = 0; 
+	_owner = NULL;
 	std::cout << "Asigning " << _type << " AMateria in pointer " << this <<std::endl;
 	return *this;
 }
@@ -66,4 +69,13 @@ void AMateria::dec_use()
 int AMateria::get_use()
 {
 	return _usage;
+}
+
+HandHeader *AMateria::get_owner()
+{
+	return _owner;
+}
+void AMateria::set_owner(HandHeader *rhs)
+{
+	_owner = rhs;
 }
