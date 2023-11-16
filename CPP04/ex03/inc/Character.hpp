@@ -23,7 +23,7 @@ class Character: public ICharacter
 	private:
 		std::string _name;
 		AMateria *_materia[MAX_MAT];
-		HandHeader *_handler;
+		IHandHeader *_handler;
 
 	public:
 		Character();
@@ -38,7 +38,7 @@ class Character: public ICharacter
 		void unequip(int idx);
 		void use(int idx, ICharacter &target);
 		AMateria *getMateria(int idx);
-		HandHeader *getHandler();
+		IHandHeader *getHandler();
 		void printMaterias();
 		void printHandler();
 

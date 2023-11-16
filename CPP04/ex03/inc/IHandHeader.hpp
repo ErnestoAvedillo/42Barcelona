@@ -10,30 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __HANDHEADER_HPP
-#define __HANDHEADER_HPP
+#ifndef __IHANDHEADER_HPP
+#define __IHANDHEADER_HPP
 #include <iostream>
 #include "../inc/colors.h"
 
-class HandHeader;
-#include "../inc/IHandHeader.hpp"
-#include "../inc/MatHandler.hpp"
+class IHandHeader;
 #include "../inc/AMateria.hpp"
-class HandHeader: public IHandHeader
+class IHandHeader
 {
-	private:
-		MatHandler *_first;
-		MatHandler *_last;
 	public:
-		HandHeader();
-		HandHeader(HandHeader&);
-		~HandHeader();
-		HandHeader &operator=(HandHeader&);
-		MatHandler *get_first();
-		MatHandler *get_last();
-		void set_first(AMateria *);
-		void set_last(AMateria *);
-		void rm_mat(AMateria *);
-		void add_mat(AMateria *rhs);
+		virtual ~IHandHeader(){};
+		virtual void set_first(AMateria *)= 0;
+		virtual void set_last(AMateria *)=0;
+		virtual void rm_mat(AMateria *)=0;
+		virtual void add_mat(AMateria *rhs)=0;
 };
 #endif

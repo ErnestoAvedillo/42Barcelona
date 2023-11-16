@@ -70,7 +70,7 @@ Character &Character::operator=(Character &rhs)
 			if (_materia[i]->get_use() > 0)
 				_handler->rm_mat(_materia[i]);
 			else if (_materia[i]->get_owner() == NULL)
-				_materia[i]->set_owner(static_cast<void *>(_handler));
+				_materia[i]->set_owner(_handler);
 			else
 				_handler->rm_mat(_materia[i]);
 		}
@@ -125,7 +125,7 @@ void Character::unequip(int idx)
 		if (_materia[idx]->get_use() > 0)
 			_handler->rm_mat(_materia[idx]);
 		else if (_materia[idx]->get_owner() == NULL)
-			_materia[idx]->set_owner(static_cast<void*>(_handler));
+			_materia[idx]->set_owner(_handler);
 		else
 			_handler->rm_mat(_materia[idx]);
 		_materia[idx] = NULL;
@@ -161,7 +161,7 @@ void Character::printHandler()
 	std::cout << BLUE "Materials in handler " << _name << " pointer " << _handler << RESET << std::endl;
 	MatHandler *tmp;
 	AMateria *MatTemp;
-	tmp = _handler->get_first();
+	tmp = dynamic_cast<HandHeader *> (_handler)->get_first();
 	while (tmp != NULL)
 	{
 		MatTemp = tmp->get_mat();
