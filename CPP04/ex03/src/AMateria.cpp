@@ -28,6 +28,7 @@ AMateria::AMateria(std::string const & my_material) : _type(my_material)
 AMateria::~AMateria()
 {
 	std::cout << "deleting AMateria with ptr " << this << std::endl;
+	this = NULL;
 }
 
 AMateria::AMateria(AMateria const &rhs)
@@ -71,11 +72,11 @@ int AMateria::get_use()
 	return _usage;
 }
 
-HandHeader *AMateria::get_owner()
+void *AMateria::get_owner()
 {
 	return _owner;
 }
-void AMateria::set_owner(HandHeader *rhs)
+void AMateria::set_owner(void *rhs)
 {
 	_owner = rhs;
 }

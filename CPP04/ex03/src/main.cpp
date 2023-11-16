@@ -206,6 +206,7 @@ int main()
 
 		print_title("11 -> TEST", RED, YELLOW);
 		test->printMaterias();
+		test->printHandler();
 		delete test;
 		std::cout << std::endl;
 

@@ -17,13 +17,12 @@
 
 class AMateria;
 #include "../inc/ICharacter.hpp"
-#include "../inc/HandHeader.hpp"
 class AMateria
 {
     protected:
         std::string     _type;
         unsigned int    _usage;
-        ptr      *_owner;
+        void            *_owner;
     public:
         AMateria();
         AMateria(std::string const &);
@@ -36,7 +35,7 @@ class AMateria
         void inc_use();
         void dec_use();
         int get_use();
-        HandHeader *get_owner();
-        void set_owner(HandHeader *);
+        void *get_owner();
+        void set_owner(void *);
 };
 #endif

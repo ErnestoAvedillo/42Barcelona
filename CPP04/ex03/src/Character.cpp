@@ -69,9 +69,10 @@ Character &Character::operator=(Character &rhs)
 				_materia[i]->dec_use();
 			if (_materia[i]->get_use() > 0)
 				_handler->rm_mat(_materia[i]);
+			else if (_materia[i]->get_owner() == NULL)
+				_materia[i]->set_owner(static_cast<void *>(_handler));
 			else
-				if (_materia[i]->get_owner() == NULL)
-					_materia[i]->set_owner(_handler);
+				_handler->rm_mat(_materia[i]);
 		}
 		_materia[i] = rhs.getMateria(i);
 		if (_materia[i] != NULL)
@@ -122,6 +123,10 @@ void Character::unequip(int idx)
 	{
 		_materia[idx]->dec_use();
 		if (_materia[idx]->get_use() > 0)
+			_handler->rm_mat(_materia[idx]);
+		else if (_materia[idx]->get_owner() == NULL)
+			_materia[idx]->set_owner(static_cast<void*>(_handler));
+		else
 			_handler->rm_mat(_materia[idx]);
 		_materia[idx] = NULL;
 	}
