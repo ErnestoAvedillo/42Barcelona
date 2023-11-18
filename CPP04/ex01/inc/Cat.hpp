@@ -20,7 +20,6 @@
 class Cat: public Animal
 {
 	private:
-		std::string	_type;
 		Brain *_my_brain;
 
 	public:

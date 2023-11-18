@@ -20,20 +20,29 @@ Dog::Dog() : AAnimal("Perro Callejero")
 
 Dog::Dog(std::string my_name) : AAnimal(my_name)
 {
-	_my_brain = new Brain ("Dog Ideas");
+	std::string nameidea = "Dog ideas";
+	_my_brain = new Brain (nameidea);
 	std::cout << YELLOW "Creating " << _type << " dog." RESET  << std::endl;
 }
 
-
 Dog::Dog(const Dog &rhs) : AAnimal(rhs)
 {
+	_my_brain = NULL;
 	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
 	*this = rhs;
 }
+
 Dog &Dog::operator=(const Dog &rhs)
 {
 	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
-	this->_type = rhs.getType();
+	if (&rhs != this)
+	{
+		_type = rhs.getType();
+		if (_my_brain != NULL)
+			delete _my_brain;
+		if (rhs._my_brain != NULL)
+			_my_brain = new Brain (*rhs._my_brain);
+	}
 	return *this;
 }
 

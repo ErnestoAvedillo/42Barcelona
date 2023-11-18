@@ -16,7 +16,8 @@ Brain::Brain()
 {
 	for (int i = 0; i < NR_IDEAS; i++)
 	{
-		this->addIdea("empty");
+		std::string idea = "empty";
+		_ideas[i] = idea;
 		std::cout << " created idea " << i << this->getIdea(i);
 	}
 	_cur_idea = 0;
@@ -27,7 +28,7 @@ Brain::Brain(std::string my_idea)
 {
 	for (int i = 0; i < NR_IDEAS; i++)
 	{
-		this->addIdea(my_idea);
+		_ideas[i] = my_idea;
 		std::cout << " created idea " << i << this->getIdea(i);
 	}
 	_cur_idea = 0;

@@ -19,7 +19,6 @@
 class WrongDog: public WrongAnimal
 {
 	private:
-		std::string	_type;
 
 	public:
 		WrongDog();

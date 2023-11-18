@@ -40,19 +40,37 @@ int main(void)
 			ptrDog->prtIdeas();
 		}
 
-		std::cout << "*********Printing all " << NR_IDEAS << " Cat ideas ************" << std::endl;
+		std::cout << "*********Printing all 100 Cat ideas ************" << std::endl;
 		for (int i = MAX_ANIMALS / 2; i <= MAX_ANIMALS - 1; i++)
 		{
 			Cat *ptrDog = dynamic_cast <Cat*> (meta[i]);
 			ptrDog->prtIdeas();
 		}
 
-		std::cout << "*********Printing all " << MAX_ANIMALS << " Dog sounds ************" << std::endl;
+		std::cout << "*********Printing sounds of animals ************" << std::endl;
 		for (int i = 0; i <= MAX_ANIMALS - 1; i++)
 		{
 			std::cout << meta[i]->getType() << "." << std::endl;
 			meta[i]->makeSound();
 		}
+
+		std::cout << "*********Test Dog constructor with class of animals ************" << std::endl;
+		Dog dog1("mi perrito faldero");
+		dog1.prtIdeas();
+		dog1.makeSound();
+		Dog dog2(dog1);
+		dog2.prtIdeas();
+		dog2.makeSound();
+
+		std::cout << "*********Test Cat constructor with class of animals ************" << std::endl;
+		Cat cat1("mi gatito faldero");
+		cat1.prtIdeas();
+		cat1.makeSound();
+		Cat cat2(cat1);
+		cat2.prtIdeas();
+		cat2.makeSound();
+
+		std::cout << "*********Deleting all animals ************" << std::endl;
 		for (int i = 0; i <= MAX_ANIMALS - 1; i++)
 		{
 			delete meta[i];

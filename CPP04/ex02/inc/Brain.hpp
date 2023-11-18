@@ -30,7 +30,6 @@ class Brain
 		void addIdea(std::string);
 		int getCurIdea();
 		void prtAllIdeas();
-
 };
 
 #endif

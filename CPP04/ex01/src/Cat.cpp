@@ -20,18 +20,29 @@ Cat::Cat() : Animal ("Gato Callejero")
 
 Cat::Cat(std::string my_name): Animal(my_name)
 {
-	_my_brain = new Brain ("Cat ideas");
+	std::string nameidea = "Cat ideas";
+	_my_brain = new Brain (nameidea);
 	std::cout << BLUE "Creating " << _type << " cat." RESET << std::endl;
 }
 
 Cat::Cat(const Cat &rhs): Animal(rhs)
 {
-	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
+	_my_brain = NULL;
+	std::cout << "Copy method  " << _type << " cat from " << rhs.getType() << std::endl;
+	*this = rhs;
 }
+
 Cat & Cat::operator = (const Cat &rhs)
 {
-	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
-	this->_type = rhs.getType();
+	std::cout << "Asignation method  " << _type << " cat from " << rhs.getType() << std::endl;
+	if (&rhs != this)
+	{
+		_type = rhs.getType();
+		if (_my_brain != NULL)
+			delete _my_brain;
+		if (rhs._my_brain != NULL)
+			_my_brain = new Brain (*rhs._my_brain);
+	}
 	return *this;
 }
 
@@ -43,7 +54,7 @@ Cat::~Cat()
 
 std::string Cat::getIdea(int n)
 {
-	std::cout << "Getting the idea nr. " << n << " of the cat." << std::endl;
+	std::cout << PURPLE"Getting the idea nr. " << n << " of the cat." RESET << std::endl;
 	return _my_brain->getIdea(n);
 }
 

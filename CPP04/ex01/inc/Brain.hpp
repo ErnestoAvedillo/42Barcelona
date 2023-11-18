@@ -22,15 +22,14 @@ class Brain
 		int _cur_idea;
 	public:
 		Brain();
-		Brain(std::string);
+		Brain(std::string&);
 		Brain(const Brain&);
 		Brain &operator=(const Brain&);
 		~Brain();
 		std::string getIdea(int) const;
-		void addIdea(std::string);
+		void addIdea(std::string&);
 		int getCurIdea();
 		void prtAllIdeas();
-
 };
 
 #endif

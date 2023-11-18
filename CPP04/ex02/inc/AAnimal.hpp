@@ -16,14 +16,14 @@
 #include "../inc/colors.h"
 class AAnimal
 {
-	private:
+	protected:
 		std::string	_type;
 
 	public:
 		AAnimal();
 		AAnimal(std::string);
 		AAnimal(const AAnimal &);
-		AAnimal &operator=(const AAnimal&);
+		virtual AAnimal &operator=(const AAnimal&);
 		virtual ~AAnimal();
 		std::string getType() const;
 		void setType(std::string&);

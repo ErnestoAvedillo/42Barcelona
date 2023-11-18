@@ -20,19 +20,29 @@ Cat::Cat():AAnimal("Gato Callejero")
 
 Cat::Cat(std::string my_name): AAnimal(my_name)
 {
-	_my_brain = new Brain ("Cat ideas");
+	std::string nameidea = "Cat ideas";
+	_my_brain = new Brain (nameidea);
 	std::cout << BLUE "Creating " << _type << " cat." RESET << std::endl;
 }
 
 Cat::Cat(const Cat &rhs): AAnimal(rhs)
 {
+	_my_brain = NULL;
+	std::cout << "Copy method  " << _type << " cat from " << rhs.getType() << std::endl;
 	*this = rhs;
-	std::cout << "Copy method  " << _type << " dog from " << rhs.getType() << std::endl;
 }
+
 Cat & Cat::operator = (const Cat &rhs)
 {
-	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
-	this->_type = rhs.getType();
+	std::cout << "Asignation method  " << _type << " cat from " << rhs.getType() << std::endl;
+	if (&rhs != this)
+	{
+		_type = rhs.getType();
+		if (_my_brain != NULL)
+			delete _my_brain;
+		if (rhs._my_brain != NULL)
+			_my_brain = new Brain (*rhs._my_brain);
+	}
 	return *this;
 }
 

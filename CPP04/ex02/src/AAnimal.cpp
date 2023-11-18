@@ -49,9 +49,3 @@ void AAnimal::setType(std::string &my_type)
 {
 	_type = my_type;
 }
-/*
-void AAnimal::makeSound() const
-{
-	std::cout << YELLOW << "Mi animal que hace Brrrrbrrrrr" << RESET << std::endl;
-}
-*/

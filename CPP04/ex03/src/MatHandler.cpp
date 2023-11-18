@@ -35,8 +35,16 @@ MatHandler &MatHandler::operator=(MatHandler &rhs)
 }
 MatHandler::~MatHandler()
 {
-	std::cout << "Delete handler " << this << "With material " << _mat_point->getType();
-	std::cout << " and Pointer " << _mat_point << std::endl;
+	if (_mat_point == NULL)
+	{
+		std::cout << "Delete handler " << this << "With NO material,";
+		std::cout << " where materia Pointer is " << _mat_point << std::endl;
+	}
+	else
+	{
+		std::cout << "Delete handler " << this << "With material " << _mat_point->getType();
+		std::cout << " and Pointer " << _mat_point << std::endl;
+	}
 }
 
 MatHandler *MatHandler::get_handler(AMateria *rsh)

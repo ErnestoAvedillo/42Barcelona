@@ -12,32 +12,15 @@
 
 # include "../inc/main.h"
 
-void print_title(std::string msg, std::string clr_text, std::string clr_border)
+void print_title(std::string msg, std::string color_text, std::string color_border)
 {
-	std::cout << clr_border << "|" ;
+	std::cout << color_border << "|" ;
 	std::cout << std::setfill('*') << std::setw(5) << "";
-	std::cout << clr_text << msg << clr_border << std::setw(5) << "|";
+	std::cout << color_text << msg << color_border << std::setw(5) << "|";
 	std::cout << RESET << std::endl;
 }
 int main()
 {
-	/*{
-		IMateriaSource *src = new MateriaSource();
-		src->learnMateria(new Ice());
-		src->learnMateria(new Cure());
-		ICharacter *me = new Character("me");
-		AMateria *tmp;
-		tmp = src->createMateria("ice");
-		me->equip(tmp);
-		tmp = src->createMateria("cure");
-		me->equip(tmp);
-		ICharacter *bob = new Character("bob");
-		me->use(0, *bob);
-		me->use(1, *bob);
-		delete bob;
-		delete me;
-		delete src;
-	}*/
 	{
 		print_title("1. Creating MateriaSource", GREEN, YELLOW);
 		IMateriaSource *src=  new MateriaSource();

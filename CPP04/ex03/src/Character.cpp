@@ -54,6 +54,8 @@ Character::~Character()
 		if (_materia[i] != NULL)
 		{
 			_materia[i]->dec_use();
+			if (_materia[i]->get_use() == 0 && _materia[i]->get_owner() == NULL)
+				_materia[i]->set_owner(_handler);
 		}
 	}
 	delete _handler;
@@ -115,6 +117,7 @@ void Character::equip(AMateria *m)
 			return;
 		}
 	}
+	m->set_owner(_handler);
 	std::cout << "Character full no Materia added." << std::endl;
 }
 void Character::unequip(int idx) 
@@ -167,12 +170,13 @@ void Character::printHandler()
 		MatTemp = tmp->get_mat();
 		if (MatTemp != NULL)
 		{
-			std::cout << " En handler " << tmp <<" Material " <<  MatTemp->getType(); 
+			std::cout << "En handler " << tmp <<" Material " <<  MatTemp->getType(); 
 			std::cout << " puntero " << MatTemp << " used " << MatTemp->get_use();
+			std::cout << " y owner " << MatTemp->get_owner();
 		}
 		else 
 		{
-			std::cout << " En handler " << tmp << " Material " << MatTemp;
+			std::cout << "En handler " << tmp << " Material " << MatTemp;
 			std::cout << " puntero " << MatTemp << " used " << MatTemp;
 		}
 		std::cout << std::endl;
