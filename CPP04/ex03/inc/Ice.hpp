@@ -18,10 +18,13 @@
 class Ice: public AMateria
 {
 private:
-	/* data */
+
 public:
 	Ice();
+	Ice(std::string const &);
+	Ice(AMateria const &);
 	~Ice();
+	Ice &operator=(AMateria const &);
 	AMateria * clone() const;
 	void use(ICharacter &);
 };

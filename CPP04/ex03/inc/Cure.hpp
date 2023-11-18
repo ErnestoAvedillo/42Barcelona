@@ -21,7 +21,10 @@ private:
 	/* data */
 public:
 	Cure();
+	Cure(std::string const &);
+	Cure(AMateria const &);
 	~Cure();
+	Cure &operator=(AMateria const &);
 	AMateria *clone() const;
 	void use(ICharacter &);
 };

@@ -29,7 +29,7 @@ Cat::Cat(const Cat &rhs): Animal(rhs)
 }
 Cat & Cat::operator = (const Cat &rhs)
 {
-	std::cout << "Asignation method  " << _type << " dog from " << rhs.getType() << std::endl;
+	std::cout << "Asignation method  " << _type << " cat from " << rhs.getType() << std::endl;
 	this->_type = rhs.getType();
 	return *this;
 }
