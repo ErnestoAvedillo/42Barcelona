@@ -21,9 +21,10 @@ class IHandHeader
 {
 	public:
 		virtual ~IHandHeader(){};
-		virtual void set_first(AMateria *)= 0;
-		virtual void set_last(AMateria *)=0;
-		virtual void rm_mat(AMateria *)=0;
-		virtual void add_mat(AMateria *rhs)=0;
+		virtual void set_first(AMateria *) = 0;
+		virtual void set_last(AMateria *) = 0;
+		virtual void rm_mat(AMateria *) = 0;
+		virtual void add_mat(AMateria *rhs) = 0;
+		virtual void erase_mat(AMateria *rhs) = 0;
 };
 #endif

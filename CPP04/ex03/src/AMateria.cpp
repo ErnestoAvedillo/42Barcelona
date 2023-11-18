@@ -28,7 +28,7 @@ AMateria::AMateria(std::string const & my_material) : _type(my_material)
 AMateria::~AMateria()
 {
 	if (_owner != NULL)
-		_owner->rm_mat(this);
+		_owner->erase_mat(NULL);
 	std::cout << "deleting AMateria with ptr " << this << std::endl;
 }
 

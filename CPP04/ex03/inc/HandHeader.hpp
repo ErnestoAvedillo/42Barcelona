@@ -34,6 +34,7 @@ class HandHeader: public IHandHeader
 		void set_first(AMateria *);
 		void set_last(AMateria *);
 		void rm_mat(AMateria *);
-		void add_mat(AMateria *rhs);
+		void add_mat(AMateria *);
+		void erase_mat(AMateria *);
 };
 #endif

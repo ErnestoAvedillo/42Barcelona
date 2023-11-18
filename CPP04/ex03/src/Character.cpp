@@ -165,8 +165,16 @@ void Character::printHandler()
 	while (tmp != NULL)
 	{
 		MatTemp = tmp->get_mat();
-		std::cout << " En handler " << tmp <<" Material " <<  MatTemp->getType(); 
-		std::cout << " puntero " << MatTemp << " used " << MatTemp->get_use();
+		if (MatTemp != NULL)
+		{
+			std::cout << " En handler " << tmp <<" Material " <<  MatTemp->getType(); 
+			std::cout << " puntero " << MatTemp << " used " << MatTemp->get_use();
+		}
+		else 
+		{
+			std::cout << " En handler " << tmp << " Material " << MatTemp;
+			std::cout << " puntero " << MatTemp << " used " << MatTemp;
+		}
 		std::cout << std::endl;
 		tmp = tmp->get_next();
 	}
