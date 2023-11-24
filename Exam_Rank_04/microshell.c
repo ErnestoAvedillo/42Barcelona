@@ -14,8 +14,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <process.h>
-
+#include <sys/wait.h>
 
 int len_arr(char **arr)
 {
@@ -80,12 +79,12 @@ int my_cd(char **ac)
 	if (out == -1)
 		printf("error: cd: cannot change directory to path_to_change\n");
 	else
-		printf("success: cd: %i changed to path \n");
+		printf("success: cd: %i changed to path \n", out);
 	return out;
 }
 
-/*
-int exec_cmd(char **ac, char **env)
+
+int exec_cmd(char **ac, char **env, int tmp_fd)
 {
 	int pid;
 	int status;
@@ -98,10 +97,11 @@ int exec_cmd(char **ac, char **env)
 	}
 	else if (pid == 0)
 		execve(ac[0],ac,env);
-	wait (&status);
+	close(tmp_fd);
+	wait(&status);
 	return 0;
 }
-*/
+
 int get_nxt_cmd(int cur,char **ac)
 {
 	int i = cur;
@@ -142,9 +142,11 @@ int main (int av, char **ac, char **env)
 	int is_semicol = 0;
 	int is_pipe= 0;
 	int i,j;
+	int tmp_fd, fd1[2], fd2[2];
 
 	if (av < 2)
 		return (0);
+	tmp_fd = dup(STDIN_FILENO);
 	i = 0;
 	while (++i <= av)
 	{
@@ -158,26 +160,24 @@ int main (int av, char **ac, char **env)
 			printf("El comando >%s< es CD\n", comando[0]);
 			my_cd(comando);
 		}
-//		exec_cmd(comando, env);
+		else
+		{
+			printf("ejecuto comando alternativo. >%s<\n", comando[0]);
+			exec_cmd(comando, env,tmp_fd);
+			tmp_fd = dup(STDIN_FILENO);
+		}
+		if (i != 1 && ac[i] && ac[i] == "|")
+		{
+			pipe(fd1)
+			if (fork() == 0)
+			{
+				dup2(fd1[1], STDOUT_FILENO);
+				close(fd[0]);
+				close(fd[1];)
+			}
+		}
+
+
 		free(comando);
 	}
 }
-/*		if (strcmp(ac[i], ";") == 0)
-		{º
-			is_semicol = 1;	
-			printf ("el comando es <;> : %s\n"g, ac[i]);
-		}
-		else if (strcmp(ac[i], "|") == 0)
-		{
-			is_pipe = 1;	
-			printf ("el comando es <|> : %s\n", ac[i]);
-		}
-		else if (is_cd(ac[i]))
-		{
-			printf ("el comando es <cd> : %s\n", ac[i]);
-		}
-		else
-		{
-		printf ("el comando no es ninguno del resto : %s\n", ac[i]);
-		execve (ac[i], ac[i +1], env);
-		}*/
