@@ -16,6 +16,16 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+void ft_putstr_err(char *str1, char *str2)
+{
+	int i = -1;
+	while (str1[++i])
+		write(2, str1[i], 1);
+	i = -1;
+	if (str2)
+		while (str2[++i])
+			write(2, str2[i], 1);
+}
 int len_arr(char **arr)
 {
 	int i = -1;
@@ -142,7 +152,7 @@ int main (int av, char **ac, char **env)
 	int is_semicol = 0;
 	int is_pipe= 0;
 	int i,j;
-	int tmp_fd, fd1[2], fd2[2];
+	int tmp_fd, fd[2];
 
 	if (av < 2)
 		return (0);
@@ -171,9 +181,16 @@ int main (int av, char **ac, char **env)
 			pipe(fd1)
 			if (fork() == 0)
 			{
-				dup2(fd1[1], STDOUT_FILENO);
+				dup2(fd[1], STDOUT_FILENO);
 				close(fd[0]);
-				close(fd[1];)
+				close(fd[1]);
+				exec_cmd(comando, env,tmp_fd);
+			}
+			else
+			{
+				close (fd[1]);
+				close(tmp_fd);
+				tmp_fd = fd[0]
 			}
 		}
 
