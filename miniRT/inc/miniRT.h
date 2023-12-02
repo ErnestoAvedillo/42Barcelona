@@ -76,13 +76,20 @@ typedef struct s_mouse_pos
 	int	y;
 }	t_mouse_pos;
 
+typedef struct s_sph_list
+{
+	t_sphere 
+}	t_sph_list;
+
+
 typedef struct s_field
 {
-	t_sphere	sph;
-	t_cylinder	cyl;
-	t_plane		pln;
+	t_sph_list	*frst_sph;
+	t_cyl_list	*frst_cyl;
+	t_pln_list	*frst_pln;
 	t_color		bck_col;
-	t_vector	op_pos;
+	t_vector	camera;
+	t_vector	light;
 }	t_field;
 
 #endif
