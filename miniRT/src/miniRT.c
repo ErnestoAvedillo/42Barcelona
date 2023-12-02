@@ -14,7 +14,7 @@
 
 int main (void)
 {
-	t_field	field;
+	t_field	*field;
 
 	initvars(field);
 	

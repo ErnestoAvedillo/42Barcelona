@@ -11,29 +11,43 @@
 /* ************************************************************************** */
 
 #include<../inc/miniRT.h>
-bool init_vec(t_vector v, double i , double j, double k)
+t_vector init_vec()
 {
-	v.x = i;
-	v.y = j;
-	v.z = k;
+	t_vector *v;
+
+	v = (t_vector*) malloc (sizeof(t_vector));
+	v.x = 0;
+	v.y = 0;
+	v.z = 0;
 }
-static bool init_cyl(t_cylinder cyl);
+t_cylinder *init_cyl( )
 {
-
-}
-
-static bool init_sph(t_sphere sph)
-{
-
-}
-
-static bool init_pln(t_plane pln)
-{
+	t_cylinder	*cyl;
+	
+	cyl = (t_cylinder*) malloc (sizeof(t_cylinder));
+	cyl->pt1 = init_vec();
+	cyl->pt2 = init_vec();
 
 }
 
-int initvars (t_field field)
+t_sphere *init_sph( )
 {
+	t_sphere	*sph;
+
+
+}
+
+t_plane *init_pln( )
+{
+	t_plane	*pln;
+
+}
+
+t_field *initvars (t_field field)
+{
+	t_field *field
+
+	field = (t_field *) malloc(sizeof(t_field));
 	init_cyl(field.cyl);
 	init_sph(field.sph);
 	init_pln(field.pln)
