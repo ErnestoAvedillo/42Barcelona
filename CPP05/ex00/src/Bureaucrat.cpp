@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
-/*   Updated: 2023/09/21 22:23:12 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:25:56 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,26 @@
 
 Bureaucrat::Bureaucrat():_name("Common")
 {
-    _grade = 75;
+	this->AssignGrade(MAX_GRADE);
 	std::cout << "Creating " << _name << " Beaurocrat.";
 	std::cout << " with grade " << _grade << "."<< std::endl;
 }
-Bureaucrat::Bureaucrat(std::string my_name, int my_grade) : _name(my_name), _grade(my_grade)
+Bureaucrat::Bureaucrat(std::string my_name, int my_grade)
 {
+	this->PutName(my_name);
+	try
+	{
+		this->AssignGrade(my_grade);
+	}
+	catch (int err_no)
+	{
+		if (err_no == ERR_TOO_HIGH)
+			this->GradeTooHighException();
+		else if (err_no == ERR_TOO_LOW)
+			this->GradeTooLowException();
+		else
+			std::cout << "Non graded error detected" << std::endl;
+	}
 	std::cout << "Creating " << _name << " Beaurocrat.";
 	std::cout << " with grade " << _grade << "."<< std::endl;
 }
@@ -30,50 +44,88 @@ Bureaucrat::~Bureaucrat()
 }
 Bureaucrat::Bureaucrat(const Bureaucrat &b)
 {
-    *this = b;
+	*this = b;
 }
 
 Bureaucrat & Bureaucrat::operator = (const Bureaucrat &rhs)
 {
-    *this = rhs;
-    return (*this);
+	std::cout << "Assignation operator called" << std::endl;
+	if (this != &rhs)
+	{
+		this->_name = rhs.GetName();
+		this->_grade = rhs.GetGrade();
+	}
+	return (*this);
 }
 
-int Bureaucrat::GetGrade()
+int Bureaucrat::GetGrade() const
 {
-    return (_grade);
+	return (_grade);
 }
+
 int Bureaucrat::IncGrade()
 {
-    try
-    {
-        if (_grade == 0)
-            throw;
-        else
-            _grade--;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << "Grade out of range" << e.what() << std::endl;
-    }
-    return (_grade);
+	try
+	{
+		this->AssignGrade(--_grade);
+	}
+	catch (int err_no)
+	{
+		this->GradeTooHighException();
+	}
+	return (_grade);
 }
+
 int Bureaucrat::DecGrade()
 {
-    try
-    {
-        if (_grade == 150)
-            throw;
-        else
-            _grade++;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << "Grade out of range" << e.what() << std::endl;
-    }
-
+	try
+	{
+		this->AssignGrade(++_grade);
+	}
+	catch (int err_no)
+	{
+		this->GradeTooLowException();
+	}
+	return (_grade);
 }
-std::string Bureaucrat::GetName()
+
+void Bureaucrat::PutName(const std::string my_name)
 {
-    return (_name);
+	_name = my_name;
+}
+
+std::string Bureaucrat::GetName() const
+{
+	return (_name);
+}
+
+int Bureaucrat::AssignGrade(const int grade)
+{
+	_grade = grade;
+	if (grade < MAX_GRADE)
+		throw ERR_TOO_HIGH;
+	else if (grade > MIN_GRADE)
+		throw ERR_TOO_LOW;
+
+	return (_grade);
+}
+
+void Bureaucrat::GradeTooLowException()
+{
+	std::cout << "The Bureaucrat " << *this << " got a grade over the minimum of 150." << std::endl;
+	std::cout << "Min value asigned." << std::endl;
+	_grade = MIN_GRADE;
+}
+
+void Bureaucrat::GradeTooHighException() 
+{
+	std::cout << "The Bureaucrat " << *this << " got a grade over the maximum of 1." << std::endl;
+	std::cout << "Max value asigned." << std::endl;
+	_grade = MAX_GRADE;
+}
+
+std::ostream &operator<<(std::ostream &ost, Bureaucrat const &b)
+{
+	ost << "Name: " << b.GetName() << " with grade " << b.GetGrade() << " ";
+	return ost;
 }

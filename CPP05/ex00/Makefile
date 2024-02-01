@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eavedill <eavedill@student.42barcel>       +#+  +:+       +#+         #
+#    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2023/10/01 15:03:32 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/01 10:10:54 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,11 @@ CIAN		:=	\033[1;96m
 
 NAME := bureaucrat
 
-SRC := main 
+SRC := main Bureaucrat
 
 CLAS := bureaucrat
 
-INC := main colors bureaucrat
+INC := main colors
 
 DIRSRC := ./src/
 
