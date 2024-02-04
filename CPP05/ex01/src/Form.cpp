@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:00:33 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/02 10:52:22 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/04 16:26:37 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Form::Form(std::string my_name, int sign_grade, int exec_grade)
 	_min_grade_sign = 0;
 	try
 	{
-		this->AssignGradeExec(sign_grade);
+		this->AssignGradeSign(sign_grade);
 	}
 	catch (int err_no)
 	{
@@ -40,7 +40,7 @@ Form::Form(std::string my_name, int sign_grade, int exec_grade)
 	
 	try
 	{
-		this->AssignGradeSign(exec_grade);
+		this->AssignGradeExec(exec_grade);
 	}
 	catch (int err_no)
 	{
@@ -154,7 +154,7 @@ bool Form::SignForm(int grade)
 {
 	if(_min_grade_sign < grade)
 		throw SIGN_ERROR_TRY;
-	std::cout << "Form: " << *this << " signed." << std::endl;
+	std::cout << "Form: " << *this << GREEN " HAS BEEN SIGNED." RESET << std::endl;
 	return (true);
 }
 
@@ -177,7 +177,7 @@ bool Form::ExecForm(int grade)
 		throw EXEC_ERROR_NOT_SIGNED;
 	else if (_min_grade_exec < grade)
 		throw EXEC_ERROR_TRY;
-	std::cout << "Form: " << *this << " executed." << std::endl;
+	std::cout << "Form: " << *this << GREEN " HAS BEEN EXECUTED." RESET << std::endl;
 	return (true);
 }
 
