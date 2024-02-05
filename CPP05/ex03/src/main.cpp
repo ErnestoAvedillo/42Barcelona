@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/04 19:20:35 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/05 07:19:14 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,12 @@ int main(void)
 	form3->BeExec(oper20);
 	print_title("Test Nr 11:Pardon executed", GREEN, BLUE);
 	form3->BeExec(oper1);
+	print_title("Estado final de los formularios.", MGENTA, BLUE);
+	std::cout << *form1 << std::endl;
+	std::cout << *form2 << std::endl;
+	std::cout << *form3 << std::endl;
 	print_title("Finish tests", RED, BLUE);
+	delete form1;
+	delete form2;
+	delete form3;
 }

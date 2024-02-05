@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 12:03:09 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/04 13:51:08 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/05 07:26:17 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ void PresidentialPardonForm::execute(Bureaucrat const &b) const
 
 	if (this->IsExecuted())
 	{
-		std::cout << RED << b << " has been pardoned by Zaphod Beeblebrox." RESET << std::endl;
+		std::cout << GREEN << b << " executed the Presidential order." RESET << std::endl;
+		std::cout << GREEN << _target << " has been pardoned by Zaphod Beeblebrox." RESET << std::endl;
 	}
 	else
 	{
-		std::cout << RED "No pardon available for you men." RESET << std::endl;
+		std::cout << RED "No pardon available for _target men." RESET << std::endl;
 	}
 }
 
