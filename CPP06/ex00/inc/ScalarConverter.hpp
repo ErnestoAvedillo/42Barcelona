@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/06 12:47:49 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:44:05 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ class ScalarConverter
 	public:
 		ScalarConverter();
 		~ScalarConverter();
-		ScalarConverter &operator=(ScalarConverter &);
+		ScalarConverter &operator=(ScalarConverter const &);
 		void	convert(std::string );
 		void	ToChar(std::string );
 		void	ToInt(std::string );

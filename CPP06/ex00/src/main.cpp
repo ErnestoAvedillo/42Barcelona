@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:19:05 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/06 13:20:34 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:06:34 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void tests_char()
 void tests_int()
 {
 	ScalarConverter convert;
-	std::string s[]{
+	std::string s[] = {
 		"0",
 		"-15",
 		"42",
@@ -59,7 +59,7 @@ void tests_int()
 void tests_float()
 {
 	ScalarConverter convert;
-	std::string s[]{
+	std::string s[] = {
 		"0",
 		"0.0f",
 		"-0.5f",
@@ -81,7 +81,7 @@ void tests_float()
 void tests_double()
 {
 	ScalarConverter convert;
-	std::string s[]{
+	std::string s[] = {
 		"0",
 		"0.0f",
 		"-0.5f",

@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/06 13:25:58 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:44:10 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int get_num_dec(float d)
 
 ScalarConverter::ScalarConverter(){}
 ScalarConverter::~ScalarConverter(){}
-ScalarConverter &ScalarConverter::operator=(ScalarConverter &rhs)
+ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 {
 	if(this == &rhs)
 		return *this;
