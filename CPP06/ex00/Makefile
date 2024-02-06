@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/06 08:40:25 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/06 13:28:19 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ RM := rm -rfd
 
 CC:= c++
 
-FLAGS := -Wall -Werror -Wextra  -pedantic -g # -std=c++98
+FLAGS := -Wall -Werror -Wextra  -pedantic -g -std=c++98
 
 all: $(NAME) Makefile
 	
