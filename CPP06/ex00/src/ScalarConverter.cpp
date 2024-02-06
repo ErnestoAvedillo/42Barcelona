@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/06 11:35:50 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:25:58 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ static bool check_nan(std::string s)
 			return true;
 	}
 	return false;
+}
+
+static int get_num_dec(float d)
+{
+	int i = 1;
+	float f = powf(10, i);
+	
+	while (modff(d * f, &f) != 0)
+	{
+		i++;
+		f = pow(10, i);
+	}
+	if (i == 0) 
+		i++;
+	return i;
 }
 
 ScalarConverter::ScalarConverter(){}
@@ -98,6 +113,7 @@ void	ScalarConverter::ToInt(std::string to_convert)
 void	ScalarConverter::ToFloat(std::string to_convert)
 {
 	float f;
+	int prec = 0;
 	try
 	{
 		if (check_inf(to_convert))
@@ -107,8 +123,12 @@ void	ScalarConverter::ToFloat(std::string to_convert)
 		else if (check_nan(to_convert))
 			f = std::numeric_limits<float>::quiet_NaN();
 		else
+		{
 			f = std::stof(to_convert);
-		std::cout << "Income: " << to_convert << " converted to :" << f << std::endl;
+			prec = get_num_dec(f);
+		}
+		std::cout << std::fixed << std::setprecision(prec);
+		std::cout << "Income: " << to_convert << " converted to :" << f << "f" << std::endl;
 	}
 	catch (const std::exception &e)
 	{
@@ -118,6 +138,8 @@ void	ScalarConverter::ToFloat(std::string to_convert)
 void	ScalarConverter::ToDouble(std::string to_convert)
 {
 	double d;
+	int prec = 0;
+
 	try
 	{
 		if (check_inf(to_convert))
@@ -127,7 +149,11 @@ void	ScalarConverter::ToDouble(std::string to_convert)
 		else if (check_nan(to_convert))
 			d = std::numeric_limits<double>::quiet_NaN();
 		else
+		{
 			d = std::stod(to_convert);
+			prec = get_num_dec(d);
+		}
+		std::cout << std::fixed << std::setprecision(prec);
 		std::cout << "Income: " << to_convert << " converted to :" << d << std::endl;
 	}
 	catch (const std::exception &e)

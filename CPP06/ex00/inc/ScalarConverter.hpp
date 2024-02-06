@@ -6,15 +6,17 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/06 11:36:12 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:47:49 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include <limits>
+# include <cmath>
 
 # define MAX_CHAR 255
 # define MIN_CHAR 0
