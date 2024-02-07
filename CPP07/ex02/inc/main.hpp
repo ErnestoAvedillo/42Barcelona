@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:51:36 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/07 12:21:18 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:44:13 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define MAIN_HPP
 #include "../inc/colors.h"
 #include "../inc/Array.hpp"
-#include "../src/Array.cpp"
+#include "../inc/Array.tpp"
 #include <iostream>
 
 #endif

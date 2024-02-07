@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/07 12:13:32 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/07 14:44:26 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CIAN		:=	\033[1;96m
 
 NAME := template
 
-SRC := main Array
+SRC := main
 
 #CLAS := ScalarConverter
 
