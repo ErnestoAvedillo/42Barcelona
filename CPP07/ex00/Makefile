@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
+#    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/07 07:30:31 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/08 11:37:53 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ NAME := template
 
 SRC := main
 
-#CLAS := ScalarConverter
 
 INC := main colors
 
@@ -36,13 +35,12 @@ SRCS := $(addprefix $(DIRSRC), $(addsuffix .cpp,$(SRC)))
 OBJS := $(addprefix $(OBJDST_DIR), $(addsuffix .o,$(SRC)))
 DSTS := $(addprefix $(OBJDST_DIR), $(addsuffix .d,$(SRC)))
 INCS := $(addprefix $(DIRINC), $(addsuffix .h,$(INC)))
-#CLASS := $(addprefix $(DIRINC), $(addsuffix .hpp,$(CLAS)))
 
 RM := rm -rfd
 
 CC:= c++
 
-FLAGS := -Wall -Werror -Wextra  -pedantic -g #-std=c++98
+FLAGS := -Wall -Werror -Wextra  -pedantic -g -std=c++98
 
 all: $(NAME) Makefile
 	
