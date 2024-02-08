@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:32 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/08 15:37:32 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:51:52 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int main(int av, char **ac)
 		{
 			std::string value(ac[1]);
 			to_find = std::stoi(value);	
+			if (to_find < = 10)
+			{
+				std::cout << "A positive > 0 integer as argument or no argument is possible." << std::endl;
+				return 0;
+			}
 		}
 		catch(const std::exception& e)
 		{
