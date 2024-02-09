@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
+#    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/08 11:38:50 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/09 10:51:25 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ BLUE		:=	\033[1;94m
 PINK		:=	\033[1;95m
 CIAN		:=	\033[1;96m
 
-NAME := easyfind
+NAME := span
 
-SRC := main
+SRC := main Span
 
 INC := main colors
 
@@ -39,7 +39,7 @@ RM := rm -rfd
 
 CC:= c++
 
-FLAGS := -Wall -Werror -Wextra  -pedantic -g -std=c++98
+FLAGS := -Wall -Werror -Wextra  -pedantic -g #-std=c++98
 
 all: $(NAME) Makefile
 	

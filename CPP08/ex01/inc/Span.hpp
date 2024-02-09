@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:44:43 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/08 16:11:32 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/09 10:56:34 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #define SPAN_HPP
 #include <iostream>
 #include <vector>
-
+#include <cmath>
+#include <algorithm>
 class Span
 {
 private:
@@ -23,12 +24,15 @@ private:
 public:
 	Span();
 	~Span();
-	Span(int);
-	Span(Span const &);
-	unsigned int GetNum();
-	Span &operator=(Span const &);
-	void addNumber(int N);
-	void shortestSpan();
-	void longestSpan();
+	Span(unsigned int);
+	Span(Span &);
+	unsigned int GetNum() const;
+	unsigned int GetSize() const;
+	Span &operator=(Span &);
+	int &operator[](std::vector<int>::size_type ) ;
+	void addValue(int N);
+	int getValue(unsigned int i);
+	int shortestSpan();
+	int longestSpan();
 };
 #endif
