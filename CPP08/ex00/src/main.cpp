@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:33:32 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/08 15:54:47 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/09 08:50:20 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,12 @@ int main(int av, char **ac)
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "No conversion to int possible Bye." << '\n';
-			std::cerr << e.what() << '\n';
+			std::cerr << "No conversion " << e.what() << " to int possible, Bye." << '\n';
 			return 0;
 		}
 	}	
 	std::vector<int> val;
-	test (val, to_find, "Test with vectors");
+	test (val, to_find, "vectors");
 	std::deque<int> val2;
-	test (val2, to_find, "Test with deque");
-	std::list<int> val3;
-	test (val2, to_find, "Test with deque");
+	test (val2, to_find, "deque");
 }

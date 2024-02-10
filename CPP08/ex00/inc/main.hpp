@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:34:10 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/08 15:31:42 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/09 08:53:32 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,36 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <map>
 #include <deque>
 #include <string>
+#include <cmath>
 
 template < typename T>
-typename T::iterator easyfind(T &v,int N)
+unsigned int easyfind(T &v,int N)
 {
-	typename T::iterator pos =  std::find(v.begin(), v.end(), N);
-	if (pos != v.end())
+	unsigned int pos = v.size(); //=  std::find(v.begin(), v.end(), N);
+	std::cout << "Size de vector " << pos << std::endl;
+	std::cout << "Listado de valores (<* val > es encontrado en posicion val) " << std::endl;
+	for (unsigned int i = 0; i < v.size(); i++)
+	{
+		std::cout << v.at(i);
+		if (v.at(i) == N && pos == v.size())
+		{
+			pos = i;
+			std::cout << "<* " << i << ">";
+		}
+		else if (v.at(i) == N)
+		{
+			std::cout << "<* " << i << ">";
+		}
+		if (i != v.size() - 1)
+			std::cout << ",";
+		else
+			std::cout << ".";
+	}
+	std::cout << std::endl;
+	if (pos != v.size())
 		return (pos);
 	throw std::runtime_error("Value not found\n");
 }
@@ -31,15 +53,15 @@ typename T::iterator easyfind(T &v,int N)
 template <typename T>
 void test (T & val, int to_find,std::string text)
 {
-	std::cout << text << std::endl;
 	srand((unsigned int)time((time_t *)NULL));
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i <to_find; i++)
 		val.push_back(rand() % to_find);
 	int target = rand() % to_find;
+	std::cout << "Test with " << text << " of length " << to_find << ". searching the value:" << target << "." << std::endl;
 	try
 	{
-		typename T::iterator i = easyfind(val, rand() % to_find);
-		std::cout << "Value " << target << " found at pos : " << (i - val.begin()) <<  std::endl;
+		unsigned int i = easyfind(val, target);
+		std::cout << "Value " << target << " found at pos : " << i <<  std::endl;
 	}
 	catch(const std::exception& e)
 	{
