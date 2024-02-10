@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/01 19:12:13 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/10 16:03:39 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ int main(void)
 	print_title("Test Nr1.:default creator", GREEN, BLUE);
 	Bureaucrat oper1;
 	std::cout << "Default Bureaucrat created " << oper1 << std::endl;
+
 	print_title("Test Nr2.:copy creator", GREEN, BLUE);
 	Bureaucrat *oper2 = new Bureaucrat(oper1);
-	std::cout << "Bureaucrat new created " << *oper2 << std::endl;
+	std::cout << "Bureaucrat new created oper1 copied to oper2 " << *oper2 << std::endl;
 	print_title("Test Nr3.:asignation operation", GREEN, BLUE);
 	Bureaucrat mid_oper("mid_oper", 75);
-	std::cout << "Created: " << mid_oper;
+	std::cout << "Created: " << mid_oper << std::endl;
 	*oper2 = mid_oper;
-	std::cout << "Asigned midoper to oper2: now oper2 is" << *oper2 << std::endl;
-	print_title("Test Nr4.:Too high grade creation", RED, BLUE);
+	std::cout << "Asigned midoper to oper2: now oper2 is: " << *oper2 << std::endl;
+	print_title("Test Nr4.:Too high grade creation test", RED, BLUE);
 	Bureaucrat oper3("Too much grade", 0);
 	std::cout << BLUE << oper3 << RESET << std::endl;
 	print_title("Test Nr5.:Too low grade creation", RED, BLUE);
@@ -45,6 +46,12 @@ int main(void)
 	print_title("Test Nr7.: Decrement grade over limit", RED, BLUE);
 	oper4.DecGrade();
 	std::cout << BLUE << oper4 << RESET << std::endl;
+	print_title("Test Nr8.: Normal decrement grade", RED, BLUE);
+	mid_oper.DecGrade();
+	std::cout << BLUE << mid_oper << RESET << std::endl;
+	print_title("Test Nr9.: Normal increment grade", RED, BLUE);
+	mid_oper.IncGrade();
+	std::cout << BLUE << mid_oper << RESET << std::endl;
 	print_title("Finish tests", YELLOW, BLUE);
 	delete oper2;
 }

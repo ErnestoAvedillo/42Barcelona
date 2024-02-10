@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 11:16:47 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/01 10:23:27 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/10 16:14:05 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define MAX_GRADE 1
 # define MIN_GRADE 150
 # define INC_GRADE -1
-# define ERR_TOO_HIGH 101
-# define ERR_TOO_LOW 102
+# define ERR_TOO_HIGH "TOO_HIGH"
+# define ERR_TOO_LOW "TOO_LOW"
 
 class Bureaucrat
 {

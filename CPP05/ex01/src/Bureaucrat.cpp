@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/02 10:45:53 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/10 16:56:02 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ Bureaucrat::Bureaucrat(std::string my_name, int my_grade)
 	{
 		this->AssignGrade(my_grade);
 	}
-	catch (int err_no)
+	catch (std::exception &e)
 	{
-		if (err_no == ERR_TOO_HIGH)
+		if (e.what() == std::string(ERR_TOO_HIGH))
 			this->GradeTooHighException();
-		else if (err_no == ERR_TOO_LOW)
+		else if (e.what() == std::string(ERR_TOO_LOW))
 			this->GradeTooLowException();
 		else
 			std::cout << "Non graded error detected" << std::endl;
@@ -69,7 +69,7 @@ int Bureaucrat::IncGrade()
 	{
 		this->AssignGrade(--_grade);
 	}
-	catch(int err_no)
+	catch (std::exception &e)
 	{
 		this->GradeTooHighException();
 	}
@@ -82,7 +82,7 @@ int Bureaucrat::DecGrade()
 	{
 		this->AssignGrade(++_grade);
 	}
-	catch (int err_no)
+	catch (std::exception &e)
 	{
 		this->GradeTooLowException();
 	}
@@ -103,9 +103,9 @@ int Bureaucrat::AssignGrade(const int grade)
 {
 	_grade = grade;
 	if (grade < MAX_GRADE)
-		throw ERR_TOO_HIGH;
+		throw std::runtime_error(ERR_TOO_HIGH);
 	else if (grade > MIN_GRADE)
-		throw ERR_TOO_LOW;
+		throw std::runtime_error(ERR_TOO_LOW);
 
 	return (_grade);
 }
