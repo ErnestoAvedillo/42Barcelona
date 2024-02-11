@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/06 13:44:10 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:55:21 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,45 +72,53 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 
 void	ScalarConverter::convert(std::string to_convert)
 {
-
-	this->ToChar(to_convert);
-	this->ToInt(to_convert);
-	this->ToFloat(to_convert);
-	this->ToDouble(to_convert);
+	double number;
+	std::stringstream ss;  
+	ss << to_convert;  
+	ss >> number; 
+	std::cout << "Income: " << to_convert;
+	ToChar(number);
+	std::cout << "Income: " << to_convert;
+	ToInt(number);
+	std::cout << "Income: " << to_convert;
+	ToFloat(number);
+	std::cout << "Income: " << to_convert;
+	ToDouble(number);
 }
-void	ScalarConverter::ToChar(std::string to_convert)
+void	ScalarConverter::ToChar(double numb)
 {
+
 	int i;
 	try
 	{
-		i = std::stoi(to_convert);
+		i = static_cast<int> (numb);
 		if (i > MAX_CHAR || i < MIN_CHAR)
-			std::cout << "Income: " << to_convert << " is not valid to be converted to char." << std::endl;
+			std::cout << " is not valid to be converted to char." << std::endl;
 		else if (i > MAX_CHAR_PRINT || i < MIN_CHAR_PRINT)
-			std::cout << "Income: " << to_convert << " is a non displayable charachter." << std::endl;
+			std::cout << " is a non displayable charachter." << std::endl;
 		else
-			std::cout << "Income: " << to_convert << " converted to :" << char(i) << std::endl;
+			std::cout << " converted to char :" << char(i) << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << "Income: " << to_convert << "is not valid to be converted to char." << std::endl;
+		std::cerr << "is not valid to be converted to char." << std::endl;
 	}
 }
-void	ScalarConverter::ToInt(std::string to_convert)
+void	ScalarConverter::ToInt(double numb)
 {
 	int i;
 	try
 	{
-		i = std::stoi(to_convert);
-		std::cout << "Income: " << to_convert << " converted to :" << i << std::endl;
+		i = static_cast<int> (numb);
+		std::cout << " converted to :" << i << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << "Income: " << to_convert << "is not valid to be converted to int." << std::endl;
+		std::cerr << "is not valid to be converted to int." << std::endl;
 	}
 }
 
-void	ScalarConverter::ToFloat(std::string to_convert)
+void	ScalarConverter::ToFloat(double numb)
 {
 	float f;
 	int prec = 0;
@@ -124,7 +132,7 @@ void	ScalarConverter::ToFloat(std::string to_convert)
 			f = std::numeric_limits<float>::quiet_NaN();
 		else
 		{
-			f = std::stof(to_convert);
+			f = static_cast <float> number;
 			prec = get_num_dec(f);
 		}
 		std::cout << std::fixed << std::setprecision(prec);
@@ -135,7 +143,7 @@ void	ScalarConverter::ToFloat(std::string to_convert)
 		std::cerr << "Income: " << to_convert << "is not valid to be converted to float." << std::endl;
 	}
 }
-void	ScalarConverter::ToDouble(std::string to_convert)
+void	ScalarConverter::ToDouble(double numb)
 {
 	double d;
 	int prec = 0;
@@ -150,7 +158,6 @@ void	ScalarConverter::ToDouble(std::string to_convert)
 			d = std::numeric_limits<double>::quiet_NaN();
 		else
 		{
-			d = std::stod(to_convert);
 			prec = get_num_dec(d);
 		}
 		std::cout << std::fixed << std::setprecision(prec);

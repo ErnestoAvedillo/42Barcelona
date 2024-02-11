@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/06 13:44:05 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:51:56 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iomanip>
 # include <string>
 # include <limits>
+#include <sstream>
 # include <cmath>
 
 # define MAX_CHAR 255
@@ -44,16 +45,16 @@ size_t array_size(T (&)[N])
 class ScalarConverter
 {
 	private:
-
-	public:
 		ScalarConverter();
 		~ScalarConverter();
 		ScalarConverter &operator=(ScalarConverter const &);
-		void	convert(std::string );
-		void	ToChar(std::string );
-		void	ToInt(std::string );
-		void	ToFloat(std::string );
-		void	ToDouble(std::string );
+
+	public:
+		static void convert(std::string );
+		static void	ToChar(double );
+		static void	ToInt(double );
+		static void	ToFloat(double );
+		static void	ToDouble(double );
 };
 
 #endif

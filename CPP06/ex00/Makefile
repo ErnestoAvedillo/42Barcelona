@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
+#    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/06 13:28:19 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/11 13:54:03 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,6 @@ NAME := convert
 
 SRC := main ScalarConverter 
 
-#CLAS := ScalarConverter
-
 INC := main colors
 
 DIRSRC := ./src/
@@ -36,7 +34,6 @@ SRCS := $(addprefix $(DIRSRC), $(addsuffix .cpp,$(SRC)))
 OBJS := $(addprefix $(OBJDST_DIR), $(addsuffix .o,$(SRC)))
 DSTS := $(addprefix $(OBJDST_DIR), $(addsuffix .d,$(SRC)))
 INCS := $(addprefix $(DIRINC), $(addsuffix .h,$(INC)))
-#CLASS := $(addprefix $(DIRINC), $(addsuffix .hpp,$(CLAS)))
 
 RM := rm -rfd
 
