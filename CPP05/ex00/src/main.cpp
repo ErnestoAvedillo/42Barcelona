@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/10 16:03:39 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 12:41:04 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void print_title(std::string msg, std::string color_text, std::string color_bord
 	std::cout << std::setfill('*') << std::setw(5) << "";
 	std::cout << color_text << msg << color_border << std::setw(5) << "|";
 	std::cout << RESET << std::endl;
+	return ;
 }
 
 int main(void)
@@ -25,7 +26,6 @@ int main(void)
 	print_title("Test Nr1.:default creator", GREEN, BLUE);
 	Bureaucrat oper1;
 	std::cout << "Default Bureaucrat created " << oper1 << std::endl;
-
 	print_title("Test Nr2.:copy creator", GREEN, BLUE);
 	Bureaucrat *oper2 = new Bureaucrat(oper1);
 	std::cout << "Bureaucrat new created oper1 copied to oper2 " << *oper2 << std::endl;

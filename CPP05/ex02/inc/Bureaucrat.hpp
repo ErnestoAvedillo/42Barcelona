@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 11:16:47 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/02 19:35:37 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 12:58:29 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ class Bureaucrat;
 class Bureaucrat
 {
     private:
-        std::string _name;
-		int 		_grade;
+        const std::string   _name;
+		int 	        	_grade;
     public:
         Bureaucrat();
         Bureaucrat(std::string, int);
@@ -35,8 +35,7 @@ class Bureaucrat
         int IncGrade();
         int DecGrade();
         std::string GetName() const;
-        void PutName(const std::string);
-        int AssignGrade(const int);
+        void AssignGrade(const int);
         void GradeTooHighException();
         void GradeTooLowException();
         void signForm(bool, Form &);

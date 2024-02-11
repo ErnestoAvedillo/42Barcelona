@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 11:16:47 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/10 16:14:05 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 12:34:08 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 class Bureaucrat
 {
     private:
-        std::string _name;
+        const std::string _name;
 		int 		_grade;
     public:
         Bureaucrat();
@@ -38,7 +38,7 @@ class Bureaucrat
         int DecGrade();
         std::string GetName() const;
         void PutName(const std::string);
-        int AssignGrade(const int);
+        void AssignGrade(const int);
         void GradeTooHighException();
         void GradeTooLowException();
 };

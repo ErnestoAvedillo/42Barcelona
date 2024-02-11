@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 12:03:09 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/03 21:12:03 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:20:04 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 ShrubberyCreationForm::ShrubberyCreationForm():Form("DefaultSchrub",145,137)
 {
 	_target = "Home";
+	std::cout << "ShrubberyCreationForm " << *this << " created." << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string my_target) : Form("DefaultSchrub", 145, 137)
 {
 	_target = my_target;
+	std::cout << "ShrubberyCreationForm " << *this << " created." << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &s)
 {
 	*this = s;
+	std::cout << "ShrubberyCreationForm " << *this << " created." << std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()

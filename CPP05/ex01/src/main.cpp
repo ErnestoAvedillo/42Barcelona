@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/02 10:22:10 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 12:10:38 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int main(void)
 	std::cout << "Default Bureaucrat created " << oper1 << std::endl;
 	print_title("Test Nr2.:copy creator", GREEN, BLUE);
 	Bureaucrat *oper2 = new Bureaucrat(oper1);
-	std::cout << "Bureaucrat new created " << *oper2 << std::endl;
+	std::cout << "Bureaucrat new created  oper1 copied to oper2 " << *oper2 << std::endl;
 	print_title("Test Nr3.:asignation operation", GREEN, BLUE);
 	Bureaucrat mid_oper("mid_oper", 75);
 	std::cout << "Created: " << mid_oper;
 	*oper2 = mid_oper;
-	std::cout << "Asigned midoper to oper2: now oper2 is" << *oper2 << std::endl;
+	std::cout << "Asigned midoper to oper2: now oper2 is: " << *oper2 << std::endl;
 	print_title("Test Nr4.:Too high grade creation", RED, BLUE);
 	Bureaucrat oper3("Too high grade", 0);
 	std::cout << BLUE << oper3 << RESET << std::endl;

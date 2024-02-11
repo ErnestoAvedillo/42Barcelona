@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 22:23:08 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/10 16:56:02 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 12:37:38 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 Bureaucrat::Bureaucrat():_name("Common")
 {
-	this->AssignGrade(MAX_GRADE);
+	this->AssignGrade(MIN_GRADE);
 	std::cout << "Creating " << _name << " Beaurocrat.";
 	std::cout << " with grade " << _grade << "."<< std::endl;
 }
-Bureaucrat::Bureaucrat(std::string my_name, int my_grade)
+Bureaucrat::Bureaucrat(std::string my_name, int my_grade):_name(my_name)
 {
-	this->PutName(my_name);
 	try
 	{
 		this->AssignGrade(my_grade);
@@ -42,7 +41,7 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Destroying " << _name << " Beaurocrat.";
 	std::cout << " with grade " << _grade << "."<< std::endl;
 }
-Bureaucrat::Bureaucrat(const Bureaucrat &b)
+Bureaucrat::Bureaucrat(const Bureaucrat &b):_name(b.GetName())
 {
 	*this = b;
 }
@@ -52,7 +51,6 @@ Bureaucrat & Bureaucrat::operator = (const Bureaucrat &rhs)
 	std::cout << "Assignation operator called" << std::endl;
 	if (this != &rhs)
 	{
-		this->_name = rhs.GetName();
 		this->_grade = rhs.GetGrade();
 	}
 	return (*this);
@@ -89,17 +87,12 @@ int Bureaucrat::DecGrade()
 	return (_grade);
 }
 
-void Bureaucrat::PutName(const std::string my_name)
-{
-	_name = my_name;
-}
-
 std::string Bureaucrat::GetName() const
 {
 	return (_name);
 }
 
-int Bureaucrat::AssignGrade(const int grade)
+void Bureaucrat::AssignGrade(const int grade)
 {
 	_grade = grade;
 	if (grade < MAX_GRADE)
@@ -107,7 +100,7 @@ int Bureaucrat::AssignGrade(const int grade)
 	else if (grade > MIN_GRADE)
 		throw std::runtime_error(ERR_TOO_LOW);
 
-	return (_grade);
+	return ;
 }
 
 void Bureaucrat::GradeTooLowException()

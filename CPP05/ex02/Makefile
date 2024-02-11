@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
+#    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/03 14:29:56 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/11 13:13:28 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ print:
 clean:
 	@printf "$(RED)Removing objects folder $(OBJDST_DIR).$(RESET)\n"
 	$(RM) $(OBJDST_DIR)
+	$(RM) *.txt
 
 fclean: clean
 	@printf "$(RED)\rRemoving executable object $(NAME).$(RESET)\n"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 12:03:09 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/04 13:51:08 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:18:07 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 PresidentialPardonForm::PresidentialPardonForm() : Form("DefaultSchrub", 25, 5)
 {
 	_target = "Home";
+	std::cout << "PresidentialPardonForm " << *this << " created." << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string my_trget) : Form("DefaultSchrub", 25, 5)
 {
 	_target = my_trget;
+	std::cout << "PresidentialPardonForm " << *this << " created." << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &s)
 {
 	*this = s;
+	std::cout << "PresidentialPardonForm " << *this << " created." << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()

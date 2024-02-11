@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 12:03:09 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/04 16:21:36 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:19:18 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 RobotomyRequestForm::RobotomyRequestForm() : Form("DefaultRobot", 72, 45)
 {
 	_target = "Home";
+	std::cout << "RobotomyRequestForm " << *this << " created." << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string my_target) : Form("DefaultRobot", 72, 45)
 {
 	_target = my_target;
+	std::cout << "RobotomyRequestForm " << *this << " created." << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &s)
 {
 	*this = s;
+	std::cout << "RobotomyRequestForm " << *this << " created." << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -71,7 +74,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &b) const
 std::ostream &operator<<(std::ostream &ost, RobotomyRequestForm const &b)
 {
 	ost << "Name: " << b.GetName() << " with sign grade " << b.GetGradeSign() << " ";
-	ost << ", exec grade " << b.GetGradeExec();
+	ost << ", exec grade " << b.GetGradeExec() << "and document name " << b.GetTarget();
 	if (b.IsSigned())
 		ost << GREEN " SIGNED" RESET;
 	else
