@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:19:05 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/11 17:43:10 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:44:34 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void print_title(int i, std::string msg, std::string color_text, std::string col
 
 void tests_char()
 {
-	std::string s[] = {"-1", "3", "90", "255", "500"};
+	std::string s[] = {"a", "t", "z", "1", "-", "?"};
 	print_title(1, "Start char tests", BLUE, BLUE);
 	size_t len_arr = array_size(s);
 	for (size_t i = 0; i < len_arr; i++)
@@ -96,13 +96,6 @@ void tests_double()
 		print_title(i, TEST_TITLE, GREEN, WHITE);
 		ScalarConverter::convert(s[i]);
 	}
-}
-
-void tests()
-{
-
-	tests_char();
-	tests_int();
 }
 
 int main(int av, char **ac)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/11 17:51:56 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:35:00 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,24 @@
 
 # define MAX_CHAR 255
 # define MIN_CHAR 0
-# define MIN_CHAR_PRINT 21
-# define MAX_CHAR_PRINT 254
+# define MIN_CHAR_PRINT 97
+# define MAX_CHAR_PRINT 123
+typedef struct s_convert
+{
+	int 	type;
+	unsigned char c;
+	int 	i;
+	float 	f;
+	double 	d;
+	std::string s;
+} t_convert;
+
+typedef t_convert (*Check_func)(std::string);
+typedef void (*Conv_funct)(t_convert);
 
 enum DATA_TYPE
 {
+	NO_TYPE,
 	IS_CHAR,
 	IS_INT,
 	IS_FLOAT,
@@ -48,13 +61,15 @@ class ScalarConverter
 		ScalarConverter();
 		~ScalarConverter();
 		ScalarConverter &operator=(ScalarConverter const &);
-
+		static void isChar(t_convert);
+		static void isInt(t_convert);
+		static void isFloat(t_convert);
+		static void isDouble(t_convert);
+		static void prtOut(t_convert);
+		
 	public:
 		static void convert(std::string );
-		static void	ToChar(double );
-		static void	ToInt(double );
-		static void	ToFloat(double );
-		static void	ToDouble(double );
+
 };
 
 #endif
