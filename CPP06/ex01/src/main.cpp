@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:53:28 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/06 16:13:43 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:13:53 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int main(void)
 	std::cout << "Valor de ptr->c" << ptr.c << std::endl;
 	std::cout << "Valor de ptr->i" << ptr.i << std::endl;
 	std::cout << "Valor de ptr->ptr" << ptr.ptr << std::endl;
-	intptr_t ptr2;
+	// intptr_t ptr2;
+	void *ptr2;
 	ptr2 = serial.serialize(&ptr);
 	Data *nuevo = serial.deserialize(ptr2);
 	std::cout << BLUE "Valores de struc salida: " RESET << std::endl;
