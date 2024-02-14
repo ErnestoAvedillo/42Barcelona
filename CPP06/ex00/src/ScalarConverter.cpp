@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/13 18:29:07 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/14 20:05:27 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,19 @@ static t_convert check_is_valid(std::string s)
 	}
 	if (s.size() == 1)
 	{
-		if(s.at(0) >= MIN_CHAR_PRINT && s.at(0) <= MAX_CHAR_PRINT)
+		if(s.at(0) >= 'a' && s.at(0) <= 'z')
 		{
 			out.type = IS_CHAR;
 			out.c = s.at(0);
-			return out;
 		}
 		else if (s.find_first_of("0123456789") == std::string::npos)
 			out.type = MAX_CONVERTS;
 		else
+		{
 			out.type = IS_INT;
+			out.i = s.at(0) - 48;
+		}
+		return out;
 	}
 	if (s.at(s.size() - 1) == 'f')
 	{
@@ -85,7 +88,6 @@ static t_convert check_is_valid(std::string s)
 		}
 	}
 	return out;
-	//	std::cout << "Resultado find first" << s.find_first_not_of("+-.0123456789") << "!!!" << std::endl;
 }
 static t_convert check_inf(std::string s)
 {
@@ -94,7 +96,6 @@ static t_convert check_inf(std::string s)
 	std::string const infstrs[] = INF_TYPE;
 	for (size_t i = 0; i < array_size(infstrs); i++)
 	{
-	//	std::cout << "Valores infinitos " << infstrs[i] << std::endl;
 		if (infstrs[i] == s)
 		{
 			out.type = i + 2;
@@ -121,7 +122,6 @@ static t_convert check_min_inf(std::string s)
 	std::string const infstrs[] = INF_MINUS_TYPE;
 	for (size_t i = 0; i < array_size(infstrs); i++)
 	{
-	//	std::cout << "Valores infinitos " << infstrs[i] << std::endl;
 		if (infstrs[i] == s)
 		{
 			if (i == 0)
@@ -147,7 +147,6 @@ static t_convert check_nan(std::string s)
 	std::string const infstrs[] = NAN_TYPE;
 	for (size_t i = array_size(infstrs) - 1; i > 0; i--)
 	{
-		std::cout << "Valores infinitos " << infstrs[i] << std::endl;
 		if (infstrs[i] == s)
 		{
 			if (i == 0)
@@ -171,9 +170,7 @@ static int get_num_dec(float d)
 	int i = 1;
 	float f = powf(10, i);
 	
-	if (val.d == std::numeric_limits<float>::infinity ||
-		val.d == -1 * std::numeric_limits<float>::infinity ||
-		val.d == std::numeric_limits<float>::quiet_NaN())
+	if (std::isinf(d) || std::isnan(d))
 		return 0;
 
 	while (modff(d * f, &f) != 0)

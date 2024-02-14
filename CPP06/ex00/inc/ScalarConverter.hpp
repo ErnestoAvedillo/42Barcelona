@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/13 16:35:00 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/14 20:06:12 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 # define MAX_CHAR 255
 # define MIN_CHAR 0
-# define MIN_CHAR_PRINT 97
-# define MAX_CHAR_PRINT 123
+# define MIN_CHAR_PRINT 33
+# define MAX_CHAR_PRINT 254
 typedef struct s_convert
 {
 	int 	type;
