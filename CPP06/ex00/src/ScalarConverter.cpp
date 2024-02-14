@@ -101,13 +101,14 @@ static t_convert check_inf(std::string s)
 			if (i == 0)
 			{
 				out.type = IS_DOUBLE;
-				out.f = std::numeric_limits<double>::infinity();
+				out.d = std::numeric_limits<double>::infinity();
 			}
 			else if (i == 1)
 			{
 				out.type = IS_FLOAT;
 				out.f = std::numeric_limits<float>::infinity();
 			}
+			break;
 		}
 	}
 	return out;
@@ -126,13 +127,14 @@ static t_convert check_min_inf(std::string s)
 			if (i == 0)
 			{
 				out.type = IS_DOUBLE;
-				out.f = -1 * std::numeric_limits<double>::infinity();
+				out.d = -1 * std::numeric_limits<double>::infinity();
 			}
 			else if (i == 1)
 			{
 				out.type = IS_FLOAT;
 				out.f = -1 * std::numeric_limits<float>::infinity();
 			}
+			break;
 		}
 	}
 	return out;
@@ -156,8 +158,9 @@ static t_convert check_nan(std::string s)
 			else if (i == 1)
 			{
 				out.type = IS_DOUBLE;
-				out.f = std::numeric_limits<double>::quiet_NaN();
+				out.d = std::numeric_limits<double>::quiet_NaN();
 			}
+			break;
 		}
 	}
 	return out;
@@ -168,6 +171,11 @@ static int get_num_dec(float d)
 	int i = 1;
 	float f = powf(10, i);
 	
+	if (val.d == std::numeric_limits<float>::infinity ||
+		val.d == -1 * std::numeric_limits<float>::infinity ||
+		val.d == std::numeric_limits<float>::quiet_NaN())
+		return 0;
+
 	while (modff(d * f, &f) != 0)
 	{
 		i++;
@@ -263,7 +271,8 @@ void ScalarConverter::prtOut(t_convert val)
 	else
 		std::cout << "> converted to type int " << val.i << std::endl;
 	/*print float & double*/
-	std::cout << std::fixed << std::setprecision(prec);
+	if (prec != 0)
+		std::cout << std::fixed << std::setprecision(prec);
 	std::cout << "Income <" << val.s << "> converted to type float " << val.f << "f" << std::endl;
 	std::cout << "Income <" << val.s << "> converted to type double " << val.d << std::endl;
 }
