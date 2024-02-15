@@ -22,11 +22,11 @@ Serializer &Serializer::operator=(Serializer const &rhs)
 		return *this;
 	return *this;
 }
-void *Serializer::serialize(Data *ptr)
+uintptr_t Serializer::serialize(Data *ptr)
 {
-	return (reinterpret_cast<void*>(ptr));
+	return (reinterpret_cast<uintptr_t>(ptr));
 }
-Data *Serializer::deserialize(void *raw)
+Data *Serializer::deserialize(uintptr_t raw)
 {
 	return (reinterpret_cast<Data*>(raw));
 }
