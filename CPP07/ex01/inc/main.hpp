@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 07:03:06 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/07 10:49:06 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:41:52 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ size_t arr_len ( T (&) [N])
 template <typename T, size_t N>
 void all_in_one(T (&valores)[N])
 {
-	std::cout << MGENTA "ahora llamo l iter y a la funcion imprimir desde un template." RESET << std::endl;
+	std::cout << MGENTA "ahora llamo a la iter y a la funcion imprimir desde un template." RESET << std::endl;
 	iter<T>(valores, N, &imp_val_temp);
 }
 

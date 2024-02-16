@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/08 11:37:59 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/16 17:40:03 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ BLUE		:=	\033[1;94m
 PINK		:=	\033[1;95m
 CIAN		:=	\033[1;96m
 
-NAME := template
+NAME := iter
 
 SRC := main
 
