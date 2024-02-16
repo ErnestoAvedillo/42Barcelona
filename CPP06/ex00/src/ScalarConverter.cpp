@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/14 20:05:27 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:48:49 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ScalarConverter.hpp"
 
-static int count_chr(std::string s, char c)
+static int count_chr(std::string str, char c)
 {
 	int out;
 
 	out = 0;
-	for (size_t i = 0; i < s.size(); i++)
-		if(s[i] == c)
+	for (size_t i = 0; i < str.size(); i++)
+		if(str[i] == c)
 			out++;
 	return out;
 }
@@ -32,58 +32,62 @@ static t_convert init_conv()
 	out.f = 0;
 	out.d = 0;
 	out.s = "";
+	out.is_spec = false;
 	return out;
 }
 
-static t_convert check_is_valid(std::string s)
+static t_convert check_is_valid(std::string str)
 {
 	t_convert out;
 	std::stringstream ss;
-	ss << s;
 	out = init_conv();
-	if (s.empty())
+	if (str.empty())
 	{
 		out.type = MAX_CONVERTS;
 		return out;
 	}
-	if (s.size() == 1)
+	if (str.size() == 1)
 	{
-		if(s.at(0) >= 'a' && s.at(0) <= 'z')
+		if((str.at(0) >= '!' && str.at(0) <= '/') || (str.at(0) >= ':' && str.at(0) <= '~'))
 		{
 			out.type = IS_CHAR;
-			out.c = s.at(0);
+			out.c = str.at(0);
 		}
-		else if (s.find_first_of("0123456789") == std::string::npos)
+		else if (str.find_first_of("0123456789") == std::string::npos)
 			out.type = MAX_CONVERTS;
 		else
 		{
 			out.type = IS_INT;
-			out.i = s.at(0) - 48;
+			ss << str;
+			ss >> out.i;
 		}
 		return out;
 	}
-	if (s.at(s.size() - 1) == 'f')
+	if (str.at(str.size() - 1) == 'f')
 	{
-		s.erase(s.size() - 1);
+		str.erase(str.size() - 1);
+		ss << str;
 		ss >> out.f;
 		out.type = IS_FLOAT;
 	}
-	if (s.find_first_not_of("-+0123456789.") != std::string::npos ||
-		count_chr(s, '.') > 1 || count_chr(s, '-') > 1 || count_chr(s, '+') > 1)
+	if (str.find_first_not_of("-+0123456789.") != std::string::npos ||
+		count_chr(str, '.') > 1 || count_chr(str, '-') > 1 || count_chr(str, '+') > 1)
 		out.type = MAX_CONVERTS;
-	if ((count_chr(s, '+') == 1 && s.at(0) != '+') || 
-		(count_chr(s, '-') == 1 && s.at(0) != '-'))
+	if ((count_chr(str, '+') == 1 && str.at(0) != '+') || 
+		(count_chr(str, '-') == 1 && str.at(0) != '-'))
 		out.type = MAX_CONVERTS;
 	if (!out.type)
 	{
-		if(s.find_first_of(".")  < s.size())
+		if(str.find_first_of(".")  < str.size())
 		{
 			out.type = IS_DOUBLE;
+			ss << str;
 			ss >> out.d;
 		}
 		else
 		{
 			out.type = IS_INT;
+			ss << str;
 			ss >> out.i;
 		}
 	}
@@ -109,6 +113,7 @@ static t_convert check_inf(std::string s)
 				out.type = IS_FLOAT;
 				out.f = std::numeric_limits<float>::infinity();
 			}
+			out.is_spec = true;
 			break;
 		}
 	}
@@ -134,6 +139,7 @@ static t_convert check_min_inf(std::string s)
 				out.type = IS_FLOAT;
 				out.f = -1 * std::numeric_limits<float>::infinity();
 			}
+			out.is_spec = true;
 			break;
 		}
 	}
@@ -145,7 +151,7 @@ static t_convert check_nan(std::string s)
 	t_convert out;
 	out = init_conv();
 	std::string const infstrs[] = NAN_TYPE;
-	for (size_t i = array_size(infstrs) - 1; i > 0; i--)
+	for (size_t i = 0; i < array_size(infstrs); i++)
 	{
 		if (infstrs[i] == s)
 		{
@@ -159,6 +165,7 @@ static t_convert check_nan(std::string s)
 				out.type = IS_DOUBLE;
 				out.d = std::numeric_limits<double>::quiet_NaN();
 			}
+			out.is_spec = true;
 			break;
 		}
 	}
@@ -254,14 +261,17 @@ void ScalarConverter::prtOut(t_convert val)
 	prec = get_num_dec(val.d);
 	/*print--char*/
 	std::cout << "Income <" << val.s;
-	if (val.c > MAX_CHAR_PRINT || val.c < MIN_CHAR_PRINT)
+	if (val.is_spec)
+		std::cout << "> impossible conversion." << std::endl;
+	else if (val.c > MAX_CHAR_PRINT || val.c < MIN_CHAR_PRINT)
 		std::cout << "> is a non displayable charachter." << std::endl;
 	else
 		std::cout << "> converted to char :" << val.c << std::endl;
 	/*print--int*/
-	//std::cout << "Income <" << val.s << "> converted to type int " << val.i << std::endl;
 	std::cout << "Income <" << val.s;
-	if (val.i > std::numeric_limits<int>::max())
+	if (val.is_spec)
+		std::cout << "> impossible conversion." << std::endl;
+	else if (val.i > std::numeric_limits<int>::max())
 		std::cout << "> is over the 64 bits integer limit." << std::endl;
 	else if (val.i < std::numeric_limits<int>::min())
 		std::cout << "> is under the 64 bits integer limit." << std::endl;
@@ -273,87 +283,3 @@ void ScalarConverter::prtOut(t_convert val)
 	std::cout << "Income <" << val.s << "> converted to type float " << val.f << "f" << std::endl;
 	std::cout << "Income <" << val.s << "> converted to type double " << val.d << std::endl;
 }
-/*
-int i;
-try
-{
-	i = static_cast<char>(number);
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << "is not valid to be converted to char." << std::endl;
-	}
-}
-
-void ScalarConverter::isInt(t_convert number)
-{
-	int i;
-	try
-	{
-		i = static_cast<int>(number);
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << "is not valid to be converted to int." << std::endl;
-	}
-}
-
-void ScalarConverter::isFloat(t_convert number)
-{
-	float f;
-	int prec = 0;
-	try
-	{
-		if ((number < std::numeric_limits<float>::max() 
-				&& number > std::numeric_limits<float>::min()) )
-		{
-			f = static_cast<float>(number);
-			prec = get_num_dec(f);
-			std::cout << std::fixed << std::setprecision(prec);
-			std::cout << " converted to :" << f << "f" << std::endl;
-		}
-		else if (number == std::numeric_limits<double>::infinity()
-				|| number == -std::numeric_limits<double>::infinity()
-				|| number == std::numeric_limits<double>::quiet_NaN())
-		{
-			f = static_cast<float>(number);
-			std::cout << " converted to :" << f << "f" << std::endl;
-		}
-		else if (number < std::numeric_limits<double>::min())
-			std::cout << " is under the 64 bits float limit." << number << std::numeric_limits<float>::min() << std::endl;
-		else
-			std::cout << " is over the 64 bits float limit." << number << std::numeric_limits<float>::max() << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << "is not valid to be converted to float." << std::endl;
-	}
-}
-
-void ScalarConverter::isDouble(t_convert number)
-{
-	int prec = 0;
-	try
-	{
-		if ((number < std::numeric_limits<double>::max() 
-				&& number > std::numeric_limits<double>::min()))
-		{
-			prec = get_num_dec(number);
-			std::cout << std::fixed << std::setprecision(prec);
-			std::cout << " converted to :" << number << std::endl;
-		}
-		else if (number == std::numeric_limits<double>::infinity() 
-				|| number == -std::numeric_limits<double>::infinity()
-				|| number == std::numeric_limits<double>::quiet_NaN())
-			std::cout << " converted to :" << number << std::endl;
-		else if (number < std::numeric_limits<double>::min())
-			std::cout << " is under the 64 bits double limit." << number << std::endl;
-		else
-			std::cout << " is over the 64 bits double limit." << number << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << "is not valid to be converted to double." << std::endl;
-	}
-}
-*/

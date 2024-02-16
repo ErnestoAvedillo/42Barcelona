@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:19:05 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/14 20:09:19 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:22:57 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ void tests_float()
 		"-44444444444444444444444444444444444424f",
 		"inff",
 		"-inff",
-		"nan",
-		"ñdslfnv"};
+		"nanf"};
 	print_title(2, "Start Float tests", BLUE, BLUE);
 	size_t len_arr = array_size(s);
 	for (size_t i = 0; i < len_arr; i++)
@@ -80,17 +79,16 @@ void tests_float()
 void tests_double()
 {
 	std::string s[] = {
-		"0",
-		"0.0f",
-		"-0.5f",
-		"0.5f",
+		"0.",
+		"0.0",
+		"-0.5",
+		"0.5",
 		"42.42",
 		"444444444444444444444444444444.",
 		"-44444444444444444444444444444444444424.",
 		"inf",
 		"-inf",
-		"nan",
-		"ñdslfnv"};
+		"nan"};
 	print_title(2, "Start Double tests", BLUE, BLUE);
 	size_t len_arr = array_size(s);
 	for (size_t i = 0; i < len_arr; i++)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 08:08:19 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/14 20:06:12 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:14:39 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define MAX_CHAR 255
 # define MIN_CHAR 0
 # define MIN_CHAR_PRINT 33
-# define MAX_CHAR_PRINT 254
+# define MAX_CHAR_PRINT 126
 typedef struct s_convert
 {
 	int 	type;
@@ -31,6 +31,7 @@ typedef struct s_convert
 	float 	f;
 	double 	d;
 	std::string s;
+	bool	is_spec;
 } t_convert;
 
 typedef t_convert (*Check_func)(std::string);
