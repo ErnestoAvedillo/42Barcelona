@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:48:39 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/09 11:45:30 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:23:17 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,33 @@
 int main (int av, char **ac)
 {
 	unsigned int to_find;
+	unsigned int to_find1;
+	
 	if (av < 2)
-		to_find = 1;
+	{
+		to_find = 10;
+		to_find1 = 40;
+	}
+	else if (av < 3)
+		try
+		{
+			std::string value(ac[1]);
+			to_find = std::stoi(value);
+			to_find1 = to_find + 30;
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << "No conversion " << e.what() << " to int possible, Bye." << '\n';
+			return 0;
+		}
 	else
 	{
 		try
 		{
 			std::string value(ac[1]);
 			to_find = std::stoi(value);
-			if (to_find <= 0)
-			{
-				std::cout << "A positive > 0 integer as argument or no argument is possible." << std::endl;
-				return 0;
-			}
+			std::string value1(ac[2]);
+			to_find1 = std::stoi(value);
 		}
 		catch (const std::exception &e)
 		{
@@ -35,35 +49,47 @@ int main (int av, char **ac)
 			return 0;
 		}
 	}
+	if (to_find <= 0 || to_find1 <= 0)
+	{
+		std::cout << "A positive > 0 integer as argument or no argument is possible." << std::endl;
+		return 0;
+	}
 	Span sp(to_find);
 	std::cout << "valores añadidos " << std::endl;
 	srand((unsigned int)time((time_t *)NULL));
 	for (unsigned int i = 0; i < to_find; i++)
 	{
-		sp.addValue(rand() % to_find * 100);
-		std::cout << sp.getValue(i);
-		if (i == to_find - 1)
-			std::cout << "." << std::endl;
-		else
-			std::cout << ", ";
+		try
+		{
+			sp.addNumber(rand()% (to_find * 100));
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+			break;
+		}
 	}
 	try
 	{
+		sp.printRange(0, to_find);
 		std::cout << RED " Test adding more values than " << to_find << "by operator requested"  RESET << std::endl;
-		sp.addValue(rand() % 40);
+		//sp.addNumber(rand() % 40);
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << " Vector oversized." << e.what();
+		std::cout << e.what();
 	}
 	std::cout << std::endl;
 	std::cout << GREEN " Visualize all values" RESET << std::endl;
-	for (unsigned int i = 0; i < sp.GetSize(); i++)
+	try
 	{
-		std::cout << "pos " << i << " = " << sp.getValue(i) << ", ";
+		sp.printRange(0, sp.getSize());
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
 	}
 	std::cout << std::endl;
-
 	std::cout << GREEN " Getting longest and shortest" RESET << std::endl;
 	try
 	{
@@ -80,5 +106,54 @@ int main (int av, char **ac)
 	catch (const std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
+	}
+	std::cout << RED " Test the function add range with enough capacity"  RESET << std::endl;
+	Span sp2 (to_find1);
+	srand((unsigned int)time((time_t *)NULL));
+	for (unsigned int i = 0; i < to_find1 - to_find -1; i++)
+	{
+		try
+		{
+			sp2.addNumber(rand()% (20 * 100));
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}	
+	try
+	{
+		sp2.printRange(0, sp2.getSize());
+	std::cout << "paso" << std::endl;
+		sp2.addRange(sp);
+	std::cout << "paso1" << std::endl;
+		sp2.printRange(0, sp2.getSize());
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << RED " Test the function add range with not enough capacity"  RESET << std::endl;
+	Span sp3 (to_find1);
+	srand((unsigned int)time((time_t *)NULL));
+	for (unsigned int i = 0; i < to_find1 - 1; i++)
+	{
+		try
+		{
+			sp3.addNumber(rand()% (20 * 100));
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}	
+	try
+	{
+		sp3.addRange(sp);
+		sp3.printRange(0, sp3.getSize());
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
 	}
 }
