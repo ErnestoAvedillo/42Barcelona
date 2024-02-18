@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:51:54 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/07 14:32:11 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:51:45 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.hpp"
+#define MAX_VAL 750
 
-int main(void)
+int main(int, char**)
 {
 	Array<int> pepito;
 	try

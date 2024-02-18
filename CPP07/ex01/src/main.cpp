@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 07:13:56 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/16 17:39:22 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:43:04 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,25 @@ void imp_val (int valor1)
 
 int main(void)
 {
+{
+	int	intArray[5] = {42, 41, 40, 39, 38};
+	std::string	stringArray[5] = {"42", "zpalfi", "cpp07", "hola", "adios"};
+	float	floatArray[3] = {42.42, 69.69, 42.69};
 
+	std::cout << "Result of iter the int array:" << std::endl;
+	::iter<int>(intArray, 5, ::imp_val_temp);
+
+	std::cout << std::endl << std::endl << "Result of iter the string array" << std::endl;
+	::iter<std::string>(stringArray, 5, ::imp_val_temp);
+
+	std::cout<< std::endl << std::endl << "Result of iter the float array" << std::endl;
+	::iter<float>(floatArray, 3, ::imp_val_temp);
+	std::cout << std::endl;
+}
+{
+	std::string strings[] = {"rergg", "fe;vncn", "3489yr3984hruire", "qfqlbfbql904", "elkb832ijk", "wwmmwwmmbuu:w"};
+	std::cout << GREEN "Usando una funcion estandard con strings" RESET << std::endl;
+	iter(strings, 6, imp_val_temp);
 	int valores[] = {90, -4, 86, 75, 54, 33};
 	std::cout << GREEN "Usando una funcion estandard" RESET << std::endl;
 	iter(valores, 6, imp_val);
@@ -30,4 +48,5 @@ int main(void)
 	iter(valdoub, 6, imp_val_temp);
 	all_in_one(valores);
 	all_in_one(valdoub);
+}
 }
