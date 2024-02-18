@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:48:39 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/18 17:23:17 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:30:24 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,10 @@ int main (int av, char **ac)
 	}	
 	try
 	{
+		std::cout << GREEN " Before adding the first vector"  RESET << std::endl;
 		sp2.printRange(0, sp2.getSize());
-	std::cout << "paso" << std::endl;
 		sp2.addRange(sp);
-	std::cout << "paso1" << std::endl;
+		std::cout << MGENTA " After adding the first vector"  RESET << std::endl;
 		sp2.printRange(0, sp2.getSize());
 	}
 	catch(const std::exception& e)
@@ -149,7 +149,10 @@ int main (int av, char **ac)
 	}	
 	try
 	{
+		std::cout << GREEN " Before adding the first vector"  RESET << std::endl;
+		sp3.printRange(0, sp3.getSize());
 		sp3.addRange(sp);
+		std::cout << MGENTA " After adding the first vector"  RESET << std::endl;
 		sp3.printRange(0, sp3.getSize());
 	}
 	catch(const std::exception& e)
