@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/08 11:37:53 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/23 17:04:32 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CIAN		:=	\033[1;96m
 
 NAME := btc
 
-SRC := main Date
+SRC := main Date BtcData
 
 
 INC := main colors
