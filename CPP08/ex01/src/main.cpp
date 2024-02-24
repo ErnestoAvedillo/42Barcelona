@@ -6,11 +6,26 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:48:39 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/18 17:30:24 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/24 14:50:52 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.hpp"
+
+static float getValue(std::string str)
+{
+	int32_t out = 0;
+
+	std::stringstream ss;
+	out = 0;
+	if (str.empty())
+		throw std::runtime_error("Argument not valid.");
+	if (str.find_first_not_of("0123456789") != std::string::npos)
+		throw std::runtime_error("Argument not valid.");
+	ss << str;
+	ss >> out;
+	return out; 
+}
 
 int main (int av, char **ac)
 {
@@ -26,12 +41,12 @@ int main (int av, char **ac)
 		try
 		{
 			std::string value(ac[1]);
-			to_find = std::stoi(value);
+			to_find = getValue(value);
 			to_find1 = to_find + 30;
 		}
 		catch (const std::exception &e)
 		{
-			std::cerr << "No conversion " << e.what() << " to int possible, Bye." << '\n';
+			std::cerr << "No conversion. " << e.what() << '\n';
 			return 0;
 		}
 	else
@@ -39,13 +54,13 @@ int main (int av, char **ac)
 		try
 		{
 			std::string value(ac[1]);
-			to_find = std::stoi(value);
+			to_find = getValue(value);
 			std::string value1(ac[2]);
-			to_find1 = std::stoi(value);
+			to_find1 = getValue(value1);
 		}
 		catch (const std::exception &e)
 		{
-			std::cerr << "No conversion " << e.what() << " to int possible, Bye." << '\n';
+			std::cerr << "No conversion. " << e.what() << '\n';
 			return 0;
 		}
 	}
@@ -54,6 +69,8 @@ int main (int av, char **ac)
 		std::cout << "A positive > 0 integer as argument or no argument is possible." << std::endl;
 		return 0;
 	}
+	std::cout << MGENTA "Size of vectors too test: 1sr:" << to_find << "; 2nd : " << to_find1 << RESET << std::endl;
+
 	Span sp(to_find);
 	std::cout << "valores añadidos " << std::endl;
 	srand((unsigned int)time((time_t *)NULL));
@@ -73,7 +90,7 @@ int main (int av, char **ac)
 	{
 		sp.printRange(0, to_find);
 		std::cout << RED " Test adding more values than " << to_find << "by operator requested"  RESET << std::endl;
-		//sp.addNumber(rand() % 40);
+		sp.addNumber(rand() % 40);
 	}
 	catch (const std::exception &e)
 	{
@@ -119,6 +136,7 @@ int main (int av, char **ac)
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
+			break;
 		}
 	}	
 	try
@@ -145,6 +163,7 @@ int main (int av, char **ac)
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
+			break;
 		}
 	}	
 	try

@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:53:44 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/18 17:27:06 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/24 15:05:36 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,7 @@ void Span::addRange(Span &rhs)
 {
 	if (this->getSize() + rhs.getSize() > _num)
 		throw std::runtime_error("Not enoug space into the vector");
-	int aux = std::max(this->_num - this->getSize(), rhs.getSize());
-	for(int i = 0; i < aux - 1; i++)
-		this->_vec.push_back(rhs.getValue(i));
-
+	_vec.insert(_vec.end(), rhs._vec.begin(), rhs._vec.end());
 }
 
 void Span::printRange(unsigned int N1, unsigned int N2)
