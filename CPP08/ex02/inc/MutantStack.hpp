@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:20:00 by eavedill          #+#    #+#             */
-/*   Updated: 2024/02/09 21:28:33 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:34:04 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ public:
 	{
 		if (this == &src)
 			return (*this);
-		std::cout << "test" << std::endl;
 		std::stack<T>::operator=(src);
-		std::cout << "test2" << std::endl;
 		return (*this);
 	}
 
@@ -50,36 +48,14 @@ public:
 
 	const_reverse_iterator rbegin() const { return (std::stack<T>::c.rbegin()); }
 	const_reverse_iterator rend() const { return (std::stack<T>::c.rend()); }
+
+	T at(unsigned int N)  {
+		if (N > std::stack<T>::c.end() - std::stack<T>::c.begin() || N < 0)
+			throw std::runtime_error("Index out of range.");
+		iterator mycont = std::stack<T>::c.begin();
+		for (unsigned int i = 0; i < N; i++) {++mycont;}
+		return *mycont;
+		}
 };
 
 #endif
-/*
-#ifndef MUTANTSTACK_HPP
-#define MUTANTSTACK_HPP
-#include <iostream>
-#include <stack>
-
-template <typename T, typename Container = std::deque<T>>
-class MutantStack : public std::stack<T, Container>
-{
-private:
-
-public:
-	std::stack<T, Container>::MutantStack();
-	std::stack<T, Container>::~MutantStack();
-	std::stack<T, Container>::MutantStack(MutantStack &){
-		*this = rhs;
-	}
-	MutantStack &operator=(MutantStack &){
-		if (this == &rhs)
-			return *this;
-		*this = rhs return *this;
-	};
-	std::stack<T, Container>::begin() {return std::begin(c); }
-	std::stack<T, Container>::end() { return std::end(c); }
-
-	std::stack<T, Container>::begin() const { return std::begin(c); }
-	std::stack<T, Container>::end() const { return std::end(c); }
-};
-
-#endif*/

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
+#    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/09 21:26:30 by eavedill         ###   ########.fr        #
+#    Updated: 2024/02/24 15:15:27 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CIAN		:=	\033[1;96m
 
 NAME := mutantstack
 
-SRC := main MutantStack
+SRC := main
 
 INC := main colors
 
