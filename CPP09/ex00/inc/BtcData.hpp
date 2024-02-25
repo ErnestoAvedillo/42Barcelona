@@ -6,6 +6,8 @@
 #include <limits>
 #include "../inc/Date.hpp"
 
+bool checkdate(int m, int d, int y);
+
 typedef struct s_btc
 {
 	Date    op_date;
@@ -24,14 +26,14 @@ class BtcData
 		BtcData(BtcData const &);
 		BtcData &operator=(BtcData const &);
 		~BtcData();
-		std::string getDate(size_t const &);
+		Date getDate(size_t const &);
 		float getVal(size_t const &);
 		bool readFile();
 		void setDelimiter(char const&);
 		char getDelimiter();
 		void setFile(std::string const &);
 		std::string getFileName() const;
-		float find_acc_note(t_btc const &);
+		float find_acc_note(Date const &);
 		std::vector<t_btc>::iterator getBegin();
 		std::vector<t_btc>::iterator getEnd();
 };

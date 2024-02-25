@@ -45,30 +45,6 @@ int extractYear(std::string const & str)
 	return i;
 }
 
-bool checkdate(int m, int d, int y)
-{
-  if (! (1582<= y )  )
-	 return false;
-  if (! (1<= m && m<=12) )
-	 return false;
-  if (! (1<= d && d<=31) )
-	 return false;
-  if ( (d==31) && (m==2 || m==4 || m==6 || m==9 || m==11) )
-	 return false;
-  if ( (d==30) && (m==2) )
-	 return false;
-  if ( (m==2) && (d==29) && (y%4!=0) )
-	 return false;
-  if ( (m==2) && (d==29) && (y%400==0) )
-	 return true;
-  if ( (m==2) && (d==29) && (y%100==0) )
-	 return false;
-  if ( (m==2) && (d==29) && (y%4==0)  )
-	 return true;
- 
-  return true;
-}
-
 static bool checkFormatDate(std::string const &str)
 {
 	if (str.size() != 10)
@@ -171,26 +147,42 @@ Date::~Date(){}
 
 void Date::putDate(std::string const &str)
 {
-		std::cout << "paso2 " << std::endl;
+	std::string aux;
+   	std::stringstream ss;
+	
 	if (!checkFormatDate (str))
 		throw std::runtime_error("Incorrect date fromat.");
-	_day = extractDay(str);
-	_month = extractMonth(str);
-	_year = extractYear(str);
+	aux = str.substr(9, 2);
+	ss << aux;
+	ss >> _day;
+	ss.str("");
+	ss.clear();
+	aux = str.substr(5, 2);
+	ss << aux;
+	ss >> _month;
+	ss.str("");
+	ss.clear();
+	aux = str.substr(0, 4);
+	ss << aux;
+	ss >> _year;
 }
 
 std::string Date::getDate()
 {
-	std::string str;
+	std::string str, str1;
 	std::stringstream aux;
 	aux << _year;
 	aux >> str;
+	aux.str("");
+	aux.clear();
 	aux << _month;
-	str = str + '-';
-	aux >> str;
-	aux >>_day;
-	str = str + '-';
-	aux >> str;
+	aux >> str1;
+	str = str + '-' + str1;
+	aux.str("");
+	aux.clear();
+	aux << _day;
+	aux >> str1;
+	str = str + '-' + str1;
 	return str;
 }
 

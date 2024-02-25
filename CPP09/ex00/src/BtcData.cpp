@@ -55,14 +55,14 @@ BtcData &BtcData::operator=(BtcData const &rhs)
 
 BtcData::~BtcData(){}
 
-std::string BtcData::getDate(size_t const &i)
+Date BtcData::getDate(size_t const &i)
 {
-	return (_vec_data.at(i).op_date.getDate());
+	return (_vec_data.at(i).op_date);
 }
 
 float BtcData::getVal(size_t const &i)
 {
-	return (_vec_data[i].ammount);
+	return (_vec_data.at(i).ammount);
 }
 
 bool BtcData::readFile()
@@ -80,18 +80,12 @@ bool BtcData::readFile()
 	}
 
 	std::getline(fData, line);
-	std::cout << line << std::endl;
 	while (std::getline(fData, line))
 	{
-		std::cout << line << std::endl;
 		aux = line.substr(0,10);
-		std::cout << "paso1 " << aux << std::endl;
 		toadd.op_date.putDate(aux);
-		std::cout << "paso2 " << std::endl;
 		aux = line.substr(11,aux.size() - 11);
-		std::cout << "paso3 " << std::endl;
 		toadd.ammount = getValue(aux);
-		std::cout << "paso " << toadd.op_date.getDate() << "|" <<toadd.ammount << std::endl;
 		_vec_data.push_back(toadd);
 	}
 	fData.close();
@@ -118,16 +112,19 @@ std::string BtcData::getFileName() const
 	return (_filename);
 }
 
-float BtcData::find_acc_note(t_btc const &d)
+float BtcData::find_acc_note(Date const &d)
 {
 	std::vector<t_btc>::iterator start = _vec_data.begin();
 	std::vector<t_btc>::iterator end = _vec_data.end();
-
+	if (!checkdate(d.getMonth(),d.getDay(),d.getYear()))
+		throw std::runtime_error("Incorrect date");
 	while (start!= end) {
-		if (start->op_date.getDay() == d.op_date.getDay()) return start->ammount;
+		if (start->op_date >= d) 
+			return start->ammount;
 		++start;
 	}
-	return -1;
+	end--;
+	return  end->ammount;
 }
 
 std::vector<t_btc>::iterator BtcData::getBegin()
@@ -139,3 +136,4 @@ std::vector<t_btc>::iterator BtcData::getEnd()
 {
 	return (_vec_data.end());
 }
+

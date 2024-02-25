@@ -7,4 +7,5 @@
 #include <vector>
 #define DATA_CSV "./data.csv"
 #include "../inc/BtcData.hpp"
+
 #endif
