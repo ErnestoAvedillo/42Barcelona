@@ -36,5 +36,6 @@ class BtcData
 		float find_acc_note(Date const &);
 		std::vector<t_btc>::iterator getBegin();
 		std::vector<t_btc>::iterator getEnd();
+		void printVector();
 };
 #endif

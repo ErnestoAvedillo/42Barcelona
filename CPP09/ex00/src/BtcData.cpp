@@ -137,3 +137,14 @@ std::vector<t_btc>::iterator BtcData::getEnd()
 	return (_vec_data.end());
 }
 
+void BtcData::printVector()
+{
+	for(size_t i = 0; i < _vec_data.size();  i++)
+	{
+		std::cout << _vec_data.at(i).op_date.getYear() << "-";
+	    std::cout << std::setfill('0') << std::setw(2) << _vec_data.at(i).op_date.getMonth() << "-";
+	    std::cout << std::setfill('0') << std::setw(2) << _vec_data.at(i).op_date.getDay();
+		std::cout << "-->" << _vec_data.at(i).ammount << std::endl;
+	}
+
+}

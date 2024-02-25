@@ -1,6 +1,7 @@
 #ifndef DATE_HPP
 #define DATE_HPP
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <stdexcept>
 
@@ -28,6 +29,5 @@ class Date
     int getMonth() const;
     int getYear() const;
 };
-
 
 #endif

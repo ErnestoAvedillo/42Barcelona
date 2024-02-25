@@ -18,7 +18,10 @@ int main (int av, char **ac)
 		try
 		{
 			value = DataBase.find_acc_note(input.getDate(i - input.getBegin()));
-			std::cout << "Fecha: " << input.getDate(i - input.getBegin()).getDate() << "," << input.getVal(i- input.getBegin()) *  value << std::endl;
+			if (input.getVal(i- input.getBegin()) == std::numeric_limits<float>::quiet_NaN() || input.getVal(i- input.getBegin())  > 1000 )
+				std::cout << "Fecha: " << input.getDate(i - input.getBegin()).getDate() << "-->" << "Incorrect ammount " << std::endl;
+			else	
+				std::cout << "Fecha: " << input.getDate(i - input.getBegin()).getDate() << "-->" << input.getVal(i- input.getBegin()) *  value << std::endl;
 		}
 		catch(const std::exception& e)
 		{
