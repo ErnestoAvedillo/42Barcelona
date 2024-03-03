@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
+#    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/03/02 14:02:50 by eavedill         ###   ########.fr        #
+#    Updated: 2024/03/03 18:21:04 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ RM := rm -rfd
 
 CC:= c++
 
-FLAGS := -Wall -Werror -Wextra  -pedantic -g -std=c++98
+FLAGS := -Wall -Werror -Wextra  -pedantic -g #-std=c++98
 
 all: $(NAME) Makefile
 	

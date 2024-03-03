@@ -3,28 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:37:59 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/02 22:45:25 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/03 18:53:54 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/PmergeMe.hpp"
-
 /*
-static void swapval(int *it1, int *it2)
-{
-	int aux;
-	if (*it1 > *it2)
-		return;
-	aux = *it2;
-	*it1 = *it2;
-	*it2 = aux;
-	return;
-}
-*/
-
 PmergeMe::PmergeMe()
 {
 	
@@ -51,25 +38,47 @@ PmergeMe &PmergeMe::operator= (PmergeMe const &rhs)
 void PmergeMe::sort(){
 	std::deque<int> lst1, lst2, out;
 	std::deque<int>::iterator it1 = lst1.begin();
-	std::deque<int>::iterator it2 = lst1.begin();
+	std::deque<int>::iterator it2 = lst2.begin();
 	size_t pos, old_pos;
 
 	lst1.insert(it1, _mylist.begin(), _mylist.begin() + _mylist.size() / 2);
-	lst2.insert(it2, _mylist.begin() + _mylist.size() / 2 + 1, _mylist.end());
+	lst2.insert(it2, _mylist.begin() + _mylist.size() / 2, _mylist.end());
+	it1 = lst1.begin();	
+	it2 = lst2.begin();	
+	printCont(lst1.begin(), lst1.end());
+	printCont(lst2.begin(), lst2.end());
 	for (size_t i = 0; i < lst1.size(); i++)
-		swap(it1, it2);
-	if (lst1.size() == 2 && lst1.at(0) < lst1.at(1))
 	{
-		it2 = it1 + 1;
-		swap(it1, it2);
+		if (*it1 < *it2)
+			swapval(it1, it2);
+		it1++;
+		it2++;
+	}
+	std::cout << "control 1 swap1" << std::endl;
+	printCont(lst1.begin(), lst1.end());
+	printCont(lst2.begin(), lst2.end());
+	if (lst1.size() == 2)
+	{
+		if(lst1.at(0) > lst1.at(1))
+		{
+			std::cout << "control 2 swap2 - " << *it1 << " - " << *it2 <<  std::endl;
+			it1 = lst1.begin();
+			it2 = it1 + 1;
+			swapval(it1, it2);
+			printCont(lst1.begin(), lst1.end());
+			printCont(lst2.begin(), lst2.end());
+		}
 	}
 	else
 	{
 		PmergeMe	sublst(lst1);
 		sublst.sort();
 	}
-	out.push_back(lst1.at(0));
+	std::cout << "control out - " << *it1 << " - " << *it2 <<  std::endl;
 	out.push_back(lst2.at(0));
+	out.push_back(lst1.at(0));
+	out.push_back(lst1.at(1));
+	printCont(out.begin(), out.end());
 	old_pos = 0;
 	for (size_t i = 0; i < lst2.size(); i++)
 	{
@@ -97,19 +106,16 @@ std::deque<int> PmergeMe::getList()
 
 void PmergeMe::printList()
 {
-	size_t ln = _mylist.size();
-	
-	for (size_t i = 0; i < ln; i++)
-	{
-		std::cout << _mylist.at(i);
-		if (i == ln - 1)
-			std::cout << "." << std::endl;
-		else
-			std::cout << ", ";
-	}
+	printCont(_mylist.begin(), _mylist.end());
 }
 
 void PmergeMe::AddVal(int val)
 {
 	_mylist.push_back(val);
 }
+
+size_t PmergeMe::size()
+{
+	return (_mylist.size());
+}
+*/
