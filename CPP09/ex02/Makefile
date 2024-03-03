@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
+#    By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/02/25 14:16:33 by eavedill         ###   ########.fr        #
+#    Updated: 2024/03/02 14:02:50 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,10 @@ CIAN		:=	\033[1;96m
 
 NAME := PmergeMe
 
-SRC := main
+SRC := main convert PmergeMe
 
 
-INC := main colors
+INC := main colors 
 
 DIRSRC := ./src/
 
