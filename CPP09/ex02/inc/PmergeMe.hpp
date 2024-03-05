@@ -56,16 +56,42 @@ InputIterator bin_search(InputIterator first, InputIterator last, T &val)
 	size_t v_len = last - first;
 	size_t pos = v_len / 2;
 	InputIterator it1, it2;
-	it1 += pos;
-	it2 = it1 + 2;
-	while (!(*it1 <= val && *it2 >= val))
+	it1 = first + pos;
+	it2 = max(it1 - 1, first);
+	//it2 = min(it1 + 2, last) - 1;
+	printCont(first, last);
+	while (!(*it1 >= val && *it2 <= val) && !(it1 == first && *it1 > val) && !(it1 == last && *it2 < val))
 	{
-		if (*it1 >= val)
-			it1 += pos / 2;
+	std::cout << "Posic - " << pos << " punteros it1 " << &it1 << " - it2 " << &it2 << " - first " << &first << " - last " << &last << std::endl;
+	std::cout << "Valor - " << val << " punteros it1 " << *it1 << " - it2 " << *it2 << " - first " << *first << " - last " << *last << std::endl;
+	printCont(first, last);
+		if (it1 != last)
+		{
+			if (*it1 >= val)
+			{
+				if (pos == 1)
+					it1 = first;
+				else
+					it1 -= pos;
+			}
+			else
+				if (pos == 1)
+					it1 = last;
+				else
+					it1 += pos;
+		}
 		else
-			it1 += pos / 2;
-		it2 = it1 + 1;
+		{
+			it1 -= pos;
+		}
+//		if (pos == 1)
+//			pos = 0;
+//		else
+			pos = pos / 2 + pos % 2;
+		it2 = max(it1 - 1, first);
 	}
+	std::cout << "Valor - " << val << " punteros it1 " << *it1 << " - it2 " << *it2 << " - first " << *first << " - last " << *last << std::endl;
+	printCont(first, last);
 	return it1;
 }
 
@@ -73,9 +99,13 @@ template <typename InputIterator>
 static void swapval(InputIterator &it1, InputIterator &it2)
 {
 	int aux;
+//	std::cout << "punteros first " << &it1 << " - it1 " << &it2 << std::endl;
+//	std::cout << "punteros first " << *it1 << " - it1 " << *it2 << std::endl;
 	aux = *it1;
 	*it1 = *it2;
 	*it2 = aux;
+//	std::cout << "punteros first " << &it1 << " - it1 " << &it2 << std::endl;
+//	std::cout << "punteros first " << *it1 << " - it1 " << *it2 << std::endl;
 	return;
 }
 #endif
@@ -84,17 +114,17 @@ template<class Iterator, typename T>
 T PmergeMe(Iterator first, Iterator last, T &vec)
 {
 	size_t	len_cont = last - first;
-	Iterator it1;
-	Iterator it2;
-	size_t pos, old_pos;
+	Iterator it1, it2, it3;
+//	size_t pos, old_pos;
+	it1 = last - 1;
 	if (last < first)
 		throw std::runtime_error("First iterator smaller than the second one.");
 	else if (last == first + 1)
 		return vec;
 	if (len_cont == 2)
 	{
-		if (*first > *last)
-			swapval(first, last);
+		if (*first > *it1)
+			swapval(first, it1);
 		return vec;
 	}
 	it1 = first;
@@ -112,28 +142,45 @@ T PmergeMe(Iterator first, Iterator last, T &vec)
 	std::cout << "control 1 swap1" << std::endl;
 	printCont(first, it1);
 	printCont(it1, last);
+//	std::cout << "punteros first " << &first << " - it1 " << &it1 << " - last " << &last << std::endl;
+//	std::cout << "punteros first " << *first << " - it1 " << *it1 << " - last " << *last << std::endl;
 	PmergeMe(first, it1, vec);
+//	std::cout << "punteros first " << &first << " - it1 " << &it1 << " - last " << &last << std::endl;
+//	std::cout << "punteros first " << *first << " - it1 " << *it1 << " - last " << *last << std::endl;
 	PmergeMe(it1, last, vec);
+//	std::cout << "punteros first " << &first << " - it1 " << &it1 << " - last " << &last << std::endl;
+//	std::cout << "punteros first " << *first << " - it1 " << *it1 << " - last " << *last << std::endl;
+	printCont(vec.begin(), vec.end());
 	printCont(first, it1);
 	printCont(it1, last);
-	old_pos = 0;
-	for (size_t i = 1; ; i++)
-	{
-		pos = std::min(static_cast<size_t>((pow(2, i + 1) + pow(-1, i))) / 3, len_cont - len_cont / 2);
-		it2 = it1 + old_pos;
-		vec.insert(it2, *it1);
+//	old_pos = 0;
+	it3 = first;
+//	for (size_t i = 2; ; i++)
+//	{
+		vec.insert(it3, *it1);
+		it1++;
+//		std::cout << "punteros it1 " << *it1 << " - it2 " << *it2 << " - it3 " << *it3 << std::endl;
 		vec.erase(it1);
-		while (pos > old_pos + 1)
+//		std::cout << "punteros it1 " << *it1 << " - it2 " << *it2 << " - it3 " << *it3 << std::endl;
+		printCont(vec.begin(), vec.end());
+		//pos = std::min(static_cast<size_t>((pow(2, i + 1) + pow(-1, i))) / 3, len_cont - len_cont / 2) - 2;
+		it2 =last -1;;
+		while (it2 >= it1)
 		{
-			it1 = first + old_pos + 1;
-			it2 = first + pos;
-			it2 = bin_search(first, it1 , *it2);
-			vec.insert(it2,*it1);
-			vec.erase(it1);
-			pos--;
-			old_pos++;
+			it3 = bin_search(first, it1 , *it2);
+			vec.insert(it3,*it2);
+			it2++;
+			vec.erase(it2);
+			it1++;
+			it2--;
+		//	if (pos > 0)
+		//		pos--;
+		//	old_pos++;
 		}
-		old_pos = pos;
-	}
+		//old_pos = pos;
+//		it3 = it1;
+//		if (it1 == last)
+//			break;
+//	}
 	return vec;
 }

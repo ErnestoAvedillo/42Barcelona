@@ -40,25 +40,25 @@ RM := rm -rfd
 
 CC:= c++
 
-FLAGS := -Wall -Werror -Wextra  -pedantic -g #-std=c++98
+FLAGS := -Wall -Werror -Wextra  -pedantic -g -std=c++98
 
 all: $(NAME) Makefile
 	
 $(NAME): $(DSTS) $(OBJS) 
 	@printf "\rLinking: $(NAME)                                                  \n"
-	@sleep 0.1
+	#@sleep 0.1
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 $(OBJDST_DIR)%.o: $(DIRSRC)%.cpp $(OBJDST_DIR)%.d
 	@mkdir -p $(OBJDST_DIR)
 	@printf "$(GREEN)\rCompiling $*.o: $(notdir $<).                             $(RESET)"
-	@sleep 0.2
+	#@sleep 0.2
 	@$(CC) $(FLAGS) -c $(DIRSRC)$*.cpp -o $(OBJDST_DIR)$*.o 
 
 $(OBJDST_DIR)%.d: $(DIRSRC)%.cpp
 	@mkdir -p $(OBJDST_DIR)
 	@printf "$(BLUE)\rCreating Dependencies $*.d: $(notdir $<).                   $(RESET)"
-	@sleep 0.3
+	#@sleep 0.3
 	@set -e; rm -f $@; \
 	$(CC) -M $(FLAGS) $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
