@@ -17,6 +17,7 @@
 #include <deque>
 #include <vector>
 #include <list>
+#include <stack>
 #include <sstream>
 #include <cmath>
 

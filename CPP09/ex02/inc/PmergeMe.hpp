@@ -59,25 +59,25 @@ InputIterator bin_search(InputIterator first, InputIterator last, T &val)
 	it1 = first + pos;
 	it2 = max(it1 - 1, first);
 	//it2 = min(it1 + 2, last) - 1;
-	printCont(first, last);
+//	printCont(first, last);
 	while (!(*it1 >= val && *it2 <= val) && !(it1 == first && *it1 > val) && !(it1 == last && *it2 < val))
 	{
-	std::cout << "Posic - " << pos << " punteros it1 " << &it1 << " - it2 " << &it2 << " - first " << &first << " - last " << &last << std::endl;
-	std::cout << "Valor - " << val << " punteros it1 " << *it1 << " - it2 " << *it2 << " - first " << *first << " - last " << *last << std::endl;
-	printCont(first, last);
+//	std::cout << "Posic - " << pos << " punteros it1 " << &it1 << " - it2 " << &it2 << " - first " << &first << " - last " << &last << std::endl;
+//	std::cout << "Valor - " << val << " punteros it1 " << *it1 << " - it2 " << *it2 << " - first " << *first << " - last " << *last << std::endl;
+//	printCont(first, last);
 		if (it1 != last)
 		{
 			if (*it1 >= val)
 			{
-				if (pos == 1)
-					it1 = first;
-				else
+			//	if (pos == 1)
+			//		it1 = first;
+			//	else
 					it1 -= pos;
 			}
 			else
-				if (pos == 1)
-					it1 = last;
-				else
+			//	if (pos == 1)
+			//		it1 = last;
+			//	else
 					it1 += pos;
 		}
 		else
@@ -90,8 +90,8 @@ InputIterator bin_search(InputIterator first, InputIterator last, T &val)
 			pos = pos / 2 + pos % 2;
 		it2 = max(it1 - 1, first);
 	}
-	std::cout << "Valor - " << val << " punteros it1 " << *it1 << " - it2 " << *it2 << " - first " << *first << " - last " << *last << std::endl;
-	printCont(first, last);
+//	std::cout << "Valor - " << val << " punteros it1 " << *it1 << " - it2 " << *it2 << " - first " << *first << " - last " << *last << std::endl;
+//	printCont(first, last);
 	return it1;
 }
 
@@ -129,8 +129,8 @@ T PmergeMe(Iterator first, Iterator last, T &vec)
 	}
 	it1 = first;
 	it2 = first + len_cont / 2;
-	printCont(first, it2);
-	printCont(it2, last);
+//	printCont(first, it2);
+//	printCont(it2, last);
 	for (size_t i = 0; i < len_cont / 2; i++)
 	{
 		if (*it1 < *it2)
@@ -139,9 +139,9 @@ T PmergeMe(Iterator first, Iterator last, T &vec)
 		it2++;
 	}
 	it1 = first + len_cont / 2;
-	std::cout << "control 1 swap1" << std::endl;
-	printCont(first, it1);
-	printCont(it1, last);
+//	std::cout << "control 1 swap1" << std::endl;
+//	printCont(first, it1);
+//	printCont(it1, last);
 //	std::cout << "punteros first " << &first << " - it1 " << &it1 << " - last " << &last << std::endl;
 //	std::cout << "punteros first " << *first << " - it1 " << *it1 << " - last " << *last << std::endl;
 	PmergeMe(first, it1, vec);
@@ -150,9 +150,9 @@ T PmergeMe(Iterator first, Iterator last, T &vec)
 	PmergeMe(it1, last, vec);
 //	std::cout << "punteros first " << &first << " - it1 " << &it1 << " - last " << &last << std::endl;
 //	std::cout << "punteros first " << *first << " - it1 " << *it1 << " - last " << *last << std::endl;
-	printCont(vec.begin(), vec.end());
-	printCont(first, it1);
-	printCont(it1, last);
+//	printCont(vec.begin(), vec.end());
+//	printCont(first, it1);
+//	printCont(it1, last);
 //	old_pos = 0;
 	it3 = first;
 //	for (size_t i = 2; ; i++)
@@ -162,7 +162,7 @@ T PmergeMe(Iterator first, Iterator last, T &vec)
 //		std::cout << "punteros it1 " << *it1 << " - it2 " << *it2 << " - it3 " << *it3 << std::endl;
 		vec.erase(it1);
 //		std::cout << "punteros it1 " << *it1 << " - it2 " << *it2 << " - it3 " << *it3 << std::endl;
-		printCont(vec.begin(), vec.end());
+//		printCont(vec.begin(), vec.end());
 		//pos = std::min(static_cast<size_t>((pow(2, i + 1) + pow(-1, i))) / 3, len_cont - len_cont / 2) - 2;
 		it2 =last -1;;
 		while (it2 >= it1)

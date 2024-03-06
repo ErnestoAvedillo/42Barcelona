@@ -15,6 +15,7 @@
 int main( int av, char **ac)
 {
 	std::vector<int> my_oper;
+	std::deque<int> my_oper1;
 	if (av < 2)
 	{
 		unsigned int nr = 30;
@@ -24,6 +25,7 @@ int main( int av, char **ac)
 			try
 			{
 				my_oper.push_back(rand()% (nr * 10));
+				my_oper1.push_back(rand()% (nr * 10));
 			}
 			catch(const std::exception& e)
 			{
@@ -67,10 +69,15 @@ int main( int av, char **ac)
 		return 0;
 	}
 	std::vector<int>::iterator it;
-	//i = 2;
-	//it = bin_search(my_oper.begin(),my_oper.end(),i);
+	std::cout << "Vector Previous the sorting is : ";
 	printCont(my_oper.begin(), my_oper.end());
 	PmergeMe(my_oper.begin(), my_oper.end(), my_oper);
+	std::cout << "Vector after the sorting is : ";
 	printCont(my_oper.begin(), my_oper.end());
+	std::cout << "Deque Previous the sorting is : ";
+	printCont(my_oper1.begin(), my_oper1.end());
+	PmergeMe(my_oper1.begin(), my_oper1.end(), my_oper1);
+	std::cout << "Deque after the sorting is : ";
+	printCont(my_oper1.begin(), my_oper1.end());
 	return 0;
 }
