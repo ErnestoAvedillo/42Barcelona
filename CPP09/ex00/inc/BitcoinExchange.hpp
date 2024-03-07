@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BtcData.hpp                                        :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BTCDATA_HPP
-#define BTCDATA_HPP
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 #include <iostream>
-#include <vector>
+#include <list>
 #include <fstream>
 #include <limits>
 #include "../inc/Date.hpp"
@@ -26,18 +26,18 @@ typedef struct s_btc
 	float   ammount;
 }   t_btc;
 
-class BtcData
+class BitcoinExchange
 {
 	private:
-		std::vector <t_btc> _vec_data;
+		std::list <t_btc> _vec_data;
 		char _delimiter;
 		std::string _filename;
 	public:
-		BtcData();
-		BtcData(std::string const &, char const &);
-		BtcData(BtcData const &);
-		BtcData &operator=(BtcData const &);
-		~BtcData();
+		BitcoinExchange();
+		BitcoinExchange(std::string const &, char const &);
+		BitcoinExchange(BitcoinExchange const &);
+		BitcoinExchange &operator=(BitcoinExchange const &);
+		~BitcoinExchange();
 		Date getDate(size_t const &);
 		float getVal(size_t const &);
 		bool readFile();

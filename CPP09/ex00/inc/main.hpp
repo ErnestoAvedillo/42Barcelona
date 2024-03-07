@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:50 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/01 07:31:50 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/06 18:56:44 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 #include <string>
 #include <vector>
 #define DATA_CSV "./data.csv"
-#include "../inc/BtcData.hpp"
+#include "../inc/BitcoinExchange.hpp"
 
 #endif

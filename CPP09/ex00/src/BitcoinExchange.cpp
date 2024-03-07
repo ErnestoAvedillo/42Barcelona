@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BtcData.cpp                                        :+:      :+:    :+:   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:20 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/01 07:31:20 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/06 19:16:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../inc/BtcData.hpp"
+#include "../inc/BitcoinExchange.hpp"
 
 static int count_chr(std::string str, char c)
 {
@@ -41,9 +41,9 @@ static float getValue(std::string str)
 }
 
 
-BtcData::BtcData(){}
+BitcoinExchange::BitcoinExchange(){}
 
-BtcData::BtcData(std::string const &str, char const &c)
+BitcoinExchange::BitcoinExchange(std::string const &str, char const &c)
 {
 	_delimiter = c;
 	_filename = str;
@@ -51,12 +51,12 @@ BtcData::BtcData(std::string const &str, char const &c)
 		throw("File can't be readed");
 }
 
-BtcData::BtcData(BtcData const &rhs)
+BitcoinExchange::BitcoinExchange(BitcoinExchange const &rhs)
 {
 	*this = rhs;
 }
 
-BtcData &BtcData::operator=(BtcData const &rhs)
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs)
 {
 	this->_filename = rhs.getFileName();
 	this->_delimiter = getDelimiter();
@@ -65,26 +65,26 @@ BtcData &BtcData::operator=(BtcData const &rhs)
 	return (*this);
 }
 
-BtcData::~BtcData(){}
+BitcoinExchange::~BitcoinExchange(){}
 
-Date BtcData::getDate(size_t const &i)
+Date BitcoinExchange::getDate(size_t const &i)
 {
 	return (_vec_data.at(i).op_date);
 }
 
-float BtcData::getVal(size_t const &i)
+float BitcoinExchange::getVal(size_t const &i)
 {
 	return (_vec_data.at(i).ammount);
 }
 
-bool BtcData::readFile()
+bool BitcoinExchange::readFile()
 {
 	std::ifstream fData;
 	std::string line;
 	std::string aux;
 	t_btc       toadd;
 
-	fData.open(_filename, std::ios::in);
+	fData.open(_filename.c_str(), std::ios::in);
 	if (!fData)
 	{
 		std::cout << "File Data.csv couldn't be opened." << std::endl;
@@ -104,27 +104,27 @@ bool BtcData::readFile()
 	return true;
 }
 
-void BtcData::setDelimiter(char const& c)
+void BitcoinExchange::setDelimiter(char const& c)
 {
 	_delimiter = c;
 }
 
-char BtcData::getDelimiter()
+char BitcoinExchange::getDelimiter()
 {
 	return (_delimiter);
 } 
 
-void BtcData::setFile(std::string const &str)
+void BitcoinExchange::setFile(std::string const &str)
 {
 	_filename = str;
 }
 
-std::string BtcData::getFileName() const 
+std::string BitcoinExchange::getFileName() const 
 {
 	return (_filename);
 }
 
-float BtcData::find_acc_note(Date const &d)
+float BitcoinExchange::find_acc_note(Date const &d)
 {
 	std::vector<t_btc>::iterator start = _vec_data.begin();
 	std::vector<t_btc>::iterator end = _vec_data.end();
@@ -139,17 +139,17 @@ float BtcData::find_acc_note(Date const &d)
 	return  end->ammount;
 }
 
-std::vector<t_btc>::iterator BtcData::getBegin()
+std::vector<t_btc>::iterator BitcoinExchange::getBegin()
 {
 	return (_vec_data.begin());
 }
 
-std::vector<t_btc>::iterator BtcData::getEnd()
+std::vector<t_btc>::iterator BitcoinExchange::getEnd()
 {
 	return (_vec_data.end());
 }
 
-void BtcData::printVector()
+void BitcoinExchange::printVector()
 {
 	for(size_t i = 0; i < _vec_data.size();  i++)
 	{

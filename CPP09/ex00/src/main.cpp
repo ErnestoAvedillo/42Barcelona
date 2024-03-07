@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:33 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/01 07:31:33 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/06 19:11:44 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int main (int av, char **ac)
 	std::ifstream fData;
 	std::ifstream fIn ;
 	std::string line;
+	std::string datafile = DATA_CSV;
 
-
-	BtcData DataBase(DATA_CSV,',');
-	BtcData input(ac[1], '|');
+	BitcoinExchange DataBase(datafile, ',');
+	BitcoinExchange input(ac[1], '|');
 	float value;
 	std::cout << "Datos de entrada de input:" << std::endl;
 	std::vector<t_btc>::iterator l = input.getEnd();
@@ -39,16 +39,4 @@ int main (int av, char **ac)
 		{
 			std::cerr << e.what() << '\n';
 		}
-
-/*	while (std::getline(fData, line))
-	{
-		std::cout << "paso " << line << std::endl;
-	}
-	fIn.open(ac[1], std::ios::in);
-	if (!fIn)
-		std::cout << "File " << ac[1] <<" couldn't be opened" << std::endl;
-	while (std::getline(fIn, line))
-	{
-		std::cout << line << std::endl;
-	}*/
 }
