@@ -25,8 +25,9 @@ int main (int av, char **ac)
 	BitcoinExchange input(ac[1], '|');
 	float value;
 	std::cout << "Datos de entrada de input:" << std::endl;
-	std::vector<t_btc>::iterator l = input.getEnd();
-	for (std::vector<t_btc>::iterator i = input.getBegin(); i < l; i ++)
+	std::list<t_btc>::iterator l = input.getEnd();
+	size_t l = input.getEnd() - input.getBegin();
+	for (std::list<t_btc>::iterator i = input.getBegin(); i < l; i ++)
 		try
 		{
 			value = DataBase.find_acc_note(input.getDate(i - input.getBegin()));

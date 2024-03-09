@@ -14,6 +14,7 @@
 #define BITCOINEXCHANGE_HPP
 #include <iostream>
 #include <list>
+#include <vector>
 #include <fstream>
 #include <limits>
 #include "../inc/Date.hpp"
@@ -46,8 +47,9 @@ class BitcoinExchange
 		void setFile(std::string const &);
 		std::string getFileName() const;
 		float find_acc_note(Date const &);
-		std::vector<t_btc>::iterator getBegin();
-		std::vector<t_btc>::iterator getEnd();
+		std::list<t_btc>::iterator getBegin();
+		std::list<t_btc>::iterator getEnd();
 		void printVector();
 };
+
 #endif

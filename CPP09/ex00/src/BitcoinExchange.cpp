@@ -67,14 +67,20 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs)
 
 BitcoinExchange::~BitcoinExchange(){}
 
-Date BitcoinExchange::getDate(size_t const &i)
+Date BitcoinExchange::getDate(size_t const &n)
 {
-	return (_vec_data.at(i).op_date);
+	std::list<t_btc>::iterator  it = _vec_data.begin();
+	for (size_t i = 0; i < n; i++)
+		it++;
+	return (it->op_date);
 }
 
-float BitcoinExchange::getVal(size_t const &i)
+float BitcoinExchange::getVal(size_t const &n)
 {
-	return (_vec_data.at(i).ammount);
+	std::list<t_btc>::iterator  it = _vec_data.begin();
+	for (size_t i = 0; i < n; i++)
+		it++;
+	return (it->ammount);
 }
 
 bool BitcoinExchange::readFile()
@@ -126,8 +132,8 @@ std::string BitcoinExchange::getFileName() const
 
 float BitcoinExchange::find_acc_note(Date const &d)
 {
-	std::vector<t_btc>::iterator start = _vec_data.begin();
-	std::vector<t_btc>::iterator end = _vec_data.end();
+	std::list<t_btc>::iterator start = _vec_data.begin();
+	std::list<t_btc>::iterator end = _vec_data.end();
 	if (!checkdate(d.getMonth(),d.getDay(),d.getYear()))
 		throw std::runtime_error("Incorrect date");
 	while (start!= end) {
@@ -139,12 +145,12 @@ float BitcoinExchange::find_acc_note(Date const &d)
 	return  end->ammount;
 }
 
-std::vector<t_btc>::iterator BitcoinExchange::getBegin()
+std::list<t_btc>::iterator BitcoinExchange::getBegin()
 {
 	return (_vec_data.begin());
 }
 
-std::vector<t_btc>::iterator BitcoinExchange::getEnd()
+std::list<t_btc>::iterator BitcoinExchange::getEnd()
 {
 	return (_vec_data.end());
 }
@@ -153,10 +159,11 @@ void BitcoinExchange::printVector()
 {
 	for(size_t i = 0; i < _vec_data.size();  i++)
 	{
-		std::cout << _vec_data.at(i).op_date.getYear() << "-";
-	    std::cout << std::setfill('0') << std::setw(2) << _vec_data.at(i).op_date.getMonth() << "-";
-	    std::cout << std::setfill('0') << std::setw(2) << _vec_data.at(i).op_date.getDay();
-		std::cout << "-->" << _vec_data.at(i).ammount << std::endl;
+		Date cur_date = this->getDate(i);
+		std::cout << cur_date.getYear() << "-";
+	    std::cout << std::setfill('0') << std::setw(2) << cur_date.getMonth() << "-";
+	    std::cout << std::setfill('0') << std::setw(2) << cur_date.getDay();
+		std::cout << "-->" << this->getVal(i) << std::endl;
 	}
 
 }
