@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:35:32 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/03 18:03:28 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:05:02 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 #include <iostream>
 #include <deque>
 #include <vector>
-#include <list>
-#include <stack>
 #include <sstream>
 #include <cmath>
+#include <ctime>
+#include <ratio>
+#include <chrono>
 
 int convert (std::string str);
 
