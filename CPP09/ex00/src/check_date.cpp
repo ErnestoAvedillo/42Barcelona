@@ -6,12 +6,13 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:09:52 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/10 13:03:41 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:23:27 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <sstream>
+#include <string>
 #include "../inc/colors.h"
 
 bool checkdate(int m, int d, int y)
@@ -117,7 +118,7 @@ float getValue(std::string str)
 	out = std::numeric_limits<float>::quiet_NaN();
 	if (str.empty())
 		return out;
-	if (str.find_first_not_of("0123456789.") != std::string::npos || \
+	if (str.find_first_not_of(" \t0123456789.") != std::string::npos || \
 		count_chr(str, '.') > 1 )
 		return out;
 	ss << str;

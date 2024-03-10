@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:29 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/10 13:01:04 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:56:02 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,27 +89,31 @@ Date::~Date(){}
 
 void Date::putDate(std::string const &str)
 {
-	std::string aux;
+	std::string aux, aux1;
    	std::stringstream ss;
-	
-	if (!checkFormatDate (str))
-		throw std::runtime_error("Incorrect date fromat.");
-	aux = str.substr(8, 2);
-	ss << aux;
+	const char *t = " /t";
+
+	aux = str;
+	aux.erase(0, aux.find_first_not_of(t));
+	aux.erase(aux.find_last_not_of(t) + 1, aux.size());
+	if (!checkFormatDate (aux))
+		throw std::runtime_error("Incorrect date format.");
+	aux1 = aux.substr(8, 2);
+	ss << aux1;
 	ss >> _day;
 	ss.str("");
 	ss.clear();
-	aux = str.substr(5, 2);
-	ss << aux;
+	aux1 = aux.substr(5, 2);
+	ss << aux1;
 	ss >> _month;
 	ss.str("");
 	ss.clear();
-	aux = str.substr(0, 4);
-	ss << aux;
+	aux1 = aux.substr(0, 4);
+	ss << aux1;
 	ss >> _year;
 	if (!checkdate(_month, _day, _year))
 	{
-		std::cout << RED << str << " " << RESET;
+		std::cout << RED << "<" << aux << ">" << RESET;
 		throw std::runtime_error("Incorrect calendar date.");
 	}
 
