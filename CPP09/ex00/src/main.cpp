@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:33 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/09 20:12:16 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/10 12:30:58 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int main (int av, char **ac)
 	{
 		try
 		{
-			std::cout << "Fecha: " << input.getDate(i) << std::endl;
 			la_fecha.putDate(input.getDate(i));
 			value = DataBase.find_acc_note(i->first);
 			if (input.getVal(i) == std::numeric_limits<float>::quiet_NaN() || input.getVal(i)  > 1000 )

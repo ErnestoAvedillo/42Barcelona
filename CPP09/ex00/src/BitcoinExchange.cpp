@@ -3,43 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:20 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/09 14:21:05 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/10 12:54:44 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/BitcoinExchange.hpp"
-
-static int count_chr(std::string str, char c)
-{
-	int out;
-
-	out = 0;
-	for (size_t i = 0; i < str.size(); i++)
-		if(str[i] == c)
-			out++;
-	return out;
-}
-
-static float getValue(std::string str)
-{
-	float out = 0;
-
-	std::stringstream ss;
-	out = std::numeric_limits<float>::quiet_NaN();
-	if (str.empty())
-		return out;
-	if (str.find_first_not_of("0123456789.") != std::string::npos || \
-		count_chr(str, '.') > 1 )
-		return out;
-	ss << str;
-	ss >> out;
-	return out; 
-}
-
 
 BitcoinExchange::BitcoinExchange(){}
 
@@ -111,9 +83,14 @@ bool BitcoinExchange::readFile()
 	std::getline(fData, line);
 	while (std::getline(fData, line))
 	{
-		aux = line.substr(0,10);
-		aux = line.substr(11,aux.size() - 11);
+		if (line.find(_delimiter,0) != std::string::npos)
+			aux = line.substr(line.find(_delimiter,0) + 1, line.size() - line.find(_delimiter,0));
+		else
+		{
+			std::cout << YELLOW << _filename << RESET << ": incorrect syntaxis line  ==>" << RED << line << RESET << std::endl;
+		}
 		ammount = getValue(aux);
+		aux = line.substr(0,line.find(_delimiter,0));
 		_map_data[aux] = ammount;
 	}
 	fData.close();
@@ -158,9 +135,9 @@ std::map<std::string, float>::iterator BitcoinExchange::getEnd()
 
 void BitcoinExchange::printVector()
 {
-	for (std::map<std::string, float>::iterator x = _map_data.begin(); x != _map_data.end(); x++)
+	for (std::map<std::string, float>::const_iterator x = _map_data.cbegin(); x != _map_data.cend(); x++)
 	{
-		std::cout << x->first << x->second << std::endl;
+		std::cout << x->first << "---" << x->second << std::endl;
 	}
 
 }

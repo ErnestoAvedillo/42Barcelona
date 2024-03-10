@@ -19,13 +19,8 @@
 #include <fstream>
 #include <limits>
 #include "../inc/Date.hpp"
-
-
-typedef struct s_btc
-{
-	Date    op_date;
-	float   ammount;
-}   t_btc;
+#include "../inc/colors.h"
+#include "../inc/main.hpp"
 
 class BitcoinExchange
 {

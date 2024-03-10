@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Date.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:45 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/01 07:31:45 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/10 12:55:40 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <sstream>
 #include <stdexcept>
+#include "../inc/main.hpp"
 
 class Date
 {
