@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:33 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/06 19:11:44 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/09 20:12:16 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,24 @@ int main (int av, char **ac)
 	BitcoinExchange input(ac[1], '|');
 	float value;
 	std::cout << "Datos de entrada de input:" << std::endl;
-	std::list<t_btc>::iterator l = input.getEnd();
-	size_t l = input.getEnd() - input.getBegin();
-	for (std::list<t_btc>::iterator i = input.getBegin(); i < l; i ++)
+	std::map<std::string, float>::iterator i = input.getBegin();
+	Date la_fecha;
+	while (i != input.getEnd())
+	{
 		try
 		{
-			value = DataBase.find_acc_note(input.getDate(i - input.getBegin()));
-			if (input.getVal(i- input.getBegin()) == std::numeric_limits<float>::quiet_NaN() || input.getVal(i- input.getBegin())  > 1000 )
-				std::cout << "Fecha: " << input.getDate(i - input.getBegin()).getDate() << "-->" << "Incorrect ammount " << std::endl;
+			std::cout << "Fecha: " << input.getDate(i) << std::endl;
+			la_fecha.putDate(input.getDate(i));
+			value = DataBase.find_acc_note(i->first);
+			if (input.getVal(i) == std::numeric_limits<float>::quiet_NaN() || input.getVal(i)  > 1000 )
+				std::cout << "Fecha: " << i->first << "-->" << "Incorrect ammount " << std::endl;
 			else	
-				std::cout << "Fecha: " << input.getDate(i - input.getBegin()).getDate() << "-->" << input.getVal(i- input.getBegin()) *  value << std::endl;
+				std::cout << "Fecha: " << i->first << "-->" << input.getVal(i) *  value << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
 		}
+		i++;
+	}
 }

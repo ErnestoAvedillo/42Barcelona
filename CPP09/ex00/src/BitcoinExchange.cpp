@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:20 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/06 19:16:46 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:21:05 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,38 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs)
 {
 	this->_filename = rhs.getFileName();
 	this->_delimiter = getDelimiter();
-	this->_vec_data = rhs._vec_data;
+	this->_map_data = rhs._map_data;
 
 	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange(){}
 
-Date BitcoinExchange::getDate(size_t const &n)
+std::string BitcoinExchange::getDate(size_t &n)
 {
-	std::list<t_btc>::iterator  it = _vec_data.begin();
+	std::map<std::string, float>::iterator it = _map_data.begin();
 	for (size_t i = 0; i < n; i++)
 		it++;
-	return (it->op_date);
+	return (it->first);
 }
 
-float BitcoinExchange::getVal(size_t const &n)
+float BitcoinExchange::getVal(size_t &n)
 {
-	std::list<t_btc>::iterator  it = _vec_data.begin();
+	
+	std::map<std::string, float>::iterator it = _map_data.begin();
 	for (size_t i = 0; i < n; i++)
 		it++;
-	return (it->ammount);
+	return (it->second);
+}
+
+std::string BitcoinExchange::getDate(std::map<std::string, float>::iterator &it)
+{
+	return (it->first);
+}
+
+float BitcoinExchange::getVal(std::map<std::string, float>::iterator &it)
+{
+	return (it->second);
 }
 
 bool BitcoinExchange::readFile()
@@ -88,7 +99,7 @@ bool BitcoinExchange::readFile()
 	std::ifstream fData;
 	std::string line;
 	std::string aux;
-	t_btc       toadd;
+	float ammount;
 
 	fData.open(_filename.c_str(), std::ios::in);
 	if (!fData)
@@ -101,10 +112,9 @@ bool BitcoinExchange::readFile()
 	while (std::getline(fData, line))
 	{
 		aux = line.substr(0,10);
-		toadd.op_date.putDate(aux);
 		aux = line.substr(11,aux.size() - 11);
-		toadd.ammount = getValue(aux);
-		_vec_data.push_back(toadd);
+		ammount = getValue(aux);
+		_map_data[aux] = ammount;
 	}
 	fData.close();
 	return true;
@@ -130,40 +140,27 @@ std::string BitcoinExchange::getFileName() const
 	return (_filename);
 }
 
-float BitcoinExchange::find_acc_note(Date const &d)
+float BitcoinExchange::find_acc_note(std::string const &d)
 {
-	std::list<t_btc>::iterator start = _vec_data.begin();
-	std::list<t_btc>::iterator end = _vec_data.end();
-	if (!checkdate(d.getMonth(),d.getDay(),d.getYear()))
-		throw std::runtime_error("Incorrect date");
-	while (start!= end) {
-		if (start->op_date >= d) 
-			return start->ammount;
-		++start;
-	}
-	end--;
-	return  end->ammount;
+	std::map<std::string, float>::iterator it = _map_data.lower_bound(d);
+	return it->second;
 }
 
-std::list<t_btc>::iterator BitcoinExchange::getBegin()
+std::map<std::string, float>::iterator BitcoinExchange::getBegin()
 {
-	return (_vec_data.begin());
+	return (_map_data.begin());
 }
 
-std::list<t_btc>::iterator BitcoinExchange::getEnd()
+std::map<std::string, float>::iterator BitcoinExchange::getEnd()
 {
-	return (_vec_data.end());
+	return (_map_data.end());
 }
 
 void BitcoinExchange::printVector()
 {
-	for(size_t i = 0; i < _vec_data.size();  i++)
+	for (std::map<std::string, float>::iterator x = _map_data.begin(); x != _map_data.end(); x++)
 	{
-		Date cur_date = this->getDate(i);
-		std::cout << cur_date.getYear() << "-";
-	    std::cout << std::setfill('0') << std::setw(2) << cur_date.getMonth() << "-";
-	    std::cout << std::setfill('0') << std::setw(2) << cur_date.getDay();
-		std::cout << "-->" << this->getVal(i) << std::endl;
+		std::cout << x->first << x->second << std::endl;
 	}
 
 }

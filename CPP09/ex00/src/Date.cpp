@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Date.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:29 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/01 07:31:29 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/09 20:08:44 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static bool checkFormatDate(std::string const &str)
 {
 	if (str.size() != 10)
 	{
-		std::cerr << "longitud" << std::endl;
+		std::cerr << "longitud errónea" << str << std::endl;
 		return false;
 	}
 	if (str.find_first_not_of("0123456789-") != std::string::npos)

@@ -14,12 +14,12 @@
 #define BITCOINEXCHANGE_HPP
 #include <iostream>
 #include <list>
+#include <map>
 #include <vector>
 #include <fstream>
 #include <limits>
 #include "../inc/Date.hpp"
 
-bool checkdate(int m, int d, int y);
 
 typedef struct s_btc
 {
@@ -30,7 +30,7 @@ typedef struct s_btc
 class BitcoinExchange
 {
 	private:
-		std::list <t_btc> _vec_data;
+		std::map<std::string,float> _map_data;
 		char _delimiter;
 		std::string _filename;
 	public:
@@ -39,16 +39,18 @@ class BitcoinExchange
 		BitcoinExchange(BitcoinExchange const &);
 		BitcoinExchange &operator=(BitcoinExchange const &);
 		~BitcoinExchange();
-		Date getDate(size_t const &);
-		float getVal(size_t const &);
+		std::string getDate(size_t &);
+		float getVal(size_t &);
+		std::string getDate(std::map<std::string, float>::iterator &);
+		float getVal(std::map<std::string, float>::iterator &);
 		bool readFile();
 		void setDelimiter(char const&);
 		char getDelimiter();
 		void setFile(std::string const &);
 		std::string getFileName() const;
-		float find_acc_note(Date const &);
-		std::list<t_btc>::iterator getBegin();
-		std::list<t_btc>::iterator getEnd();
+		float find_acc_note(std::string const &);
+		std::map<std::string, float>::iterator getBegin();
+		std::map<std::string, float>::iterator getEnd();
 		void printVector();
 };
 
