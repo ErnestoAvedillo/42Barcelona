@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:20 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/10 12:54:44 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/12 20:13:23 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,17 @@ std::string BitcoinExchange::getFileName() const
 	return (_filename);
 }
 
-float BitcoinExchange::find_acc_note(std::string const &d)
+std::map<std::string, float>::iterator BitcoinExchange::find_acc_note(std::string const &d)
 {
 	std::map<std::string, float>::iterator it = _map_data.lower_bound(d);
-	return it->second;
+	if (it != _map_data.begin())
+	{
+		if (it == _map_data.end()) 
+			it--;
+		else if (it->first != d)
+			it--;
+	}
+	return it;
 }
 
 std::map<std::string, float>::iterator BitcoinExchange::getBegin()
@@ -135,7 +142,7 @@ std::map<std::string, float>::iterator BitcoinExchange::getEnd()
 
 void BitcoinExchange::printVector()
 {
-	for (std::map<std::string, float>::const_iterator x = _map_data.cbegin(); x != _map_data.cend(); x++)
+	for (std::map<std::string, float>::const_iterator x = _map_data.begin(); x != _map_data.end(); x++)
 	{
 		std::cout << x->first << "---" << x->second << std::endl;
 	}

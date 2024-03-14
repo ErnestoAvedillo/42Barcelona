@@ -13,14 +13,12 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 #include <iostream>
-#include <list>
 #include <map>
-#include <vector>
 #include <fstream>
 #include <limits>
 #include "../inc/Date.hpp"
 #include "../inc/colors.h"
-#include "../inc/main.hpp"
+#include "../inc/utils.hpp"
 
 class BitcoinExchange
 {
@@ -43,7 +41,7 @@ class BitcoinExchange
 		char getDelimiter();
 		void setFile(std::string const &);
 		std::string getFileName() const;
-		float find_acc_note(std::string const &);
+		std::map<std::string, float>::iterator find_acc_note(std::string const &);
 		std::map<std::string, float>::iterator getBegin();
 		std::map<std::string, float>::iterator getEnd();
 		void printVector();

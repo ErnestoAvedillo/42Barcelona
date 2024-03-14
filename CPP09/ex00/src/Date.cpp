@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Date.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:29 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/10 17:56:02 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:13:53 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,8 @@ void Date::putDate(std::string const &str)
 {
 	std::string aux, aux1;
    	std::stringstream ss;
-	const char *t = " /t";
 
-	aux = str;
-	aux.erase(0, aux.find_first_not_of(t));
-	aux.erase(aux.find_last_not_of(t) + 1, aux.size());
+	aux = all_trim (str);
 	if (!checkFormatDate (aux))
 		throw std::runtime_error("Incorrect date format.");
 	aux1 = aux.substr(8, 2);
@@ -114,7 +111,7 @@ void Date::putDate(std::string const &str)
 	if (!checkdate(_month, _day, _year))
 	{
 		std::cout << RED << "<" << aux << ">" << RESET;
-		throw std::runtime_error("Incorrect calendar date.");
+		throw std::runtime_error(" Incorrect calendar date.");
 	}
 
 }

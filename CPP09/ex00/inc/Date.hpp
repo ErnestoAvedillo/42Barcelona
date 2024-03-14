@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Date.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:45 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/10 12:55:40 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:07:38 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iomanip>
 #include <sstream>
 #include <stdexcept>
-#include "../inc/main.hpp"
+#include "../inc/utils.hpp"
 
 class Date
 {
@@ -42,5 +42,7 @@ class Date
     int getMonth() const;
     int getYear() const;
 };
+
+std::ostream &operator<<(std::ostream &ost, Date const &d);
 
 #endif
