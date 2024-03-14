@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:35:32 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/10 16:05:02 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:06:36 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #include <sstream>
 #include <cmath>
 #include <ctime>
-#include <ratio>
-#include <chrono>
 
 int convert (std::string str);
 
