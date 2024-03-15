@@ -6,7 +6,7 @@
 #    By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/01 15:03:29 by eavedill          #+#    #+#              #
-#    Updated: 2024/03/03 18:21:04 by eavedill         ###   ########.fr        #
+#    Updated: 2024/03/15 10:03:14 by eavedill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,7 @@ CIAN		:=	\033[1;96m
 
 NAME := PmergeMe
 
-SRC := main convert PmergeMe
-
+SRC := main convert
 
 INC := main colors 
 

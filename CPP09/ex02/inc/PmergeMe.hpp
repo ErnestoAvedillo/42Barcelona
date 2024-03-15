@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:37:45 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/10 17:16:04 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:05:54 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ InputIterator bin_search(InputIterator first, InputIterator last, T &val)
 	InputIterator it1, it2;
 	it1 = first + pos;
 	it2 = max(it1 - 1, first);
-	while (!(*it1 >= val && *it2 <= val) && !(it1 == first && *it1 > val) && !(it1 == last && *it2 < val))
+	while (!(*it1 >= val && *it2 <= val) && !(it1 == first && *it1 >= val) && !(it1 == last && *it2 <= val))
 	{
 		if (it1 != last)
 		{
