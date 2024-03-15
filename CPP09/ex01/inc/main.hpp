@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:30:45 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/14 11:14:20 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/15 09:16:08 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-#include <bits/stdc++.h>
 
 int convert (std::string str);
 int operate (int val, int str, char op);
