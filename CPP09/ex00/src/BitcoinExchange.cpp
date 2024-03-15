@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 07:31:20 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/12 20:13:23 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/15 09:02:53 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ BitcoinExchange::BitcoinExchange(std::string const &str, char const &c)
 	_delimiter = c;
 	_filename = str;
 	if (!this->readFile())
-		throw("File can't be readed");
+		throw std::runtime_error("File does not exist.");
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &rhs)
@@ -76,7 +76,7 @@ bool BitcoinExchange::readFile()
 	fData.open(_filename.c_str(), std::ios::in);
 	if (!fData)
 	{
-		std::cout << "File Data.csv couldn't be opened." << std::endl;
+		std::cerr << "File " << _filename <<" couldn't be opened." << std::endl;
 		return false;
 	}
 

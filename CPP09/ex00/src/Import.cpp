@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Import.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
+/*   By: eavedill <eavedill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 08:36:47 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/14 10:16:53 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/15 09:03:23 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ ImportData::ImportData(std::string const &str, char const &c)
 	_delimiter = c;
 	_filename = str;
 	if (!this->readFile())
-		throw("File can't be readed");
+		throw std::runtime_error("File does not exist.");
 }
 
 ImportData::ImportData(ImportData const &rhs)
@@ -75,7 +75,7 @@ bool ImportData::readFile()
 	fData.open(_filename.c_str(), std::ios::in);
 	if (!fData)
 	{
-		std::cout << "File Data.csv couldn't be opened." << std::endl;
+		std::cerr << "File " << _filename << " couldn't be opened." << std::endl;
 		return false;
 	}
 
@@ -86,7 +86,7 @@ bool ImportData::readFile()
 			aux = line.substr(line.find(_delimiter,0) + 1, line.size() - line.find(_delimiter,0));
 		else
 		{
-			std::cout << YELLOW << _filename << RESET << ": incorrect syntaxis line  ==>" << RED << line << RESET << std::endl;
+			std::cerr << YELLOW << _filename << RESET << ": incorrect syntaxis line  ==>" << RED << line << RESET << std::endl;
 		}
 		acc_note.ammount = getValue(aux);
 		acc_note.date = line.substr(0,line.find(_delimiter,0));
@@ -140,8 +140,8 @@ void ImportData::printList(BitcoinExchange &btc)
 			acc_note = btc.find_acc_note(x->date);
 			if (x->ammount == std::numeric_limits<float>::quiet_NaN() || x->ammount > 1000 || x->ammount < 0)
 			{
-				std::cout << "Date: " << la_fecha << "-->" RED << std::setfill(' ') << std::setw(5) << x->ammount;
-				std::cout << " Is an Incorrect quantity " RESET << std::endl;
+				std::cerr << "Date: " << la_fecha << "-->" RED << std::setfill(' ') << std::setw(5) << x->ammount;
+				std::cerr << " Is an Incorrect quantity " RESET << std::endl;
 			}
 			else
 			{
