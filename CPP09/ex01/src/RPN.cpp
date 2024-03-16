@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 10:46:52 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/14 12:14:42 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/16 09:54:50 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,9 @@ int operate(int val, int val1, char op)
 		out = val * val1;
 		break;
 	case '/':
-		try
-		{
-			out = val / val1;
-		}
-		catch (const std::exception &e)
-		{
-			std::cerr << e.what() << '\n';
-			throw std::runtime_error(e.what());
-		}
+		if (val1 == 0)
+			throw std::runtime_error("Dividing by zero is not a good idea");
+		out = val / val1;
 		break;
 	default:
 		throw std::runtime_error("operand not supported.");
