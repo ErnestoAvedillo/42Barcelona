@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 10:15:31 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/17 11:36:26 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:12:29 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ std::string const &Warlock::getName() const
 { return _name;}
 std::string const &Warlock::getTitle() const
 { return _title;}
-void Warlock::setTitle(std::string &str)
-{ _title = str;}
-void Warlock::setTitle(const std::string &str)
+void Warlock::setTitle(std::string const &str)
 { _title = str;}
 void Warlock::introduce() const
 { 
@@ -58,7 +56,7 @@ void Warlock::learnSpell(ASpell *sp)
 		_aspell.insert(std::pair<std::string,ASpell*>(sp->getName(),sp->clone()));
 }
 
-void Warlock::forgetSpell(std::string const &str) 
+void Warlock::forgetSpell(std::string const str) 
 {
 	std::map<std::string, ASpell *>::iterator it = _aspell.find(str);
 	if (it != _aspell.end())
@@ -68,7 +66,7 @@ void Warlock::forgetSpell(std::string const &str)
 	}
 	
 }
-void Warlock::launchSpell(std::string const &str, ATarget const &tg)
+void Warlock::launchSpell(std::string const str, ATarget const &tg)
 {
 	std::map<std::string, ASpell *>::iterator it = _aspell.find(str);
 	if (it != _aspell.end())

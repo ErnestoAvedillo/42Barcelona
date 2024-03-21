@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 10:15:31 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/17 11:36:26 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:17:48 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,7 @@ Warlock &Warlock::operator=(Warlock const &rhs)
 	return *this;
 }
 
-Warlock::Warlock(std::string &myname, std::string &mytitle)
-{
-	this->_name = myname;
-	this->_title = mytitle;
-	std::cout << _name << ": This looks like another boring day." << std::endl;
-}
-Warlock::Warlock(const std::string &myname, const std::string &mytitle)
+Warlock::Warlock(std::string const &myname, std::string const &mytitle)
 {
 	this->_name = myname;
 	this->_title = mytitle;
@@ -43,9 +37,7 @@ std::string const &Warlock::getName() const
 { return _name;}
 std::string const &Warlock::getTitle() const
 { return _title;}
-void Warlock::setTitle(std::string &str)
-{ _title = str;}
-void Warlock::setTitle(const std::string &str)
+void Warlock::setTitle( std::string const &str)
 { _title = str;}
 void Warlock::introduce() const
 { 
@@ -57,11 +49,11 @@ void Warlock::learnSpell(ASpell *sp)
 	_spellBook.learnSpell(sp);
 }
 
-void Warlock::forgetSpell(std::string const &str) 
+void Warlock::forgetSpell(std::string const str) 
 {
 	_spellBook.forgetSpell(str);	
 }
-void Warlock::launchSpell(std::string const &str, ATarget const &tg)
+void Warlock::launchSpell(std::string const str, ATarget const &tg)
 {
 	ASpell *sp = _spellBook.createSpell(str);
 

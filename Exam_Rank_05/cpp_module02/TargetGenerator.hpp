@@ -15,12 +15,12 @@
 
 #include <iostream>
 #include <string>
-#include "ASpell.hpp"
+#include "ATarget.hpp"
 #include <map>
 class TargetGenerator
 {
 	private:
-		std::map<std::string, ASpell*> _book;
+		std::map<std::string, ATarget*> _book;
 
 	public:
 		TargetGenerator();

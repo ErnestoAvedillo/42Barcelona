@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 10:15:31 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/18 19:29:31 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:50:47 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #include <string>
 #include "ATarget.hpp"
 
-class Brickwall:public ATarget
+class BrickWall:public ATarget
 {
 	private:
 
 	public:
-		Brickwall();
-		~Brickwall();
+		BrickWall();
+		~BrickWall();
 		ATarget *clone() const;
 };
 

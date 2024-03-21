@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 10:15:31 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/17 11:01:24 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:13:17 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ class Warlock
 		~Warlock();
 		std::string const &getName() const;
 		std::string const &getTitle() const;
-		void setTitle(std::string &);
 		void setTitle(std::string const &);
 		void introduce() const;
 		void learnSpell(ASpell *) ;
-		void forgetSpell(std::string const &) ;
-		void launchSpell(std::string const &, ATarget const &) ;
+		void forgetSpell(std::string const ) ;
+		void launchSpell(std::string const , ATarget const &) ;
 };
 
 #endif

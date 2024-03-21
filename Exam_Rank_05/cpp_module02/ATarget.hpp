@@ -6,7 +6,7 @@
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 10:15:31 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/17 11:33:00 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:47:28 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class ATarget
 		ATarget &operator=(ATarget const &);
 		ATarget(std::string &);
 		ATarget(const std::string &);
-		~ATarget();
+		virtual ~ATarget();
 		std::string const &getType() const;
 		virtual ATarget *clone() const = 0;
 		void getHitBySpell(ASpell const &) const;
