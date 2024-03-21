@@ -18,13 +18,14 @@
 #include <map>
 #include "Fwoosh.hpp"
 #include "Dummy.hpp"
+#include "SpellBook.hpp"
 
 class Warlock
 {
 	private:
 		std::string _name;
 		std::string _title;
-		std::map<std::string, ASpell *> _aspell;
+		SpellBook _spellBook;
 
 		Warlock();
 		Warlock(Warlock const &);

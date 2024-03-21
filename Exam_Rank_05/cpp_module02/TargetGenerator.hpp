@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   SpellBook.hpp                                      :+:      :+:    :+:   */
+/*   TargetGenerator.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPELLBOOK_HPP
-#define SPELLBOOK_HPP
+#ifndef TARGETGENERATOR_HPP
+#define TARGETGENERATOR_HPP
 
 #include <iostream>
 #include <string>
 #include "ASpell.hpp"
 #include <map>
-class SpellBook
+class TargetGenerator
 {
 	private:
 		std::map<std::string, ASpell*> _book;
 
 	public:
-		SpellBook();
-		virtual ~SpellBook();
-		void learnSpell(ASpell*);
-		void forgetSpell(std::string const &);
-		ASpell* createSpell(std::string const &);
+		TargetGenerator();
+		virtual ~TargetGenerator();
+		void learnTargetType(ATarget*);
+		void forgetTargetType(std::string const &);
+		ATarget* createTarget(std::string const &);
 };
 
 #endif

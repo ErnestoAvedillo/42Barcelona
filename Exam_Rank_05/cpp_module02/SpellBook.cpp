@@ -11,35 +11,32 @@
 /* ************************************************************************** */
 
 #include "SpellBook.hpp" 
-#include <map>
 
 SpellBook::SpellBook(){}
-SpellBook::SpellBook(SpellBook const &rhs)
-{ *this = rhs;}
-SpellBook &SpellBook::operator=(SpellBook const &rhs)
-{
-	this->_name = rhs.getEffects();
-	this->_effects = rhs.getName();
-	return *this;
-}
 
-SpellBook::SpellBook(std::string &myname, std::string &myeffects)
-{
-	this->_name = myname;
-	this->_effects = myeffects;
-}
-SpellBook::SpellBook(const std::string &myname, const std::string &myeffects)
-{
-	this->_name = myname;
-	this->_effects = myeffects;
-}
 SpellBook::~SpellBook()
 {
 }
 
-void learnSpell(ASpell*)
+void SpellBook::learnSpell(ASpell*sp)
 {
-	
+	if (sp)
+		_book.insert(std::pair<std::string,ASpell*>(sp->getName(),sp->clone()));
 }
-void forgetSpell(string const &){}
-ASpell* createSpell(string const &){}
+void SpellBook::forgetSpell(std::string const &str)
+{
+	std::map<std::string, ASpell*>::iterator it = _book.find (str);
+	if (it != _book.end())
+	{
+		delete it->second;
+		_book.erase(it);
+	}
+
+}
+ASpell* SpellBook::createSpell(std::string const &str)
+{
+	std::map<std::string, ASpell*>::iterator it = _book.find (str);
+	if (it != _book.end())
+		return (it->second);
+	else return NULL;
+}

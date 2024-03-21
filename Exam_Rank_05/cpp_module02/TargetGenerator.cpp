@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   SpellBook.hpp                                      :+:      :+:    :+:   */
+/*   TargetGenerator.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 10:15:31 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/18 19:43:30 by eavedill         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:59:49 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPELLBOOK_HPP
-#define SPELLBOOK_HPP
+#include "TargetGenerator.hpp" 
 
-#include <iostream>
-#include <string>
-#include "ASpell.hpp"
-#include <map>
-class SpellBook
+TargetGenerator::TargetGenerator(){}
+
+TargetGenerator::~TargetGenerator()
 {
-	private:
-		std::map<std::string, ASpell*> _book;
+}
 
-	public:
-		SpellBook();
-		virtual ~SpellBook();
-		void learnSpell(ASpell*);
-		void forgetSpell(std::string const &);
-		ASpell* createSpell(std::string const &);
-};
-
-#endif
+void TargetGenerator::learnTargetType(ATarget*){}
+void TargetGenerator::forgetTargetType(std::string const &){}
+ATarget* TargetGenerator::createTarget(std::string const &){}
