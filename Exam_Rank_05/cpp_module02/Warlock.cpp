@@ -1,61 +1,50 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Warlock.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eavedill <eavedill@student.42barcelona>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/16 10:15:31 by eavedill          #+#    #+#             */
-/*   Updated: 2024/03/21 21:17:48 by eavedill         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "Warlock.hpp" 
-
+#include "Warlock.hpp"
 
 Warlock::Warlock(){}
 Warlock::Warlock(Warlock const &rhs)
-{ *this = rhs;}
+{
+	*this = rhs;
+	std::cout << name << ": This looks like another boring day." << std::endl;
+}
 Warlock &Warlock::operator=(Warlock const &rhs)
 {
-	this->_name = rhs.getTitle();
-	this->_title = rhs.getName();
+	name = rhs.name;
+	title = rhs.title;
+	std::cout << name << ": This looks like another boring day." << std::endl;
 	return *this;
 }
-
-Warlock::Warlock(std::string const &myname, std::string const &mytitle)
+Warlock::Warlock(std::string const &str1,std::string const &str2)
 {
-	this->_name = myname;
-	this->_title = mytitle;
-	std::cout << _name << ": This looks like another boring day." << std::endl;
+	name = str1;
+	title = str2;
+	std::cout << name << ": This looks like another boring day." << std::endl;
 }
 Warlock::~Warlock()
 {
-	std::cout << _name << ": My job here is done!" << std::endl;
+	std::cout << name << ": My job here is done!"<< std::endl;
 }
-std::string const &Warlock::getName() const
-{ return _name;}
-std::string const &Warlock::getTitle() const
-{ return _title;}
-void Warlock::setTitle( std::string const &str)
-{ _title = str;}
+std::string const & Warlock::getName() const{return name;}
+std::string const & Warlock::getTitle() const{return title;}
+void Warlock::setTitle (std::string const &str)
+{
+	title = str;
+}
 void Warlock::introduce() const
-{ 
-	std::cout << _name << ": I am " << _name << ", " << _title << "!" << std::endl;
+{
+	std::cout << name << ": I am " << name << ", " << title << "!"<< std::endl;
 }
 
-void Warlock::learnSpell(ASpell *sp) 
+void Warlock::learnSpell(ASpell *sp)
 {
-	_spellBook.learnSpell(sp);
+	_book.learnSpell(sp);
 }
-
-void Warlock::forgetSpell(std::string const str) 
+void Warlock::forgetSpell(std::string str)
 {
-	_spellBook.forgetSpell(str);	
+	_book.forgetSpell(str);
 }
-void Warlock::launchSpell(std::string const str, ATarget const &tg)
+void Warlock::launchSpell(std::string str, ATarget const &tg)
 {
-	ASpell *sp = _spellBook.createSpell(str);
-
-	sp->launch(tg);
+	ASpell *sp = _book.createSpell(str);
+	if (sp)
+		sp->launch(tg);		
 }

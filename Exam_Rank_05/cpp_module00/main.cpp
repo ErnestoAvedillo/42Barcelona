@@ -1,6 +1,4 @@
-#include "./Warlock.hpp"
-#include <iostream>
-#include <cstring>
+#include "Warlock.hpp"
 
 int main()
 {
@@ -13,9 +11,7 @@ int main()
   jack->setTitle("the Mighty");
   jack->introduce();
 
-
   delete jack;
 
   return (0);
 }
-
