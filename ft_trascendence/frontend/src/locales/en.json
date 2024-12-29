@@ -1,0 +1,122 @@
+{
+    "login": {
+        "forget_pass": "Forgot password",
+        "no_account": "Don't have an account?",
+        "enter": "Enter",
+        "subtitle" : "Step into the next dimension of Pong fully immersive, fast-paced, and in stunning 3D!",
+        "placehold_username" : "Enter your username",
+        "placehold_password" : "Enter your password"
+    },
+    "register": {
+        "register_title": "Create an account",
+        "alreadyAcc": "Already have an account?"
+    },
+    "game_stats":{
+        "game_stats": "Game Stats for",
+        "wins" : "Wins",
+        "losses": "Losses",
+        "win_rate": "Win Rate",
+        "detail": "Detail",
+        "match_details": "Match details",
+        "no_matches": "No matches played yet"
+    },
+    "general": {
+        "username": "Username",
+        "password": "Password",
+        "register": "Register",
+        "login": "Log in",
+        "name": "Name",
+        "lastname": "Lastname",
+        "confirm_pass": "Confirm password",
+        "email": "Email",
+        "username_tournament": "Tournament Username",
+        "picprofile": "Profile image",
+        "enter_email" : "Enter email",
+        "game_explain": "Invite your friend to join! Use this match code",
+        "score": "Score",
+        "waiting": "Waiting for players...",
+        "edit_profile": "Edit Profile",
+        "user_profile": "User Profile",
+        "language": "Language",
+        "close": "close",
+        "alert": "NEXT MATCH",
+        "alert_text": "You have an incoming match"
+
+    },
+    "friends": {
+        "friends_title": "My Friends",
+        "placeholder_search": "Search for friends",
+        "requests_title": "Friend Requests"
+    },
+    "tournaments": {
+        "create_tournament": "Create Tournament",
+        "tournament_name": "Tournament Name",
+        "placehold_name": "Enter tournament name",
+        "tournament_date": "Start Date",
+        "max_goals": "Maximum Goals",
+        "speed": "Speed",
+        "add_player": "Add Player",
+        "placehold_playername": "Enter player's name",
+        "add": "Add",
+        "create": "Create",
+        "your_tournaments": "Your tournaments",
+        "upcoming": "Upcoming Tournament Matches",
+        "check_list": "Check the schedule for your upcoming matches and stay prepared.",
+        "round": "Round",
+        "pending_tournaments": "Pending Tournaments",
+        "check_inv": "Review and accept invitations to join tournaments.",
+        "winner": "Winner",
+        "second": "Second",
+        "third": "Third"
+    },
+    "listtournaments": {
+        "loading_tournaments": "Loading tournaments",
+        "list_tournaments": "Tournament's list",
+        "empty_tournaments_list": "Empty tournament's list"
+    },
+    "games": {
+        "local_match": "Local Match",
+        "explain_local_match": "Play vs guest player on the same keyboard",
+        "simple_match": "Online Match",
+        "explain_simple_match": "Play on-line vs a random player",
+        "friend_match": "Friend Match",
+        "explain_friend_match": "Join or create a match with a friend",
+        "join": "join",
+        "tournament": "Tournament",
+        "explain_tournament": "Create a tournament for 16 players"
+    },
+    "not_found": {
+        "not_found": "Not Found",
+        "explain_not_found": "The page you are looking for could not be found.",
+        "go_back" : "Go Back",
+        "go_home" : "Go Home"
+    },
+    "message": {
+        "home": "Home",
+        "links": {
+            "home": "Home",
+            "login": "Login",
+            "logout": "Logout",
+            "register": "Register",
+            "games": "Games",
+            "settings": "Settings",
+            "language": "Language",
+            "friends": "Friends",
+            "history": "History",
+            "profile": "Profile",
+            "play": "Play",
+            "stats": "Stats",
+            "listTournaments": "My tournaments"
+        },
+        "email": "Email",
+        "reset_pass": "Restore your password",
+        "name_placeholder": "first name",
+        "lastname_placeholder": "last name",
+        "username_placeholder": "username",
+        "password_placeholder": "password",
+        "confirm_pass_placeholder": "confirm password",
+        "logout": "Log out",
+        "gamestats": "Game Stats"
+
+    }
+}

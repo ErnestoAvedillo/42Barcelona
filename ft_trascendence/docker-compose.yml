@@ -1,0 +1,470 @@
+networks:
+  default:
+    name: transcendence
+    external: false
+
+services:
+  setup:
+    image: luised2094/setup:latest
+    container_name: setup
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs
+      - ./setup/setup_script.sh:/setup_script.sh
+      - ./setup/grafana_script.sh:/grafana_script.sh
+      - ./setup/ELK_script.sh:/ELK_script.sh
+      - ./ELK:/ELK
+      - ./Grafana/gateway_dashboard.json:/gateway_dashboard.json
+    user: "0"
+    environment:
+      - SLACK_HOOK=${SLACK_HOOK}
+    env_file:
+      - .env
+    command: >
+      bash /setup_script.sh
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /usr/share/elasticsearch/config/certs/es01/es01.crt ]"]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+  redis:
+    image: 'redis:6.2-alpine'
+    container_name: redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+      start_period: 5s   
+    
+  celery_worker:
+    build:
+      context: ./
+      dockerfile: ./celery/Dockerfile
+    image: django_celery_example_celery_worker
+    command: /start-celeryworker
+    container_name: celery_worker
+    depends_on:
+      redis:
+        condition: service_started
+      tournaments:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      migrations:
+        condition: service_started
+    volumes:
+      - ./tournaments:/app/
+      - ./usermodel:/app/user
+    env_file:
+      - .env
+
+  celery_beat:
+    build:
+      context: ./
+      dockerfile: ./celery/Dockerfile
+    image: django_celery_example_celery_beat
+    command: /start-celerybeat
+    container_name: celery_beat
+    depends_on:
+      celery_worker:
+        condition: service_started
+    volumes:
+      - ./tournaments:/app/
+      - ./usermodel:/app/user
+    env_file:
+      - .env
+
+  flower:
+    build:
+      context: ./
+      dockerfile: ./celery/Dockerfile
+    image: django_celery_example_celery_flower
+    command: /start-flower
+    container_name: flower
+    depends_on:
+      celery_beat:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    ports:
+      - 5557:5555
+    volumes:
+      - ./tournaments:/app/
+      - ./usermodel:/app/user
+    env_file:
+      - .env
+
+  migrations:
+    container_name: migrations
+    build: ./migrator
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DEBUG=${DEBUG}
+    env_file:
+      - .env
+    volumes:
+      - ./usermanagement:/app/usermanagement
+
+  db:
+    container_name: db
+    restart: always
+    build: ./database 
+    #image: postgres:13
+    environment:
+      POSTGRES_DB: transcendence
+      POSTGRES_USER: transcendence
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d transcendence -U transcendence"]
+      interval: 10s
+      timeout: 10s
+      retries: 120 
+      start_period: 10s
+
+  gateway:
+    restart: always
+    container_name: gateway
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    build: ./gateway
+    #ports:
+      #- "8000:8000"
+    volumes:
+      - ${LOGSTASH_FOLDER}${GATEWAY_LOG}:/var/log/${GATEWAY_LOG}
+      - ${DJANGO_SCRIPT}:/start.sh
+      - ./gateway:/app
+      - ./usermodel:/app/user
+
+    env_file:
+      - .env
+    environment:
+      - DEBUG=${DEBUG}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/metrics"]
+      interval: 10s
+      timeout: 10s
+      retries: 120 
+      start_period: 10s
+
+  usermanagement:
+    restart: always
+    depends_on:
+      migrations:
+        condition: service_started
+      db:
+        condition: service_healthy
+    container_name: usermanagement
+    build: ./usermanagement
+    volumes:
+      - ${LOGSTASH_FOLDER}${USER_LOG}:/var/log/${USER_LOG}
+      - ./usermanagement:/app
+    environment:
+      - DEBUG=${DEBUG}
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/metrics"]
+      interval: 10s
+      timeout: 10s
+      retries: 120 
+      start_period: 10s
+
+  tournaments:
+    depends_on:
+      usermanagement:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      migrations:
+        condition: service_started
+
+    container_name: tournaments
+    build: ./tournaments
+    volumes:
+      - ${LOGSTASH_FOLDER}${TOURNAMENT_LOG}:/var/log/${TOURNAMENT_LOG}
+      - ./tournaments:/app
+      - ./usermodel:/app/user
+    env_file:
+      - .env
+    environment:
+      - APP=tournaments
+      - DEBUG=${DEBUG}
+      - TOURNAMENTS_FOLDER=${TOURNAMENTS_FOLDER}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/metrics"]
+      interval: 10s
+      timeout: 10s
+      retries: 120 
+      start_period: 10s
+
+  # Monitoring Container
+
+
+  prometheus:
+    image: prom/prometheus:v2.53.1
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    volumes:
+      - ./Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    depends_on:
+      gateway:
+        condition: service_healthy
+      usermanagement:
+        condition: service_healthy
+      tournaments:
+        condition: service_healthy
+
+  grafana:
+    image: grafana/grafana:11.1.1-ubuntu
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=newadmin
+      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana # Set to the internal URL
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      - GF_SERVER_HTTP_PORT=3000
+#      - GF_LOG_LEVEL=warn
+    volumes:
+      - grafana-data:/var/lib/grafana
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 120 
+      start_period: 10s
+
+
+  es01:
+    restart: always
+    depends_on:
+      setup:
+        condition: service_healthy
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: elasticsearch
+    container_name: elasticsearch
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs
+      - esdata01:/usr/share/elasticsearch/data
+    environment:
+#      - LOG_LEVEL=warn
+      - node.name=es01
+      - cluster.name=${CLUSTER_NAME}
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=/usr/share/elasticsearch/config/certs/es01/es01.key
+      - xpack.security.http.ssl.certificate=/usr/share/elasticsearch/config/certs/es01/es01.crt
+      - xpack.security.http.ssl.certificate_authorities=/usr/share/elasticsearch/config/certs/ca/ca.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=/usr/share/elasticsearch/config/certs/es01/es01.key
+      - xpack.security.transport.ssl.certificate=/usr/share/elasticsearch/config/certs/es01/es01.crt
+      - xpack.security.transport.ssl.certificate_authorities=/usr/share/elasticsearch/config/certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.license.self_generated.type=${LICENSE}
+        #   mem_limit: ${ES_MEM_LIMIT}
+        #ulimits:
+        #memlock:
+        # soft: -1
+        # hard: -1
+        #nofile:
+        #soft: 65536
+        #hard: 65536
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s --cacert /usr/share/elasticsearch/config/certs/ca/ca.crt https://localhost:9200 | grep -q 'missing authentication credentials'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120 
+      start_period: 10s
+
+  logstash:
+    restart: always
+    depends_on:
+      es01:
+        condition: service_healthy
+      kibana:
+        condition: service_healthy
+    image: docker.elastic.co/logstash/logstash:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: logstash
+    container_name: logstash
+    user: '0'
+    volumes:
+      - certs:/usr/share/logstash/certs
+      - ./ELK/logstash:/usr/share/logstash/pipeline:ro
+      - logstashdata01:/var/log
+    environment:
+      - xpack.monitoring.enabled=false
+      - ELASTIC_USER=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - ELASTIC_HOSTS=https://es01:9200
+    env_file:
+      - .env
+
+  kibana:
+    restart: always
+    depends_on:
+      es01:
+        condition: service_healthy
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: kibana
+    volumes:
+      - certs:/usr/share/kibana/config/certs
+      - kibanadata:/usr/share/kibana/data
+
+    container_name: kibana
+    environment:
+#      - LOGGING_LEVEL=warn
+      - SERVER_REWRITE_BASE_PATH=true
+      - SERVER_BASEPATH=/kibana 
+      - ELASTICSEARCH_HOSTS=https://es01:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+      - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca/ca.crt
+      - XPACK_SECURITY_ENCRYPTIONKEY=${ENCRYPTION_KEY}
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=${ENCRYPTION_KEY}
+      - XPACK_REPORTING_ENCRYPTIONKEY=${ENCRYPTION_KEY}
+
+    mem_limit: ${KB_MEM_LIMIT}
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120 
+      start_period: 10s
+
+  blockchain:
+   depends_on:
+     - migrations
+     - tournaments
+   build:
+     context: ./blockchain
+   container_name: blockchain
+   ports:
+     - "0.0.0.0:8545:8545"
+   env_file:
+     - .env
+   restart: always
+   volumes:
+     - ${TOURNAMENTS_FOLDER}${TOURNAMENT_LOG}:/var/log/${TOURNAMENT_LOG}
+     - ./blockchain:/app
+  frontend:
+    container_name: frontend
+    depends_on:
+      gateway:
+        condition: service_healthy
+      kibana:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
+    env_file:
+      - .env
+    build:
+      context: ./frontend
+    ports:
+      - "0.0.0.0:8000:8000"
+    volumes:
+      - ./usermanagement/profile_pictures/:/usr/share/nginx/html/profile_pictures
+      - ./selfsigned.crt:/etc/nginx/ssl/nginx-selfsigned.crt
+      - ./selfsigned.key:/etc/nginx/ssl/nginx-selfsigned.key
+
+  #### Pong Game Server ####
+  pong-game-server:
+    container_name: pong-game-server
+    build:
+      context: ./pong-game-server
+    env_file:
+      - .env
+    image: pong-game-server-img
+    restart: always
+    ports:
+      - 0.0.0.0:4000:4000
+    volumes:
+      - ${LOGSTASH_FOLDER}:/var/log/
+      - ./selfsigned.crt:/app/selfsigned.crt
+      - ./selfsigned.key:/app/selfsigned.key
+
+
+
+
+
+volumes:
+  certs:
+    driver: local
+      #driver_opts:
+      #type: none
+        #device: ${CERTS_FOLDER}
+        #o: bind
+  esdata01:
+    driver: local
+      #driver_opts:
+      #type: none
+        #  device: ${ESDATA_FOLDER}
+        #o: bind
+  kibanadata:
+    driver: local
+      #driver_opts:
+      #type: none
+        #device: ${KIBANA_FOLDER}
+        #o: bind
+  logstashdata01:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${LOGSTASH_FOLDER}
+      o: bind
+  postgres-data:
+    driver: local
+    #driver_opts:
+      #type: none
+      #device: ${POSTGREE_FOLDER}
+      #o: bind
+  prometheus-data:
+    driver: local
+      #driver_opts:
+      #type: none
+        #device: ${PROMETHEUS_FOLDER}
+        #o: bind
+  grafana-data:
+    driver: local
+      #driver_opts:
+      #type: none
+        #device: ${GRAFANA_FOLDER}
+        #o: bind
+  blockchain_data:
+    driver: local
+      #driver_opts:
+      #type: none
+        #device: ${BLOCKCHAIN_FOLDER}
+        #o: bind
+  shared:
+    driver: local
+      #   driver_opts:
+      #type: none
+      #device: ${SHARED_FOLDER}
+      #o: bind
+  
+
