@@ -9,7 +9,7 @@
 /*   Updated: 2022/10/17 06:19:42 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"get_next_line.h"
+#include "get_next_line.h"
 
 void	free_null(char **prt)
 {
@@ -64,7 +64,6 @@ char	*my_joinstr(char *dst, char *src, int lensrc)
 	if (!out)
 		return (NULL);
 	i = -1;
-
 	while (++i < longdst && longdst)
 		out[i] = dst[i];
 	i--;

@@ -9,7 +9,7 @@
 /*   Updated: 2022/10/17 06:19:42 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"get_next_line.h"
+#include "get_next_line.h"
 
 void	free_null(char **prt)
 {

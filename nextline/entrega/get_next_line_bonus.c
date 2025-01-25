@@ -9,7 +9,7 @@
 /*   Updated: 2022/10/17 06:18:27 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"get_next_line.h"
+#include "get_next_line.h"
 
 char	*get_new_current_str(char *current_str, int start)
 {
