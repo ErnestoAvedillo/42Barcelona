@@ -9,7 +9,7 @@
 /*   Updated: 2022/09/24 10:15:08 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
+#include "libft.h"
 
 static char	*get_min_pos(char const *str, char const *set)
 {

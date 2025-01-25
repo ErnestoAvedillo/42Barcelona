@@ -9,7 +9,7 @@
 /*   Updated: 2022/09/24 11:20:17 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
+#include "libft.h"
 
 static int	getchrnr(long val)
 {
@@ -53,7 +53,7 @@ char	*ft_itoa(int n)
 			n *= -1;
 		str[0] = '-';
 		while (n > 0)
-		{	
+		{
 			str[--lenstr] = n % 10 + 48;
 			n = n / 10;
 		}
