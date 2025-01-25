@@ -9,7 +9,7 @@
 /*   Updated: 2022/09/18 17:33:46 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
+#include "libft.h"
 
 void	ft_lstclear(t_list **lst, void (*del) (void *))
 {
@@ -20,7 +20,7 @@ void	ft_lstclear(t_list **lst, void (*del) (void *))
 		return ;
 	ptr = (*lst);
 	while (ptr->next != NULL)
-	{	
+	{
 		ptr2 = ptr->next;
 		ft_lstdelone(ptr, del);
 		ptr = ptr2;

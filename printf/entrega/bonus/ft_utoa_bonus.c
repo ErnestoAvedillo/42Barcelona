@@ -43,7 +43,7 @@ char	*ft_utoa(unsigned int n)
 	else
 	{
 		while (n > 0)
-		{	
+		{
 			str[--lenstr] = n % 10 + 48;
 			n = n / 10;
 		}

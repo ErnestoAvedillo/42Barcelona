@@ -9,7 +9,7 @@
 /*   Updated: 2022/09/23 18:33:38 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
@@ -28,7 +28,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 				i++;
 			}
 			dst[i] = '\0';
-		}	
+		}
 	}
 	while (src[i])
 		i++;

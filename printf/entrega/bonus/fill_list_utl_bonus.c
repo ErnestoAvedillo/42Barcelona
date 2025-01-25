@@ -43,7 +43,7 @@ int	get_flags(char *str, int pos, t_form_data *frmt)
 	{
 		put_flag(str[curpos], frmt, !frmt->isminus);
 		curpos++;
-	}		
+	}
 	while (!is_format_char(str[curpos]))
 	{
 		if (str[curpos] == ASTERISC_FLAG)

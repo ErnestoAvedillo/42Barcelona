@@ -9,7 +9,7 @@
 /*   Updated: 2022/09/24 11:20:17 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"ft_printf.h"
+#include "ft_printf.h"
 
 static int	getchrnr(size_t val)
 {
@@ -68,7 +68,7 @@ char	*ft_addrtoa(size_t n, int formato, int flag)
 		str[1] = 'x';
 	}
 	while (n > 0)
-	{	
+	{
 		str[--lenstr] = vect_val[n % 16];
 		n = n / 16;
 	}

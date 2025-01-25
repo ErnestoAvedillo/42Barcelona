@@ -70,7 +70,7 @@ char	*ft_addrtoa(size_t n, int formato, int ispound)
 			str[1] = 'X';
 	}
 	while (n > 0)
-	{	
+	{
 		str[--lenstr] = vect_val[n % 16];
 		n = n / 16;
 	}

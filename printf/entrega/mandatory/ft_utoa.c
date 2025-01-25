@@ -9,7 +9,7 @@
 /*   Updated: 2022/09/24 11:20:17 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"ft_printf.h"
+#include "ft_printf.h"
 
 static int	getchrnr(unsigned int val)
 {
@@ -43,7 +43,7 @@ char	*ft_utoa(unsigned int n)
 	else
 	{
 		while (n > 0)
-		{	
+		{
 			str[--lenstr] = n % 10 + 48;
 			n = n / 10;
 		}

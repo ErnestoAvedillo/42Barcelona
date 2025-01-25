@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf_bonus.h"
+#include "ft_printf_bonus.h"
 
 int	getvalue_from_field(char *str, int start_pos)
 {
@@ -125,14 +125,3 @@ t_form_data	*fill_list(char *str, int pos, va_list args)
 	free (straux);
 	return (frmt);
 }
-/*
-	printf("str %s substr %s ispound %d ispoint %d isplus %d isspace %d isminus %d \
-		isnone %d isasterisc %d iszero %d longfield %d \
-		printlen %d format %c cur_str_pos %d signo %d error %d\n",\
-		str, straux, frmt->ispound, frmt->ispoint, frmt->isplus, \
-		frmt->isspace, frmt->isminus, frmt->isnone,\
-		frmt->isasterisc, frmt->iszero,frmt->longfield, \
-		frmt->prtstrlen, frmt->format,frmt->cur_str_pos, \
-		frmt->error, frmt->error );
-*/
-//	printf("str %s straux %s cur por %d pos %d\n",str, straux, cur_pos, pos );

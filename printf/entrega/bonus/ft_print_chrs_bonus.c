@@ -97,7 +97,7 @@ int	print_symbol(t_form_data *frmt)
 	if (frmt->signo < 0)
 		out = ft_print_char ('-');
 	if (frmt->ispound)
-	{	
+	{
 		if (!frmt->esvalcero)
 		{
 			if (frmt->format == HEX_FRMT_X)

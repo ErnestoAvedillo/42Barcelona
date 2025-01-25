@@ -9,7 +9,7 @@
 /*   Updated: 2022/09/23 21:53:28 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
+#include "libft.h"
 
 static size_t	ft_nextstartpos(char const *s, size_t ini, char c)
 {

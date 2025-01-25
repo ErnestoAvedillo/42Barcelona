@@ -23,7 +23,7 @@ static int	print_zeros(char *str, t_form_data *formato)
 			out = print_extra_zeros (formato, str);
 	}
 	if (formato->format == PERC_FRMT && (!formato->isminus))
-			out = print_extra_zeros (formato, str);
+		out = print_extra_zeros (formato, str);
 	return (out);
 }
 
