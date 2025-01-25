@@ -36,7 +36,7 @@ LIBX_LNX = $(addprefix $(DIR_LIBX),$(LIBX_NAME_LNX))
 LIBX_LNK :=  -Lmlx -lmlx -framework OpenGL -framework AppKit 
 RM := rm -rfd
 CC := gcc 
-FLAGS := -Wall -Werror -Wextra -O2 -g -fsanitize=address
+FLAGS := -Wall -Werror -Wextra -O2 -g 
 
 #-fsanitize=address
 
