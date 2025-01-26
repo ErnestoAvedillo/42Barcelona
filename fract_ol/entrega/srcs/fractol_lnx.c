@@ -32,7 +32,6 @@ static int	print_help_message(void)
 	return (0);
 }
 
-
 int	main(int av, char **ac)
 {
 	t_fract		*frac;
