@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fractol.h"
+#include "fractol.h"
 
 static double	brn_abs(double n)
 {

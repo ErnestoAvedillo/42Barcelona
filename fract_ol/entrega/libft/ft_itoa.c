@@ -9,7 +9,7 @@
 /*   Updated: 2022/09/24 11:20:17 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
+#include "libft.h"
 
 static int	getchrnr(long val)
 {

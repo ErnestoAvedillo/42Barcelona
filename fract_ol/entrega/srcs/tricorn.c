@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fractol.h"
+#include "fractol.h"
 
 int	tricorn(t_complex z0, t_complex c, int limit)
 {

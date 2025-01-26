@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fractol.h"
+#include "fractol.h"
 
 int	close_win(t_fract *frac)
 {

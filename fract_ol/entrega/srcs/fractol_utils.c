@@ -9,7 +9,7 @@
 /*   Updated: 2023/04/01 13:57:19 by eavedill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"fractol.h"
+#include "fractol.h"
 
 int	get_fractal(char *name)
 {

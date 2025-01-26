@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fractol.h"
+#include "fractol.h"
 
 int	mouse_events_pre(int mouse, int x, int y, t_fract *frac)
 {
@@ -95,7 +95,8 @@ int	mouse_events_mov(int x, int y, t_fract *frac)
 			micolor = &buf.buffer[y * buf.line_bytes + x * buf.pixel_bits / 8];
 			printf("color encontrado %x - %x -%x - %x\n",micolor[0],micolor[1],\
 			micolor[2],micolor[3]);
-			printf("color guardado %i - %x - %x -%x - %x\n",res, frac->color[res].r,\
+			printf("color guardado %i - %x - %x -%x - %x\n",res, \
+			frac->color[res].r,\
 			frac->color[res].g,frac->color[res].b,frac->color[res].a);
 		}
 	}

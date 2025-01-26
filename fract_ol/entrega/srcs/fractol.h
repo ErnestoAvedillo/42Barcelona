@@ -12,10 +12,10 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# include"../mlx/mlx.h"
-# include"../printf/ft_printf_bonus.h"
-# include<math.h>
-# include<stdio.h>
+# include "../mlx/mlx.h"
+# include "../printf/ft_printf_bonus.h"
+# include <math.h>
+# include <stdio.h>
 /// #include<limits.h>
 # ifdef KEY_LNX_H
 #  include "key_mouse_cod_lnx.h"
@@ -24,9 +24,10 @@
 #  include "key_mouse_cod_mac.h"
 # endif
 
-# include<time.h>
+# include <time.h>
 
-typedef struct s_complex {
+typedef struct s_complex
+{
 	double	re;
 	double	im;
 }	t_complex;
@@ -52,14 +53,16 @@ typedef struct s_img_buff
 	char	*buffer;
 }	t_img_buff;
 
-typedef struct s_color{
+typedef struct s_color
+{
 	int	r;
 	int	g;
 	int	b;
 	int	a;
 }	t_color;
 
-typedef struct s_fract {
+typedef struct s_fract
+{
 	int			fract_code;
 	int			(*function)(t_complex, t_complex, int);
 	void		*mlx_ptr;

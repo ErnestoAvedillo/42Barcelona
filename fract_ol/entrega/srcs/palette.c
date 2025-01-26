@@ -20,10 +20,10 @@ t_color	nw_col(unsigned int r, unsigned int g, unsigned int b, \
 {
 	t_color	color;
 
-		color.r = (char)r;
-		color.g = (char)g;
-		color.b = (char)b;
-		color.a = (char)a;
+	color.r = (char)r;
+	color.g = (char)g;
+	color.b = (char)b;
+	color.a = (char)a;
 	return (color);
 }
 
